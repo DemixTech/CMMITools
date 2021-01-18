@@ -1,5 +1,4 @@
 # CMMI Tools
-Demix CMMI Tools
 
 The email 01_StartupEmail.pdf is the reason for the creation of this repository.
 
