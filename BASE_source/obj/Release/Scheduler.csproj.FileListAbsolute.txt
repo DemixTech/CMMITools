@@ -1,0 +1,16 @@
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\bin\Release\Scheduler.exe.config
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\bin\Release\Scheduler.exe.manifest
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\bin\Release\Scheduler.application
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\bin\Release\Scheduler.exe
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\bin\Release\Scheduler.pdb
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\bin\Release\System.ComponentModel.Annotations.dll
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\obj\Release\Scheduler.csprojAssemblyReference.cache
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\obj\Release\Scheduler.Main.resources
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\obj\Release\Scheduler.Properties.Resources.resources
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\obj\Release\Scheduler.csproj.GenerateResource.cache
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\obj\Release\Scheduler.csproj.CoreCompileInputs.cache
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\obj\Release\Scheduler.exe.manifest
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\obj\Release\Scheduler.application
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\obj\Release\Scheduler.csproj.CopyComplete
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\obj\Release\Scheduler.exe
+C:\Users\PietervanZyl\source\repos\Demix\Scheduler\obj\Release\Scheduler.pdb
