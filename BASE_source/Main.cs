@@ -469,6 +469,9 @@ namespace BASE
 
             // *** For each project selected PA, find the participants that acted in that role
             int outRow = 2;
+            List<Schedule1Entry> includedList = new List<Schedule1Entry>();
+            List<Schedule1Entry> excludedList = new List<Schedule1Entry>();
+            
             foreach (var workUnit in WorkUnitList)
             {
                 var listOfSampledPAs = workUnit.PAlist.Where(x => x.SampleType == ESampleType.added || x.SampleType == ESampleType.sampled);
@@ -495,6 +498,31 @@ namespace BASE
                             schedule.Cells[outRow, 4].Value = workUnitParticipant.Name;
                             schedule.Cells[outRow, 5].Value = workUnitParticipant.Role;
                             schedule.Cells[outRow, 6].Value = workUnitParticipant.WorkID;
+
+                            // check if the workUnit.ID and PAcode is not already in the list, if it is, then it is a unecessary duplicate. If duplicate, skip include
+                            Schedule1Entry aSchedule1Entry = new Schedule1Entry()
+                            {
+                                ID = workUnit.ID.ToString(),
+                                Name = workUnit.Name.ToString(),
+                                PAcode = aSampledPA.PAcode.ToString(),
+                                ParticipantName = workUnitParticipant.Name,
+                                ParticipantRole = workUnitParticipant.Role,
+                                WorkIDcheck = workUnitParticipant.WorkID,
+                              //  include = false, set below to make reading more clear
+                            };
+
+                            int inListIndex = includedList.FindIndex(x => x.ID == aSchedule1Entry.ID && x.PAcode == aSchedule1Entry.PAcode); ;
+                            if (inListIndex < 0)
+                            { // not in list, insert in includedList
+                                aSchedule1Entry.include = true;
+                                includedList.Insert(~inListIndex, aSchedule1Entry);
+                                schedule.Cells[outRow, 7].Value = "x";
+                            } else
+                            { // already included, put in excludedList
+                                aSchedule1Entry.include = false;
+                                excludedList.Add(aSchedule1Entry);
+                                schedule.Cells[outRow, 7].Value = "";
+                            }
                             outRow++;
 
 
@@ -3207,6 +3235,11 @@ namespace BASE
             lblStatus.Text = statusStr;
 
             MessageBox.Show("Done");
+        }
+
+        private void tabDemixTool_Click(object sender, EventArgs e)
+        {
+
         }
     }
 

@@ -23,10 +23,10 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <UpdateUrl>http://demix.org/apps/</UpdateUrl>
+    <UpdateUrl>https://github.com/DemixTech/CMMITools/tree/main/BASE_install/</UpdateUrl>
     <MinimumRequiredVersion>3.8.0.12</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>25</ApplicationRevision>
+    <ApplicationRevision>26</ApplicationRevision>
     <ApplicationVersion>3.8.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -94,6 +94,7 @@
     <Compile Include="Data\ExampleWorkProduct.cs" />
     <Compile Include="Data\OUProcess.cs" />
     <Compile Include="Data\Question.cs" />
+    <Compile Include="Data\Schedule1.cs" />
     <Compile Include="Excel\Worksheet.cs" />
     <Compile Include="Excel\Helper.cs" />
     <Compile Include="Main.cs">
