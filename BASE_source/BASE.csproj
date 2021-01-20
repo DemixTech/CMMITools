@@ -26,7 +26,7 @@
     <UpdateUrl>https://github.com/DemixTech/CMMITools/tree/main/BASE_install/</UpdateUrl>
     <MinimumRequiredVersion>3.8.0.12</MinimumRequiredVersion>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>26</ApplicationRevision>
+    <ApplicationRevision>27</ApplicationRevision>
     <ApplicationVersion>3.8.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -92,6 +92,8 @@
   <ItemGroup>
     <Compile Include="Data\ExampleActivity.cs" />
     <Compile Include="Data\ExampleWorkProduct.cs" />
+    <Compile Include="Data\Organisation.cs" />
+    <Compile Include="Data\OrganizationalUnit.cs" />
     <Compile Include="Data\OUProcess.cs" />
     <Compile Include="Data\Question.cs" />
     <Compile Include="Data\Schedule1.cs" />

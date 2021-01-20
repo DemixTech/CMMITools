@@ -47,6 +47,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
 using BASE.Data;
+using System.Reflection;
 
 //using Microsoft.Office.Interop.Excel;
 
@@ -119,6 +120,22 @@ namespace BASE
 
         public PersistentData persistentData = new PersistentData();
 
+        public string VersionLabel
+        {
+            get
+            {
+                if (System.Deployment.Application.ApplicationDeployment.IsNetworkDeployed)
+                {
+                    Version ver = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                    return string.Format("Product Name: {4}, Version: {0}.{1}.{2}.{3}", ver.Major, ver.Minor, ver.Build, ver.Revision, Assembly.GetEntryAssembly().GetName().Name);
+                }
+                else
+                {
+                    var ver = Assembly.GetExecutingAssembly().GetName().Version;
+                    return string.Format("Product Name: {4}, Version: {0}.{1}.{2}.{3}", ver.Major, ver.Minor, ver.Build, ver.Revision, Assembly.GetEntryAssembly().GetName().Name);
+                }
+            }
+        }
 
         public Main()
         {
@@ -162,7 +179,22 @@ namespace BASE
 
         private void Main_Load(object sender, EventArgs e)
         {
+            var assemblyVersion = System.Windows.Forms.Application.ProductVersion; // comment out //[assembly: AssemblyFileVersion("1.0.0.0")] in AssemblyInfo.cs
+                                                                                   //var fileVersion = System.Reflection.AssemblyFileVersionAttribute.
+                                                                                   //string assemblyVersion2;// = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion;
+                                                                                   //try
+                                                                                   //{
+                                                                                   //    assemblyVersion2 = System.Deployment.Application.ApplicationDeployment.CurrentDeployment.CurrentVersion.ToString();
+                                                                                   //}
+                                                                                   //catch (Exception ex)
+                                                                                   //{
+                                                                                   //    assemblyVersion2 = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+                                                                                   //}
+                                                                                   //  MessageBox.Show($"Assembly1 {assemblyVersion}");//\nAssembly2 {assemblyVersion2.ToString()}");
 
+            string headerText = this.Text;
+            headerText = headerText + $" version {assemblyVersion} - Copyright(c) 2020, 2021 Demix (Pty) Ltd, All rights reserved";
+            this.Text = headerText;
         }
 
 
@@ -607,9 +639,10 @@ namespace BASE
 
         private void btnSelectPlanTab_Click(object sender, EventArgs e)
         {
+            // Clear background color
+            lbStatCASPlanLoaded.BackColor = Control.DefaultBackColor;
 
             // Check if the excel process is running
-
 
             OpenFileDialog sourceFile2 = new OpenFileDialog();
             sourceFile2.InitialDirectory = persistentData.LastAppraisalDirectory; //cPath_start;
@@ -759,6 +792,7 @@ namespace BASE
                     row++;
                     sValue5 = participantWks.Cells[row, 1].Value2;
                 }
+                // *** Load OU information
 
 
                 MessageBox.Show("Workbook loaded. Projects and support functions loaded. Processess loaded. Staff loaded.");
@@ -766,6 +800,10 @@ namespace BASE
                 // Step 4: Load Scheduel 2
                 loadSchedule2();
             }
+
+            // Set background color - loaded
+            lbStatCASPlanLoaded.BackColor = Color.LightGreen;
+            
         }
 
         //private void button1_Click_1(object sender, EventArgs e)
@@ -3238,6 +3276,11 @@ namespace BASE
         }
 
         private void tabDemixTool_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbStatCASPlanLoaded_Click(object sender, EventArgs e)
         {
 
         }

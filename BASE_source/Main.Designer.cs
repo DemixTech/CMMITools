@@ -45,21 +45,11 @@
             this.btnSelectImportFile = new System.Windows.Forms.Button();
             this.btnSelectMainTool = new System.Windows.Forms.Button();
             this.tabDemixPlan = new System.Windows.Forms.TabPage();
+            this.lbStatCASPlanLoaded = new System.Windows.Forms.Label();
             this.btnSelectPlanTab = new System.Windows.Forms.Button();
             this.btnGenerateScheduleTab = new System.Windows.Forms.Button();
             this.btnLoadSchedule2tab = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btnResetV01 = new System.Windows.Forms.Button();
-            this.btnSelectWorkingDir = new System.Windows.Forms.Button();
-            this.btnChange = new System.Windows.Forms.Button();
-            this.txtTo = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtFrom = new System.Windows.Forms.TextBox();
-            this.tabQuestions = new System.Windows.Forms.TabPage();
-            this.btnImportModel = new System.Windows.Forms.Button();
-            this.btnSelectQuestionFile = new System.Windows.Forms.Button();
             this.tabDemixTool = new System.Windows.Forms.TabPage();
             this.btnAbridge = new System.Windows.Forms.Button();
             this.btnExtractOEFindings = new System.Windows.Forms.Button();
@@ -70,6 +60,19 @@
             this.btnDemixTstLinksAndEngl = new System.Windows.Forms.Button();
             this.btnGenerateFullTool = new System.Windows.Forms.Button();
             this.btnSelectDemixTool = new System.Windows.Forms.Button();
+            this.tabQuestions = new System.Windows.Forms.TabPage();
+            this.btnImportModel = new System.Windows.Forms.Button();
+            this.btnSelectQuestionFile = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btnResetV01 = new System.Windows.Forms.Button();
+            this.btnSelectWorkingDir = new System.Windows.Forms.Button();
+            this.btnChange = new System.Windows.Forms.Button();
+            this.txtTo = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtFrom = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblDefaults = new System.Windows.Forms.Label();
             this.lblQuestions = new System.Windows.Forms.Label();
             this.lblDemixTool = new System.Windows.Forms.Label();
             this.lblDemixTool2Import = new System.Windows.Forms.Label();
@@ -80,14 +83,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.lblDefaults = new System.Windows.Forms.Label();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            this.tabQuestions.SuspendLayout();
             this.tabDemixTool.SuspendLayout();
+            this.tabQuestions.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -254,6 +255,7 @@
             // 
             // tabDemixPlan
             // 
+            this.tabDemixPlan.Controls.Add(this.lbStatCASPlanLoaded);
             this.tabDemixPlan.Controls.Add(this.btnSelectPlanTab);
             this.tabDemixPlan.Controls.Add(this.btnGenerateScheduleTab);
             this.tabDemixPlan.Controls.Add(this.btnLoadSchedule2tab);
@@ -264,6 +266,17 @@
             this.tabDemixPlan.TabIndex = 0;
             this.tabDemixPlan.Text = "Demix Plan";
             this.tabDemixPlan.UseVisualStyleBackColor = true;
+            // 
+            // lbStatCASPlanLoaded
+            // 
+            this.lbStatCASPlanLoaded.AutoSize = true;
+            this.lbStatCASPlanLoaded.BackColor = System.Drawing.SystemColors.Control;
+            this.lbStatCASPlanLoaded.Location = new System.Drawing.Point(614, 60);
+            this.lbStatCASPlanLoaded.Name = "lbStatCASPlanLoaded";
+            this.lbStatCASPlanLoaded.Size = new System.Drawing.Size(129, 20);
+            this.lbStatCASPlanLoaded.TabIndex = 31;
+            this.lbStatCASPlanLoaded.Text = "CAS Plan loaded";
+            this.lbStatCASPlanLoaded.Click += new System.EventHandler(this.lbStatCASPlanLoaded_Click);
             // 
             // btnSelectPlanTab
             // 
@@ -308,119 +321,6 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1041, 490);
             this.tabControl1.TabIndex = 21;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Controls.Add(this.btnResetV01);
-            this.tabPage1.Controls.Add(this.btnSelectWorkingDir);
-            this.tabPage1.Controls.Add(this.btnChange);
-            this.tabPage1.Controls.Add(this.txtTo);
-            this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.label1);
-            this.tabPage1.Controls.Add(this.txtFrom);
-            this.tabPage1.Location = new System.Drawing.Point(4, 29);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1033, 457);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "Directory admin";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // btnResetV01
-            // 
-            this.btnResetV01.Location = new System.Drawing.Point(45, 331);
-            this.btnResetV01.Name = "btnResetV01";
-            this.btnResetV01.Size = new System.Drawing.Size(280, 46);
-            this.btnResetV01.TabIndex = 6;
-            this.btnResetV01.Text = "Reset to V01";
-            this.btnResetV01.UseVisualStyleBackColor = true;
-            this.btnResetV01.Click += new System.EventHandler(this.btnResetV01_Click);
-            // 
-            // btnSelectWorkingDir
-            // 
-            this.btnSelectWorkingDir.Location = new System.Drawing.Point(45, 21);
-            this.btnSelectWorkingDir.Name = "btnSelectWorkingDir";
-            this.btnSelectWorkingDir.Size = new System.Drawing.Size(280, 40);
-            this.btnSelectWorkingDir.TabIndex = 5;
-            this.btnSelectWorkingDir.Text = "Select working directory";
-            this.btnSelectWorkingDir.UseVisualStyleBackColor = true;
-            this.btnSelectWorkingDir.Click += new System.EventHandler(this.btnSelectWorkingDir_Click);
-            // 
-            // btnChange
-            // 
-            this.btnChange.Location = new System.Drawing.Point(147, 171);
-            this.btnChange.Name = "btnChange";
-            this.btnChange.Size = new System.Drawing.Size(178, 44);
-            this.btnChange.TabIndex = 4;
-            this.btnChange.Text = "Find/Replace";
-            this.btnChange.UseVisualStyleBackColor = true;
-            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
-            // 
-            // txtTo
-            // 
-            this.txtTo.Location = new System.Drawing.Point(147, 119);
-            this.txtTo.Name = "txtTo";
-            this.txtTo.Size = new System.Drawing.Size(178, 26);
-            this.txtTo.TabIndex = 3;
-            this.txtTo.Leave += new System.EventHandler(this.txtTo_Leave);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(41, 119);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(57, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "To text";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 20);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "From text";
-            // 
-            // txtFrom
-            // 
-            this.txtFrom.Location = new System.Drawing.Point(147, 76);
-            this.txtFrom.Name = "txtFrom";
-            this.txtFrom.Size = new System.Drawing.Size(178, 26);
-            this.txtFrom.TabIndex = 0;
-            this.txtFrom.Leave += new System.EventHandler(this.txtFrom_Leave);
-            // 
-            // tabQuestions
-            // 
-            this.tabQuestions.Controls.Add(this.btnImportModel);
-            this.tabQuestions.Controls.Add(this.btnSelectQuestionFile);
-            this.tabQuestions.Location = new System.Drawing.Point(4, 29);
-            this.tabQuestions.Name = "tabQuestions";
-            this.tabQuestions.Padding = new System.Windows.Forms.Padding(3);
-            this.tabQuestions.Size = new System.Drawing.Size(1033, 457);
-            this.tabQuestions.TabIndex = 4;
-            this.tabQuestions.Text = "Questions";
-            this.tabQuestions.UseVisualStyleBackColor = true;
-            // 
-            // btnImportModel
-            // 
-            this.btnImportModel.Location = new System.Drawing.Point(32, 105);
-            this.btnImportModel.Name = "btnImportModel";
-            this.btnImportModel.Size = new System.Drawing.Size(248, 51);
-            this.btnImportModel.TabIndex = 1;
-            this.btnImportModel.Text = "Import Questions and Model";
-            this.btnImportModel.UseVisualStyleBackColor = true;
-            this.btnImportModel.Click += new System.EventHandler(this.btnImportModel_Click);
-            // 
-            // btnSelectQuestionFile
-            // 
-            this.btnSelectQuestionFile.Location = new System.Drawing.Point(32, 28);
-            this.btnSelectQuestionFile.Name = "btnSelectQuestionFile";
-            this.btnSelectQuestionFile.Size = new System.Drawing.Size(248, 53);
-            this.btnSelectQuestionFile.TabIndex = 0;
-            this.btnSelectQuestionFile.Text = "Select Questions sheet";
-            this.btnSelectQuestionFile.UseVisualStyleBackColor = true;
-            this.btnSelectQuestionFile.Click += new System.EventHandler(this.btnSelectQuestionFile_Click);
             // 
             // tabDemixTool
             // 
@@ -532,6 +432,138 @@
             this.btnSelectDemixTool.UseVisualStyleBackColor = true;
             this.btnSelectDemixTool.Click += new System.EventHandler(this.btnSelectDemixTool_Click);
             // 
+            // tabQuestions
+            // 
+            this.tabQuestions.Controls.Add(this.btnImportModel);
+            this.tabQuestions.Controls.Add(this.btnSelectQuestionFile);
+            this.tabQuestions.Location = new System.Drawing.Point(4, 29);
+            this.tabQuestions.Name = "tabQuestions";
+            this.tabQuestions.Padding = new System.Windows.Forms.Padding(3);
+            this.tabQuestions.Size = new System.Drawing.Size(1033, 457);
+            this.tabQuestions.TabIndex = 4;
+            this.tabQuestions.Text = "Questions";
+            this.tabQuestions.UseVisualStyleBackColor = true;
+            // 
+            // btnImportModel
+            // 
+            this.btnImportModel.Location = new System.Drawing.Point(32, 105);
+            this.btnImportModel.Name = "btnImportModel";
+            this.btnImportModel.Size = new System.Drawing.Size(248, 51);
+            this.btnImportModel.TabIndex = 1;
+            this.btnImportModel.Text = "Import Questions and Model";
+            this.btnImportModel.UseVisualStyleBackColor = true;
+            this.btnImportModel.Click += new System.EventHandler(this.btnImportModel_Click);
+            // 
+            // btnSelectQuestionFile
+            // 
+            this.btnSelectQuestionFile.Location = new System.Drawing.Point(32, 28);
+            this.btnSelectQuestionFile.Name = "btnSelectQuestionFile";
+            this.btnSelectQuestionFile.Size = new System.Drawing.Size(248, 53);
+            this.btnSelectQuestionFile.TabIndex = 0;
+            this.btnSelectQuestionFile.Text = "Select Questions sheet";
+            this.btnSelectQuestionFile.UseVisualStyleBackColor = true;
+            this.btnSelectQuestionFile.Click += new System.EventHandler(this.btnSelectQuestionFile_Click);
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.btnResetV01);
+            this.tabPage1.Controls.Add(this.btnSelectWorkingDir);
+            this.tabPage1.Controls.Add(this.btnChange);
+            this.tabPage1.Controls.Add(this.txtTo);
+            this.tabPage1.Controls.Add(this.label2);
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.txtFrom);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1033, 457);
+            this.tabPage1.TabIndex = 3;
+            this.tabPage1.Text = "Directory admin";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // btnResetV01
+            // 
+            this.btnResetV01.Location = new System.Drawing.Point(45, 331);
+            this.btnResetV01.Name = "btnResetV01";
+            this.btnResetV01.Size = new System.Drawing.Size(280, 46);
+            this.btnResetV01.TabIndex = 6;
+            this.btnResetV01.Text = "Reset to V01";
+            this.btnResetV01.UseVisualStyleBackColor = true;
+            this.btnResetV01.Click += new System.EventHandler(this.btnResetV01_Click);
+            // 
+            // btnSelectWorkingDir
+            // 
+            this.btnSelectWorkingDir.Location = new System.Drawing.Point(45, 21);
+            this.btnSelectWorkingDir.Name = "btnSelectWorkingDir";
+            this.btnSelectWorkingDir.Size = new System.Drawing.Size(280, 40);
+            this.btnSelectWorkingDir.TabIndex = 5;
+            this.btnSelectWorkingDir.Text = "Select working directory";
+            this.btnSelectWorkingDir.UseVisualStyleBackColor = true;
+            this.btnSelectWorkingDir.Click += new System.EventHandler(this.btnSelectWorkingDir_Click);
+            // 
+            // btnChange
+            // 
+            this.btnChange.Location = new System.Drawing.Point(147, 171);
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Size = new System.Drawing.Size(178, 44);
+            this.btnChange.TabIndex = 4;
+            this.btnChange.Text = "Find/Replace";
+            this.btnChange.UseVisualStyleBackColor = true;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            // 
+            // txtTo
+            // 
+            this.txtTo.Location = new System.Drawing.Point(147, 119);
+            this.txtTo.Name = "txtTo";
+            this.txtTo.Size = new System.Drawing.Size(178, 26);
+            this.txtTo.TabIndex = 3;
+            this.txtTo.Leave += new System.EventHandler(this.txtTo_Leave);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(41, 119);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "To text";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(41, 82);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "From text";
+            // 
+            // txtFrom
+            // 
+            this.txtFrom.Location = new System.Drawing.Point(147, 76);
+            this.txtFrom.Name = "txtFrom";
+            this.txtFrom.Size = new System.Drawing.Size(178, 26);
+            this.txtFrom.TabIndex = 0;
+            this.txtFrom.Leave += new System.EventHandler(this.txtFrom_Leave);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.lblDefaults);
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Size = new System.Drawing.Size(1033, 457);
+            this.tabPage2.TabIndex = 6;
+            this.tabPage2.Text = "About";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lblDefaults
+            // 
+            this.lblDefaults.AutoSize = true;
+            this.lblDefaults.Location = new System.Drawing.Point(32, 36);
+            this.lblDefaults.Name = "lblDefaults";
+            this.lblDefaults.Size = new System.Drawing.Size(84, 20);
+            this.lblDefaults.TabIndex = 32;
+            this.lblDefaults.Text = "lblDefaults";
+            // 
             // lblQuestions
             // 
             this.lblQuestions.AutoSize = true;
@@ -623,25 +655,6 @@
             this.label9.TabIndex = 30;
             this.label9.Text = "Model and Questions";
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Controls.Add(this.lblDefaults);
-            this.tabPage2.Location = new System.Drawing.Point(4, 29);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1033, 457);
-            this.tabPage2.TabIndex = 6;
-            this.tabPage2.Text = "Settings";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // lblDefaults
-            // 
-            this.lblDefaults.AutoSize = true;
-            this.lblDefaults.Location = new System.Drawing.Point(32, 36);
-            this.lblDefaults.Name = "lblDefaults";
-            this.lblDefaults.Size = new System.Drawing.Size(84, 20);
-            this.lblDefaults.TabIndex = 32;
-            this.lblDefaults.Text = "lblDefaults";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -666,17 +679,18 @@
             this.Controls.Add(this.lblWorkingDirectory);
             this.Controls.Add(this.LblSourceFilePlan2);
             this.Name = "Main";
-            this.Text = "BASE - Benchmark Appraisal Support Environment";
+            this.Text = "B.A.S.E. (Benchmark Appraisal Support Environment)";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
             this.Load += new System.EventHandler(this.Main_Load);
             this.tabCMMI_ApprTool.ResumeLayout(false);
             this.tabDemixPlan.ResumeLayout(false);
+            this.tabDemixPlan.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabDemixTool.ResumeLayout(false);
+            this.tabQuestions.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabQuestions.ResumeLayout(false);
-            this.tabDemixTool.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
@@ -739,6 +753,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label lblDefaults;
+        private System.Windows.Forms.Label lbStatCASPlanLoaded;
     }
 }
 
