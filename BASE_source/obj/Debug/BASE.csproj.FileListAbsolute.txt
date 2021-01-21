@@ -23,9 +23,9 @@ C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.Main
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.Properties.Resources.resources
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csproj.GenerateResource.cache
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csproj.CoreCompileInputs.cache
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.TrustInfo.xml
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.exe.manifest
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.application
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csproj.CopyComplete
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.exe
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.pdb
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csprojAssemblyReference.cache
