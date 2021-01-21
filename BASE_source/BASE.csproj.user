@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <PublishUrlHistory>C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_install\|C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE\|ftp://demix.org:21/httpdocs/apps/|ftp://demix.org:21/apps/|C:\Users\PietervanZyl\Demix %28Pty%29 Ltd\Demix Global - Documents\11_BPM\08_Package\DemixAppraisalTool\Publish\</PublishUrlHistory>
-    <InstallUrlHistory>http://www.demix.org/apps/</InstallUrlHistory>
+    <PublishUrlHistory>C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_install\|https://github.com/DemixTech/CMMITools/tree/main/BASE_install/|ftp://demix.org:21/httpdocs/apps/|sftp://demixcl2%40demix.org/apps/|sftp://demixcl2%40demix.org/</PublishUrlHistory>
+    <InstallUrlHistory>https://www.demix.org/apps/|http://www.demix.org/apps/</InstallUrlHistory>
     <SupportUrlHistory />
-    <UpdateUrlHistory>http://demix.org/apps/|http://demix.org/apps/publish.htm/</UpdateUrlHistory>
+    <UpdateUrlHistory>https://github.com/DemixTech/CMMITools/tree/main/BASE_install/|http://demix.org/apps/|http://demix.org/apps/publish.htm/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>
