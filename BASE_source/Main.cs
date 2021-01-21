@@ -1,29 +1,6 @@
 ﻿/*
     Copyright (c) 2020-2021, Demix (Pty) Ltd, Create | Evolve | Perfect, http://www.demix.org
-    
-    Permission is hereby granted, free of charge, to any person obtaining a copy
-    of this software and associated documentation files (the "Software"), to deal
-    in the Software without restriction, including without limitation the rights
-    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    copies of the Software, and to permit persons to whom the Software is
-    furnished to do so, subject to the following conditions:
-    
-    The above copyright notice and this permission notice shall be included in all
-    copies or substantial portions of the Software.
-    
-    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    SOFTWARE.
-    
-    The person can accept this license agreement by sending their name and surname to mailto:request@demix.org?subject=Demix%20CMMI%20Software%20License%20Acceptance 
-    Lates releases of the Demix CMMI Sofware http://www.demix.org/tools
-    For any enhancement suggestions please email mailto:request@demix.org?subject=Demix%20CMMI%20Tool%20Enhancement%20Suggestion
-    More informatin on the MIT license agreeemnt https://en.wikipedia.org/wiki/MIT_License
-
+    License agreement https://github.com/DemixTech/CMMITools/blob/main/README.md
 */
 
 
@@ -503,7 +480,7 @@ namespace BASE
             int outRow = 2;
             List<Schedule1Entry> includedList = new List<Schedule1Entry>();
             List<Schedule1Entry> excludedList = new List<Schedule1Entry>();
-            
+
             foreach (var workUnit in WorkUnitList)
             {
                 var listOfSampledPAs = workUnit.PAlist.Where(x => x.SampleType == ESampleType.added || x.SampleType == ESampleType.sampled);
@@ -540,7 +517,7 @@ namespace BASE
                                 ParticipantName = workUnitParticipant.Name,
                                 ParticipantRole = workUnitParticipant.Role,
                                 WorkIDcheck = workUnitParticipant.WorkID,
-                              //  include = false, set below to make reading more clear
+                                //  include = false, set below to make reading more clear
                             };
 
                             int inListIndex = includedList.FindIndex(x => x.ID == aSchedule1Entry.ID && x.PAcode == aSchedule1Entry.PAcode); ;
@@ -549,7 +526,8 @@ namespace BASE
                                 aSchedule1Entry.include = true;
                                 includedList.Insert(~inListIndex, aSchedule1Entry);
                                 schedule.Cells[outRow, 7].Value = "x";
-                            } else
+                            }
+                            else
                             { // already included, put in excludedList
                                 aSchedule1Entry.include = false;
                                 excludedList.Add(aSchedule1Entry);
@@ -639,6 +617,7 @@ namespace BASE
 
         private void btnSelectPlanTab_Click(object sender, EventArgs e)
         {
+
             // Clear background color
             lbStatCASPlanLoaded.BackColor = Control.DefaultBackColor;
 
@@ -651,6 +630,9 @@ namespace BASE
             sourceFile2.DefaultExt = "*.xlsx";
             if (sourceFile2.ShowDialog() == DialogResult.OK)
             {
+                // Set cursor as hourglass
+                Cursor.Current = Cursors.WaitCursor;
+
                 LblSourceFilePlan2.Text = sourceFile2.FileName;
                 // *** save new file
                 persistentData.LastAppraisalDirectory = Path.GetDirectoryName(sourceFile2.FileName);
@@ -668,6 +650,10 @@ namespace BASE
                     //MessageBox.Show($"File {Path.GetFileName(LblSourceFilePlan2.Text.ToString())}" +
                     //    $"\n\rDirectory {Path.GetDirectoryName(LblSourceFilePlan2.Text.ToString())}" +
                     //    "\n\rdoes not exists");
+
+
+                    // Set cursor as default arrow
+                    Cursor.Current = Cursors.Default;
                     MessageBox.Show("File not found, has it been moved or deleted?");
                     return;
                 }
@@ -794,7 +780,8 @@ namespace BASE
                 }
                 // *** Load OU information
 
-
+                // Set cursor as default arrow
+                Cursor.Current = Cursors.Default;
                 MessageBox.Show("Workbook loaded. Projects and support functions loaded. Processess loaded. Staff loaded.");
 
                 // Step 4: Load Scheduel 2
@@ -803,7 +790,7 @@ namespace BASE
 
             // Set background color - loaded
             lbStatCASPlanLoaded.BackColor = Color.LightGreen;
-            
+
         }
 
         //private void button1_Click_1(object sender, EventArgs e)
@@ -1526,7 +1513,7 @@ namespace BASE
             {
 
                 // *** test if it is of type "2 Prac_OU"
-                if (wksMain.Cells[rowS,CD_Heading]?.Value == "2 Prac_OU")
+                if (wksMain.Cells[rowS, CD_Heading]?.Value == "2 Prac_OU")
                 {
                     string practiceStr = wksMain.Cells[rowS, CD_practiceCol]?.Value?.ToString();
 
@@ -1558,7 +1545,7 @@ namespace BASE
                     }
 
                 }
-                
+
 
 
             }
@@ -1666,7 +1653,8 @@ namespace BASE
                 }
             }
             // No wks found
-            Worksheet newWks = aWkb.Worksheets.Add(wksName);
+            Worksheet newWks = aWkb.Worksheets.Add(After: aWkb.Worksheets["Processes"]);
+            newWks.Name = wksName;
             return newWks;
         }
 
@@ -3006,13 +2994,15 @@ namespace BASE
             }
             string basePath = Path.GetDirectoryName(persistentData.DemixToolPathFile);
 
-            lblStatus.Text = "OEdb:";
-            string statusStr = "";
+            //  lblStatus.Text = "OEdb:";
 
             string[] wksNameArray = { "p1", "p2", "p3", "p4", "p5", "p6", "s1", "s2", "s3", "s4" };
+            string statusStr="";
 
             foreach (string aWksName in wksNameArray)
             {
+                lblStatus.Text = aWksName + "OEdb:";
+                statusStr = "";
                 Worksheet projectWks = mainWorkbook.Worksheets[aWksName];
 
                 foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
@@ -3241,8 +3231,8 @@ namespace BASE
                             mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol] = mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"];
                             mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol].Value = wksOEdb.Name + fileNumber.ToString("D2");
                             fileNumber++;
-                        
-                            
+
+
                         }
                         foreach (Hyperlink aHyperlink in hyperLinkList)
                         {
