@@ -3,10 +3,10 @@
   <PropertyGroup>
     <PublishUrlHistory>C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_install\|C:\WorkingDir\BASEdeploy\|https://github.com/DemixTech/CMMITools/tree/main/BASE_install/|ftp://demix.org:21/httpdocs/apps/|sftp://demixcl2%40demix.org/apps/</PublishUrlHistory>
     <InstallUrlHistory>https://www.demix.org/apps/|http://www.demix.org/apps/</InstallUrlHistory>
-    <SupportUrlHistory />
+    <SupportUrlHistory>http://www.demix.org/tools</SupportUrlHistory>
     <UpdateUrlHistory>https://github.com/DemixTech/CMMITools/tree/main/BASE_install/|http://demix.org/apps/|http://demix.org/apps/publish.htm/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
-    <ErrorReportUrlHistory />
+    <ErrorReportUrlHistory>http://www.demix.org/tools</ErrorReportUrlHistory>
     <FallbackCulture>en-US</FallbackCulture>
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
   </PropertyGroup>

@@ -29,3 +29,4 @@ C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.appl
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csproj.CopyComplete
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.exe
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.pdb
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csprojAssemblyReference.cache
