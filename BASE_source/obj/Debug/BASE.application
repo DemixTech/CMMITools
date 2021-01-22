@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xrml="urn:mpeg:mpeg21:2003:01-REL-R-NS" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <assemblyIdentity name="BASE.application" version="3.8.0.41" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" xmlns="urn:schemas-microsoft-com:asm.v1" />
+  <assemblyIdentity name="BASE.application" version="3.8.0.42" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <description asmv2:publisher="Demix" co.v1:suiteName="B.A.S.E." asmv2:product="B.A.S.E." asmv2:supportUrl="http://www.demix.org/tools" co.v1:errorReportUrl="http://www.demix.org/tools" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" minimumRequiredVersion="3.8.0.37" co.v1:createDesktopShortcut="true">
     <subscription>
@@ -15,13 +15,13 @@
   </compatibleFrameworks>
   <dependency>
     <dependentAssembly dependencyType="install" codebase="BASE.exe.manifest" size="5892">
-      <assemblyIdentity name="BASE.exe" version="3.8.0.41" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+      <assemblyIdentity name="BASE.exe" version="3.8.0.42" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>5QpqPk8s2Jlp6wYjjkEEA5V9PCmyK9Xr5bgW5yXC780=</dsig:DigestValue>
+        <dsig:DigestValue>eSmn5bh761qZoRbEuC+Uj+o/NKoK4OvNu/4YokkcUaE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
