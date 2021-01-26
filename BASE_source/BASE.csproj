@@ -148,7 +148,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="BASE_TemporaryKey.pfx" />
+    <None Include="delete\BASE_TemporaryKey.pfx" />
     <None Include="demix_v4.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
