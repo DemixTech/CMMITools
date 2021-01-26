@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BASE2.Data;
+using Range = Microsoft.Office.Interop.Excel.Range;
+
 
 namespace BASE2.Data
 {
@@ -54,22 +56,24 @@ namespace BASE2.Data
         private void ProcessProjects(Worksheet prjWks, int row, int headingRow)
         {
 
-            string sValue2;
+            //string sValue2;
             try
             {
-                sValue2 = prjWks.Cells[row, 1].ToString();//.Value; // ID field
-                if (string.IsNullOrEmpty(sValue2))
+                Range aRange1 = (Range)prjWks.Cells[row, 1];
+                string sValue1 = aRange1.Value.ToString(); // (Range)(prjWks.Cells[row, 1]) .Value.ToString();//.Value; // ID field
+                if (string.IsNullOrEmpty(sValue1))
                 {
                     WorkType = EWorkType.nothing;
                     return;
                 }
                 else
                 {
-                    ID = sValue2.ToLower().Trim();
+                    ID = sValue1.ToLower().Trim();
                     WorkType = EWorkType.project;
                 }
 
-                sValue2 = prjWks.Cells[row, 2].ToString();//.Value; // Name
+                Range aRange2 = (Range)prjWks.Cells[row, 2];
+                string sValue2 = aRange2.Value.ToString(); // prjWks.Cells[row, 2].ToString();//.Value; // Name
                 if (string.IsNullOrEmpty(sValue2))
                 {
                     WorkType = EWorkType.nothing;
@@ -81,59 +85,69 @@ namespace BASE2.Data
                     Name = sValue2;
                 }
 
-                sValue2 = prjWks.Cells[row, 3].ToString();//.Value; // Description
-                if (string.IsNullOrEmpty(sValue2))
+                Range aRange3 = (Range)prjWks.Cells[row, 3];
+                string sValue32 = aRange3.Value.ToString();// prjWks.Cells[row, 3].ToString();//.Value; // Description
+                if (string.IsNullOrEmpty(sValue32))
                 {
                     WorkType = EWorkType.nothing;
                     return;
                 }
                 else
                 {
-                    Description = sValue2;
+                    Description = sValue32;
                 }
 
-                sValue2 = prjWks.Cells[row, 4].ToString();//.Value; // Lifecycle
-                if (string.IsNullOrEmpty(sValue2))
+                Range aRange4 = (Range)prjWks.Cells[row, 4];
+                string sValue4 = aRange4.Value.ToString();
+
+                //sValue2 = prjWks.Cells[row, 4].ToString();//.Value; // Lifecycle
+                if (string.IsNullOrEmpty(sValue4))
                 {
                     WorkType = EWorkType.nothing;
                     return;
                 }
                 else
                 {
-                    Lifecycle = sValue2;
+                    Lifecycle = sValue4;
                 }
 
-                sValue2 = prjWks.Cells[row, 5].ToString();//.Value; // Stage
-                if (string.IsNullOrEmpty(sValue2))
+                Range aRange5 = (Range)prjWks.Cells[row, 5];
+                string sValue5 = aRange5.Value.ToString();
+                //sValue2 = prjWks.Cells[row, 5].ToString();//.Value; // Stage
+                if (string.IsNullOrEmpty(sValue5))
                 {
                     WorkType = EWorkType.nothing;
                     return;
                 }
                 else
                 {
-                    Stage = sValue2;
+                    Stage = sValue5;
                 }
 
-                sValue2 = prjWks.Cells[row, 6].ToString();//.Value.ToString(); // Start
-                if (string.IsNullOrEmpty(sValue2))
+                Range aRange6 = (Range)prjWks.Cells[row, 6];
+                string sValue6 = aRange6.Value.ToString();
+                //sValue2 = prjWks.Cells[row, 6].ToString();//.Value.ToString(); // Start
+                if (string.IsNullOrEmpty(sValue6))
                 {
                     WorkType = EWorkType.nothing;
                     return;
                 }
                 else
                 {
-                    StartDate = DateTime.Parse(sValue2);
+                    StartDate = DateTime.Parse(sValue6);
                 }
 
-                sValue2 = prjWks.Cells[row, 7].ToString();//.Value.ToString(); // End
-                if (string.IsNullOrEmpty(sValue2))
+                Range aRange7 = (Range)prjWks.Cells[row, 7];
+                string sValue7 = aRange7.Value.ToString();
+                //sValue2 = prjWks.Cells[row, 7].ToString();//.Value.ToString(); // End
+                if (string.IsNullOrEmpty(sValue7))
                 {
                     WorkType = EWorkType.nothing;
                     return;
                 }
                 else
                 {
-                    EndDate = DateTime.Parse(sValue2);
+                    EndDate = DateTime.Parse(sValue7);
                 }
             }
             catch (Exception ex)
@@ -147,21 +161,24 @@ namespace BASE2.Data
                 // if the col is empty, ignore, else process
                 try
                 {
-                    var aCell = prjWks.Cells[headingRow, col];//.Value;
-                    if (aCell == null)
+                   // var aCell = prjWks.Cells[headingRow, col];//.Value;
+                    Range aCellRnd = (Range)prjWks.Cells[headingRow, col];//
+                    string sValue2 = aCellRnd.Value.ToString();
+                    if (sValue2 == null) //aCellRnd == null) //aCell == null)
                     {
 
                     }
                     else
                     {
                         //sValue2 = (string)prjWks.Cells[1, col].Value.ToString().ToLower().Trim();  // identify the PA
-                        sValue2 = aCell.ToString().ToLower().Trim();
+                        //sValue2 = aCell.ToString().ToLower().Trim();
                         EPAcode thePA = (EPAcode)Enum.Parse(typeof(EPAcode), sValue2, true);
                         PracticeArea aNewPA = new PracticeArea();
                         aNewPA.PAcode = thePA;
 
-                        var aCell3 = prjWks.Cells[row, col];//.Value;
-                        if (aCell3 == null)
+                      //  var aCell3 = prjWks.Cells[row, col];//.Value;
+                        Range aCellRange3 = (Range)prjWks.Cells[row, col]; //
+                        if (aCellRange3 == null) // aCell3 == null)
                         {
                             var xxxx = 1;
                         }
@@ -169,7 +186,8 @@ namespace BASE2.Data
                         {
 
                             //sValue3 = (string)prjWks.Cells[row, col].Value.ToString();
-                            sValue3 = (string)aCell3.ToString();
+                           // sValue3 = (string)aCell3.ToString();
+                            sValue3 = aCellRange3.ToString();
                             if (!string.IsNullOrEmpty(sValue3))
                             {
                                 switch (sValue3)
@@ -207,20 +225,25 @@ namespace BASE2.Data
         }
         private void ProcessSupport(Worksheet prjWks, int row, int headingRow)
         {
-            string sValue2;
-            sValue2 = prjWks.Cells[row, 1].ToString();//.Value; // ID
-            if (string.IsNullOrEmpty(sValue2))
+            //string sValue2;
+            string aName = prjWks.Name;
+            Range aRange1 = (Range)prjWks.Cells[row, 1];// .Range[row, 1];
+            string sValue1 = aRange1?.Value?.ToString();
+            //sValue2 = prjWks.Cells[row, 1].ToString();//.Value; // ID
+            if (string.IsNullOrEmpty(sValue1)) // string.IsNullOrEmpty(sValue2))
             {
                 WorkType = EWorkType.nothing;
                 return;
             }
             else
             {
-                ID = sValue2.ToLower().Trim();
+                ID = sValue1.ToLower().Trim(); // sValue2.ToLower().Trim();
                 WorkType = EWorkType.support;
             }
 
-            sValue2 = prjWks.Cells[row, 2].ToString();//.Value; // Name
+            Range aRange2 = (Range)prjWks.Cells[row, 2];
+            string sValue2 = aRange2?.Value?.ToString();//  aRange2.Value.ToString();
+           // sValue2 = prjWks.Cells[row, 2].ToString();//.Value; // Name
             if (string.IsNullOrEmpty(sValue2))
             {
                 WorkType = EWorkType.nothing;
@@ -232,43 +255,53 @@ namespace BASE2.Data
                 Name = sValue2;
             }
 
-            sValue2 = prjWks.Cells[row, 3].ToString();//.Value; // Description
-            if (string.IsNullOrEmpty(sValue2))
+            //sValue2 = prjWks.Cells[row, 3].ToString();//.Value; // Description
+            Range aRange3 = (Range)prjWks.Cells[row, 3];
+            string sValue32 = aRange3?.Value?.ToString();// prjWks.Cells[row, 3].Value.ToString();
+            if (string.IsNullOrEmpty(sValue32))
             {
                 Description = "";
             }
             else
             {
-                Description = sValue2;
+                Description = sValue32;
             }
 
-            sValue2 = prjWks.Cells[row, 4].ToString();//.Value; // Lifecycle
-            if (string.IsNullOrEmpty(sValue2))
+            //sValue2 = prjWks.Cells[row, 4].ToString();//.Value; // Lifecycle
+            Range aRange4 = (Range)prjWks.Cells[row, 4];
+            string sValue4 = aRange4?.Value?.ToString();// prjWks.Cells[row, 4].Value.ToString();
+            if (string.IsNullOrEmpty(sValue4))
             {
                 Lifecycle = "";
             }
             else
             {
-                Lifecycle = sValue2;
+                Lifecycle = sValue4;
             }
 
             // *** Populate the PAlist
-            string sValue3;
+            //string sValuePAstr;
             for (int col = 6; col <= 26; col++)
             {
 
                 // if the col is empty, ignore, else process
                 try
                 {
-                    sValue2 = prjWks.Cells[headingRow, col].ToString().ToLower().Trim();  // identify the PA
-                    EPAcode thePA = (EPAcode)Enum.Parse(typeof(EPAcode), sValue2, true);
+                    Range aRangePA1 = (Range)prjWks.Cells[headingRow, col];
+                    string sValuePAstr1 = aRangePA1?.Value.ToString().ToLower().Trim() ?? "";
+
+                    //sValuePAstr = prjWks.Cells[headingRow, col].ToString().ToLower().Trim();//.Cells[headingRow, col].ToString().ToLower().Trim();  // identify the PA
+                    EPAcode thePA = (EPAcode)Enum.Parse(typeof(EPAcode), sValuePAstr1, true);// sValue2, true);
                     PracticeArea aNewPA = new PracticeArea();
                     aNewPA.PAcode = thePA;
 
-                    sValue3 = prjWks.Cells[row, col].ToString();
-                    if (!string.IsNullOrEmpty(sValue3))
+                    Range aRangePA2 = (Range)prjWks.Cells[row, col];
+                    string sValuePAstr2 = aRangePA2?.Value?.ToString() ?? "";
+
+                    //sValue3 = prjWks.Cells[row, col].Value.ToString(); ;// prjWks.Cells[row, col].ToString();
+                    if (!string.IsNullOrEmpty(sValuePAstr2)) //sValue3))
                     {
-                        switch (sValue3)
+                        switch (sValuePAstr2) //sValue3)
                         {
                             case "x":
                             case "X":

@@ -5,32 +5,7 @@
   },
   "compilationOptions": {},
   "targets": {
-    ".NETCoreApp,Version=v3.1": {
-      "MSOffice.Interop/16.0.13328": {
-        "runtime": {
-          "lib/Microsoft.Office.Interop.Access.dao.dll": {
-            "assemblyVersion": "16.0.0.0",
-            "fileVersion": "16.0.11929.20048"
-          },
-          "lib/Microsoft.Office.Interop.Access.dll": {
-            "assemblyVersion": "16.0.0.0",
-            "fileVersion": "16.0.13231.20098"
-          },
-          "lib/Microsoft.Office.Interop.Excel.dll": {
-            "assemblyVersion": "16.0.0.0",
-            "fileVersion": "16.0.13328.20130"
-          }
-        }
-      }
-    }
+    ".NETCoreApp,Version=v3.1": {}
   },
-  "libraries": {
-    "MSOffice.Interop/16.0.13328": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-tIzs+ZBJCujvGHEsBatrg64BHSLWJ81fM5jeG64qoKyyLiwkEGHwf1TJGXra59wUHD/cWYe63xB/h9nce2nQnA==",
-      "path": "msoffice.interop/16.0.13328",
-      "hashPath": "msoffice.interop.16.0.13328.nupkg.sha512"
-    }
-  }
+  "libraries": {}
 }

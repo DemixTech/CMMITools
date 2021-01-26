@@ -33,6 +33,8 @@
             this.lblWorkingFile = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabBasePlan = new System.Windows.Forms.TabPage();
+            this.lblWorkingFileText = new System.Windows.Forms.Label();
+            this.lblWorkingDirectoryText = new System.Windows.Forms.Label();
             this.btnReloadSchedule2 = new System.Windows.Forms.Button();
             this.btnGenerateSchedule1 = new System.Windows.Forms.Button();
             this.btnSelectBASEplan = new System.Windows.Forms.Button();
@@ -72,8 +74,6 @@
             this.tabAdmin2 = new System.Windows.Forms.TabPage();
             this.lblVersion = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.lblWorkingDirectoryText = new System.Windows.Forms.Label();
-            this.lblWorkingFileText = new System.Windows.Forms.Label();
             this.lblStatusText = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabBasePlan.SuspendLayout();
@@ -132,6 +132,24 @@
             this.tabBasePlan.Text = "BASE plan";
             this.tabBasePlan.UseVisualStyleBackColor = true;
             // 
+            // lblWorkingFileText
+            // 
+            this.lblWorkingFileText.AutoSize = true;
+            this.lblWorkingFileText.Location = new System.Drawing.Point(9, 87);
+            this.lblWorkingFileText.Name = "lblWorkingFileText";
+            this.lblWorkingFileText.Size = new System.Drawing.Size(24, 25);
+            this.lblWorkingFileText.TabIndex = 6;
+            this.lblWorkingFileText.Text = "...";
+            // 
+            // lblWorkingDirectoryText
+            // 
+            this.lblWorkingDirectoryText.AutoSize = true;
+            this.lblWorkingDirectoryText.Location = new System.Drawing.Point(9, 33);
+            this.lblWorkingDirectoryText.Name = "lblWorkingDirectoryText";
+            this.lblWorkingDirectoryText.Size = new System.Drawing.Size(24, 25);
+            this.lblWorkingDirectoryText.TabIndex = 5;
+            this.lblWorkingDirectoryText.Text = "...";
+            // 
             // btnReloadSchedule2
             // 
             this.btnReloadSchedule2.Location = new System.Drawing.Point(9, 208);
@@ -158,6 +176,7 @@
             this.btnSelectBASEplan.TabIndex = 2;
             this.btnSelectBASEplan.Text = "Select plan";
             this.btnSelectBASEplan.UseVisualStyleBackColor = true;
+            this.btnSelectBASEplan.Click += new System.EventHandler(this.btnSelectBASEplan_Click);
             // 
             // tabMddToolkit
             // 
@@ -510,24 +529,6 @@
             this.label4.Size = new System.Drawing.Size(60, 25);
             this.label4.TabIndex = 5;
             this.label4.Text = "Status";
-            // 
-            // lblWorkingDirectoryText
-            // 
-            this.lblWorkingDirectoryText.AutoSize = true;
-            this.lblWorkingDirectoryText.Location = new System.Drawing.Point(9, 33);
-            this.lblWorkingDirectoryText.Name = "lblWorkingDirectoryText";
-            this.lblWorkingDirectoryText.Size = new System.Drawing.Size(24, 25);
-            this.lblWorkingDirectoryText.TabIndex = 5;
-            this.lblWorkingDirectoryText.Text = "...";
-            // 
-            // lblWorkingFileText
-            // 
-            this.lblWorkingFileText.AutoSize = true;
-            this.lblWorkingFileText.Location = new System.Drawing.Point(9, 87);
-            this.lblWorkingFileText.Name = "lblWorkingFileText";
-            this.lblWorkingFileText.Size = new System.Drawing.Size(24, 25);
-            this.lblWorkingFileText.TabIndex = 6;
-            this.lblWorkingFileText.Text = "...";
             // 
             // lblStatusText
             // 

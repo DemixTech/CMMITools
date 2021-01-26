@@ -1,10 +1,3 @@
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.Main.resources
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.csproj.GenerateResource.cache
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.AssemblyInfoInputs.cache
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.AssemblyInfo.cs
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.csproj.CoreCompileInputs.cache
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Excel.dll
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.csproj.ResolveComReference.cache
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\bin\Debug\netcoreapp3.1\BASE2.exe
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\bin\Debug\netcoreapp3.1\BASE2.deps.json
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\bin\Debug\netcoreapp3.1\BASE2.runtimeconfig.json
@@ -12,7 +5,15 @@ C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\bin\Debug\ne
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\bin\Debug\netcoreapp3.1\BASE2.dll
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\bin\Debug\netcoreapp3.1\BASE2.pdb
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\bin\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\bin\Debug\netcoreapp3.1\Interop.Microsoft.Office.Core.dll
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Interop.Excel.dll
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\Interop.Microsoft.Office.Core.dll
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.csproj.ResolveComReference.cache
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.Main.resources
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.csproj.GenerateResource.cache
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.AssemblyInfoInputs.cache
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.AssemblyInfo.cs
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.csproj.CoreCompileInputs.cache
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.dll
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.pdb
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.genruntimeconfig.cache
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE2_source\BASE2\obj\Debug\netcoreapp3.1\BASE2.csprojAssemblyReference.cache

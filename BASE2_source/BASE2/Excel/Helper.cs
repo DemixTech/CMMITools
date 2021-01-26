@@ -19,7 +19,7 @@ using Microsoft.Office.Interop.Excel;
 using BASE2.Data;
 using Range = Microsoft.Office.Interop.Excel.Range;
 
-namespace BASE
+namespace BASE2
 {
     static public class Helper
     {

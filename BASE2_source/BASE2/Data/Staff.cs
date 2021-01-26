@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BASE2.Data;
+using Range = Microsoft.Office.Interop.Excel.Range;
 
 namespace BASE2.Data
 {

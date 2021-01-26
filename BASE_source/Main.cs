@@ -32,6 +32,9 @@ namespace BASE
 {
     public partial class Main : Form
     {
+
+        #region globals
+
         public const string cPath_start = @"C:\Users\PietervanZyl\Demix (Pty) Ltd\Demix Global - PieterVZ\4_Appraisals\2020-12-11 (A5) R370 D5360 C51813 Goshine Tech";
         public const int cProjectHeadingStartRow = 2; // tab:Projects start row
         public const int cSupportHeadingStartRow = 2; // tab:Support start row
@@ -96,6 +99,7 @@ namespace BASE
         private Workbook questionWorkbook; // The workbook that contains the questions and the model
 
         public PersistentData persistentData = new PersistentData();
+        #endregion
 
         public string VersionLabel
         {
@@ -618,6 +622,8 @@ namespace BASE
         private void btnSelectPlanTab_Click(object sender, EventArgs e)
         {
 
+            #region btnSelectPlanTab
+
             // Clear background color
             lbStatCASPlanLoaded.BackColor = Control.DefaultBackColor;
 
@@ -790,6 +796,8 @@ namespace BASE
 
             // Set background color - loaded
             lbStatCASPlanLoaded.BackColor = Color.LightGreen;
+
+            #endregion
 
         }
 
@@ -2997,7 +3005,7 @@ namespace BASE
             //  lblStatus.Text = "OEdb:";
 
             string[] wksNameArray = { "p1", "p2", "p3", "p4", "p5", "p6", "s1", "s2", "s3", "s4" };
-            string statusStr="";
+            string statusStr = "";
 
             foreach (string aWksName in wksNameArray)
             {

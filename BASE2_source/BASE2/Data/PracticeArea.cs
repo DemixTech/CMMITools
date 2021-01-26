@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Range = Microsoft.Office.Interop.Excel.Range;
 
 namespace BASE2.Data
 {
