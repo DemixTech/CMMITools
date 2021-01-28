@@ -3004,14 +3004,24 @@ namespace BASE
 
             //  lblStatus.Text = "OEdb:";
 
-            string[] wksNameArray = { "p1", "p2", "p3", "p4", "p5", "p6", "s1", "s2", "s3", "s4" };
+            var wksNameArray = WorkUnitList.Where(x => x.ID.Substring(0, 1).ToLower() == "p" || x.ID.Substring(0, 1).ToLower() == "s").ToArray();
+            //{ "p1", "p2", "p3", "p4", "p5", "p6", "s1", "s2", "s3", "s4" };
             string statusStr = "";
 
-            foreach (string aWksName in wksNameArray)
+
+            foreach (var aWksNameX in wksNameArray)
             {
-                lblStatus.Text = aWksName + "OEdb:";
-                statusStr = "";
-                Worksheet projectWks = mainWorkbook.Worksheets[aWksName];
+                // copy tmp and rename 
+                Worksheet projectWks = mainWorkbook.Worksheets["tmp"];
+                projectWks.Copy(After: projectWks);
+                projectWks = mainWorkbook.Worksheets["tmp (2)"];
+                projectWks.Name = aWksNameX.ID;
+                projectWks.Cells[1,1].Value = aWksNameX.Name;
+
+                // setup the links to the detail data
+                lblStatus.Text = aWksNameX.ID + "(" + aWksNameX.Name + ")" + "OEdb:";
+                statusStr = lblStatus.Text;
+                //Worksheet projectWks = mainWorkbook.Worksheets[aWksName];
 
                 foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
                 {
@@ -3281,6 +3291,12 @@ namespace BASE
         private void lbStatCASPlanLoaded_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnBuildPandS_Click(object sender, EventArgs e)
+        {
+
+            int i = 1;
         }
     }
 

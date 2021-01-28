@@ -71,6 +71,7 @@
             this.txtFrom = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lblDefaults = new System.Windows.Forms.Label();
+            this.lblOEdbPathFile = new System.Windows.Forms.Label();
             this.lblQuestions = new System.Windows.Forms.Label();
             this.lblDemixTool = new System.Windows.Forms.Label();
             this.lblDemixTool2Import = new System.Windows.Forms.Label();
@@ -82,7 +83,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
-            this.lblOEdbPathFile = new System.Windows.Forms.Label();
+            this.btnBuildPandS = new System.Windows.Forms.Button();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -306,6 +307,7 @@
             // 
             // tabDemixTool
             // 
+            this.tabDemixTool.Controls.Add(this.btnBuildPandS);
             this.tabDemixTool.Controls.Add(this.btnAbridge);
             this.tabDemixTool.Controls.Add(this.btnExtractOEFindings);
             this.tabDemixTool.Controls.Add(this.btnBuildOUMaps);
@@ -326,9 +328,9 @@
             // 
             // btnAbridge
             // 
-            this.btnAbridge.Location = new System.Drawing.Point(263, 252);
+            this.btnAbridge.Location = new System.Drawing.Point(259, 301);
             this.btnAbridge.Name = "btnAbridge";
-            this.btnAbridge.Size = new System.Drawing.Size(196, 53);
+            this.btnAbridge.Size = new System.Drawing.Size(201, 47);
             this.btnAbridge.TabIndex = 8;
             this.btnAbridge.Text = "Abridge";
             this.btnAbridge.UseVisualStyleBackColor = true;
@@ -336,9 +338,9 @@
             // 
             // btnExtractOEFindings
             // 
-            this.btnExtractOEFindings.Location = new System.Drawing.Point(52, 257);
+            this.btnExtractOEFindings.Location = new System.Drawing.Point(52, 248);
             this.btnExtractOEFindings.Name = "btnExtractOEFindings";
-            this.btnExtractOEFindings.Size = new System.Drawing.Size(204, 48);
+            this.btnExtractOEFindings.Size = new System.Drawing.Size(201, 47);
             this.btnExtractOEFindings.TabIndex = 7;
             this.btnExtractOEFindings.Text = "Extract findings";
             this.btnExtractOEFindings.UseVisualStyleBackColor = true;
@@ -346,9 +348,9 @@
             // 
             // btnBuildOUMaps
             // 
-            this.btnBuildOUMaps.Location = new System.Drawing.Point(262, 198);
+            this.btnBuildOUMaps.Location = new System.Drawing.Point(259, 248);
             this.btnBuildOUMaps.Name = "btnBuildOUMaps";
-            this.btnBuildOUMaps.Size = new System.Drawing.Size(197, 48);
+            this.btnBuildOUMaps.Size = new System.Drawing.Size(201, 47);
             this.btnBuildOUMaps.TabIndex = 6;
             this.btnBuildOUMaps.Text = "Build OU maps";
             this.btnBuildOUMaps.UseVisualStyleBackColor = true;
@@ -356,9 +358,9 @@
             // 
             // btnBuildTmpDictionary
             // 
-            this.btnBuildTmpDictionary.Location = new System.Drawing.Point(263, 142);
+            this.btnBuildTmpDictionary.Location = new System.Drawing.Point(259, 195);
             this.btnBuildTmpDictionary.Name = "btnBuildTmpDictionary";
-            this.btnBuildTmpDictionary.Size = new System.Drawing.Size(198, 50);
+            this.btnBuildTmpDictionary.Size = new System.Drawing.Size(201, 47);
             this.btnBuildTmpDictionary.TabIndex = 5;
             this.btnBuildTmpDictionary.Text = "Build tmpDictionary";
             this.btnBuildTmpDictionary.UseVisualStyleBackColor = true;
@@ -386,9 +388,9 @@
             // 
             // btnDemixTstLinksAndEngl
             // 
-            this.btnDemixTstLinksAndEngl.Location = new System.Drawing.Point(52, 198);
+            this.btnDemixTstLinksAndEngl.Location = new System.Drawing.Point(52, 195);
             this.btnDemixTstLinksAndEngl.Name = "btnDemixTstLinksAndEngl";
-            this.btnDemixTstLinksAndEngl.Size = new System.Drawing.Size(204, 53);
+            this.btnDemixTstLinksAndEngl.Size = new System.Drawing.Size(201, 47);
             this.btnDemixTstLinksAndEngl.TabIndex = 2;
             this.btnDemixTstLinksAndEngl.Text = "Test links and Engl";
             this.btnDemixTstLinksAndEngl.UseVisualStyleBackColor = true;
@@ -396,9 +398,9 @@
             // 
             // btnGenerateFullTool
             // 
-            this.btnGenerateFullTool.Location = new System.Drawing.Point(52, 145);
+            this.btnGenerateFullTool.Location = new System.Drawing.Point(52, 142);
             this.btnGenerateFullTool.Name = "btnGenerateFullTool";
-            this.btnGenerateFullTool.Size = new System.Drawing.Size(204, 47);
+            this.btnGenerateFullTool.Size = new System.Drawing.Size(201, 47);
             this.btnGenerateFullTool.TabIndex = 1;
             this.btnGenerateFullTool.Text = "Generate Full Tool";
             this.btnGenerateFullTool.UseVisualStyleBackColor = true;
@@ -547,6 +549,15 @@
             this.lblDefaults.TabIndex = 32;
             this.lblDefaults.Text = "lblDefaults";
             // 
+            // lblOEdbPathFile
+            // 
+            this.lblOEdbPathFile.AutoSize = true;
+            this.lblOEdbPathFile.Location = new System.Drawing.Point(32, 77);
+            this.lblOEdbPathFile.Name = "lblOEdbPathFile";
+            this.lblOEdbPathFile.Size = new System.Drawing.Size(103, 20);
+            this.lblOEdbPathFile.TabIndex = 17;
+            this.lblOEdbPathFile.Text = "OE database";
+            // 
             // lblQuestions
             // 
             this.lblQuestions.AutoSize = true;
@@ -647,14 +658,15 @@
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
             // 
-            // lblOEdbPathFile
+            // btnBuildPandS
             // 
-            this.lblOEdbPathFile.AutoSize = true;
-            this.lblOEdbPathFile.Location = new System.Drawing.Point(32, 77);
-            this.lblOEdbPathFile.Name = "lblOEdbPathFile";
-            this.lblOEdbPathFile.Size = new System.Drawing.Size(103, 20);
-            this.lblOEdbPathFile.TabIndex = 17;
-            this.lblOEdbPathFile.Text = "OE database";
+            this.btnBuildPandS.Location = new System.Drawing.Point(259, 142);
+            this.btnBuildPandS.Name = "btnBuildPandS";
+            this.btnBuildPandS.Size = new System.Drawing.Size(201, 47);
+            this.btnBuildPandS.TabIndex = 9;
+            this.btnBuildPandS.Text = "Build p and s";
+            this.btnBuildPandS.UseVisualStyleBackColor = true;
+            this.btnBuildPandS.Click += new System.EventHandler(this.btnBuildPandS_Click);
             // 
             // Main
             // 
@@ -754,6 +766,7 @@
         private System.Windows.Forms.Label lbStatCASPlanLoaded;
         private System.Windows.Forms.Label LblSourceFilePlan2;
         private System.Windows.Forms.Label lblOEdbPathFile;
+        private System.Windows.Forms.Button btnBuildPandS;
     }
 }
 
