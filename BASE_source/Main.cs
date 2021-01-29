@@ -2959,7 +2959,7 @@ namespace BASE
         const int CtmpEndCol = 21;
 
 
-        private void btnBuildTmpDictionary_Click(object sender, EventArgs e)
+        private void buildTempDictionary()
         {
             TmpDicValue.Clear();
             TmpDictRowCol.Clear();
@@ -2989,11 +2989,20 @@ namespace BASE
                     TmpDictRowCol.Add(KeyStr, RowColStr);
                 }
             }
+        }
+        private void btnBuildTmpDictionary_Click(object sender, EventArgs e)
+        {
+
+
 
         }
 
         private void btnBuildOUMaps_Click(object sender, EventArgs e)
         {
+            // *** Build temperary dictionary
+            buildTempDictionary();
+
+            // *** Identify pand s files
 
             if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
             {
@@ -3008,6 +3017,7 @@ namespace BASE
             //{ "p1", "p2", "p3", "p4", "p5", "p6", "s1", "s2", "s3", "s4" };
             string statusStr = "";
 
+            // *** For each p&s build the maps
 
             foreach (var aWksNameX in wksNameArray)
             {
@@ -3016,7 +3026,7 @@ namespace BASE
                 projectWks.Copy(After: projectWks);
                 projectWks = mainWorkbook.Worksheets["tmp (2)"];
                 projectWks.Name = aWksNameX.ID;
-                projectWks.Cells[1,1].Value = aWksNameX.Name;
+                projectWks.Cells[1, 1].Value = aWksNameX.Name;
 
                 // setup the links to the detail data
                 lblStatus.Text = aWksNameX.ID + "(" + aWksNameX.Name + ")" + "OEdb:";

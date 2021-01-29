@@ -52,7 +52,6 @@
             this.btnAbridge = new System.Windows.Forms.Button();
             this.btnExtractOEFindings = new System.Windows.Forms.Button();
             this.btnBuildOUMaps = new System.Windows.Forms.Button();
-            this.btnBuildTmpDictionary = new System.Windows.Forms.Button();
             this.btnDemixOEMerge = new System.Windows.Forms.Button();
             this.btnImportOE = new System.Windows.Forms.Button();
             this.btnDemixTstLinksAndEngl = new System.Windows.Forms.Button();
@@ -83,7 +82,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
-            this.btnBuildPandS = new System.Windows.Forms.Button();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -307,11 +305,9 @@
             // 
             // tabDemixTool
             // 
-            this.tabDemixTool.Controls.Add(this.btnBuildPandS);
             this.tabDemixTool.Controls.Add(this.btnAbridge);
             this.tabDemixTool.Controls.Add(this.btnExtractOEFindings);
             this.tabDemixTool.Controls.Add(this.btnBuildOUMaps);
-            this.tabDemixTool.Controls.Add(this.btnBuildTmpDictionary);
             this.tabDemixTool.Controls.Add(this.btnDemixOEMerge);
             this.tabDemixTool.Controls.Add(this.btnImportOE);
             this.tabDemixTool.Controls.Add(this.btnDemixTstLinksAndEngl);
@@ -328,7 +324,7 @@
             // 
             // btnAbridge
             // 
-            this.btnAbridge.Location = new System.Drawing.Point(259, 301);
+            this.btnAbridge.Location = new System.Drawing.Point(259, 198);
             this.btnAbridge.Name = "btnAbridge";
             this.btnAbridge.Size = new System.Drawing.Size(201, 47);
             this.btnAbridge.TabIndex = 8;
@@ -348,23 +344,13 @@
             // 
             // btnBuildOUMaps
             // 
-            this.btnBuildOUMaps.Location = new System.Drawing.Point(259, 248);
+            this.btnBuildOUMaps.Location = new System.Drawing.Point(259, 145);
             this.btnBuildOUMaps.Name = "btnBuildOUMaps";
             this.btnBuildOUMaps.Size = new System.Drawing.Size(201, 47);
             this.btnBuildOUMaps.TabIndex = 6;
             this.btnBuildOUMaps.Text = "Build OU maps";
             this.btnBuildOUMaps.UseVisualStyleBackColor = true;
             this.btnBuildOUMaps.Click += new System.EventHandler(this.btnBuildOUMaps_Click);
-            // 
-            // btnBuildTmpDictionary
-            // 
-            this.btnBuildTmpDictionary.Location = new System.Drawing.Point(259, 195);
-            this.btnBuildTmpDictionary.Name = "btnBuildTmpDictionary";
-            this.btnBuildTmpDictionary.Size = new System.Drawing.Size(201, 47);
-            this.btnBuildTmpDictionary.TabIndex = 5;
-            this.btnBuildTmpDictionary.Text = "Build tmpDictionary";
-            this.btnBuildTmpDictionary.UseVisualStyleBackColor = true;
-            this.btnBuildTmpDictionary.Click += new System.EventHandler(this.btnBuildTmpDictionary_Click);
             // 
             // btnDemixOEMerge
             // 
@@ -658,16 +644,6 @@
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
             // 
-            // btnBuildPandS
-            // 
-            this.btnBuildPandS.Location = new System.Drawing.Point(259, 142);
-            this.btnBuildPandS.Name = "btnBuildPandS";
-            this.btnBuildPandS.Size = new System.Drawing.Size(201, 47);
-            this.btnBuildPandS.TabIndex = 9;
-            this.btnBuildPandS.Text = "Build p and s";
-            this.btnBuildPandS.UseVisualStyleBackColor = true;
-            this.btnBuildPandS.Click += new System.EventHandler(this.btnBuildPandS_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -750,7 +726,6 @@
         private System.Windows.Forms.Button btnImportOE;
         private System.Windows.Forms.Label lblDemixTool2Import;
         private System.Windows.Forms.Button btnDemixOEMerge;
-        private System.Windows.Forms.Button btnBuildTmpDictionary;
         private System.Windows.Forms.Button btnBuildOUMaps;
         private System.Windows.Forms.Button btnExtractOEFindings;
         private System.Windows.Forms.Button btnAbridge;
@@ -766,7 +741,6 @@
         private System.Windows.Forms.Label lbStatCASPlanLoaded;
         private System.Windows.Forms.Label LblSourceFilePlan2;
         private System.Windows.Forms.Label lblOEdbPathFile;
-        private System.Windows.Forms.Button btnBuildPandS;
     }
 }
 
