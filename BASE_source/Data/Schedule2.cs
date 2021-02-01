@@ -8,7 +8,8 @@ using System.Windows.Forms;
 
 namespace BASE
 {
-    public class Schedule2
+    public class Schedule2: IEqualityComparer<Schedule2>
+
     {
         //public EWorkType WorkType;
         public string WorkID;
@@ -17,7 +18,18 @@ namespace BASE
         public string Role;
         public string InterviewSession;
 
-        
+        public bool Equals(Schedule2 x, Schedule2 y)
+        {
+            if ((x.ParticipantName == y.ParticipantName) && (x.Role == y.Role)) return true;
+            else return false;
+            //throw new NotImplementedException();
+        }
+
+        public int GetHashCode(Schedule2 obj)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Schedule2Add(Worksheet schWks, int row)
         {
             if (schWks == null)

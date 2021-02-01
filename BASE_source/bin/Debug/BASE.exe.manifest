@@ -44,14 +44,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BASE.exe" size="194304">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BASE.exe" size="228608">
       <assemblyIdentity name="BASE" version="3.8.0.44" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Gh5ZFNIDHJPQTq1iP6B+XfPN+JiJBh8wrpmuUXxEz/0=</dsig:DigestValue>
+        <dsig:DigestValue>04YRJJWt5tv4SarGqC23EVmoFlJBbo5Xw861gl/aa8c=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -34,12 +34,13 @@ namespace BASE
     {
 
         #region globals
+        const string CTargetCASFileXML = @"BASE\TargetCASFileXML.xml";
 
-        public const string cPath_start = @"C:\Users\PietervanZyl\Demix (Pty) Ltd\Demix Global - PieterVZ\4_Appraisals\2020-12-11 (A5) R370 D5360 C51813 Goshine Tech";
-        public const int cProjectHeadingStartRow = 2; // tab:Projects start row
-        public const int cSupportHeadingStartRow = 2; // tab:Support start row
-        public const int cStaffHeadingStartRow = 2; // tab:Staff start row
-        public const int cSchedule2HeadingStartRow = 1; // tab:Schedule2 heading row
+        private const string cPath_start = @"C:\Users\PietervanZyl\Demix (Pty) Ltd\Demix Global - PieterVZ\4_Appraisals\2020-12-11 (A5) R370 D5360 C51813 Goshine Tech";
+        private const int cProjectHeadingStartRow = 2; // tab:Projects start row
+        private const int cSupportHeadingStartRow = 2; // tab:Support start row
+        private const int cStaffHeadingStartRow = 2; // tab:Staff start row
+        private const int cSchedule2HeadingStartRow = 1; // tab:Schedule2 heading row
 
         public const int cOEDatabaseHeadingStartRow = 8; // All PAs
         public const int cOEnonEmptyColumn = 1; // 
@@ -99,6 +100,10 @@ namespace BASE
         private Workbook questionWorkbook; // The workbook that contains the questions and the model
 
         public PersistentData persistentData = new PersistentData();
+
+        // *** BASE file objects
+        private TargetCASFileObject CASFileObject;
+
         #endregion
 
         public string VersionLabel
@@ -123,6 +128,12 @@ namespace BASE
             InitializeComponent();
             // lblWorkingDirectory.Text = Directory.GetCurrentDirectory();
             //lblWorkingDirectory.Text = Path.GetTempPath(); //Environment.SpecialFolder.Personal.ToString();
+
+            // *** Startup program objects
+            CASFileObject = new TargetCASFileObject();
+            CASFileObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetCASFileXML), lblCASPathXML, lblCASFileXML, lblCASPlanPathText, lblCASPlanFileText);
+            CASFileObject.LoadPersistant(); // Load saved information if available
+
 
             persistentData.LoadPersistentData();
             lblWorkingDirectory.Text = persistentData.LastAppraisalDirectory;
@@ -625,7 +636,7 @@ namespace BASE
             #region btnSelectPlanTab
 
             // Clear background color
-            lbStatCASPlanLoaded.BackColor = Control.DefaultBackColor;
+            //lblstat lbStatCASPlanLoaded.BackColor = Control.DefaultBackColor;
 
             // Check if the excel process is running
 
@@ -795,7 +806,7 @@ namespace BASE
             }
 
             // Set background color - loaded
-            lbStatCASPlanLoaded.BackColor = Color.LightGreen;
+            //   lbStatCASPlanLoaded.BackColor = Color.LightGreen;
 
             #endregion
 
@@ -3308,6 +3319,73 @@ namespace BASE
 
             int i = 1;
         }
+
+        private void btnOpenBaseCASPlan_Click(object sender, EventArgs e)
+        {
+            //CASFileObject.LoadPersistant();
+            if (CASFileObject.LoadFileData() == false)
+            {
+                MessageBox.Show($"No file selected.");
+            }
+            else
+            {
+                CASFileObject.SavePersistant(CASFileObject);
+            }
+        }
+
+        private void btnReloadCASPlan_Click(object sender, EventArgs e)
+        {
+            //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
+            if (CASFileObject.LoadCASFile() == true)
+            { // file was loaded
+                CASFileObject.SavePersistant(CASFileObject);
+            }
+            else
+            { // file was not loaded
+            }
+
+
+            return;
+
+            
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            if (CASFileObject.CreateSchedule1()==true)
+            { // Generated the schedule
+
+            } else
+            {// Could not generate schedule
+
+            }
+        }
+
+        private void btnReloadSchedule2AndGenerateCASSheets_Click(object sender, EventArgs e)
+        {
+            //CASFileObject.ReloadSchedule2();
+            //bool insertRole = ;
+            if (CASFileObject.Generate_OUParticipants(chkInsertRole.Checked)) // This includes reloading it
+            { // All ok
+
+            } else
+            {
+                MessageBox.Show("Error reloading schedule 2 and generating CAS sheets!");
+            }
+        }
+
+        private void btnGenerating_SupportAndProjectCASSheets(object sender, EventArgs e)
+        {
+            if (CASFileObject.Generate_SupportAndProjectCASSheets())
+            {
+                // All ok
+            } else
+            {
+                MessageBox.Show("Error generating Support and Project CAS sheets!");
+            }
+
+        }
     }
+
 
 }

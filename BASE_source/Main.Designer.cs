@@ -43,7 +43,14 @@
             this.btnSelectImportFile = new System.Windows.Forms.Button();
             this.btnSelectMainTool = new System.Windows.Forms.Button();
             this.tabDemixPlan = new System.Windows.Forms.TabPage();
-            this.lbStatCASPlanLoaded = new System.Windows.Forms.Label();
+            this.btnReloadSchedule2AndGenerateCASSheets = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnReloadCASPlan = new System.Windows.Forms.Button();
+            this.btnOpenBaseCASPlan = new System.Windows.Forms.Button();
+            this.lblCASPlanPathText = new System.Windows.Forms.Label();
+            this.lblCASPlanFileText = new System.Windows.Forms.Label();
+            this.lblCASPlanFile = new System.Windows.Forms.Label();
+            this.lblCASPlanPath = new System.Windows.Forms.Label();
             this.btnSelectPlanTab = new System.Windows.Forms.Button();
             this.btnGenerateScheduleTab = new System.Windows.Forms.Button();
             this.btnLoadSchedule2tab = new System.Windows.Forms.Button();
@@ -69,6 +76,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtFrom = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblCASFileXML = new System.Windows.Forms.Label();
+            this.lblCASPathXML = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.lblDefaults = new System.Windows.Forms.Label();
             this.lblOEdbPathFile = new System.Windows.Forms.Label();
             this.lblQuestions = new System.Windows.Forms.Label();
@@ -82,6 +94,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
+            this.chkInsertRole = new System.Windows.Forms.CheckBox();
+            this.btnGenerateSupportAndProjectCASSheets = new System.Windows.Forms.Button();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -236,7 +250,16 @@
             // 
             // tabDemixPlan
             // 
-            this.tabDemixPlan.Controls.Add(this.lbStatCASPlanLoaded);
+            this.tabDemixPlan.Controls.Add(this.btnGenerateSupportAndProjectCASSheets);
+            this.tabDemixPlan.Controls.Add(this.chkInsertRole);
+            this.tabDemixPlan.Controls.Add(this.btnReloadSchedule2AndGenerateCASSheets);
+            this.tabDemixPlan.Controls.Add(this.button1);
+            this.tabDemixPlan.Controls.Add(this.btnReloadCASPlan);
+            this.tabDemixPlan.Controls.Add(this.btnOpenBaseCASPlan);
+            this.tabDemixPlan.Controls.Add(this.lblCASPlanPathText);
+            this.tabDemixPlan.Controls.Add(this.lblCASPlanFileText);
+            this.tabDemixPlan.Controls.Add(this.lblCASPlanFile);
+            this.tabDemixPlan.Controls.Add(this.lblCASPlanPath);
             this.tabDemixPlan.Controls.Add(this.btnSelectPlanTab);
             this.tabDemixPlan.Controls.Add(this.btnGenerateScheduleTab);
             this.tabDemixPlan.Controls.Add(this.btnLoadSchedule2tab);
@@ -245,25 +268,90 @@
             this.tabDemixPlan.Padding = new System.Windows.Forms.Padding(3);
             this.tabDemixPlan.Size = new System.Drawing.Size(987, 428);
             this.tabDemixPlan.TabIndex = 0;
-            this.tabDemixPlan.Text = "Demix Plan";
+            this.tabDemixPlan.Text = "CAS Plan";
             this.tabDemixPlan.UseVisualStyleBackColor = true;
             // 
-            // lbStatCASPlanLoaded
+            // btnReloadSchedule2AndGenerateCASSheets
             // 
-            this.lbStatCASPlanLoaded.AutoSize = true;
-            this.lbStatCASPlanLoaded.BackColor = System.Drawing.SystemColors.Control;
-            this.lbStatCASPlanLoaded.Location = new System.Drawing.Point(614, 60);
-            this.lbStatCASPlanLoaded.Name = "lbStatCASPlanLoaded";
-            this.lbStatCASPlanLoaded.Size = new System.Drawing.Size(129, 20);
-            this.lbStatCASPlanLoaded.TabIndex = 31;
-            this.lbStatCASPlanLoaded.Text = "CAS Plan loaded";
-            this.lbStatCASPlanLoaded.Click += new System.EventHandler(this.lbStatCASPlanLoaded_Click);
+            this.btnReloadSchedule2AndGenerateCASSheets.Location = new System.Drawing.Point(244, 131);
+            this.btnReloadSchedule2AndGenerateCASSheets.Name = "btnReloadSchedule2AndGenerateCASSheets";
+            this.btnReloadSchedule2AndGenerateCASSheets.Size = new System.Drawing.Size(211, 100);
+            this.btnReloadSchedule2AndGenerateCASSheets.TabIndex = 39;
+            this.btnReloadSchedule2AndGenerateCASSheets.Text = "Reload Schedule2 and generate ALL Participant CAS sheets";
+            this.btnReloadSchedule2AndGenerateCASSheets.UseVisualStyleBackColor = true;
+            this.btnReloadSchedule2AndGenerateCASSheets.Click += new System.EventHandler(this.btnReloadSchedule2AndGenerateCASSheets_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(244, 78);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(211, 47);
+            this.button1.TabIndex = 38;
+            this.button1.Text = "Generate draft schedule";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnReloadCASPlan
+            // 
+            this.btnReloadCASPlan.Location = new System.Drawing.Point(27, 78);
+            this.btnReloadCASPlan.Name = "btnReloadCASPlan";
+            this.btnReloadCASPlan.Size = new System.Drawing.Size(211, 47);
+            this.btnReloadCASPlan.TabIndex = 37;
+            this.btnReloadCASPlan.Text = "Reload plan";
+            this.btnReloadCASPlan.UseVisualStyleBackColor = true;
+            this.btnReloadCASPlan.Click += new System.EventHandler(this.btnReloadCASPlan_Click);
+            // 
+            // btnOpenBaseCASPlan
+            // 
+            this.btnOpenBaseCASPlan.Location = new System.Drawing.Point(27, 25);
+            this.btnOpenBaseCASPlan.Name = "btnOpenBaseCASPlan";
+            this.btnOpenBaseCASPlan.Size = new System.Drawing.Size(211, 47);
+            this.btnOpenBaseCASPlan.TabIndex = 36;
+            this.btnOpenBaseCASPlan.Text = "Select plan";
+            this.btnOpenBaseCASPlan.UseVisualStyleBackColor = true;
+            this.btnOpenBaseCASPlan.Click += new System.EventHandler(this.btnOpenBaseCASPlan_Click);
+            // 
+            // lblCASPlanPathText
+            // 
+            this.lblCASPlanPathText.AutoSize = true;
+            this.lblCASPlanPathText.Location = new System.Drawing.Point(101, 250);
+            this.lblCASPlanPathText.Name = "lblCASPlanPathText";
+            this.lblCASPlanPathText.Size = new System.Drawing.Size(98, 20);
+            this.lblCASPlanPathText.TabIndex = 35;
+            this.lblCASPlanPathText.Text = "Path name...";
+            // 
+            // lblCASPlanFileText
+            // 
+            this.lblCASPlanFileText.AutoSize = true;
+            this.lblCASPlanFileText.Location = new System.Drawing.Point(101, 280);
+            this.lblCASPlanFileText.Name = "lblCASPlanFileText";
+            this.lblCASPlanFileText.Size = new System.Drawing.Size(90, 20);
+            this.lblCASPlanFileText.TabIndex = 34;
+            this.lblCASPlanFileText.Text = "File name...";
+            // 
+            // lblCASPlanFile
+            // 
+            this.lblCASPlanFile.AutoSize = true;
+            this.lblCASPlanFile.Location = new System.Drawing.Point(53, 280);
+            this.lblCASPlanFile.Name = "lblCASPlanFile";
+            this.lblCASPlanFile.Size = new System.Drawing.Size(34, 20);
+            this.lblCASPlanFile.TabIndex = 33;
+            this.lblCASPlanFile.Text = "File";
+            // 
+            // lblCASPlanPath
+            // 
+            this.lblCASPlanPath.AutoSize = true;
+            this.lblCASPlanPath.Location = new System.Drawing.Point(53, 250);
+            this.lblCASPlanPath.Name = "lblCASPlanPath";
+            this.lblCASPlanPath.Size = new System.Drawing.Size(42, 20);
+            this.lblCASPlanPath.TabIndex = 32;
+            this.lblCASPlanPath.Text = "Path";
             // 
             // btnSelectPlanTab
             // 
-            this.btnSelectPlanTab.Location = new System.Drawing.Point(54, 49);
+            this.btnSelectPlanTab.Location = new System.Drawing.Point(770, 47);
             this.btnSelectPlanTab.Name = "btnSelectPlanTab";
-            this.btnSelectPlanTab.Size = new System.Drawing.Size(233, 42);
+            this.btnSelectPlanTab.Size = new System.Drawing.Size(211, 47);
             this.btnSelectPlanTab.TabIndex = 2;
             this.btnSelectPlanTab.Text = "Select Demix plan";
             this.btnSelectPlanTab.UseVisualStyleBackColor = true;
@@ -271,9 +359,9 @@
             // 
             // btnGenerateScheduleTab
             // 
-            this.btnGenerateScheduleTab.Location = new System.Drawing.Point(54, 97);
+            this.btnGenerateScheduleTab.Location = new System.Drawing.Point(770, 98);
             this.btnGenerateScheduleTab.Name = "btnGenerateScheduleTab";
-            this.btnGenerateScheduleTab.Size = new System.Drawing.Size(233, 49);
+            this.btnGenerateScheduleTab.Size = new System.Drawing.Size(211, 47);
             this.btnGenerateScheduleTab.TabIndex = 1;
             this.btnGenerateScheduleTab.Text = "Generate Schedule";
             this.btnGenerateScheduleTab.UseVisualStyleBackColor = true;
@@ -281,9 +369,9 @@
             // 
             // btnLoadSchedule2tab
             // 
-            this.btnLoadSchedule2tab.Location = new System.Drawing.Point(54, 152);
+            this.btnLoadSchedule2tab.Location = new System.Drawing.Point(770, 152);
             this.btnLoadSchedule2tab.Name = "btnLoadSchedule2tab";
-            this.btnLoadSchedule2tab.Size = new System.Drawing.Size(233, 52);
+            this.btnLoadSchedule2tab.Size = new System.Drawing.Size(211, 48);
             this.btnLoadSchedule2tab.TabIndex = 0;
             this.btnLoadSchedule2tab.Text = "Load schedule 2";
             this.btnLoadSchedule2tab.UseVisualStyleBackColor = true;
@@ -517,6 +605,11 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lblCASFileXML);
+            this.tabPage2.Controls.Add(this.lblCASPathXML);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.label10);
             this.tabPage2.Controls.Add(this.lblDefaults);
             this.tabPage2.Controls.Add(this.lblOEdbPathFile);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
@@ -525,6 +618,51 @@
             this.tabPage2.TabIndex = 6;
             this.tabPage2.Text = "About";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lblCASFileXML
+            // 
+            this.lblCASFileXML.AutoSize = true;
+            this.lblCASFileXML.Location = new System.Drawing.Point(75, 167);
+            this.lblCASFileXML.Name = "lblCASFileXML";
+            this.lblCASFileXML.Size = new System.Drawing.Size(50, 20);
+            this.lblCASFileXML.TabIndex = 37;
+            this.lblCASFileXML.Text = "File ...";
+            // 
+            // lblCASPathXML
+            // 
+            this.lblCASPathXML.AutoSize = true;
+            this.lblCASPathXML.Location = new System.Drawing.Point(75, 147);
+            this.lblCASPathXML.Name = "lblCASPathXML";
+            this.lblCASPathXML.Size = new System.Drawing.Size(58, 20);
+            this.lblCASPathXML.TabIndex = 36;
+            this.lblCASPathXML.Text = "Path ...";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(25, 147);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(42, 20);
+            this.label12.TabIndex = 35;
+            this.label12.Text = "Path";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(25, 167);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(34, 20);
+            this.label11.TabIndex = 34;
+            this.label11.Text = "File";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(17, 127);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(114, 20);
+            this.label10.TabIndex = 33;
+            this.label10.Text = "CAS Plan XML";
             // 
             // lblDefaults
             // 
@@ -644,6 +782,26 @@
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
             // 
+            // chkInsertRole
+            // 
+            this.chkInsertRole.AutoSize = true;
+            this.chkInsertRole.Location = new System.Drawing.Point(244, 238);
+            this.chkInsertRole.Name = "chkInsertRole";
+            this.chkInsertRole.Size = new System.Drawing.Size(171, 24);
+            this.chkInsertRole.TabIndex = 41;
+            this.chkInsertRole.Text = "Check to insert role";
+            this.chkInsertRole.UseVisualStyleBackColor = true;
+            // 
+            // btnGenerateSupportAndProjectCASSheets
+            // 
+            this.btnGenerateSupportAndProjectCASSheets.Location = new System.Drawing.Point(27, 131);
+            this.btnGenerateSupportAndProjectCASSheets.Name = "btnGenerateSupportAndProjectCASSheets";
+            this.btnGenerateSupportAndProjectCASSheets.Size = new System.Drawing.Size(211, 100);
+            this.btnGenerateSupportAndProjectCASSheets.TabIndex = 42;
+            this.btnGenerateSupportAndProjectCASSheets.Text = "Generate Support and Project CAS sheets";
+            this.btnGenerateSupportAndProjectCASSheets.UseVisualStyleBackColor = true;
+            this.btnGenerateSupportAndProjectCASSheets.Click += new System.EventHandler(this.btnGenerating_SupportAndProjectCASSheets);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -738,9 +896,23 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Label lblDefaults;
-        private System.Windows.Forms.Label lbStatCASPlanLoaded;
         private System.Windows.Forms.Label LblSourceFilePlan2;
         private System.Windows.Forms.Label lblOEdbPathFile;
+        private System.Windows.Forms.Button btnOpenBaseCASPlan;
+        private System.Windows.Forms.Label lblCASPlanPathText;
+        private System.Windows.Forms.Label lblCASPlanFileText;
+        private System.Windows.Forms.Label lblCASPlanFile;
+        private System.Windows.Forms.Label lblCASPlanPath;
+        private System.Windows.Forms.Label lblCASFileXML;
+        private System.Windows.Forms.Label lblCASPathXML;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnReloadCASPlan;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnReloadSchedule2AndGenerateCASSheets;
+        private System.Windows.Forms.CheckBox chkInsertRole;
+        private System.Windows.Forms.Button btnGenerateSupportAndProjectCASSheets;
     }
 }
 
