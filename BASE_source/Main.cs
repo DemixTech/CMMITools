@@ -103,7 +103,8 @@ namespace BASE
 
         // *** BASE file objects
         private TargetCASFileObject CASFileObject;
-
+        private TargetOEFileObject CASOEdbObject;
+        
         #endregion
 
         public string VersionLabel
@@ -133,6 +134,12 @@ namespace BASE
             CASFileObject = new TargetCASFileObject();
             CASFileObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetCASFileXML), lblCASPathXML, lblCASFileXML, lblCASPlanPathText, lblCASPlanFileText);
             CASFileObject.LoadPersistant(); // Load saved information if available
+
+            // *** Startup oeDb objects
+            CASOEdbObject = new TargetOEFileObject();
+
+            CASOEdbObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetCASFileXML), lblCASPathXML, lblCASFileXML, lblCASPlanPathText, lblCASPlanFileText);
+            CASOEdbObject.LoadPersistant(); // Load saved information if available
 
 
             persistentData.LoadPersistentData();
@@ -3323,7 +3330,7 @@ namespace BASE
         private void btnOpenBaseCASPlan_Click(object sender, EventArgs e)
         {
             //CASFileObject.LoadPersistant();
-            if (CASFileObject.LoadFileData() == false)
+            if (CASFileObject.LoadFileData(TargetFileObject.CCASinName) == false)
             {
                 MessageBox.Show($"No file selected.");
             }
@@ -3384,6 +3391,19 @@ namespace BASE
                 MessageBox.Show("Error generating Support and Project CAS sheets!");
             }
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //CASFileObject.LoadPersistant();
+            if (CASOEdbObject.LoadFileData(TargetFileObject.COEdbinName) == false)
+            {
+                MessageBox.Show($"No file selected.");
+            }
+            else
+            {
+                CASOEdbObject.SavePersistant(CASOEdbObject);
+            }
         }
     }
 

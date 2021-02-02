@@ -43,6 +43,8 @@
             this.btnSelectImportFile = new System.Windows.Forms.Button();
             this.btnSelectMainTool = new System.Windows.Forms.Button();
             this.tabDemixPlan = new System.Windows.Forms.TabPage();
+            this.btnGenerateSupportAndProjectCASSheets = new System.Windows.Forms.Button();
+            this.chkInsertRole = new System.Windows.Forms.CheckBox();
             this.btnReloadSchedule2AndGenerateCASSheets = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnReloadCASPlan = new System.Windows.Forms.Button();
@@ -94,8 +96,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
-            this.chkInsertRole = new System.Windows.Forms.CheckBox();
-            this.btnGenerateSupportAndProjectCASSheets = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -163,7 +164,7 @@
             this.tabCMMI_ApprTool.Location = new System.Drawing.Point(4, 29);
             this.tabCMMI_ApprTool.Name = "tabCMMI_ApprTool";
             this.tabCMMI_ApprTool.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCMMI_ApprTool.Size = new System.Drawing.Size(987, 428);
+            this.tabCMMI_ApprTool.Size = new System.Drawing.Size(1329, 445);
             this.tabCMMI_ApprTool.TabIndex = 1;
             this.tabCMMI_ApprTool.Text = "CMMI Tool";
             this.tabCMMI_ApprTool.UseVisualStyleBackColor = true;
@@ -266,10 +267,30 @@
             this.tabDemixPlan.Location = new System.Drawing.Point(4, 29);
             this.tabDemixPlan.Name = "tabDemixPlan";
             this.tabDemixPlan.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDemixPlan.Size = new System.Drawing.Size(987, 428);
+            this.tabDemixPlan.Size = new System.Drawing.Size(1329, 445);
             this.tabDemixPlan.TabIndex = 0;
             this.tabDemixPlan.Text = "CAS Plan";
             this.tabDemixPlan.UseVisualStyleBackColor = true;
+            // 
+            // btnGenerateSupportAndProjectCASSheets
+            // 
+            this.btnGenerateSupportAndProjectCASSheets.Location = new System.Drawing.Point(27, 131);
+            this.btnGenerateSupportAndProjectCASSheets.Name = "btnGenerateSupportAndProjectCASSheets";
+            this.btnGenerateSupportAndProjectCASSheets.Size = new System.Drawing.Size(211, 100);
+            this.btnGenerateSupportAndProjectCASSheets.TabIndex = 42;
+            this.btnGenerateSupportAndProjectCASSheets.Text = "Generate Support and Project CAS sheets";
+            this.btnGenerateSupportAndProjectCASSheets.UseVisualStyleBackColor = true;
+            this.btnGenerateSupportAndProjectCASSheets.Click += new System.EventHandler(this.btnGenerating_SupportAndProjectCASSheets);
+            // 
+            // chkInsertRole
+            // 
+            this.chkInsertRole.AutoSize = true;
+            this.chkInsertRole.Location = new System.Drawing.Point(244, 238);
+            this.chkInsertRole.Name = "chkInsertRole";
+            this.chkInsertRole.Size = new System.Drawing.Size(171, 24);
+            this.chkInsertRole.TabIndex = 41;
+            this.chkInsertRole.Text = "Check to insert role";
+            this.chkInsertRole.UseVisualStyleBackColor = true;
             // 
             // btnReloadSchedule2AndGenerateCASSheets
             // 
@@ -388,11 +409,12 @@
             this.tabControl1.Location = new System.Drawing.Point(32, 277);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(995, 461);
+            this.tabControl1.Size = new System.Drawing.Size(1337, 478);
             this.tabControl1.TabIndex = 21;
             // 
             // tabDemixTool
             // 
+            this.tabDemixTool.Controls.Add(this.button2);
             this.tabDemixTool.Controls.Add(this.btnAbridge);
             this.tabDemixTool.Controls.Add(this.btnExtractOEFindings);
             this.tabDemixTool.Controls.Add(this.btnBuildOUMaps);
@@ -404,15 +426,15 @@
             this.tabDemixTool.Location = new System.Drawing.Point(4, 29);
             this.tabDemixTool.Name = "tabDemixTool";
             this.tabDemixTool.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDemixTool.Size = new System.Drawing.Size(987, 428);
+            this.tabDemixTool.Size = new System.Drawing.Size(1329, 445);
             this.tabDemixTool.TabIndex = 5;
-            this.tabDemixTool.Text = "Demix Tool";
+            this.tabDemixTool.Text = "OEdb Tool";
             this.tabDemixTool.UseVisualStyleBackColor = true;
             this.tabDemixTool.Click += new System.EventHandler(this.tabDemixTool_Click);
             // 
             // btnAbridge
             // 
-            this.btnAbridge.Location = new System.Drawing.Point(259, 198);
+            this.btnAbridge.Location = new System.Drawing.Point(885, 198);
             this.btnAbridge.Name = "btnAbridge";
             this.btnAbridge.Size = new System.Drawing.Size(201, 47);
             this.btnAbridge.TabIndex = 8;
@@ -422,7 +444,7 @@
             // 
             // btnExtractOEFindings
             // 
-            this.btnExtractOEFindings.Location = new System.Drawing.Point(52, 248);
+            this.btnExtractOEFindings.Location = new System.Drawing.Point(678, 251);
             this.btnExtractOEFindings.Name = "btnExtractOEFindings";
             this.btnExtractOEFindings.Size = new System.Drawing.Size(201, 47);
             this.btnExtractOEFindings.TabIndex = 7;
@@ -432,7 +454,7 @@
             // 
             // btnBuildOUMaps
             // 
-            this.btnBuildOUMaps.Location = new System.Drawing.Point(259, 145);
+            this.btnBuildOUMaps.Location = new System.Drawing.Point(885, 145);
             this.btnBuildOUMaps.Name = "btnBuildOUMaps";
             this.btnBuildOUMaps.Size = new System.Drawing.Size(201, 47);
             this.btnBuildOUMaps.TabIndex = 6;
@@ -442,7 +464,7 @@
             // 
             // btnDemixOEMerge
             // 
-            this.btnDemixOEMerge.Location = new System.Drawing.Point(562, 144);
+            this.btnDemixOEMerge.Location = new System.Drawing.Point(1093, 144);
             this.btnDemixOEMerge.Name = "btnDemixOEMerge";
             this.btnDemixOEMerge.Size = new System.Drawing.Size(220, 48);
             this.btnDemixOEMerge.TabIndex = 4;
@@ -452,7 +474,7 @@
             // 
             // btnImportOE
             // 
-            this.btnImportOE.Location = new System.Drawing.Point(562, 42);
+            this.btnImportOE.Location = new System.Drawing.Point(1094, 42);
             this.btnImportOE.Name = "btnImportOE";
             this.btnImportOE.Size = new System.Drawing.Size(219, 45);
             this.btnImportOE.TabIndex = 3;
@@ -462,7 +484,7 @@
             // 
             // btnDemixTstLinksAndEngl
             // 
-            this.btnDemixTstLinksAndEngl.Location = new System.Drawing.Point(52, 195);
+            this.btnDemixTstLinksAndEngl.Location = new System.Drawing.Point(678, 198);
             this.btnDemixTstLinksAndEngl.Name = "btnDemixTstLinksAndEngl";
             this.btnDemixTstLinksAndEngl.Size = new System.Drawing.Size(201, 47);
             this.btnDemixTstLinksAndEngl.TabIndex = 2;
@@ -472,7 +494,7 @@
             // 
             // btnGenerateFullTool
             // 
-            this.btnGenerateFullTool.Location = new System.Drawing.Point(52, 142);
+            this.btnGenerateFullTool.Location = new System.Drawing.Point(678, 144);
             this.btnGenerateFullTool.Name = "btnGenerateFullTool";
             this.btnGenerateFullTool.Size = new System.Drawing.Size(201, 47);
             this.btnGenerateFullTool.TabIndex = 1;
@@ -482,7 +504,7 @@
             // 
             // btnSelectDemixTool
             // 
-            this.btnSelectDemixTool.Location = new System.Drawing.Point(52, 39);
+            this.btnSelectDemixTool.Location = new System.Drawing.Point(675, 39);
             this.btnSelectDemixTool.Name = "btnSelectDemixTool";
             this.btnSelectDemixTool.Size = new System.Drawing.Size(204, 46);
             this.btnSelectDemixTool.TabIndex = 0;
@@ -497,7 +519,7 @@
             this.tabQuestions.Location = new System.Drawing.Point(4, 29);
             this.tabQuestions.Name = "tabQuestions";
             this.tabQuestions.Padding = new System.Windows.Forms.Padding(3);
-            this.tabQuestions.Size = new System.Drawing.Size(987, 428);
+            this.tabQuestions.Size = new System.Drawing.Size(1329, 445);
             this.tabQuestions.TabIndex = 4;
             this.tabQuestions.Text = "Questions";
             this.tabQuestions.UseVisualStyleBackColor = true;
@@ -534,7 +556,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(987, 428);
+            this.tabPage1.Size = new System.Drawing.Size(1329, 445);
             this.tabPage1.TabIndex = 3;
             this.tabPage1.Text = "Directory admin";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -614,7 +636,7 @@
             this.tabPage2.Controls.Add(this.lblOEdbPathFile);
             this.tabPage2.Location = new System.Drawing.Point(4, 29);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(987, 428);
+            this.tabPage2.Size = new System.Drawing.Size(1329, 445);
             this.tabPage2.TabIndex = 6;
             this.tabPage2.Text = "About";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -782,31 +804,21 @@
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
             // 
-            // chkInsertRole
+            // button2
             // 
-            this.chkInsertRole.AutoSize = true;
-            this.chkInsertRole.Location = new System.Drawing.Point(244, 238);
-            this.chkInsertRole.Name = "chkInsertRole";
-            this.chkInsertRole.Size = new System.Drawing.Size(171, 24);
-            this.chkInsertRole.TabIndex = 41;
-            this.chkInsertRole.Text = "Check to insert role";
-            this.chkInsertRole.UseVisualStyleBackColor = true;
-            // 
-            // btnGenerateSupportAndProjectCASSheets
-            // 
-            this.btnGenerateSupportAndProjectCASSheets.Location = new System.Drawing.Point(27, 131);
-            this.btnGenerateSupportAndProjectCASSheets.Name = "btnGenerateSupportAndProjectCASSheets";
-            this.btnGenerateSupportAndProjectCASSheets.Size = new System.Drawing.Size(211, 100);
-            this.btnGenerateSupportAndProjectCASSheets.TabIndex = 42;
-            this.btnGenerateSupportAndProjectCASSheets.Text = "Generate Support and Project CAS sheets";
-            this.btnGenerateSupportAndProjectCASSheets.UseVisualStyleBackColor = true;
-            this.btnGenerateSupportAndProjectCASSheets.Click += new System.EventHandler(this.btnGenerating_SupportAndProjectCASSheets);
+            this.button2.Location = new System.Drawing.Point(17, 16);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(211, 47);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Select file";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1315, 825);
+            this.ClientSize = new System.Drawing.Size(1445, 836);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -913,6 +925,7 @@
         private System.Windows.Forms.Button btnReloadSchedule2AndGenerateCASSheets;
         private System.Windows.Forms.CheckBox chkInsertRole;
         private System.Windows.Forms.Button btnGenerateSupportAndProjectCASSheets;
+        private System.Windows.Forms.Button button2;
     }
 }
 

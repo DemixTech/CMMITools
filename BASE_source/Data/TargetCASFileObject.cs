@@ -754,7 +754,10 @@ namespace BASE.Data
             return true;
         }
 
-
+        internal bool LoadFileData(object cCASinName)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     //public class CompareNameAndRole : IEqualityComparer<Schedule2>

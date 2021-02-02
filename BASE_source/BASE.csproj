@@ -121,6 +121,7 @@
     <Compile Include="Data\Schedule1.cs" />
     <Compile Include="Data\TargetCASFileObject.cs" />
     <Compile Include="Data\TargetFileObject.cs" />
+    <Compile Include="Data\TargetOEFileObject.cs" />
     <Compile Include="Excel\Worksheet.cs" />
     <Compile Include="Excel\Helper.cs" />
     <Compile Include="Main.cs">

@@ -15,7 +15,8 @@ namespace BASE.Data
     [Serializable]
     public class TargetFileObject
     {
-        const string CCASinName = "CAS"; // This string must be present in the filename (not the directory) to be valid
+        public const string CCASinName = "CAS"; // This string must be present in the filename (not the directory) to be valid
+        public const string COEdbinName = "OEdb"; // This string must be present in the filename (not the directory) to be valid
 
         // https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlattributes.xmlignore?view=net-5.0
         //https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlattributes.xmlignore?view=net-5.0#System_Xml_Serialization_XmlAttributes_XmlIgnore
@@ -135,7 +136,7 @@ namespace BASE.Data
         /// Open a dialog box and select a file (not open it, but select it)
         /// </summary>
         /// <returns></returns>
-        virtual public bool LoadFileData()
+        virtual public bool LoadFileData(string fileNameKeyWord)
         {
             // Check if the excel process is running
 
@@ -157,7 +158,7 @@ namespace BASE.Data
             {
                 // *** If the file name does not contain CAS, then we need to abort
 
-                if (Path.GetFileName(sourceFile2.FileName).ToUpper().Contains(CCASinName))
+                if (Path.GetFileName(sourceFile2.FileName).ToUpper().Contains(fileNameKeyWord))
                 {
 
                     // Set cursor as hourglass
@@ -168,7 +169,7 @@ namespace BASE.Data
                 }
                 else
                 { // Filename does not contain CCASinName
-                    MessageBox.Show($"The filename {Path.GetFileName(sourceFile2.FileName)} does not contain the keyword \"{CCASinName}\"");
+                    MessageBox.Show($"The filename {Path.GetFileName(sourceFile2.FileName)} does not contain the keyword \"{fileNameKeyWord}\"");
                     return false;
                 }
             }
