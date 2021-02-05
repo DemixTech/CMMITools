@@ -58,6 +58,7 @@
             this.btnLoadSchedule2tab = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabDemixTool = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
             this.btnAbridge = new System.Windows.Forms.Button();
             this.btnExtractOEFindings = new System.Windows.Forms.Button();
             this.btnBuildOUMaps = new System.Windows.Forms.Button();
@@ -96,7 +97,15 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lblOEPath2 = new System.Windows.Forms.Label();
+            this.lblOEFile2 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.lblOEPathXML2 = new System.Windows.Forms.Label();
+            this.lblOEFileXML2 = new System.Windows.Forms.Label();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -335,7 +344,7 @@
             // lblCASPlanPathText
             // 
             this.lblCASPlanPathText.AutoSize = true;
-            this.lblCASPlanPathText.Location = new System.Drawing.Point(101, 250);
+            this.lblCASPlanPathText.Location = new System.Drawing.Point(82, 277);
             this.lblCASPlanPathText.Name = "lblCASPlanPathText";
             this.lblCASPlanPathText.Size = new System.Drawing.Size(98, 20);
             this.lblCASPlanPathText.TabIndex = 35;
@@ -344,7 +353,7 @@
             // lblCASPlanFileText
             // 
             this.lblCASPlanFileText.AutoSize = true;
-            this.lblCASPlanFileText.Location = new System.Drawing.Point(101, 280);
+            this.lblCASPlanFileText.Location = new System.Drawing.Point(82, 307);
             this.lblCASPlanFileText.Name = "lblCASPlanFileText";
             this.lblCASPlanFileText.Size = new System.Drawing.Size(90, 20);
             this.lblCASPlanFileText.TabIndex = 34;
@@ -353,7 +362,7 @@
             // lblCASPlanFile
             // 
             this.lblCASPlanFile.AutoSize = true;
-            this.lblCASPlanFile.Location = new System.Drawing.Point(53, 280);
+            this.lblCASPlanFile.Location = new System.Drawing.Point(34, 307);
             this.lblCASPlanFile.Name = "lblCASPlanFile";
             this.lblCASPlanFile.Size = new System.Drawing.Size(34, 20);
             this.lblCASPlanFile.TabIndex = 33;
@@ -362,7 +371,7 @@
             // lblCASPlanPath
             // 
             this.lblCASPlanPath.AutoSize = true;
-            this.lblCASPlanPath.Location = new System.Drawing.Point(53, 250);
+            this.lblCASPlanPath.Location = new System.Drawing.Point(34, 277);
             this.lblCASPlanPath.Name = "lblCASPlanPath";
             this.lblCASPlanPath.Size = new System.Drawing.Size(42, 20);
             this.lblCASPlanPath.TabIndex = 32;
@@ -401,11 +410,11 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabDemixPlan);
-            this.tabControl1.Controls.Add(this.tabCMMI_ApprTool);
             this.tabControl1.Controls.Add(this.tabDemixTool);
             this.tabControl1.Controls.Add(this.tabQuestions);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabCMMI_ApprTool);
             this.tabControl1.Location = new System.Drawing.Point(32, 277);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -414,6 +423,10 @@
             // 
             // tabDemixTool
             // 
+            this.tabDemixTool.Controls.Add(this.lblOEFile2);
+            this.tabDemixTool.Controls.Add(this.lblOEPath2);
+            this.tabDemixTool.Controls.Add(this.label13);
+            this.tabDemixTool.Controls.Add(this.label14);
             this.tabDemixTool.Controls.Add(this.button2);
             this.tabDemixTool.Controls.Add(this.btnAbridge);
             this.tabDemixTool.Controls.Add(this.btnExtractOEFindings);
@@ -431,6 +444,16 @@
             this.tabDemixTool.Text = "OEdb Tool";
             this.tabDemixTool.UseVisualStyleBackColor = true;
             this.tabDemixTool.Click += new System.EventHandler(this.tabDemixTool_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(17, 16);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(211, 47);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Select file";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnAbridge
             // 
@@ -627,6 +650,11 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lblOEFileXML2);
+            this.tabPage2.Controls.Add(this.lblOEPathXML2);
+            this.tabPage2.Controls.Add(this.label15);
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.label17);
             this.tabPage2.Controls.Add(this.lblCASFileXML);
             this.tabPage2.Controls.Add(this.lblCASPathXML);
             this.tabPage2.Controls.Add(this.label12);
@@ -804,15 +832,86 @@
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
             // 
-            // button2
+            // label13
             // 
-            this.button2.Location = new System.Drawing.Point(17, 16);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(211, 47);
-            this.button2.TabIndex = 9;
-            this.button2.Text = "Select file";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(13, 388);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(34, 20);
+            this.label13.TabIndex = 35;
+            this.label13.Text = "File";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(13, 358);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(42, 20);
+            this.label14.TabIndex = 34;
+            this.label14.Text = "Path";
+            // 
+            // lblOEPath2
+            // 
+            this.lblOEPath2.AutoSize = true;
+            this.lblOEPath2.Location = new System.Drawing.Point(61, 358);
+            this.lblOEPath2.Name = "lblOEPath2";
+            this.lblOEPath2.Size = new System.Drawing.Size(80, 20);
+            this.lblOEPath2.TabIndex = 36;
+            this.lblOEPath2.Text = "OE path...";
+            // 
+            // lblOEFile2
+            // 
+            this.lblOEFile2.AutoSize = true;
+            this.lblOEFile2.Location = new System.Drawing.Point(60, 388);
+            this.lblOEFile2.Name = "lblOEFile2";
+            this.lblOEFile2.Size = new System.Drawing.Size(108, 30);
+            this.lblOEFile2.TabIndex = 37;
+            this.lblOEFile2.Text = "OE file ...";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(32, 234);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(42, 20);
+            this.label15.TabIndex = 40;
+            this.label15.Text = "Path";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(32, 264);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(34, 20);
+            this.label16.TabIndex = 39;
+            this.label16.Text = "File";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(20, 204);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(87, 20);
+            this.label17.TabIndex = 38;
+            this.label17.Text = "OEdb XML";
+            // 
+            // lblOEPathXML2
+            // 
+            this.lblOEPathXML2.AutoSize = true;
+            this.lblOEPathXML2.Location = new System.Drawing.Point(75, 234);
+            this.lblOEPathXML2.Name = "lblOEPathXML2";
+            this.lblOEPathXML2.Size = new System.Drawing.Size(91, 20);
+            this.lblOEPathXML2.TabIndex = 41;
+            this.lblOEPathXML2.Text = "OExml path";
+            // 
+            // lblOEFileXML2
+            // 
+            this.lblOEFileXML2.AutoSize = true;
+            this.lblOEFileXML2.Location = new System.Drawing.Point(75, 264);
+            this.lblOEFileXML2.Name = "lblOEFileXML2";
+            this.lblOEFileXML2.Size = new System.Drawing.Size(79, 20);
+            this.lblOEFileXML2.TabIndex = 42;
+            this.lblOEFileXML2.Text = "OExml file";
             // 
             // Main
             // 
@@ -846,6 +945,7 @@
             this.tabDemixPlan.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabDemixTool.ResumeLayout(false);
+            this.tabDemixTool.PerformLayout();
             this.tabQuestions.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -926,6 +1026,15 @@
         private System.Windows.Forms.CheckBox chkInsertRole;
         private System.Windows.Forms.Button btnGenerateSupportAndProjectCASSheets;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lblOEFile2;
+        private System.Windows.Forms.Label lblOEPath2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblOEFileXML2;
+        private System.Windows.Forms.Label lblOEPathXML2;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label17;
     }
 }
 

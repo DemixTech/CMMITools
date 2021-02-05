@@ -13,7 +13,7 @@ namespace BASE.Data
     /// TargetFile is an object that contains information for a file, including saving its content to XML and loading it whe it starts up
     /// </summary>
     [Serializable]
-    public class TargetFileObject
+    abstract public class TargetFileObject
     {
         public const string CCASinName = "CAS"; // This string must be present in the filename (not the directory) to be valid
         public const string COEdbinName = "OEdb"; // This string must be present in the filename (not the directory) to be valid
@@ -81,32 +81,32 @@ namespace BASE.Data
 
         }
         // Load information about this TargetFileObject
-        virtual public bool LoadPersistant()
-        {
-            try
-            {
-                if (File.Exists(_directoryFileNameXML))
-                {
-                    // If the directory and file name exists, laod the data
-                    var xs = new XmlSerializer(typeof(TargetFileObject));
-                    using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
-                    {
-                        var pData = (TargetFileObject)xs.Deserialize(xmlLoad);
-                        this.DirectoryFileName = pData._directoryFileName;
-                    }
-                    return true;
-                }
-                else
-                {
-                    return false; // file could not be loaded
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error {ex.Message} loading {_directoryFileNameXML}");
-                return false;
-            }
-        }
+        abstract public bool LoadPersistantXMLdata();
+        //{
+            //try
+            //{
+            //    if (File.Exists(_directoryFileNameXML))
+            //    {
+            //        // If the directory and file name exists, laod the data
+            //        var xs = new XmlSerializer(typeof(TargetFileObject));
+            //        using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
+            //        {
+            //            var pData = (TargetFileObject)xs.Deserialize(xmlLoad);
+            //            this.DirectoryFileName = pData._directoryFileName;
+            //        }
+            //        return true;
+            //    }
+            //    else
+            //    {
+            //        return false; // file could not be loaded
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Error {ex.Message} loading {_directoryFileNameXML}");
+            //    return false;
+            //}
+        //}
 
         // save persistent data
         virtual public void SavePersistant()
@@ -136,7 +136,10 @@ namespace BASE.Data
         /// Open a dialog box and select a file (not open it, but select it)
         /// </summary>
         /// <returns></returns>
-        virtual public bool LoadFileData(string fileNameKeyWord)
+
+        public bool SelectFileToLoad(string fileNameKeyWord)
+
+      //  virtual public bool LoadFileData(string fileNameKeyWord)
         {
             // Check if the excel process is running
 
@@ -158,7 +161,7 @@ namespace BASE.Data
             {
                 // *** If the file name does not contain CAS, then we need to abort
 
-                if (Path.GetFileName(sourceFile2.FileName).ToUpper().Contains(fileNameKeyWord))
+                if (Path.GetFileName(sourceFile2.FileName).ToUpper().Contains(fileNameKeyWord.ToUpper()))
                 {
 
                     // Set cursor as hourglass
@@ -178,5 +181,6 @@ namespace BASE.Data
                 return false;
             }
         }
+
     }
 }

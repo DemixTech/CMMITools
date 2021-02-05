@@ -43,64 +43,21 @@ namespace BASE.Data
         private const int CBASE_SupportHeadingsRowStart = 3;
 
         public List<String> DictionaryProjectHeadings = new List<string>();
-        private const int CBASE_ProjectHeadingsCol = 2;
+        private const int CBASE_ProjectHeadingsCol = 3;
         private const int CBASE_ProjectHeadingsRowStart = 3;
 
 
 
-        public override void InitialiseObject(string directoryFileNameXML,
-            System.Windows.Forms.Label labelDirectoryNameXML,
-            System.Windows.Forms.Label labelFileNameXML,
-            System.Windows.Forms.Label labelDirectoryName,
-            System.Windows.Forms.Label labelFileName)
-        {
-            base.InitialiseObject(directoryFileNameXML, labelDirectoryNameXML, labelFileNameXML, labelDirectoryName, labelFileName);
-        }
+        //public override void InitialiseObject(string directoryFileNameXML,
+        //    System.Windows.Forms.Label labelDirectoryNameXML,
+        //    System.Windows.Forms.Label labelFileNameXML,
+        //    System.Windows.Forms.Label labelDirectoryName,
+        //    System.Windows.Forms.Label labelFileName)
+        //{
+        //    base.InitialiseObject(directoryFileNameXML, labelDirectoryNameXML, labelFileNameXML, labelDirectoryName, labelFileName);
+        //}
 
-        public override bool LoadPersistant()
-        {
-            try
-            {
 
-                // base.LoadPersistant(); override the base function, to load all information from here for this object and its parent
-                if (File.Exists(_directoryFileNameXML))
-                {
-                    // If the directory and file name exists, laod the data
-                    var xs = new XmlSerializer(typeof(TargetCASFileObject));
-                    using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
-                    {
-                        var pData = (TargetCASFileObject)xs.Deserialize(xmlLoad);
-                        this.DirectoryFileName = pData._directoryFileName;
-
-                        // *** TargetCASFielObject fields and properties
-                        //     this.Org = pData.Org;
-                        //     this.OU = pData.OU;
-
-                        this.WorkUnitList2 = pData.WorkUnitList2;
-                        this.StaffList2 = pData.StaffList2;
-                        this.OUProcessesList2 = pData.OUProcessesList2;
-                        this.Schedule2List2 = pData.Schedule2List2;
-                        this.Organisation = pData.Organisation;
-                        this.OrganizationalUnit = pData.OrganizationalUnit;
-                        this.DictionaryOUPracticeAreas = pData.DictionaryOUPracticeAreas;
-                        this.DictionarySupportHeadings = pData.DictionarySupportHeadings;
-                        this.DictionaryProjectHeadings = pData.DictionaryProjectHeadings;
-
-                    }
-                    return true; // loaded successfull
-                }
-                else
-                {
-                    return false; //load unsuccessfull
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error {ex.Message} loading {_directoryFileNameXML}");
-                return false;
-            }
-
-        }
 
         public void SavePersistant(TargetCASFileObject theTargetObject)
         {
@@ -143,25 +100,36 @@ namespace BASE.Data
             {
                 // Process the list
                 WorkUnit aNewWorkUnitItem;
-                if (sValue2[0] == 'p')
-                {
-                    aNewWorkUnitItem = new WorkUnit()
-                    {
-                        WorkType = EWorkType.project,
-                    };
-                    aNewWorkUnitItem.AddWorkType(EWorkType.project, projectWks, row, cProjectHeadingStartRow2);
+                char firstChar = sValue2.ToUpper()[0];
 
-                }
-                else
+                switch (firstChar)
                 {
-                    aNewWorkUnitItem = new WorkUnit()
-                    {
-                        WorkType = EWorkType.support,
-                    };
-                    aNewWorkUnitItem.AddWorkType(EWorkType.support, projectWks, row, cProjectHeadingStartRow2);
-                }
+                    case 'P':
+                        aNewWorkUnitItem = new WorkUnit()
+                        {
+                            WorkType = EWorkType.project,
+                        };
+                        aNewWorkUnitItem.AddWorkType(EWorkType.project, projectWks, row, cProjectHeadingStartRow2);
+                        break;
 
-                if (aNewWorkUnitItem.WorkType != EWorkType.nothing) WorkUnitList2.Add(aNewWorkUnitItem);
+                    case 'S':
+                        aNewWorkUnitItem = new WorkUnit()
+                        {
+                            WorkType = EWorkType.support,
+                        };
+                        aNewWorkUnitItem.AddWorkType(EWorkType.support, projectWks, row, cProjectHeadingStartRow2);
+                        break;
+
+                    default:
+                        aNewWorkUnitItem = new WorkUnit()
+                        {
+                            WorkType = EWorkType.support,
+                        };
+                        break;
+                }
+                WorkUnitList2.Add(aNewWorkUnitItem);
+
+
 
                 row++;
                 sValue2 = projectWks.Cells[row, 1].Value2;
@@ -187,7 +155,7 @@ namespace BASE.Data
                     string cellMarkedX = projectWks.Cells[rowX, columnX]?.Value;
                     if (cellMarkedX?.ToLower() == "x")
                     { // Marked x, proxcess it
-                        string workIdStr = projectWks.Cells[rowX, 1]?.Value;
+                        string workIdStr = projectWks.Cells[rowX, 1]?.Value.ToLower();
                         // The workId must be valid, cannot be null or empty
                         if (string.IsNullOrEmpty(workIdStr))
                         {
@@ -196,7 +164,7 @@ namespace BASE.Data
                         else
                         {
                             // Use the workIdStr to find the WorkUnit and attach it to the process
-                            WorkUnit aWorkunit = WorkUnitList2.Find(x => x.ID == workIdStr);
+                            WorkUnit aWorkunit = WorkUnitList2.Find(x => x.ID.ToLower() == workIdStr);
                             if (aWorkunit == null)
                             {
                                 MessageBox.Show($"No work unit found in list for {workIdStr}! Please review Projects table.");
@@ -525,7 +493,7 @@ namespace BASE.Data
                 casSupportWks.Cells[sfRow, 7].Value = "";
                 casSupportWks.Cells[sfRow, 8].Value = OrganizationalUnit.Name;
                 casSupportWks.Cells[sfRow, 9].Value = "No"; // Not using suppliers
-                var Manager = StaffList2.FirstOrDefault(x => x.WorkID == aSupportFunction.ID && x.Role.Contains("Manager")); // FTEs
+                var Manager = StaffList2.FirstOrDefault(x => x.WorkID == aSupportFunction.ID && x.Role.ToLower().Contains("manager")); // FTEs
                 casSupportWks.Cells[sfRow, 10].Value = Manager?.Name ?? "Unknown";
                 casSupportWks.Cells[sfRow, 11].Value = Organisation.AddressLine1;
                 casSupportWks.Cells[sfRow, 12].Value = Organisation.AddressLine2;
@@ -542,9 +510,9 @@ namespace BASE.Data
             Worksheet casProjectWks = aWorkbook.Sheets["C_Projects"];
             casProjectWks.Cells.Clear();
             // int NumberOfRows = Helper.FindEndOfWorksheet(casSupportWks, 1, cSchedule2HeadingStartRow2, 200);
-            for (int col = 1; col < DictionarySupportHeadings.Count; col++)
+            for (int col = 1; col < DictionaryProjectHeadings.Count; col++)
             {
-                casProjectWks.Cells[1, col].Value = DictionarySupportHeadings[col - 1];
+                casProjectWks.Cells[1, col].Value = DictionaryProjectHeadings[col - 1];
             }
 
             var projectList = WorkUnitList2.Where(x => x.ID.Substring(0, 1).ToUpper() == "P").ToList();
@@ -565,7 +533,7 @@ namespace BASE.Data
                 casProjectWks.Cells[prjRow, 12].Value = aProject.EndDate;
 
                 casProjectWks.Cells[prjRow, 13].Value = "No"; // Not using suppliers
-                var Manager = StaffList2.FirstOrDefault(x => x.WorkID == aProject.ID && x.Role.Contains("Manager")); // FTEs
+                var Manager = StaffList2.FirstOrDefault(x => x.WorkID == aProject.ID && x.Role.ToLower().Contains("manager")); // FTEs
                 casProjectWks.Cells[prjRow, 14].Value = Manager?.Name ?? "Unknown";
 
                 casProjectWks.Cells[prjRow, 15].Value = Organisation.AddressLine1;
@@ -754,10 +722,60 @@ namespace BASE.Data
             return true;
         }
 
-        internal bool LoadFileData(object cCASinName)
+        public override bool LoadPersistantXMLdata()
         {
-            throw new NotImplementedException();
+            try
+            {
+                // base.LoadPersistant(); override the base function, to load all information from here for this object and its parent
+                if (File.Exists(_directoryFileNameXML))
+                {
+                    // If the directory and file name exists, laod the data
+                    var xs = new XmlSerializer(typeof(TargetCASFileObject));
+                    using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
+                    {
+                        var pData = (TargetCASFileObject)xs.Deserialize(xmlLoad);
+                        this.DirectoryFileName = pData._directoryFileName;
+
+                        // *** TargetCASFielObject fields and properties
+                        //     this.Org = pData.Org;
+                        //     this.OU = pData.OU;
+
+                        this.WorkUnitList2 = pData.WorkUnitList2;
+                        this.StaffList2 = pData.StaffList2;
+                        this.OUProcessesList2 = pData.OUProcessesList2;
+                        this.Schedule2List2 = pData.Schedule2List2;
+                        this.Organisation = pData.Organisation;
+                        this.OrganizationalUnit = pData.OrganizationalUnit;
+                        this.DictionaryOUPracticeAreas = pData.DictionaryOUPracticeAreas;
+                        this.DictionarySupportHeadings = pData.DictionarySupportHeadings;
+                        this.DictionaryProjectHeadings = pData.DictionaryProjectHeadings;
+
+                    }
+                    return true; // loaded successfull
+                }
+                else
+                {
+                    return false; //load unsuccessfull
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error {ex.Message} loading {_directoryFileNameXML}");
+                return false;
+            }
+
+
         }
+
+        //public override bool LoadFileExcelFileData(string fileNameKeyWord)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public override bool LoadFileData(string fileNameKeyWord)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 
     //public class CompareNameAndRole : IEqualityComparer<Schedule2>

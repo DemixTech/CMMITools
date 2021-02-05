@@ -8,6 +8,16 @@ namespace BASE.Data
 {
     public class TargetOEFileObject : TargetFileObject
     {
+        //public override bool LoadFileExcelFileData(string fileNameKeyWord)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
+        public override bool LoadPersistantXMLdata()
+        {
+            throw new NotImplementedException();
+        }
     }
+
+
 }

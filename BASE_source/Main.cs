@@ -35,6 +35,7 @@ namespace BASE
 
         #region globals
         const string CTargetCASFileXML = @"BASE\TargetCASFileXML.xml";
+        const string CTargetOEdbFileXML = @"BASE\TargetOEdbFileXML.xml";
 
         private const string cPath_start = @"C:\Users\PietervanZyl\Demix (Pty) Ltd\Demix Global - PieterVZ\4_Appraisals\2020-12-11 (A5) R370 D5360 C51813 Goshine Tech";
         private const int cProjectHeadingStartRow = 2; // tab:Projects start row
@@ -104,7 +105,7 @@ namespace BASE
         // *** BASE file objects
         private TargetCASFileObject CASFileObject;
         private TargetOEFileObject CASOEdbObject;
-        
+
         #endregion
 
         public string VersionLabel
@@ -133,13 +134,12 @@ namespace BASE
             // *** Startup program objects
             CASFileObject = new TargetCASFileObject();
             CASFileObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetCASFileXML), lblCASPathXML, lblCASFileXML, lblCASPlanPathText, lblCASPlanFileText);
-            CASFileObject.LoadPersistant(); // Load saved information if available
+            CASFileObject.LoadPersistantXMLdata(); // .LoadPersistant(); // Load saved information if available
 
             // *** Startup oeDb objects
             CASOEdbObject = new TargetOEFileObject();
-
-            CASOEdbObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetCASFileXML), lblCASPathXML, lblCASFileXML, lblCASPlanPathText, lblCASPlanFileText);
-            CASOEdbObject.LoadPersistant(); // Load saved information if available
+            CASOEdbObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetOEdbFileXML), lblOEPathXML2, lblOEFileXML2, lblOEPath2, lblOEFile2);
+            //CASOEdbObject.LoadPersistantXMLdata(); // .LoadPersistant(); // Load saved information if available
 
 
             persistentData.LoadPersistentData();
@@ -694,26 +694,32 @@ namespace BASE
                 {
                     // Process the list
                     WorkUnit aNewWorkUnitItem;
-                    if (sValue2[0] == 'p')
+                    char firstChar = sValue2.ToUpper()[0];
+                    switch (firstChar)
                     {
-                        aNewWorkUnitItem = new WorkUnit()
-                        {
-                            WorkType = EWorkType.project,
-                        };
-                        aNewWorkUnitItem.AddWorkType(EWorkType.project, projectWks, row, cProjectHeadingStartRow);
-
+                        case 'P':
+                            aNewWorkUnitItem = new WorkUnit()
+                            {
+                                WorkType = EWorkType.project,
+                            };
+                            aNewWorkUnitItem.AddWorkType(EWorkType.project, projectWks, row, cProjectHeadingStartRow);
+                            break;
+                        case 'S':
+                            aNewWorkUnitItem = new WorkUnit()
+                            {
+                                WorkType = EWorkType.support,
+                            };
+                            aNewWorkUnitItem.AddWorkType(EWorkType.support, projectWks, row, cProjectHeadingStartRow);
+                            break;
+                        default:
+                            aNewWorkUnitItem = new WorkUnit()
+                            {
+                                WorkType = EWorkType.nothing,
+                            };
+                            break;
                     }
-                    else
-                    {
-                        aNewWorkUnitItem = new WorkUnit()
-                        {
-                            WorkType = EWorkType.support,
-                        };
-                        aNewWorkUnitItem.AddWorkType(EWorkType.support, projectWks, row, cProjectHeadingStartRow);
-                    }
 
-                    if (aNewWorkUnitItem.WorkType != EWorkType.nothing) WorkUnitList.Add(aNewWorkUnitItem);
-
+                    WorkUnitList.Add(aNewWorkUnitItem);
                     row++;
                     sValue2 = projectWks.Cells[row, 1].Value2;
                 }
@@ -746,7 +752,7 @@ namespace BASE
                             else
                             {
                                 // Use the workIdStr to find the WorkUnit and attach it to the process
-                                WorkUnit aWorkunit = WorkUnitList.Find(x => x.ID == workIdStr);
+                                WorkUnit aWorkunit = WorkUnitList.Find(x => x.ID.ToLower() == workIdStr.ToLower());
                                 if (aWorkunit == null)
                                 {
                                     MessageBox.Show($"No work unit found in list for {workIdStr}! Please review Projects table.");
@@ -2353,8 +2359,20 @@ namespace BASE
 
         }
 
-        private void btnGenerateFullTool_Click(object sender, EventArgs e)
+        private void btnGenerateFullTool_Click(object sender, 
+            EventArgs e)
         {
+            DialogResult dialogResult = MessageBox.Show("Make sure Processess are correcly listed in tab:Project&Support! Continue?", "Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+                return;
+            }
+
             string[] mostPAs = { "PI", "TS", "PQA", "PR", "RDM", "VV", "MPM", "PAD", "PCM", "RSK", "OT", "EST", "MC", "PLAN", "CAR", "CM", "DAR", "SAM" };
             string[] specialPAs = { "GOV", "II" };
             const int cTemplateLevelRow = 3;
@@ -2405,7 +2423,7 @@ namespace BASE
 
                 // Setup parameters
                 int rowX = 9; // the starting row to process
-                // Build each of the levels 
+                              // Build each of the levels 
                 for (int levelX = 1; levelX <= 5; levelX++)
                 {
 
@@ -3031,7 +3049,7 @@ namespace BASE
 
             //  lblStatus.Text = "OEdb:";
 
-            var wksNameArray = WorkUnitList.Where(x => x.ID.Substring(0, 1).ToLower() == "p" || x.ID.Substring(0, 1).ToLower() == "s").ToArray();
+            var wksNameArray = WorkUnitList.Where(x => x.ID.Substring(0, 1).ToUpper() == "P" || x.ID.Substring(0, 1).ToUpper() == "S").ToArray();
             //{ "p1", "p2", "p3", "p4", "p5", "p6", "s1", "s2", "s3", "s4" };
             string statusStr = "";
 
@@ -3330,7 +3348,7 @@ namespace BASE
         private void btnOpenBaseCASPlan_Click(object sender, EventArgs e)
         {
             //CASFileObject.LoadPersistant();
-            if (CASFileObject.LoadFileData(TargetFileObject.CCASinName) == false)
+            if (CASFileObject.SelectFileToLoad(TargetFileObject.CCASinName) == false)
             {
                 MessageBox.Show($"No file selected.");
             }
@@ -3354,15 +3372,16 @@ namespace BASE
 
             return;
 
-            
+
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if (CASFileObject.CreateSchedule1()==true)
+            if (CASFileObject.CreateSchedule1() == true)
             { // Generated the schedule
 
-            } else
+            }
+            else
             {// Could not generate schedule
 
             }
@@ -3375,7 +3394,8 @@ namespace BASE
             if (CASFileObject.Generate_OUParticipants(chkInsertRole.Checked)) // This includes reloading it
             { // All ok
 
-            } else
+            }
+            else
             {
                 MessageBox.Show("Error reloading schedule 2 and generating CAS sheets!");
             }
@@ -3386,7 +3406,8 @@ namespace BASE
             if (CASFileObject.Generate_SupportAndProjectCASSheets())
             {
                 // All ok
-            } else
+            }
+            else
             {
                 MessageBox.Show("Error generating Support and Project CAS sheets!");
             }
@@ -3396,7 +3417,7 @@ namespace BASE
         private void button2_Click(object sender, EventArgs e)
         {
             //CASFileObject.LoadPersistant();
-            if (CASOEdbObject.LoadFileData(TargetFileObject.COEdbinName) == false)
+            if (CASOEdbObject.SelectFileToLoad(TargetFileObject.COEdbinName) == false)
             {
                 MessageBox.Show($"No file selected.");
             }
