@@ -58,6 +58,8 @@
             this.btnLoadSchedule2tab = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabDemixTool = new System.Windows.Forms.TabPage();
+            this.btnTestLinksAndEngl2 = new System.Windows.Forms.Button();
+            this.btnGenerateOEdb2 = new System.Windows.Forms.Button();
             this.lblOEFile2 = new System.Windows.Forms.Label();
             this.lblOEPath2 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -72,6 +74,12 @@
             this.btnGenerateFullTool = new System.Windows.Forms.Button();
             this.btnSelectDemixTool = new System.Windows.Forms.Button();
             this.tabQuestions = new System.Windows.Forms.TabPage();
+            this.btnReloadQuestionsAndModel2 = new System.Windows.Forms.Button();
+            this.lblQuestionPath2 = new System.Windows.Forms.Label();
+            this.lblQuestionFile2 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.btnSelectQuestionAndModel2 = new System.Windows.Forms.Button();
             this.btnImportModel = new System.Windows.Forms.Button();
             this.btnSelectQuestionFile = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -83,6 +91,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtFrom = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblQMfileXML2 = new System.Windows.Forms.Label();
+            this.lblQMPathXML2 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
             this.lblOEFileXML2 = new System.Windows.Forms.Label();
             this.lblOEPathXML2 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
@@ -106,17 +119,9 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
-            this.btnSelectQuestionAndModel2 = new System.Windows.Forms.Button();
-            this.lblQuestionPath2 = new System.Windows.Forms.Label();
-            this.lblQuestionFile2 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.lblQMfileXML2 = new System.Windows.Forms.Label();
-            this.lblQMPathXML2 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.btnReloadQuestionsAndModel2 = new System.Windows.Forms.Button();
+            this.btnExtractFindings2 = new System.Windows.Forms.Button();
+            this.btnBuildOUMaps2 = new System.Windows.Forms.Button();
+            this.btnBuildAbridged2 = new System.Windows.Forms.Button();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -434,6 +439,11 @@
             // 
             // tabDemixTool
             // 
+            this.tabDemixTool.Controls.Add(this.btnBuildAbridged2);
+            this.tabDemixTool.Controls.Add(this.btnBuildOUMaps2);
+            this.tabDemixTool.Controls.Add(this.btnExtractFindings2);
+            this.tabDemixTool.Controls.Add(this.btnTestLinksAndEngl2);
+            this.tabDemixTool.Controls.Add(this.btnGenerateOEdb2);
             this.tabDemixTool.Controls.Add(this.lblOEFile2);
             this.tabDemixTool.Controls.Add(this.lblOEPath2);
             this.tabDemixTool.Controls.Add(this.label13);
@@ -455,6 +465,26 @@
             this.tabDemixTool.Text = "OEdb Tool";
             this.tabDemixTool.UseVisualStyleBackColor = true;
             this.tabDemixTool.Click += new System.EventHandler(this.tabDemixTool_Click);
+            // 
+            // btnTestLinksAndEngl2
+            // 
+            this.btnTestLinksAndEngl2.Location = new System.Drawing.Point(17, 143);
+            this.btnTestLinksAndEngl2.Name = "btnTestLinksAndEngl2";
+            this.btnTestLinksAndEngl2.Size = new System.Drawing.Size(211, 47);
+            this.btnTestLinksAndEngl2.TabIndex = 39;
+            this.btnTestLinksAndEngl2.Text = "Test links and Engl";
+            this.btnTestLinksAndEngl2.UseVisualStyleBackColor = true;
+            this.btnTestLinksAndEngl2.Click += new System.EventHandler(this.btnTestLinksAndEngl2_Click);
+            // 
+            // btnGenerateOEdb2
+            // 
+            this.btnGenerateOEdb2.Location = new System.Drawing.Point(17, 90);
+            this.btnGenerateOEdb2.Name = "btnGenerateOEdb2";
+            this.btnGenerateOEdb2.Size = new System.Drawing.Size(211, 47);
+            this.btnGenerateOEdb2.TabIndex = 38;
+            this.btnGenerateOEdb2.Text = "Generate OEdb tool";
+            this.btnGenerateOEdb2.UseVisualStyleBackColor = true;
+            this.btnGenerateOEdb2.Click += new System.EventHandler(this.btnGenerateOEdb2_Click);
             // 
             // lblOEFile2
             // 
@@ -498,7 +528,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(211, 47);
             this.button2.TabIndex = 9;
-            this.button2.Text = "Select file";
+            this.button2.Text = "Select master OEdb";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -599,6 +629,62 @@
             this.tabQuestions.TabIndex = 4;
             this.tabQuestions.Text = "Questions";
             this.tabQuestions.UseVisualStyleBackColor = true;
+            // 
+            // btnReloadQuestionsAndModel2
+            // 
+            this.btnReloadQuestionsAndModel2.Location = new System.Drawing.Point(31, 84);
+            this.btnReloadQuestionsAndModel2.Name = "btnReloadQuestionsAndModel2";
+            this.btnReloadQuestionsAndModel2.Size = new System.Drawing.Size(211, 89);
+            this.btnReloadQuestionsAndModel2.TabIndex = 40;
+            this.btnReloadQuestionsAndModel2.Text = "Reload Questions and Model";
+            this.btnReloadQuestionsAndModel2.UseVisualStyleBackColor = true;
+            this.btnReloadQuestionsAndModel2.Click += new System.EventHandler(this.btnReloadQuestionsAndModel2_Click);
+            // 
+            // lblQuestionPath2
+            // 
+            this.lblQuestionPath2.AutoSize = true;
+            this.lblQuestionPath2.Location = new System.Drawing.Point(92, 197);
+            this.lblQuestionPath2.Name = "lblQuestionPath2";
+            this.lblQuestionPath2.Size = new System.Drawing.Size(98, 20);
+            this.lblQuestionPath2.TabIndex = 39;
+            this.lblQuestionPath2.Text = "Path name...";
+            // 
+            // lblQuestionFile2
+            // 
+            this.lblQuestionFile2.AutoSize = true;
+            this.lblQuestionFile2.Location = new System.Drawing.Point(92, 227);
+            this.lblQuestionFile2.Name = "lblQuestionFile2";
+            this.lblQuestionFile2.Size = new System.Drawing.Size(90, 20);
+            this.lblQuestionFile2.TabIndex = 38;
+            this.lblQuestionFile2.Text = "File name...";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(44, 227);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(34, 20);
+            this.label20.TabIndex = 37;
+            this.label20.Text = "File";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(44, 197);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(42, 20);
+            this.label21.TabIndex = 36;
+            this.label21.Text = "Path";
+            // 
+            // btnSelectQuestionAndModel2
+            // 
+            this.btnSelectQuestionAndModel2.Location = new System.Drawing.Point(31, 31);
+            this.btnSelectQuestionAndModel2.Name = "btnSelectQuestionAndModel2";
+            this.btnSelectQuestionAndModel2.Size = new System.Drawing.Size(211, 47);
+            this.btnSelectQuestionAndModel2.TabIndex = 2;
+            this.btnSelectQuestionAndModel2.Text = "Select file";
+            this.btnSelectQuestionAndModel2.UseVisualStyleBackColor = true;
+            this.btnSelectQuestionAndModel2.Click += new System.EventHandler(this.btnSelectQuestionAndModel2_Click);
             // 
             // btnImportModel
             // 
@@ -726,6 +812,51 @@
             this.tabPage2.TabIndex = 6;
             this.tabPage2.Text = "About";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // lblQMfileXML2
+            // 
+            this.lblQMfileXML2.AutoSize = true;
+            this.lblQMfileXML2.Location = new System.Drawing.Point(77, 359);
+            this.lblQMfileXML2.Name = "lblQMfileXML2";
+            this.lblQMfileXML2.Size = new System.Drawing.Size(58, 20);
+            this.lblQMfileXML2.TabIndex = 47;
+            this.lblQMfileXML2.Text = "QM file";
+            // 
+            // lblQMPathXML2
+            // 
+            this.lblQMPathXML2.AutoSize = true;
+            this.lblQMPathXML2.Location = new System.Drawing.Point(77, 329);
+            this.lblQMPathXML2.Name = "lblQMPathXML2";
+            this.lblQMPathXML2.Size = new System.Drawing.Size(70, 20);
+            this.lblQMPathXML2.TabIndex = 46;
+            this.lblQMPathXML2.Text = "QM path";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(34, 329);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(42, 20);
+            this.label22.TabIndex = 45;
+            this.label22.Text = "Path";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(34, 359);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(34, 20);
+            this.label23.TabIndex = 44;
+            this.label23.Text = "File";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(22, 299);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(188, 20);
+            this.label24.TabIndex = 43;
+            this.label24.Text = "Question and Model XML";
             // 
             // lblOEFileXML2
             // 
@@ -935,106 +1066,35 @@
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
             // 
-            // btnSelectQuestionAndModel2
+            // btnExtractFindings2
             // 
-            this.btnSelectQuestionAndModel2.Location = new System.Drawing.Point(31, 31);
-            this.btnSelectQuestionAndModel2.Name = "btnSelectQuestionAndModel2";
-            this.btnSelectQuestionAndModel2.Size = new System.Drawing.Size(211, 47);
-            this.btnSelectQuestionAndModel2.TabIndex = 2;
-            this.btnSelectQuestionAndModel2.Text = "Select file";
-            this.btnSelectQuestionAndModel2.UseVisualStyleBackColor = true;
-            this.btnSelectQuestionAndModel2.Click += new System.EventHandler(this.btnSelectQuestionAndModel2_Click);
+            this.btnExtractFindings2.Location = new System.Drawing.Point(17, 196);
+            this.btnExtractFindings2.Name = "btnExtractFindings2";
+            this.btnExtractFindings2.Size = new System.Drawing.Size(211, 47);
+            this.btnExtractFindings2.TabIndex = 40;
+            this.btnExtractFindings2.Text = "Extract findings";
+            this.btnExtractFindings2.UseVisualStyleBackColor = true;
+            this.btnExtractFindings2.Click += new System.EventHandler(this.btnExtractFindings2_Click);
             // 
-            // lblQuestionPath2
+            // btnBuildOUMaps2
             // 
-            this.lblQuestionPath2.AutoSize = true;
-            this.lblQuestionPath2.Location = new System.Drawing.Point(92, 197);
-            this.lblQuestionPath2.Name = "lblQuestionPath2";
-            this.lblQuestionPath2.Size = new System.Drawing.Size(98, 20);
-            this.lblQuestionPath2.TabIndex = 39;
-            this.lblQuestionPath2.Text = "Path name...";
+            this.btnBuildOUMaps2.Location = new System.Drawing.Point(248, 90);
+            this.btnBuildOUMaps2.Name = "btnBuildOUMaps2";
+            this.btnBuildOUMaps2.Size = new System.Drawing.Size(211, 47);
+            this.btnBuildOUMaps2.TabIndex = 41;
+            this.btnBuildOUMaps2.Text = "Build OU maps";
+            this.btnBuildOUMaps2.UseVisualStyleBackColor = true;
+            this.btnBuildOUMaps2.Click += new System.EventHandler(this.btnBuildOUMaps2_Click);
             // 
-            // lblQuestionFile2
+            // btnBuildAbridged2
             // 
-            this.lblQuestionFile2.AutoSize = true;
-            this.lblQuestionFile2.Location = new System.Drawing.Point(92, 227);
-            this.lblQuestionFile2.Name = "lblQuestionFile2";
-            this.lblQuestionFile2.Size = new System.Drawing.Size(90, 20);
-            this.lblQuestionFile2.TabIndex = 38;
-            this.lblQuestionFile2.Text = "File name...";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(44, 227);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(34, 20);
-            this.label20.TabIndex = 37;
-            this.label20.Text = "File";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(44, 197);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(42, 20);
-            this.label21.TabIndex = 36;
-            this.label21.Text = "Path";
-            // 
-            // lblQMfileXML2
-            // 
-            this.lblQMfileXML2.AutoSize = true;
-            this.lblQMfileXML2.Location = new System.Drawing.Point(77, 359);
-            this.lblQMfileXML2.Name = "lblQMfileXML2";
-            this.lblQMfileXML2.Size = new System.Drawing.Size(58, 20);
-            this.lblQMfileXML2.TabIndex = 47;
-            this.lblQMfileXML2.Text = "QM file";
-            // 
-            // lblQMPathXML2
-            // 
-            this.lblQMPathXML2.AutoSize = true;
-            this.lblQMPathXML2.Location = new System.Drawing.Point(77, 329);
-            this.lblQMPathXML2.Name = "lblQMPathXML2";
-            this.lblQMPathXML2.Size = new System.Drawing.Size(70, 20);
-            this.lblQMPathXML2.TabIndex = 46;
-            this.lblQMPathXML2.Text = "QM path";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(34, 329);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(42, 20);
-            this.label22.TabIndex = 45;
-            this.label22.Text = "Path";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(34, 359);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(34, 20);
-            this.label23.TabIndex = 44;
-            this.label23.Text = "File";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(22, 299);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(188, 20);
-            this.label24.TabIndex = 43;
-            this.label24.Text = "Question and Model XML";
-            // 
-            // btnReloadQuestionsAndModel2
-            // 
-            this.btnReloadQuestionsAndModel2.Location = new System.Drawing.Point(31, 84);
-            this.btnReloadQuestionsAndModel2.Name = "btnReloadQuestionsAndModel2";
-            this.btnReloadQuestionsAndModel2.Size = new System.Drawing.Size(211, 89);
-            this.btnReloadQuestionsAndModel2.TabIndex = 40;
-            this.btnReloadQuestionsAndModel2.Text = "Reload Questions and Model";
-            this.btnReloadQuestionsAndModel2.UseVisualStyleBackColor = true;
-            this.btnReloadQuestionsAndModel2.Click += new System.EventHandler(this.btnReloadQuestionsAndModel2_Click);
+            this.btnBuildAbridged2.Location = new System.Drawing.Point(248, 157);
+            this.btnBuildAbridged2.Name = "btnBuildAbridged2";
+            this.btnBuildAbridged2.Size = new System.Drawing.Size(211, 47);
+            this.btnBuildAbridged2.TabIndex = 42;
+            this.btnBuildAbridged2.Text = "Build abridged";
+            this.btnBuildAbridged2.UseVisualStyleBackColor = true;
+            this.btnBuildAbridged2.Click += new System.EventHandler(this.btnBuildAbridged2_Click);
             // 
             // Main
             // 
@@ -1170,6 +1230,11 @@
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Button btnReloadQuestionsAndModel2;
+        private System.Windows.Forms.Button btnGenerateOEdb2;
+        private System.Windows.Forms.Button btnTestLinksAndEngl2;
+        private System.Windows.Forms.Button btnExtractFindings2;
+        private System.Windows.Forms.Button btnBuildOUMaps2;
+        private System.Windows.Forms.Button btnBuildAbridged2;
     }
 }
 

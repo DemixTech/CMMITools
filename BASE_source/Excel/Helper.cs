@@ -31,7 +31,7 @@ namespace BASE
         /// <param name="firstRow">The first row to search</param>
         /// <param name="lastRow">The last row to search</param>
         /// <returns></returns>
-        public static int FindEndOfWorksheet(Worksheet aWks, int columToSearch, int firstRow=1, int lastRow=50000)
+        public static int FindEndOfWorksheet(Worksheet aWks, int columToSearch, int firstRow = 1, int lastRow = 50000)
         {
             if (lastRow == 1) return lastRow;
             if (Math.Abs(lastRow - firstRow) <= 1) return firstRow;
@@ -55,7 +55,7 @@ namespace BASE
             //double aVal = Char.GetNumericValue('A');
             //Char aCol = Convert.ToChar(aVal - 1 + columToSearch);
             //Range startCell = aWks.Range[ [firstRow, GetExcelColumnName(columToSearch) + ];
-            
+
             //Range mainRangeIIG = wksMain.Range["G" + 2, "R" + NumberOfRowsIIG];
 
             //Range endCell = aWks.Range[lastRow, columToSearch];
@@ -66,14 +66,15 @@ namespace BASE
 
             for (int currentRow = 1; currentRow <= lastRow - firstRow + 1; currentRow++)
             {
-                if (aRangeToSearch[currentRow,1].Value != null)
+                if (aRangeToSearch[currentRow, 1].Value != null)
                 {
                     thresHold = 0;
                     contentFoundAtRow = currentRow;
-                } else
+                }
+                else
                 {
                     thresHold++;
-                    if (thresHold >= cThresholdForEndOfDataInSheet) return contentFoundAtRow + firstRow -1;
+                    if (thresHold >= cThresholdForEndOfDataInSheet) return contentFoundAtRow + firstRow - 1;
                 }
 
             }
@@ -81,7 +82,7 @@ namespace BASE
         }
 
         // https://stackoverflow.com/questions/181596/how-to-convert-a-column-number-e-g-127-into-an-excel-column-e-g-aa
-        static public  string GetExcelColumnName(int columnNumber)
+        static public string GetExcelColumnName(int columnNumber)
         {
             int dividend = columnNumber;
             string columnName = String.Empty;
@@ -112,7 +113,7 @@ namespace BASE
             foreach (Workbook aWkb in listOfWorkbooks)
             {
                 string pathFileName = Path.Combine(aWkb.Path, aWkb.Name);
-                if (string.Compare(pathA,pathFileName.Trim(),ignoreCase:true)==0)
+                if (string.Compare(pathA, pathFileName.Trim(), ignoreCase: true) == 0)
                 { // string matches workbook exists, open it
                     aWkb.Application.Visible = true;
                     return aWkb;
@@ -193,20 +194,20 @@ namespace BASE
         public static PracticeArea ProcessPracticeArea(Workbook questionWkb, string worksheetName)
         {
             PracticeArea aNewPracticeArea = new PracticeArea();
-            
-           // Worksheet practiceAreaWks = questionWkb.Worksheets[worksheetName];
+
+            // Worksheet practiceAreaWks = questionWkb.Worksheets[worksheetName];
             foreach (Worksheet paWks in questionWkb.Worksheets)
             {
                 if (paWks.Name.ToLower() == worksheetName.ToLower())
                 {
                     // Process this worksheet
-                    aNewPracticeArea.PAcode = (EPAcode)Enum.Parse(typeof(EPAcode),worksheetName);
+                    aNewPracticeArea.PAcode = (EPAcode)Enum.Parse(typeof(EPAcode), worksheetName);
                     // Find the end of the worksheet
                     int workSheetRows = Helper.FindEndOfWorksheet(paWks, cPA_wks_AcronymColumn, cPAwksStartRow, cMAXRowsInAQuestionWorksheet);
                     // Read the name
                     aNewPracticeArea.Name = paWks.Cells[1, 1].Value;
                     aNewPracticeArea.NameChinese = paWks.Cells[2, 1].Value;
-                    
+
                     // Read the intent and value statements
                     aNewPracticeArea.Intent = paWks.Cells[3, cPA_wks_IntentColumn].Value;
                     aNewPracticeArea.IntentChinese = paWks.Cells[4, 2].Value;
@@ -214,7 +215,7 @@ namespace BASE
                     aNewPracticeArea.ValueChinese = paWks.Cells[6, cPA_wks_ValueColumn].Value;
 
                     // Find the end of the sheet and process each row
-                    for (int row=cPAwksStartRow; row<= workSheetRows; row++)
+                    for (int row = cPAwksStartRow; row <= workSheetRows; row++)
                     {
                         string cellStr = paWks.Cells[row, cPA_wks_AcronymColumn].Value;
                         if (cellStr.ToLower().Contains(worksheetName.ToLower()))
@@ -292,7 +293,7 @@ namespace BASE
             {
                 Question aQuestion = new Question()
                 {
-                    Sentence =english[i],
+                    Sentence = english[i],
                     SentenceChinese = chinese[i],
                 };
                 aPractice.Questions.Add(aQuestion);
@@ -301,7 +302,7 @@ namespace BASE
 
             return aPractice;
 
-          
+
         }
 
         private static void ExtractEnglishAndChinese(string incommingString, out string[] english, out string[] chinese)
@@ -357,7 +358,8 @@ namespace BASE
                 {
                     workProductStr = "- " + aWkp.Description + "\n" + aWkp.DescriptionChinese;
                     newWorkProduct = false;
-                } else
+                }
+                else
                 {
                     workProductStr = "\n- " + aWkp.Description + "\n" + aWkp.DescriptionChinese;
 
@@ -371,7 +373,8 @@ namespace BASE
                 {
                     activityStr = "- " + aActivity.Activity + "\n" + aActivity.ActivityChinese;
                     newActivity = false;
-                } else
+                }
+                else
                 {
                     activityStr = "\n- " + aActivity.Activity + "\n" + aActivity.ActivityChinese;
                 }
@@ -395,7 +398,38 @@ namespace BASE
         }
 
 
+        public static Worksheet AssignOrCreateWorksheet(Workbook aWkb, string wksName, string InsertAfterWksStr)
+        {
+            Worksheet insertWks = FindWorksheet(aWkb, InsertAfterWksStr);
+            if (insertWks == null)
+            {
+                insertWks = aWkb.Worksheets.Add();
+                insertWks.Name = InsertAfterWksStr;
+            }
 
-        
+
+            Worksheet newWks = FindWorksheet(aWkb, wksName);
+            if (newWks == null)
+            {
+                newWks = aWkb.Worksheets.Add(insertWks);
+                newWks.Name = wksName;
+
+            }
+
+            return newWks;
+        }
+
+        public static Worksheet FindWorksheet(Workbook aWkb, string wksName)
+        {
+            foreach (Worksheet aWks in aWkb.Worksheets)
+            {
+                if (aWks.Name.ToUpper() == wksName.ToUpper())
+                {
+                    return aWks;
+                }
+            }
+            return null;
+        }
+
     }
 }

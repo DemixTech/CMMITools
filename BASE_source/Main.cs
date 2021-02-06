@@ -1685,6 +1685,7 @@ namespace BASE
 
         private Worksheet AssignOrCreateWorksheet(Workbook aWkb, string wksName)
         {
+            throw new ApplicationException("This method should not be called anymore from here!");
             foreach (Worksheet aWks in aWkb.Worksheets)
             {
                 if (aWks.Name.ToUpper() == wksName.ToUpper())
@@ -2294,7 +2295,7 @@ namespace BASE
 
             }
 
-           
+
 
         }
 
@@ -2318,7 +2319,7 @@ namespace BASE
 
         }
 
-        private void btnGenerateFullTool_Click(object sender, 
+        private void btnGenerateFullTool_Click(object sender,
             EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Make sure Processess are correcly listed in tab:Project&Support! Continue?", "Warning", MessageBoxButtons.YesNo);
@@ -2563,9 +2564,9 @@ namespace BASE
             }
         }
 
-        const int cDemixOEToolSearchUntilEmptyColumn = 1;
-        const int cDemixOEToolHeadingStartRow = 8;
-        const int cDemixOEToolMaxRows = 1000;
+        private const int cDemixOEToolSearchUntilEmptyColumn = 1;
+        private const int cDemixOEToolHeadingStartRow = 8;
+        private const int cDemixOEToolMaxRows = 1000;
 
 
         private void btnDemixTstLinksAndEngl_Click(object sender, EventArgs e)
@@ -3413,7 +3414,55 @@ namespace BASE
                 BASEQuestionObject.SavePersistant(BASEQuestionObject);
             }
         }
+
+        private void btnGenerateOEdb2_Click(object sender, EventArgs e)
+        {
+            //    private TargetCASFileObject CASFileObject;
+            //private TargetOEFileObject CASOEdbObject;
+            //private TargetQuestionsFileObject BASEQuestionObject;
+
+            if (CASOEdbObject.GenerateFullOEdb2(CASFileObject, BASEQuestionObject) == false)
+            {
+                MessageBox.Show($"Could not complete the OE database generation!");
+            }
+            ;
+        }
+
+        private void btnTestLinksAndEngl2_Click(object sender, EventArgs e)
+        {
+            if (CASOEdbObject.TestLinksAndEnglish2(lblStatus) == false)
+
+            {
+                MessageBox.Show($"Could not complete the link testing task!");
+            }
+        }
+
+        private void btnExtractFindings2_Click(object sender, EventArgs e)
+        {
+            if (CASOEdbObject.ExtractOEFindings2(lblStatus) == false)
+
+            {
+                MessageBox.Show($"Could not complete finding extraction!");
+            }
+        }
+
+        private void btnBuildOUMaps2_Click(object sender, EventArgs e)
+        {
+            if (CASOEdbObject.BuildOUMaps2(lblStatus, CASFileObject) == false)
+
+            {
+                MessageBox.Show($"Could not build the OU maps!");
+            }
+        }
+
+        private void btnBuildAbridged2_Click(object sender, EventArgs e)
+        {
+
+            if (CASOEdbObject.BuildAbridgedOEdb2(lblStatus) == false)
+
+            {
+                MessageBox.Show($"Could not build the abridged OEdb");
+            }
+        }
     }
-
-
 }
