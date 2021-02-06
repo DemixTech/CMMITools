@@ -36,6 +36,7 @@ namespace BASE
         #region globals
         const string CTargetCASFileXML = @"BASE\TargetCASFileXML.xml";
         const string CTargetOEdbFileXML = @"BASE\TargetOEdbFileXML.xml";
+        const string CQuestionFileXML = @"BASE\TargetQuestionModelFileXML.xml";
 
         private const string cPath_start = @"C:\Users\PietervanZyl\Demix (Pty) Ltd\Demix Global - PieterVZ\4_Appraisals\2020-12-11 (A5) R370 D5360 C51813 Goshine Tech";
         private const int cProjectHeadingStartRow = 2; // tab:Projects start row
@@ -105,6 +106,8 @@ namespace BASE
         // *** BASE file objects
         private TargetCASFileObject CASFileObject;
         private TargetOEFileObject CASOEdbObject;
+        private TargetQuestionsFileObject BASEQuestionObject;
+
 
         #endregion
 
@@ -139,7 +142,12 @@ namespace BASE
             // *** Startup oeDb objects
             CASOEdbObject = new TargetOEFileObject();
             CASOEdbObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetOEdbFileXML), lblOEPathXML2, lblOEFileXML2, lblOEPath2, lblOEFile2);
-            //CASOEdbObject.LoadPersistantXMLdata(); // .LoadPersistant(); // Load saved information if available
+            CASOEdbObject.LoadPersistantXMLdata(); // .LoadPersistant(); // Load saved information if available
+
+            // *** Startup oeDb objects
+            BASEQuestionObject = new TargetQuestionsFileObject();
+            BASEQuestionObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CQuestionFileXML), lblQMPathXML2, lblQMfileXML2, lblQuestionPath2, lblQuestionFile2);
+            BASEQuestionObject.LoadPersistantXMLdata(); // .LoadPersistant(); // Load saved information if available
 
 
             persistentData.LoadPersistentData();
@@ -2286,56 +2294,7 @@ namespace BASE
 
             }
 
-            //WorkUnitList.Clear();
-            //StaffList.Clear();
-
-            //// Step 1: Open the spreadhseet and process it
-            //Worksheet projectWks = aWorkbook.Sheets["Projects"];
-            //int row = cProjectHeadingStartRow + 1;
-            //string sValue2 = projectWks.Cells[row, 1].Value2;
-            //while (!string.IsNullOrEmpty(sValue2))
-            //{
-            //    // Process the list
-            //    WorkUnit aNewWorkUnitItem = new WorkUnit(EWorkType.project, projectWks, row, cProjectHeadingStartRow);
-            //    if (aNewWorkUnitItem.WorkType != EWorkType.nothing) WorkUnitList.Add(aNewWorkUnitItem);
-
-            //    row++;
-            //    sValue2 = projectWks.Cells[row, 1].Value2;
-            //}
-
-            //// Step 2: Open the support spreadhseet and process it
-            //Worksheet supportWks = aWorkbook.Sheets["Support"];
-            //row = cSupportHeadingStartRow + 1;
-            //string sValue4 = supportWks.Cells[row, 1].Value2;
-            //while (!string.IsNullOrEmpty(sValue4))
-            //{
-            //    // Process the list
-            //    WorkUnit aNewWorkUnitItem = new WorkUnit(EWorkType.support, supportWks, row, cSupportHeadingStartRow);
-            //    if (aNewWorkUnitItem.WorkType != EWorkType.nothing) WorkUnitList.Add(aNewWorkUnitItem);
-
-            //    row++;
-            //    sValue4 = supportWks.Cells[row, 1].Value2;
-            //}
-
-            //// Step 3: Open the participant spreadhseet and process it
-            //Worksheet participantWks = aWorkbook.Sheets["Staff"];
-            //row = cStaffHeadingStartRow + 1;
-            //string sValue5 = participantWks.Cells[row, 1].Value2;
-            //while (!string.IsNullOrEmpty(sValue5))
-            //{
-            //    // Process the list
-            //    Staff aNewParticipant = new Staff(participantWks, row, cStaffHeadingStartRow);
-            //    if (aNewParticipant.WorkID != null) StaffList.Add(aNewParticipant);
-
-            //    row++;
-            //    sValue5 = participantWks.Cells[row, 1].Value2;
-            //}
-
-
-            //MessageBox.Show("Workbook loaded, projects, support and staff processed");
-
-            //// Step 4: Load Scheduel 2
-            //loadSchedule2();
+           
 
         }
 
@@ -3424,6 +3383,34 @@ namespace BASE
             else
             {
                 CASOEdbObject.SavePersistant(CASOEdbObject);
+            }
+        }
+
+        private void btnSelectQuestionAndModel2_Click(object sender, EventArgs e)
+        {
+            //BASEQuestionObject 
+            if (BASEQuestionObject.SelectFileToLoad(TargetFileObject.CQuestionInName) == false)
+            {
+                MessageBox.Show($"No file selected.");
+            }
+            else
+            {
+
+
+                BASEQuestionObject.SavePersistant(BASEQuestionObject);
+            }
+        }
+
+        private void btnReloadQuestionsAndModel2_Click(object sender, EventArgs e)
+        {
+            if (BASEQuestionObject.LoadTheQuestionAndModelFile(lblStatus) == false)
+            {
+                MessageBox.Show($"Could not read the questions and model file.");
+            }
+            else
+            {
+
+                BASEQuestionObject.SavePersistant(BASEQuestionObject);
             }
         }
     }

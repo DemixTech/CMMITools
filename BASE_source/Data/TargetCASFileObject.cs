@@ -58,20 +58,31 @@ namespace BASE.Data
         //}
 
 
-
-        public void SavePersistant(TargetCASFileObject theTargetObject)
+        public override void SavePersistant(object o)
         {
-            if (!Directory.Exists(Path.GetDirectoryName(_directoryFileNameXML)))
+            if (o is TargetCASFileObject tc)
             {
-                Directory.CreateDirectory(Path.GetDirectoryName(_directoryFileNameXML)); ;
-            }
+                if (!Directory.Exists(Path.GetDirectoryName(_directoryFileNameXML)))
+                {
+                    Directory.CreateDirectory(Path.GetDirectoryName(_directoryFileNameXML)); ;
+                }
 
-            var xs = new XmlSerializer(typeof(TargetCASFileObject));
-            using (FileStream stream = File.Create(_directoryFileNameXML))
+                var xs = new XmlSerializer(typeof(TargetCASFileObject));
+                using (FileStream stream = File.Create(_directoryFileNameXML))
+                {
+                    xs.Serialize(stream, tc);
+                }
+
+            } else
             {
-                xs.Serialize(stream, theTargetObject);
+                throw new NotImplementedException("Object missmatched");
+
             }
         }
+
+        //public void SavePersistant(TargetCASFileObject theTargetObject)
+        //{
+        //}
 
         public bool LoadCASFile()
         {
@@ -766,6 +777,7 @@ namespace BASE.Data
 
 
         }
+
 
         //public override bool LoadFileExcelFileData(string fileNameKeyWord)
         //{

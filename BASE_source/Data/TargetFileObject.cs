@@ -17,6 +17,7 @@ namespace BASE.Data
     {
         public const string CCASinName = "CAS"; // This string must be present in the filename (not the directory) to be valid
         public const string COEdbinName = "OEdb"; // This string must be present in the filename (not the directory) to be valid
+        public const string CQuestionInName = "Question"; // Question is in the name
 
         // https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlattributes.xmlignore?view=net-5.0
         //https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlattributes.xmlignore?view=net-5.0#System_Xml_Serialization_XmlAttributes_XmlIgnore
@@ -82,6 +83,7 @@ namespace BASE.Data
         }
         // Load information about this TargetFileObject
         abstract public bool LoadPersistantXMLdata();
+        abstract public void SavePersistant(object o);
         //{
             //try
             //{
@@ -109,28 +111,28 @@ namespace BASE.Data
         //}
 
         // save persistent data
-        virtual public void SavePersistant()
-        {
-            if (!Directory.Exists(Path.GetDirectoryName(_directoryFileNameXML)))
-            {
-                Directory.CreateDirectory(Path.GetDirectoryName(_directoryFileNameXML)); ;
-            }
-            var xs = new XmlSerializer(typeof(TargetFileObject));
-            using (FileStream stream = File.Create(_directoryFileNameXML))
-            {
-                xs.Serialize(stream, this);
-            }
-        }
+        ////virtual public void SavePersistant()
+        ////{
+        ////    if (!Directory.Exists(Path.GetDirectoryName(_directoryFileNameXML)))
+        ////    {
+        ////        Directory.CreateDirectory(Path.GetDirectoryName(_directoryFileNameXML)); ;
+        ////    }
+        ////    var xs = new XmlSerializer(typeof(TargetFileObject));
+        ////    using (FileStream stream = File.Create(_directoryFileNameXML))
+        ////    {
+        ////        xs.Serialize(stream, this);
+        ////    }
+        ////}
 
-        virtual public void SavePersistant(TargetFileObject theTargetObject)
-        {
-            // base.SavePersistant();
-            var xs = new XmlSerializer(typeof(TargetFileObject));
-            using (FileStream stream = File.Create(_directoryFileNameXML))
-            {
-                xs.Serialize(stream, theTargetObject);
-            }
-        }
+        ////virtual public void SavePersistant(TargetFileObject theTargetObject)
+        ////{
+        ////    // base.SavePersistant();
+        ////    var xs = new XmlSerializer(typeof(TargetFileObject));
+        ////    using (FileStream stream = File.Create(_directoryFileNameXML))
+        ////    {
+        ////        xs.Serialize(stream, theTargetObject);
+        ////    }
+        ////}
 
         /// <summary>
         /// Open a dialog box and select a file (not open it, but select it)

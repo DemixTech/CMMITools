@@ -106,6 +106,17 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
+            this.btnSelectQuestionAndModel2 = new System.Windows.Forms.Button();
+            this.lblQuestionPath2 = new System.Windows.Forms.Label();
+            this.lblQuestionFile2 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.lblQMfileXML2 = new System.Windows.Forms.Label();
+            this.lblQMPathXML2 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label24 = new System.Windows.Forms.Label();
+            this.btnReloadQuestionsAndModel2 = new System.Windows.Forms.Button();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -573,6 +584,12 @@
             // 
             // tabQuestions
             // 
+            this.tabQuestions.Controls.Add(this.btnReloadQuestionsAndModel2);
+            this.tabQuestions.Controls.Add(this.lblQuestionPath2);
+            this.tabQuestions.Controls.Add(this.lblQuestionFile2);
+            this.tabQuestions.Controls.Add(this.label20);
+            this.tabQuestions.Controls.Add(this.label21);
+            this.tabQuestions.Controls.Add(this.btnSelectQuestionAndModel2);
             this.tabQuestions.Controls.Add(this.btnImportModel);
             this.tabQuestions.Controls.Add(this.btnSelectQuestionFile);
             this.tabQuestions.Location = new System.Drawing.Point(4, 29);
@@ -585,7 +602,7 @@
             // 
             // btnImportModel
             // 
-            this.btnImportModel.Location = new System.Drawing.Point(32, 105);
+            this.btnImportModel.Location = new System.Drawing.Point(811, 122);
             this.btnImportModel.Name = "btnImportModel";
             this.btnImportModel.Size = new System.Drawing.Size(248, 51);
             this.btnImportModel.TabIndex = 1;
@@ -595,7 +612,7 @@
             // 
             // btnSelectQuestionFile
             // 
-            this.btnSelectQuestionFile.Location = new System.Drawing.Point(32, 28);
+            this.btnSelectQuestionFile.Location = new System.Drawing.Point(811, 60);
             this.btnSelectQuestionFile.Name = "btnSelectQuestionFile";
             this.btnSelectQuestionFile.Size = new System.Drawing.Size(248, 53);
             this.btnSelectQuestionFile.TabIndex = 0;
@@ -686,6 +703,11 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.lblQMfileXML2);
+            this.tabPage2.Controls.Add(this.lblQMPathXML2);
+            this.tabPage2.Controls.Add(this.label22);
+            this.tabPage2.Controls.Add(this.label23);
+            this.tabPage2.Controls.Add(this.label24);
             this.tabPage2.Controls.Add(this.lblOEFileXML2);
             this.tabPage2.Controls.Add(this.lblOEPathXML2);
             this.tabPage2.Controls.Add(this.label15);
@@ -913,6 +935,107 @@
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
             // 
+            // btnSelectQuestionAndModel2
+            // 
+            this.btnSelectQuestionAndModel2.Location = new System.Drawing.Point(31, 31);
+            this.btnSelectQuestionAndModel2.Name = "btnSelectQuestionAndModel2";
+            this.btnSelectQuestionAndModel2.Size = new System.Drawing.Size(211, 47);
+            this.btnSelectQuestionAndModel2.TabIndex = 2;
+            this.btnSelectQuestionAndModel2.Text = "Select file";
+            this.btnSelectQuestionAndModel2.UseVisualStyleBackColor = true;
+            this.btnSelectQuestionAndModel2.Click += new System.EventHandler(this.btnSelectQuestionAndModel2_Click);
+            // 
+            // lblQuestionPath2
+            // 
+            this.lblQuestionPath2.AutoSize = true;
+            this.lblQuestionPath2.Location = new System.Drawing.Point(92, 197);
+            this.lblQuestionPath2.Name = "lblQuestionPath2";
+            this.lblQuestionPath2.Size = new System.Drawing.Size(98, 20);
+            this.lblQuestionPath2.TabIndex = 39;
+            this.lblQuestionPath2.Text = "Path name...";
+            // 
+            // lblQuestionFile2
+            // 
+            this.lblQuestionFile2.AutoSize = true;
+            this.lblQuestionFile2.Location = new System.Drawing.Point(92, 227);
+            this.lblQuestionFile2.Name = "lblQuestionFile2";
+            this.lblQuestionFile2.Size = new System.Drawing.Size(90, 20);
+            this.lblQuestionFile2.TabIndex = 38;
+            this.lblQuestionFile2.Text = "File name...";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(44, 227);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(34, 20);
+            this.label20.TabIndex = 37;
+            this.label20.Text = "File";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(44, 197);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(42, 20);
+            this.label21.TabIndex = 36;
+            this.label21.Text = "Path";
+            // 
+            // lblQMfileXML2
+            // 
+            this.lblQMfileXML2.AutoSize = true;
+            this.lblQMfileXML2.Location = new System.Drawing.Point(77, 359);
+            this.lblQMfileXML2.Name = "lblQMfileXML2";
+            this.lblQMfileXML2.Size = new System.Drawing.Size(58, 20);
+            this.lblQMfileXML2.TabIndex = 47;
+            this.lblQMfileXML2.Text = "QM file";
+            // 
+            // lblQMPathXML2
+            // 
+            this.lblQMPathXML2.AutoSize = true;
+            this.lblQMPathXML2.Location = new System.Drawing.Point(77, 329);
+            this.lblQMPathXML2.Name = "lblQMPathXML2";
+            this.lblQMPathXML2.Size = new System.Drawing.Size(70, 20);
+            this.lblQMPathXML2.TabIndex = 46;
+            this.lblQMPathXML2.Text = "QM path";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(34, 329);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(42, 20);
+            this.label22.TabIndex = 45;
+            this.label22.Text = "Path";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(34, 359);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(34, 20);
+            this.label23.TabIndex = 44;
+            this.label23.Text = "File";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(22, 299);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(188, 20);
+            this.label24.TabIndex = 43;
+            this.label24.Text = "Question and Model XML";
+            // 
+            // btnReloadQuestionsAndModel2
+            // 
+            this.btnReloadQuestionsAndModel2.Location = new System.Drawing.Point(31, 84);
+            this.btnReloadQuestionsAndModel2.Name = "btnReloadQuestionsAndModel2";
+            this.btnReloadQuestionsAndModel2.Size = new System.Drawing.Size(211, 89);
+            this.btnReloadQuestionsAndModel2.TabIndex = 40;
+            this.btnReloadQuestionsAndModel2.Text = "Reload Questions and Model";
+            this.btnReloadQuestionsAndModel2.UseVisualStyleBackColor = true;
+            this.btnReloadQuestionsAndModel2.Click += new System.EventHandler(this.btnReloadQuestionsAndModel2_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -947,6 +1070,7 @@
             this.tabDemixTool.ResumeLayout(false);
             this.tabDemixTool.PerformLayout();
             this.tabQuestions.ResumeLayout(false);
+            this.tabQuestions.PerformLayout();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
@@ -1035,6 +1159,17 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lblQuestionPath2;
+        private System.Windows.Forms.Label lblQuestionFile2;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Button btnSelectQuestionAndModel2;
+        private System.Windows.Forms.Label lblQMfileXML2;
+        private System.Windows.Forms.Label lblQMPathXML2;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Button btnReloadQuestionsAndModel2;
     }
 }
 
