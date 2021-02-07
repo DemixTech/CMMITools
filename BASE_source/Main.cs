@@ -166,10 +166,10 @@ namespace BASE
             lblOEdbMain.Text = persistentData.AppToolMainPathFile;
             lblOEdbSource.Text = persistentData.AppToolSourcePathFile;
             lblOEdbPathFile.Text = persistentData.OEdatabasePathFile;
-            lblDemixTool.Text = persistentData.DemixToolPathFile;
-            lblDemixTool2Import.Text = persistentData.DemixTool_ToImport_PathFile;
+            //lblDemixTool.Text = persistentData.DemixToolPathFile;
+            //lblDemixTool2Import.Text = persistentData.DemixTool_ToImport_PathFile;
 
-            lblQuestions.Text = persistentData.QuestionPathFile;
+            //lblQuestions.Text = persistentData.QuestionPathFile;
 
             txtFrom.Text = persistentData.FromText;
             txtTo.Text = persistentData.ToText;
@@ -491,7 +491,8 @@ namespace BASE
 
         private void btnLoadSchedule2tab_Click(object sender, EventArgs e)
         {
-            loadSchedule2();
+            // Remove from release 3.8.0.44
+            //// loadSchedule2();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -501,343 +502,345 @@ namespace BASE
 
         private void btnGenerateScheduleTab_Click(object sender, EventArgs e)
         {
-            // Step 4: Show schedule
-            Worksheet schedule = aWorkbook.Sheets["Schedule"];
-            schedule.Cells.Clear();
-            schedule.Cells[1, 1].Value = "WorkID";
-            schedule.Cells[1, 2].Value = "Work name";
-            schedule.Cells[1, 3].Value = "PA";
-            schedule.Cells[1, 4].Value = "Participant Name";
-            schedule.Cells[1, 5].Value = "Role";
-            schedule.Cells[1, 6].Value = "WordID2";
-            schedule.Cells[1, 7].Value = "Included";
-            // https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Set-Excel-Background-Color-with-C-VB.NET.html
-            // schedule.Range["A1:A6"].Style.Color = Color.BlueViolet;
+            ////// Remove from release 3.8.0.44
+            ////// Step 4: Show schedule
+            ////Worksheet schedule = aWorkbook.Sheets["Schedule"];
+            ////schedule.Cells.Clear();
+            ////schedule.Cells[1, 1].Value = "WorkID";
+            ////schedule.Cells[1, 2].Value = "Work name";
+            ////schedule.Cells[1, 3].Value = "PA";
+            ////schedule.Cells[1, 4].Value = "Participant Name";
+            ////schedule.Cells[1, 5].Value = "Role";
+            ////schedule.Cells[1, 6].Value = "WordID2";
+            ////schedule.Cells[1, 7].Value = "Included";
+            ////// https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Set-Excel-Background-Color-with-C-VB.NET.html
+            ////// schedule.Range["A1:A6"].Style.Color = Color.BlueViolet;
 
-            // *** For each project selected PA, find the participants that acted in that role
-            int outRow = 2;
-            List<Schedule1Entry> includedList = new List<Schedule1Entry>();
-            List<Schedule1Entry> excludedList = new List<Schedule1Entry>();
+            ////// *** For each project selected PA, find the participants that acted in that role
+            ////int outRow = 2;
+            ////List<Schedule1Entry> includedList = new List<Schedule1Entry>();
+            ////List<Schedule1Entry> excludedList = new List<Schedule1Entry>();
 
-            foreach (var workUnit in WorkUnitList)
-            {
-                var listOfSampledPAs = workUnit.PAlist.Where(x => x.SampleType == ESampleType.added || x.SampleType == ESampleType.sampled);
-                foreach (var aSampledPA in listOfSampledPAs)
-                {
-                    // This is all the sampled PAs
-                    var workUnitStaffList = StaffList.Where(x => x.WorkID == workUnit.ID);
-                    foreach (var workUnitParticipant in workUnitStaffList)
-                    {
-                        // Find the practice areas that match
-                        var participantForSampledWorkUnitPA = workUnitParticipant.PAlist.Where(x => x.PAcode == aSampledPA.PAcode);
-                        bool found;
-                        if (participantForSampledWorkUnitPA.Count() == 0)
-                        { // nothing found here
-                            found = false; // nothing found
-                        }
-                        else
-                        {
-                            // proces this list
-                            found = true;
-                            schedule.Cells[outRow, 1].Value = workUnit.ID.ToString();
-                            schedule.Cells[outRow, 2].Value = workUnit.Name.ToString();
-                            schedule.Cells[outRow, 3].Value = aSampledPA.PAcode.ToString();
-                            schedule.Cells[outRow, 4].Value = workUnitParticipant.Name;
-                            schedule.Cells[outRow, 5].Value = workUnitParticipant.Role;
-                            schedule.Cells[outRow, 6].Value = workUnitParticipant.WorkID;
+            ////foreach (var workUnit in WorkUnitList)
+            ////{
+            ////    var listOfSampledPAs = workUnit.PAlist.Where(x => x.SampleType == ESampleType.added || x.SampleType == ESampleType.sampled);
+            ////    foreach (var aSampledPA in listOfSampledPAs)
+            ////    {
+            ////        // This is all the sampled PAs
+            ////        var workUnitStaffList = StaffList.Where(x => x.WorkID == workUnit.ID);
+            ////        foreach (var workUnitParticipant in workUnitStaffList)
+            ////        {
+            ////            // Find the practice areas that match
+            ////            var participantForSampledWorkUnitPA = workUnitParticipant.PAlist.Where(x => x.PAcode == aSampledPA.PAcode);
+            ////            bool found;
+            ////            if (participantForSampledWorkUnitPA.Count() == 0)
+            ////            { // nothing found here
+            ////                found = false; // nothing found
+            ////            }
+            ////            else
+            ////            {
+            ////                // proces this list
+            ////                found = true;
+            ////                schedule.Cells[outRow, 1].Value = workUnit.ID.ToString();
+            ////                schedule.Cells[outRow, 2].Value = workUnit.Name.ToString();
+            ////                schedule.Cells[outRow, 3].Value = aSampledPA.PAcode.ToString();
+            ////                schedule.Cells[outRow, 4].Value = workUnitParticipant.Name;
+            ////                schedule.Cells[outRow, 5].Value = workUnitParticipant.Role;
+            ////                schedule.Cells[outRow, 6].Value = workUnitParticipant.WorkID;
 
-                            // check if the workUnit.ID and PAcode is not already in the list, if it is, then it is a unecessary duplicate. If duplicate, skip include
-                            Schedule1Entry aSchedule1Entry = new Schedule1Entry()
-                            {
-                                ID = workUnit.ID.ToString(),
-                                Name = workUnit.Name.ToString(),
-                                PAcode = aSampledPA.PAcode.ToString(),
-                                ParticipantName = workUnitParticipant.Name,
-                                ParticipantRole = workUnitParticipant.Role,
-                                WorkIDcheck = workUnitParticipant.WorkID,
-                                //  include = false, set below to make reading more clear
-                            };
+            ////                // check if the workUnit.ID and PAcode is not already in the list, if it is, then it is a unecessary duplicate. If duplicate, skip include
+            ////                Schedule1Entry aSchedule1Entry = new Schedule1Entry()
+            ////                {
+            ////                    ID = workUnit.ID.ToString(),
+            ////                    Name = workUnit.Name.ToString(),
+            ////                    PAcode = aSampledPA.PAcode.ToString(),
+            ////                    ParticipantName = workUnitParticipant.Name,
+            ////                    ParticipantRole = workUnitParticipant.Role,
+            ////                    WorkIDcheck = workUnitParticipant.WorkID,
+            ////                    //  include = false, set below to make reading more clear
+            ////                };
 
-                            int inListIndex = includedList.FindIndex(x => x.ID == aSchedule1Entry.ID && x.PAcode == aSchedule1Entry.PAcode); ;
-                            if (inListIndex < 0)
-                            { // not in list, insert in includedList
-                                aSchedule1Entry.include = true;
-                                includedList.Insert(~inListIndex, aSchedule1Entry);
-                                schedule.Cells[outRow, 7].Value = "x";
-                            }
-                            else
-                            { // already included, put in excludedList
-                                aSchedule1Entry.include = false;
-                                excludedList.Add(aSchedule1Entry);
-                                schedule.Cells[outRow, 7].Value = "";
-                            }
-                            outRow++;
+            ////                int inListIndex = includedList.FindIndex(x => x.ID == aSchedule1Entry.ID && x.PAcode == aSchedule1Entry.PAcode); ;
+            ////                if (inListIndex < 0)
+            ////                { // not in list, insert in includedList
+            ////                    aSchedule1Entry.include = true;
+            ////                    includedList.Insert(~inListIndex, aSchedule1Entry);
+            ////                    schedule.Cells[outRow, 7].Value = "x";
+            ////                }
+            ////                else
+            ////                { // already included, put in excludedList
+            ////                    aSchedule1Entry.include = false;
+            ////                    excludedList.Add(aSchedule1Entry);
+            ////                    schedule.Cells[outRow, 7].Value = "";
+            ////                }
+            ////                outRow++;
 
 
-                        }
-                    }
-                }
-            }
+            ////            }
+            ////        }
+            ////    }
+            ////}
 
-            // *** Find distinct participants
-            Worksheet responsibilities = aWorkbook.Sheets["Responsibilities"];
-            responsibilities.Cells.Clear();
-            int respRow = 2;
-            var distinctParticipants = StaffList.Select(x => x.Name)
-                .Distinct()
-                .OrderBy(q => q)
-                .ToList();
+            ////// *** Find distinct participants
+            ////Worksheet responsibilities = aWorkbook.Sheets["Responsibilities"];
+            ////responsibilities.Cells.Clear();
+            ////int respRow = 2;
+            ////var distinctParticipants = StaffList.Select(x => x.Name)
+            ////    .Distinct()
+            ////    .OrderBy(q => q)
+            ////    .ToList();
 
-            List<string> projectNameList = new List<string>();
-            List<string> projectWorkIDList = new List<string>();
-            List<EPAcode> practiceAreaList = new List<EPAcode>();
-            foreach (var distincParticipant in distinctParticipants)
-            {
-                // first clear the names and practice list
-                projectNameList.Clear();
-                projectWorkIDList.Clear();
-                practiceAreaList.Clear();
+            ////List<string> projectNameList = new List<string>();
+            ////List<string> projectWorkIDList = new List<string>();
+            ////List<EPAcode> practiceAreaList = new List<EPAcode>();
+            ////foreach (var distincParticipant in distinctParticipants)
+            ////{
+            ////    // first clear the names and practice list
+            ////    projectNameList.Clear();
+            ////    projectWorkIDList.Clear();
+            ////    practiceAreaList.Clear();
 
-                // *** List all the Projects
-                var participantSubset = StaffList.Where(x => x.Name == distincParticipant);
-                foreach (var aParticipant in participantSubset)
-                {
-                    // Add a project if it does not exists
-                    var x = projectNameList.BinarySearch(aParticipant.WorkName);
-                    if (x < 0)
-                    { // Not in list, add it
-                        projectNameList.Insert(~x, aParticipant.WorkName);
-                        projectWorkIDList.Insert(~x, aParticipant.WorkID);
-                    }
-                    else
-                    {
-                        // in list, ignore it
-                    }
-                    // Add the PAs if it does not exist
-                    foreach (var aPa in aParticipant.PAlist)
-                    {
-                        var pai = practiceAreaList.BinarySearch(aPa.PAcode);
-                        if (pai < 0)
-                        {
-                            // Not in list, add it
-                            practiceAreaList.Insert(~pai, aPa.PAcode);
-                        }
-                        else
-                        {
-                            // In list, ignore it
-                        }
-                    }
-                }
+            ////    // *** List all the Projects
+            ////    var participantSubset = StaffList.Where(x => x.Name == distincParticipant);
+            ////    foreach (var aParticipant in participantSubset)
+            ////    {
+            ////        // Add a project if it does not exists
+            ////        var x = projectNameList.BinarySearch(aParticipant.WorkName);
+            ////        if (x < 0)
+            ////        { // Not in list, add it
+            ////            projectNameList.Insert(~x, aParticipant.WorkName);
+            ////            projectWorkIDList.Insert(~x, aParticipant.WorkID);
+            ////        }
+            ////        else
+            ////        {
+            ////            // in list, ignore it
+            ////        }
+            ////        // Add the PAs if it does not exist
+            ////        foreach (var aPa in aParticipant.PAlist)
+            ////        {
+            ////            var pai = practiceAreaList.BinarySearch(aPa.PAcode);
+            ////            if (pai < 0)
+            ////            {
+            ////                // Not in list, add it
+            ////                practiceAreaList.Insert(~pai, aPa.PAcode);
+            ////            }
+            ////            else
+            ////            {
+            ////                // In list, ignore it
+            ////            }
+            ////        }
+            ////    }
 
-                // for this participant, output the practicenames and practice areas to the spreadhseet
-                responsibilities.Cells[respRow++, 1].Value = distincParticipant;
-                responsibilities.Cells[respRow++, 2].Value = "Project/Work";
-                for (int i = 0; i < projectNameList.Count(); i++)
-                //foreach (var aprojName in projectNameList)
-                {
-                    //responsibilities.Cells[respRow++, 3].Value = aprojName.ToString();
-                    // projectWorkIDList
-                    responsibilities.Cells[respRow++, 3].Value =
-                        projectWorkIDList[i] + " " + projectNameList[i];
-                    //aprojName.ToString();
-                }
-                responsibilities.Cells[respRow++, 2].Value = "Practice Area";
-                foreach (var aPA in practiceAreaList)
-                {
-                    responsibilities.Cells[respRow++, 3].Value = aPA.ToString();
-                }
+            ////    // for this participant, output the practicenames and practice areas to the spreadhseet
+            ////    responsibilities.Cells[respRow++, 1].Value = distincParticipant;
+            ////    responsibilities.Cells[respRow++, 2].Value = "Project/Work";
+            ////    for (int i = 0; i < projectNameList.Count(); i++)
+            ////    //foreach (var aprojName in projectNameList)
+            ////    {
+            ////        //responsibilities.Cells[respRow++, 3].Value = aprojName.ToString();
+            ////        // projectWorkIDList
+            ////        responsibilities.Cells[respRow++, 3].Value =
+            ////            projectWorkIDList[i] + " " + projectNameList[i];
+            ////        //aprojName.ToString();
+            ////    }
+            ////    responsibilities.Cells[respRow++, 2].Value = "Practice Area";
+            ////    foreach (var aPA in practiceAreaList)
+            ////    {
+            ////        responsibilities.Cells[respRow++, 3].Value = aPA.ToString();
+            ////    }
 
-            }
+            ////}
 
-            MessageBox.Show("Draft Schedule completed");
+            ////MessageBox.Show("Draft Schedule completed");
 
         }
 
         private void btnSelectPlanTab_Click(object sender, EventArgs e)
         {
+            // Delete from release 3.8.0.44
 
-            #region btnSelectPlanTab
+            ////#region btnSelectPlanTab
 
-            // Clear background color
-            //lblstat lbStatCASPlanLoaded.BackColor = Control.DefaultBackColor;
+            ////// Clear background color
+            //////lblstat lbStatCASPlanLoaded.BackColor = Control.DefaultBackColor;
 
-            // Check if the excel process is running
+            ////// Check if the excel process is running
 
-            OpenFileDialog sourceFile2 = new OpenFileDialog();
-            sourceFile2.InitialDirectory = persistentData.LastAppraisalDirectory; //cPath_start;
-            sourceFile2.RestoreDirectory = true;
-            sourceFile2.Title = "Select source file";
-            sourceFile2.DefaultExt = "*.xlsx";
-            if (sourceFile2.ShowDialog() == DialogResult.OK)
-            {
-                // Set cursor as hourglass
-                Cursor.Current = Cursors.WaitCursor;
+            ////OpenFileDialog sourceFile2 = new OpenFileDialog();
+            ////sourceFile2.InitialDirectory = persistentData.LastAppraisalDirectory; //cPath_start;
+            ////sourceFile2.RestoreDirectory = true;
+            ////sourceFile2.Title = "Select source file";
+            ////sourceFile2.DefaultExt = "*.xlsx";
+            ////if (sourceFile2.ShowDialog() == DialogResult.OK)
+            ////{
+            ////    // Set cursor as hourglass
+            ////    Cursor.Current = Cursors.WaitCursor;
 
-                LblSourceFilePlan2.Text = sourceFile2.FileName;
-                // *** save new file
-                persistentData.LastAppraisalDirectory = Path.GetDirectoryName(sourceFile2.FileName);
-                persistentData.CASPlanName = Path.GetFileName(sourceFile2.FileName);
-                persistentData.SavePersistentData(persistentData);
-                lblWorkingDirectory.Text = persistentData.LastAppraisalDirectory;
-                lblPlanName.Text = persistentData.CASPlanName;
+            ////    LblSourceFilePlan2.Text = sourceFile2.FileName;
+            ////    // *** save new file
+            ////    persistentData.LastAppraisalDirectory = Path.GetDirectoryName(sourceFile2.FileName);
+            ////    persistentData.CASPlanName = Path.GetFileName(sourceFile2.FileName);
+            ////    persistentData.SavePersistentData(persistentData);
+            ////    lblWorkingDirectory.Text = persistentData.LastAppraisalDirectory;
+            ////    lblPlanName.Text = persistentData.CASPlanName;
 
-                //excelApp.Visible = true;
+            ////    //excelApp.Visible = true;
 
-                //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
+            ////    //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
 
-                if ((aWorkbook = Helper.CheckIfOpenAndOpen(LblSourceFilePlan2.Text.ToString())) == null)
-                {
-                    //MessageBox.Show($"File {Path.GetFileName(LblSourceFilePlan2.Text.ToString())}" +
-                    //    $"\n\rDirectory {Path.GetDirectoryName(LblSourceFilePlan2.Text.ToString())}" +
-                    //    "\n\rdoes not exists");
+            ////    if ((aWorkbook = Helper.CheckIfOpenAndOpen(LblSourceFilePlan2.Text.ToString())) == null)
+            ////    {
+            ////        //MessageBox.Show($"File {Path.GetFileName(LblSourceFilePlan2.Text.ToString())}" +
+            ////        //    $"\n\rDirectory {Path.GetDirectoryName(LblSourceFilePlan2.Text.ToString())}" +
+            ////        //    "\n\rdoes not exists");
 
 
-                    // Set cursor as default arrow
-                    Cursor.Current = Cursors.Default;
-                    MessageBox.Show("File not found, has it been moved or deleted?");
-                    return;
-                }
+            ////        // Set cursor as default arrow
+            ////        Cursor.Current = Cursors.Default;
+            ////        MessageBox.Show("File not found, has it been moved or deleted?");
+            ////        return;
+            ////    }
 
-                // Step 0: Clear the list to start afresh
-                WorkUnitList.Clear();
-                StaffList.Clear();
+            ////    // Step 0: Clear the list to start afresh
+            ////    WorkUnitList.Clear();
+            ////    StaffList.Clear();
 
-                // Step 1: Open the spreadhseet and process it
-                Worksheet projectWks = aWorkbook.Sheets["Project&Support"];
-                int row = cProjectHeadingStartRow + 1;
-                string sValue2 = projectWks.Cells[row, 1].Value2;
-                while (!string.IsNullOrEmpty(sValue2))
-                {
-                    // Process the list
-                    WorkUnit aNewWorkUnitItem;
-                    char firstChar = sValue2.ToUpper()[0];
-                    switch (firstChar)
-                    {
-                        case 'P':
-                            aNewWorkUnitItem = new WorkUnit()
-                            {
-                                WorkType = EWorkType.project,
-                            };
-                            aNewWorkUnitItem.AddWorkType(EWorkType.project, projectWks, row, cProjectHeadingStartRow);
-                            break;
-                        case 'S':
-                            aNewWorkUnitItem = new WorkUnit()
-                            {
-                                WorkType = EWorkType.support,
-                            };
-                            aNewWorkUnitItem.AddWorkType(EWorkType.support, projectWks, row, cProjectHeadingStartRow);
-                            break;
-                        default:
-                            aNewWorkUnitItem = new WorkUnit()
-                            {
-                                WorkType = EWorkType.nothing,
-                            };
-                            break;
-                    }
+            ////    // Step 1: Open the spreadhseet and process it
+            ////    Worksheet projectWks = aWorkbook.Sheets["Project&Support"];
+            ////    int row = cProjectHeadingStartRow + 1;
+            ////    string sValue2 = projectWks.Cells[row, 1].Value2;
+            ////    while (!string.IsNullOrEmpty(sValue2))
+            ////    {
+            ////        // Process the list
+            ////        WorkUnit aNewWorkUnitItem;
+            ////        char firstChar = sValue2.ToUpper()[0];
+            ////        switch (firstChar)
+            ////        {
+            ////            case 'P':
+            ////                aNewWorkUnitItem = new WorkUnit()
+            ////                {
+            ////                    WorkType = EWorkType.project,
+            ////                };
+            ////                aNewWorkUnitItem.AddWorkType(EWorkType.project, projectWks, row, cProjectHeadingStartRow);
+            ////                break;
+            ////            case 'S':
+            ////                aNewWorkUnitItem = new WorkUnit()
+            ////                {
+            ////                    WorkType = EWorkType.support,
+            ////                };
+            ////                aNewWorkUnitItem.AddWorkType(EWorkType.support, projectWks, row, cProjectHeadingStartRow);
+            ////                break;
+            ////            default:
+            ////                aNewWorkUnitItem = new WorkUnit()
+            ////                {
+            ////                    WorkType = EWorkType.nothing,
+            ////                };
+            ////                break;
+            ////        }
 
-                    WorkUnitList.Add(aNewWorkUnitItem);
-                    row++;
-                    sValue2 = projectWks.Cells[row, 1].Value2;
-                }
-                // Step 2: Create the process list
-                OUProcessesList.Clear();
+            ////        WorkUnitList.Add(aNewWorkUnitItem);
+            ////        row++;
+            ////        sValue2 = projectWks.Cells[row, 1].Value2;
+            ////    }
+            ////    // Step 2: Create the process list
+            ////    OUProcessesList.Clear();
 
-                // Start at col 29 (AC) and search to the right until you find END
-                int columnX = 29;
-                int headerRow = 2; // Row where the processes are defined (below this row is the marking for the projects)
-                string cellProcess = projectWks.Cells[headerRow, columnX].Value;
-                int lastRowToProcess = Helper.FindEndOfWorksheet(projectWks, 1, 3, 50);
-                while (cellProcess != "END")
-                {
-                    // Load the process name
-                    OUProcess aProcess = new OUProcess();
-                    aProcess.Name = cellProcess;
+            ////    // Start at col 29 (AC) and search to the right until you find END
+            ////    int columnX = 29;
+            ////    int headerRow = 2; // Row where the processes are defined (below this row is the marking for the projects)
+            ////    string cellProcess = projectWks.Cells[headerRow, columnX].Value;
+            ////    int lastRowToProcess = Helper.FindEndOfWorksheet(projectWks, 1, 3, 50);
+            ////    while (cellProcess != "END")
+            ////    {
+            ////        // Load the process name
+            ////        OUProcess aProcess = new OUProcess();
+            ////        aProcess.Name = cellProcess;
 
-                    // Find asssociated projects
-                    for (int rowX = 3; rowX <= lastRowToProcess; rowX++)
-                    {
-                        string cellMarkedX = projectWks.Cells[rowX, columnX]?.Value;
-                        if (cellMarkedX?.ToLower() == "x")
-                        { // Marked x, proxcess it
-                            string workIdStr = projectWks.Cells[rowX, 1]?.Value;
-                            // The workId must be valid, cannot be null or empty
-                            if (string.IsNullOrEmpty(workIdStr))
-                            {
-                                MessageBox.Show($"WorkID at {rowX} cannot be null or empty");
-                            }
-                            else
-                            {
-                                // Use the workIdStr to find the WorkUnit and attach it to the process
-                                WorkUnit aWorkunit = WorkUnitList.Find(x => x.ID.ToLower() == workIdStr.ToLower());
-                                if (aWorkunit == null)
-                                {
-                                    MessageBox.Show($"No work unit found in list for {workIdStr}! Please review Projects table.");
-                                }
-                                else
-                                { // Add the work unit found
-                                    aProcess.WorkUnits.Add(aWorkunit);
-                                }
-                            }
+            ////        // Find asssociated projects
+            ////        for (int rowX = 3; rowX <= lastRowToProcess; rowX++)
+            ////        {
+            ////            string cellMarkedX = projectWks.Cells[rowX, columnX]?.Value;
+            ////            if (cellMarkedX?.ToLower() == "x")
+            ////            { // Marked x, proxcess it
+            ////                string workIdStr = projectWks.Cells[rowX, 1]?.Value;
+            ////                // The workId must be valid, cannot be null or empty
+            ////                if (string.IsNullOrEmpty(workIdStr))
+            ////                {
+            ////                    MessageBox.Show($"WorkID at {rowX} cannot be null or empty");
+            ////                }
+            ////                else
+            ////                {
+            ////                    // Use the workIdStr to find the WorkUnit and attach it to the process
+            ////                    WorkUnit aWorkunit = WorkUnitList.Find(x => x.ID.ToLower() == workIdStr.ToLower());
+            ////                    if (aWorkunit == null)
+            ////                    {
+            ////                        MessageBox.Show($"No work unit found in list for {workIdStr}! Please review Projects table.");
+            ////                    }
+            ////                    else
+            ////                    { // Add the work unit found
+            ////                        aProcess.WorkUnits.Add(aWorkunit);
+            ////                    }
+            ////                }
 
-                        }
-                    }
-                    // Add the process and search for the next one in the next column
-                    OUProcessesList.Add(aProcess);
+            ////            }
+            ////        }
+            ////        // Add the process and search for the next one in the next column
+            ////        OUProcessesList.Add(aProcess);
 
-                    // Test for endless loop
-                    if (columnX++ > 100)
-                    {
-                        MessageBox.Show("END not found. See if end is listed in Row 2 of Projects tab!");
-                        break;
-                    }
-                    else
-                    {
-                        cellProcess = projectWks.Cells[headerRow, columnX].Value;
-                    }
-                } // Process until end is found
+            ////        // Test for endless loop
+            ////        if (columnX++ > 100)
+            ////        {
+            ////            MessageBox.Show("END not found. See if end is listed in Row 2 of Projects tab!");
+            ////            break;
+            ////        }
+            ////        else
+            ////        {
+            ////            cellProcess = projectWks.Cells[headerRow, columnX].Value;
+            ////        }
+            ////    } // Process until end is found
 
-                // Step 2: Open the support spreadhseet and process it
-                //Worksheet supportWks = aWorkbook.Sheets["Support"];
-                //row = cSupportHeadingStartRow + 1;
-                //string sValue4 = supportWks.Cells[row, 1].Value2;
-                //while (!string.IsNullOrEmpty(sValue4))
-                //{
-                //    // Process the list
-                //    WorkUnit aNewWorkUnitItem = new WorkUnit(EWorkType.support, supportWks, row, cSupportHeadingStartRow);
-                //    if (aNewWorkUnitItem.WorkType != EWorkType.nothing) WorkUnitList.Add(aNewWorkUnitItem);
+            ////    // Step 2: Open the support spreadhseet and process it
+            ////    //Worksheet supportWks = aWorkbook.Sheets["Support"];
+            ////    //row = cSupportHeadingStartRow + 1;
+            ////    //string sValue4 = supportWks.Cells[row, 1].Value2;
+            ////    //while (!string.IsNullOrEmpty(sValue4))
+            ////    //{
+            ////    //    // Process the list
+            ////    //    WorkUnit aNewWorkUnitItem = new WorkUnit(EWorkType.support, supportWks, row, cSupportHeadingStartRow);
+            ////    //    if (aNewWorkUnitItem.WorkType != EWorkType.nothing) WorkUnitList.Add(aNewWorkUnitItem);
 
-                //    row++;
-                //    sValue4 = supportWks.Cells[row, 1].Value2;
-                //}
+            ////    //    row++;
+            ////    //    sValue4 = supportWks.Cells[row, 1].Value2;
+            ////    //}
 
-                // Step 3: Open the participant spreadhseet and process it
-                Worksheet participantWks = aWorkbook.Sheets["Staff"];
-                row = cStaffHeadingStartRow + 1;
-                string sValue5 = participantWks.Cells[row, 1].Value2;
-                while (!string.IsNullOrEmpty(sValue5))
-                {
-                    // Process the list
-                    Staff aNewParticipant = new Staff();
-                    aNewParticipant.StaffAdd(participantWks, row, cStaffHeadingStartRow);
-                    if (aNewParticipant.WorkID != null) StaffList.Add(aNewParticipant);
+            ////    // Step 3: Open the participant spreadhseet and process it
+            ////    Worksheet participantWks = aWorkbook.Sheets["Staff"];
+            ////    row = cStaffHeadingStartRow + 1;
+            ////    string sValue5 = participantWks.Cells[row, 1].Value2;
+            ////    while (!string.IsNullOrEmpty(sValue5))
+            ////    {
+            ////        // Process the list
+            ////        Staff aNewParticipant = new Staff();
+            ////        aNewParticipant.StaffAdd(participantWks, row, cStaffHeadingStartRow);
+            ////        if (aNewParticipant.WorkID != null) StaffList.Add(aNewParticipant);
 
-                    row++;
-                    sValue5 = participantWks.Cells[row, 1].Value2;
-                }
-                // *** Load OU information
+            ////        row++;
+            ////        sValue5 = participantWks.Cells[row, 1].Value2;
+            ////    }
+            ////    // *** Load OU information
 
-                // Set cursor as default arrow
-                Cursor.Current = Cursors.Default;
-                MessageBox.Show("Workbook loaded. Projects and support functions loaded. Processess loaded. Staff loaded.");
+            ////    // Set cursor as default arrow
+            ////    Cursor.Current = Cursors.Default;
+            ////    MessageBox.Show("Workbook loaded. Projects and support functions loaded. Processess loaded. Staff loaded.");
 
-                // Step 4: Load Scheduel 2
-                loadSchedule2();
-            }
+            ////    // Step 4: Load Scheduel 2
+            ////    loadSchedule2();
+            ////}
 
-            // Set background color - loaded
-            //   lbStatCASPlanLoaded.BackColor = Color.LightGreen;
+            ////// Set background color - loaded
+            //////   lbStatCASPlanLoaded.BackColor = Color.LightGreen;
 
-            #endregion
+            ////#endregion
 
         }
 
@@ -2226,82 +2229,87 @@ namespace BASE
 
         private void btnSelectQuestionFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog questionsFileDialog = new OpenFileDialog();
+            // Remove from release 3.8.0.44
 
-            questionsFileDialog.InitialDirectory = Path.GetDirectoryName(persistentData.QuestionPathFile ?? @"c:\"); // cPath_start;
-            questionsFileDialog.RestoreDirectory = true;
-            questionsFileDialog.Title = "Select source file";
-            questionsFileDialog.DefaultExt = "*.xlsx";
-            if (questionsFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                lblQuestions.Text = questionsFileDialog.FileName;
-                // *** save new file
-                //persistentData.LastAppraisalDirectory = Path.GetDirectoryName(questionsFile.FileName);
-                //persistentData.CASPlanName = Path.GetFileName(questionsFile.FileName);
-                persistentData.QuestionPathFile = questionsFileDialog.FileName;
-                persistentData.SavePersistentData(persistentData);
-                lblQuestions.Text = persistentData.QuestionPathFile;
-                //lblWorkingDirectory.Text = persistentData.LastAppraisalDirectory;
-                //lblPlanName.Text = persistentData.CASPlanName;
 
-                //excelApp.Visible = true;
+            ////OpenFileDialog questionsFileDialog = new OpenFileDialog();
 
-                //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
+            ////questionsFileDialog.InitialDirectory = Path.GetDirectoryName(persistentData.QuestionPathFile ?? @"c:\"); // cPath_start;
+            ////questionsFileDialog.RestoreDirectory = true;
+            ////questionsFileDialog.Title = "Select source file";
+            ////questionsFileDialog.DefaultExt = "*.xlsx";
+            ////if (questionsFileDialog.ShowDialog() == DialogResult.OK)
+            ////{
+            ////    lblQuestions.Text = questionsFileDialog.FileName;
+            ////    // *** save new file
+            ////    //persistentData.LastAppraisalDirectory = Path.GetDirectoryName(questionsFile.FileName);
+            ////    //persistentData.CASPlanName = Path.GetFileName(questionsFile.FileName);
+            ////    persistentData.QuestionPathFile = questionsFileDialog.FileName;
+            ////    persistentData.SavePersistentData(persistentData);
+            ////    lblQuestions.Text = persistentData.QuestionPathFile;
+            ////    //lblWorkingDirectory.Text = persistentData.LastAppraisalDirectory;
+            ////    //lblPlanName.Text = persistentData.CASPlanName;
 
-                //if ((aWorkbook = Helper.CheckIfOpenAndOpen(persistentData.QuestionPathFile)) == null)
-                //{
-                //    //MessageBox.Show($"File {Path.GetFileName(LblSourceFilePlan2.Text.ToString())}" +
-                //    //    $"\n\rDirectory {Path.GetDirectoryName(LblSourceFilePlan2.Text.ToString())}" +
-                //    //    "\n\rdoes not exists");
-                //    MessageBox.Show("File not found, has it been moved or deleted?");
-                //    return;
-                //}
+            ////    //excelApp.Visible = true;
 
-                // Step 0: Clear the list to start afresh
+            ////    //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
 
-                //CMMIModel.Clear();
+            ////    //if ((aWorkbook = Helper.CheckIfOpenAndOpen(persistentData.QuestionPathFile)) == null)
+            ////    //{
+            ////    //    //MessageBox.Show($"File {Path.GetFileName(LblSourceFilePlan2.Text.ToString())}" +
+            ////    //    //    $"\n\rDirectory {Path.GetDirectoryName(LblSourceFilePlan2.Text.ToString())}" +
+            ////    //    //    "\n\rdoes not exists");
+            ////    //    MessageBox.Show("File not found, has it been moved or deleted?");
+            ////    //    return;
+            ////    //}
 
-            }
+            ////    // Step 0: Clear the list to start afresh
+
+            ////    //CMMIModel.Clear();
+
+            ////}
         }
 
         private void btnImportModel_Click(object sender, EventArgs e)
         {
+            // Remove from release 3.8.0.44
 
-            // *** Test if the question file exists
-            if (!File.Exists(persistentData.QuestionPathFile))
-            {
-                MessageBox.Show($"The question file {persistentData.QuestionPathFile}\ndoes not exists!");
-                return;
-            }
-            else
-            {
-                if ((questionWorkbook = Helper.CheckIfOpenAndOpen(persistentData.QuestionPathFile)) == null)
-                {
-                    //MessageBox.Show($"File {Path.GetFileName(LblSourceFilePlan2.Text.ToString())}" +
-                    //    $"\n\rDirectory {Path.GetDirectoryName(LblSourceFilePlan2.Text.ToString())}" +
-                    //    "\n\rdoes not exists");
-                    MessageBox.Show("File not found, has it been moved or deleted?");
-                    return;
-                }
 
-                // Clear the model and start processin the questionWorkbook
-                CMMIModel.Clear();
+            ////// *** Test if the question file exists
+            ////if (!File.Exists(persistentData.QuestionPathFile))
+            ////{
+            ////    MessageBox.Show($"The question file {persistentData.QuestionPathFile}\ndoes not exists!");
+            ////    return;
+            ////}
+            ////else
+            ////{
+            ////    if ((questionWorkbook = Helper.CheckIfOpenAndOpen(persistentData.QuestionPathFile)) == null)
+            ////    {
+            ////        //MessageBox.Show($"File {Path.GetFileName(LblSourceFilePlan2.Text.ToString())}" +
+            ////        //    $"\n\rDirectory {Path.GetDirectoryName(LblSourceFilePlan2.Text.ToString())}" +
+            ////        //    "\n\rdoes not exists");
+            ////        MessageBox.Show("File not found, has it been moved or deleted?");
+            ////        return;
+            ////    }
 
-                //MessageBox.Show($"The question file exists, now processing it ... ");
-                string statusStr = "";
-                foreach (var worksheetName in Enum.GetValues(typeof(EPAcode))) //.Cast<EPAcode>().ToList())
-                {
-                    // Open the worksheet and process it
-                    PracticeArea aPracticeArea = Helper.ProcessPracticeArea(questionWorkbook, worksheetName.ToString());
-                    if (aPracticeArea != null) CMMIModel.Add(aPracticeArea);
+            ////    // Clear the model and start processin the questionWorkbook
+            ////    CMMIModel.Clear();
 
-                    // Update status string
-                    statusStr += worksheetName + " ";
-                    lblStatus.Text = statusStr;
-                }
-                return;
+            ////    //MessageBox.Show($"The question file exists, now processing it ... ");
+            ////    string statusStr = "";
+            ////    foreach (var worksheetName in Enum.GetValues(typeof(EPAcode))) //.Cast<EPAcode>().ToList())
+            ////    {
+            ////        // Open the worksheet and process it
+            ////        PracticeArea aPracticeArea = Helper.ProcessPracticeArea(questionWorkbook, worksheetName.ToString());
+            ////        if (aPracticeArea != null) CMMIModel.Add(aPracticeArea);
 
-            }
+            ////        // Update status string
+            ////        statusStr += worksheetName + " ";
+            ////        lblStatus.Text = statusStr;
+            ////    }
+            ////    return;
+
+            ////}
 
 
 
@@ -2310,19 +2318,21 @@ namespace BASE
         private void btnSelectDemixTool_Click(object sender, EventArgs e)
         {
 
-            OpenFileDialog demixToolFileDialog = new OpenFileDialog();
+            // Remove from release 3.8.0.44
 
-            demixToolFileDialog.InitialDirectory = Path.GetDirectoryName(persistentData.DemixToolPathFile ?? @"c:\"); // cPath_start;
-            demixToolFileDialog.RestoreDirectory = true;
-            demixToolFileDialog.Title = "Select source file";
-            demixToolFileDialog.DefaultExt = "*.xlsx";
-            if (demixToolFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                lblDemixTool.Text = demixToolFileDialog.FileName;
-                persistentData.DemixToolPathFile = demixToolFileDialog.FileName;
-                persistentData.SavePersistentData(persistentData);
-                lblQuestions.Text = persistentData.DemixToolPathFile;
-            }
+            ////OpenFileDialog demixToolFileDialog = new OpenFileDialog();
+
+            ////demixToolFileDialog.InitialDirectory = Path.GetDirectoryName(persistentData.DemixToolPathFile ?? @"c:\"); // cPath_start;
+            ////demixToolFileDialog.RestoreDirectory = true;
+            ////demixToolFileDialog.Title = "Select source file";
+            ////demixToolFileDialog.DefaultExt = "*.xlsx";
+            ////if (demixToolFileDialog.ShowDialog() == DialogResult.OK)
+            ////{
+            ////    lblDemixTool.Text = demixToolFileDialog.FileName;
+            ////    persistentData.DemixToolPathFile = demixToolFileDialog.FileName;
+            ////    persistentData.SavePersistentData(persistentData);
+            ////    lblQuestions.Text = persistentData.DemixToolPathFile;
+            ////}
 
 
         }
@@ -2330,246 +2340,247 @@ namespace BASE
         private void btnGenerateFullTool_Click(object sender,
             EventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Make sure Processess are correcly listed in tab:Project&Support! Continue?", "Warning", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                //do something
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                //do something else
-                return;
-            }
+            // Remove from release 3.8.0.44
+            ////DialogResult dialogResult = MessageBox.Show("Make sure Processess are correcly listed in tab:Project&Support! Continue?", "Warning", MessageBoxButtons.YesNo);
+            ////if (dialogResult == DialogResult.Yes)
+            ////{
+            ////    //do something
+            ////}
+            ////else if (dialogResult == DialogResult.No)
+            ////{
+            ////    //do something else
+            ////    return;
+            ////}
 
-            string[] mostPAs = { "PI", "TS", "PQA", "PR", "RDM", "VV", "MPM", "PAD", "PCM", "RSK", "OT", "EST", "MC", "PLAN", "CAR", "CM", "DAR", "SAM" };
-            string[] specialPAs = { "GOV", "II" };
-            const int cTemplateLevelRow = 3;
-            const int cTemplateBlueRow = 4;
-            const int cTemplateProcessRow = 5;
-            const int cTemplateYellowRow = 6;
-            const int cOERow = 7;
+            ////string[] mostPAs = { "PI", "TS", "PQA", "PR", "RDM", "VV", "MPM", "PAD", "PCM", "RSK", "OT", "EST", "MC", "PLAN", "CAR", "CM", "DAR", "SAM" };
+            ////string[] specialPAs = { "GOV", "II" };
+            ////const int cTemplateLevelRow = 3;
+            ////const int cTemplateBlueRow = 4;
+            ////const int cTemplateProcessRow = 5;
+            ////const int cTemplateYellowRow = 6;
+            ////const int cOERow = 7;
 
-            // open demix tool, if not open
-            Workbook demixToolWkb;
-            if ((demixToolWkb = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
-            {
-                MessageBox.Show("Cannot open the demix tool, is the file moved or deleted?");
-                return;
-            }
+            ////// open demix tool, if not open
+            ////Workbook demixToolWkb;
+            ////if ((demixToolWkb = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
+            ////{
+            ////    MessageBox.Show("Cannot open the demix tool, is the file moved or deleted?");
+            ////    return;
+            ////}
 
-            // generic variables
-            Worksheet tmpl1Wks = demixToolWkb.Worksheets["Template1"];
+            ////// generic variables
+            ////Worksheet tmpl1Wks = demixToolWkb.Worksheets["Template1"];
 
-            // demixToolWkb contains the opened workbook
-            foreach (PracticeArea aPracticeArea in CMMIModel)
-            {
-                // DEBUG CODE, SKIP most PAs
-                //if (mostPAs.Contains(aPracticeArea.PAcode.ToString())) continue;
-                // create a worksheet if it does not exist
-                //Worksheet aWks = Helper.OpenOrElseCreateWks(demixToolWkb, aPracticeArea.PAcode.ToString());
-                foreach (Worksheet findWks in demixToolWkb.Worksheets)
-                {
-                    if (findWks.Name == aPracticeArea.PAcode.ToString()) findWks.Delete();
-                }
-                // Copy the template2 over that worksheet
-                Worksheet sourceWks;
-                Worksheet aWks;
-                sourceWks = demixToolWkb.Worksheets["Template2"];
-                //aWks = demixToolWkb.Worksheets.Add();
-                int numberOfWks = demixToolWkb.Worksheets.Count;
-                sourceWks.Copy(After: demixToolWkb.Worksheets[numberOfWks]);
-                aWks = demixToolWkb.Worksheets[numberOfWks + 1];
-                aWks.Name = aPracticeArea.PAcode.ToString();
+            ////// demixToolWkb contains the opened workbook
+            ////foreach (PracticeArea aPracticeArea in CMMIModel)
+            ////{
+            ////    // DEBUG CODE, SKIP most PAs
+            ////    //if (mostPAs.Contains(aPracticeArea.PAcode.ToString())) continue;
+            ////    // create a worksheet if it does not exist
+            ////    //Worksheet aWks = Helper.OpenOrElseCreateWks(demixToolWkb, aPracticeArea.PAcode.ToString());
+            ////    foreach (Worksheet findWks in demixToolWkb.Worksheets)
+            ////    {
+            ////        if (findWks.Name == aPracticeArea.PAcode.ToString()) findWks.Delete();
+            ////    }
+            ////    // Copy the template2 over that worksheet
+            ////    Worksheet sourceWks;
+            ////    Worksheet aWks;
+            ////    sourceWks = demixToolWkb.Worksheets["Template2"];
+            ////    //aWks = demixToolWkb.Worksheets.Add();
+            ////    int numberOfWks = demixToolWkb.Worksheets.Count;
+            ////    sourceWks.Copy(After: demixToolWkb.Worksheets[numberOfWks]);
+            ////    aWks = demixToolWkb.Worksheets[numberOfWks + 1];
+            ////    aWks.Name = aPracticeArea.PAcode.ToString();
 
-                // Setup the headings
-                aWks.Cells[1, 1].Value = aPracticeArea.Name;
-                aWks.Cells[2, 1].Value = aPracticeArea.NameChinese;
-                aWks.Cells[3, 2].Value = aPracticeArea.Intent;
-                aWks.Cells[4, 2].Value = aPracticeArea.IntentChinese;
-                aWks.Cells[5, 2].Value = aPracticeArea.Value;
-                aWks.Cells[6, 2].Value = aPracticeArea.ValueChinese;
+            ////    // Setup the headings
+            ////    aWks.Cells[1, 1].Value = aPracticeArea.Name;
+            ////    aWks.Cells[2, 1].Value = aPracticeArea.NameChinese;
+            ////    aWks.Cells[3, 2].Value = aPracticeArea.Intent;
+            ////    aWks.Cells[4, 2].Value = aPracticeArea.IntentChinese;
+            ////    aWks.Cells[5, 2].Value = aPracticeArea.Value;
+            ////    aWks.Cells[6, 2].Value = aPracticeArea.ValueChinese;
 
-                // Setup parameters
-                int rowX = 9; // the starting row to process
-                              // Build each of the levels 
-                for (int levelX = 1; levelX <= 5; levelX++)
-                {
+            ////    // Setup parameters
+            ////    int rowX = 9; // the starting row to process
+            ////                  // Build each of the levels 
+            ////    for (int levelX = 1; levelX <= 5; levelX++)
+            ////    {
 
-                    // Find all practices at this level
-                    var levelPractices =
-                        from aPractice in aPracticeArea.Practices
-                        where aPractice.Level == levelX
-                        orderby aPractice.Number
-                        select aPractice;
+            ////        // Find all practices at this level
+            ////        var levelPractices =
+            ////            from aPractice in aPracticeArea.Practices
+            ////            where aPractice.Level == levelX
+            ////            orderby aPractice.Number
+            ////            select aPractice;
 
-                    if (levelPractices?.Count() >= 1)
-                    {
-                        // Practices found for this level
-                        // Copy the level
-                        Range levelRow = tmpl1Wks.Rows[cTemplateLevelRow];
-                        Range destLevelRow = aWks.Rows[rowX];
-                        levelRow.Copy(destLevelRow);
+            ////        if (levelPractices?.Count() >= 1)
+            ////        {
+            ////            // Practices found for this level
+            ////            // Copy the level
+            ////            Range levelRow = tmpl1Wks.Rows[cTemplateLevelRow];
+            ////            Range destLevelRow = aWks.Rows[rowX];
+            ////            levelRow.Copy(destLevelRow);
 
-                        // Set the level number
-                        aWks.Cells[rowX, 2].Value = $"Level {levelX}";
-                        rowX++;
+            ////            // Set the level number
+            ////            aWks.Cells[rowX, 2].Value = $"Level {levelX}";
+            ////            rowX++;
 
-                        // run through each practice and process it
-                        foreach (Practice aPractice in levelPractices)
-                        {
-                            // Copy the practice heading
-                            Range blueRow = tmpl1Wks.Rows[cTemplateBlueRow];
-                            Range destBlueRow = aWks.Rows[rowX];
-                            blueRow.Copy(destBlueRow);
-                            aWks.Cells[rowX, 2].Value = $"{aPractice.Acronym} {aPractice.Level}.{aPractice.Number}";
-                            // Extract statement, work products, activities and questions
-                            string statementStr, workProductStr, activityStr, questionStr;
-                            Helper.ExtractPracticeAreaInformation(aPractice, out statementStr, out workProductStr,
-                                out activityStr, out questionStr);
-                            aWks.Cells[rowX, 3].Value = statementStr;
-                            aWks.Cells[rowX, 9].Value = workProductStr;
-                            aWks.Cells[rowX, 10].Value = activityStr;
-                            aWks.Cells[rowX, 11].Value = questionStr;
+            ////            // run through each practice and process it
+            ////            foreach (Practice aPractice in levelPractices)
+            ////            {
+            ////                // Copy the practice heading
+            ////                Range blueRow = tmpl1Wks.Rows[cTemplateBlueRow];
+            ////                Range destBlueRow = aWks.Rows[rowX];
+            ////                blueRow.Copy(destBlueRow);
+            ////                aWks.Cells[rowX, 2].Value = $"{aPractice.Acronym} {aPractice.Level}.{aPractice.Number}";
+            ////                // Extract statement, work products, activities and questions
+            ////                string statementStr, workProductStr, activityStr, questionStr;
+            ////                Helper.ExtractPracticeAreaInformation(aPractice, out statementStr, out workProductStr,
+            ////                    out activityStr, out questionStr);
+            ////                aWks.Cells[rowX, 3].Value = statementStr;
+            ////                aWks.Cells[rowX, 9].Value = workProductStr;
+            ////                aWks.Cells[rowX, 10].Value = activityStr;
+            ////                aWks.Cells[rowX, 11].Value = questionStr;
 
-                            rowX++;
+            ////                rowX++;
 
-                            if (mostPAs.Contains(aPracticeArea.PAcode.ToString()))
-                            {
-                                // process most PAs
-                                // Find all projects / support funcitons that has this practice sampled
-                                List<WorkUnit> workUnitsInScope = new List<WorkUnit>();
-                                foreach (WorkUnit aWorkUnit in WorkUnitList)
-                                {
-                                    // See if the practice is present in the work unit practice list
-                                    var matchingPAList = from aPAitem in aWorkUnit.PAlist
-                                                         where aPAitem.PAcode == aPracticeArea.PAcode
-                                                         select aPAitem;
-                                    // If it is present, add it to the list
-                                    if (matchingPAList?.Count() > 0)
-                                    {
-                                        workUnitsInScope.Add(aWorkUnit);
-                                    }
-                                }
+            ////                if (mostPAs.Contains(aPracticeArea.PAcode.ToString()))
+            ////                {
+            ////                    // process most PAs
+            ////                    // Find all projects / support funcitons that has this practice sampled
+            ////                    List<WorkUnit> workUnitsInScope = new List<WorkUnit>();
+            ////                    foreach (WorkUnit aWorkUnit in WorkUnitList)
+            ////                    {
+            ////                        // See if the practice is present in the work unit practice list
+            ////                        var matchingPAList = from aPAitem in aWorkUnit.PAlist
+            ////                                             where aPAitem.PAcode == aPracticeArea.PAcode
+            ////                                             select aPAitem;
+            ////                        // If it is present, add it to the list
+            ////                        if (matchingPAList?.Count() > 0)
+            ////                        {
+            ////                            workUnitsInScope.Add(aWorkUnit);
+            ////                        }
+            ////                    }
 
-                                // workUnitsInScope contains all the work units, so now add them to the sheet
-                                foreach (WorkUnit workUnitToAdd in workUnitsInScope)
-                                {
-                                    // List the work unit in scope
-                                    Range yelloRow = tmpl1Wks.Rows[cTemplateYellowRow];
-                                    Range destYellowRow = aWks.Rows[rowX];
-                                    yelloRow.Copy(destYellowRow);
-                                    aWks.Cells[rowX, 2].Value = $"{aPractice.Acronym} {aPractice.Level}.{aPractice.Number}";
-                                    aWks.Cells[rowX, 3].Value = workUnitToAdd.Name;
+            ////                    // workUnitsInScope contains all the work units, so now add them to the sheet
+            ////                    foreach (WorkUnit workUnitToAdd in workUnitsInScope)
+            ////                    {
+            ////                        // List the work unit in scope
+            ////                        Range yelloRow = tmpl1Wks.Rows[cTemplateYellowRow];
+            ////                        Range destYellowRow = aWks.Rows[rowX];
+            ////                        yelloRow.Copy(destYellowRow);
+            ////                        aWks.Cells[rowX, 2].Value = $"{aPractice.Acronym} {aPractice.Level}.{aPractice.Number}";
+            ////                        aWks.Cells[rowX, 3].Value = workUnitToAdd.Name;
 
-                                    // identify the interviewees
-                                    List<Schedule2> scheduleForWorkUnit = Schedule2List.Where(x => x.PA == aPracticeArea.PAcode.ToString() && x.WorkID == workUnitToAdd.ID).ToList();
-                                    if (scheduleForWorkUnit.Count > 0)
-                                    {
-                                        string meetingParticipantStr = "";
-                                        bool firstReview = true;
-                                        foreach (var aScheduleItem in scheduleForWorkUnit)
-                                        {
-                                            if (firstReview)
-                                            {
-                                                meetingParticipantStr = $"{aScheduleItem.InterviewSession}({aScheduleItem.ParticipantName})";
-                                            }
-                                            else
-                                            {
-                                                meetingParticipantStr = meetingParticipantStr + $" {aScheduleItem.InterviewSession}({aScheduleItem.ParticipantName})";
-                                            }
-                                        }
-                                        aWks.Cells[rowX, 8].Value = meetingParticipantStr;
-                                    }
-                                    // List staff applicable to this project
-                                    // var staffForThisWorkUnit = StaffList.Where(x => x.WorkID == workUnitToAdd.ID).ToList();
+            ////                        // identify the interviewees
+            ////                        List<Schedule2> scheduleForWorkUnit = Schedule2List.Where(x => x.PA == aPracticeArea.PAcode.ToString() && x.WorkID == workUnitToAdd.ID).ToList();
+            ////                        if (scheduleForWorkUnit.Count > 0)
+            ////                        {
+            ////                            string meetingParticipantStr = "";
+            ////                            bool firstReview = true;
+            ////                            foreach (var aScheduleItem in scheduleForWorkUnit)
+            ////                            {
+            ////                                if (firstReview)
+            ////                                {
+            ////                                    meetingParticipantStr = $"{aScheduleItem.InterviewSession}({aScheduleItem.ParticipantName})";
+            ////                                }
+            ////                                else
+            ////                                {
+            ////                                    meetingParticipantStr = meetingParticipantStr + $" {aScheduleItem.InterviewSession}({aScheduleItem.ParticipantName})";
+            ////                                }
+            ////                            }
+            ////                            aWks.Cells[rowX, 8].Value = meetingParticipantStr;
+            ////                        }
+            ////                        // List staff applicable to this project
+            ////                        // var staffForThisWorkUnit = StaffList.Where(x => x.WorkID == workUnitToAdd.ID).ToList();
 
-                                    //var listOfInterviewees = StaffList.Where(x => x.)
-                                    rowX++;
+            ////                        //var listOfInterviewees = StaffList.Where(x => x.)
+            ////                        rowX++;
 
-                                    Range oeRow = tmpl1Wks.Rows[cOERow];
-                                    for (int y = 0; y < 2; y++)
-                                    {
-                                        Range destOERow = aWks.Rows[rowX];
-                                        oeRow.Copy(destOERow);
-                                        aWks.Cells[rowX, 2].Value = workUnitToAdd.Name;
-                                        rowX++;
-                                    }
-                                }
+            ////                        Range oeRow = tmpl1Wks.Rows[cOERow];
+            ////                        for (int y = 0; y < 2; y++)
+            ////                        {
+            ////                            Range destOERow = aWks.Rows[rowX];
+            ////                            oeRow.Copy(destOERow);
+            ////                            aWks.Cells[rowX, 2].Value = workUnitToAdd.Name;
+            ////                            rowX++;
+            ////                        }
+            ////                    }
 
-                            }
-                            else
-                            {
-                                if (specialPAs.Contains(aPracticeArea.PAcode.ToString()))
-                                {
-                                    // process the special PAs
-                                    // List all the processess for this PA, then list all the projects for the processess for this PA
+            ////                }
+            ////                else
+            ////                {
+            ////                    if (specialPAs.Contains(aPracticeArea.PAcode.ToString()))
+            ////                    {
+            ////                        // process the special PAs
+            ////                        // List all the processess for this PA, then list all the projects for the processess for this PA
 
-                                    // Find all projects / support functions that has this practice sampled
-                                    foreach (var aProcess in OUProcessesList)
-                                    {
-                                        // List the process
-                                        Range processSrcRow = tmpl1Wks.Rows[cTemplateProcessRow];
-                                        Range processDstRow = aWks.Rows[rowX];
-                                        processSrcRow.Copy(processDstRow);
-                                        aWks.Cells[rowX, 2].Value = $"{aPractice.Acronym} {aPractice.Level}.{aPractice.Number}";
-                                        aWks.Cells[rowX, 3].Value = aProcess.Name;
-                                        rowX++;
-
-
-                                        // workUnitsInScope contains all the work units, so now add them to the sheet
-                                        foreach (WorkUnit workUnitToAdd in aProcess.WorkUnits)
-                                        {
-                                            // List the work unit in scope
-                                            Range yelloRow = tmpl1Wks.Rows[cTemplateYellowRow];
-                                            Range destYellowRow = aWks.Rows[rowX];
-                                            yelloRow.Copy(destYellowRow);
-                                            aWks.Cells[rowX, 2].Value = $"{aPractice.Acronym} {aPractice.Level}.{aPractice.Number}";
-                                            aWks.Cells[rowX, 3].Value = workUnitToAdd.Name;
+            ////                        // Find all projects / support functions that has this practice sampled
+            ////                        foreach (var aProcess in OUProcessesList)
+            ////                        {
+            ////                            // List the process
+            ////                            Range processSrcRow = tmpl1Wks.Rows[cTemplateProcessRow];
+            ////                            Range processDstRow = aWks.Rows[rowX];
+            ////                            processSrcRow.Copy(processDstRow);
+            ////                            aWks.Cells[rowX, 2].Value = $"{aPractice.Acronym} {aPractice.Level}.{aPractice.Number}";
+            ////                            aWks.Cells[rowX, 3].Value = aProcess.Name;
+            ////                            rowX++;
 
 
-                                            // identify the interviewees
-                                            List<Schedule2> scheduleForWorkUnit = Schedule2List.Where(x => x.WorkID == workUnitToAdd.ID).ToList();
-                                            if (scheduleForWorkUnit.Count > 0)
-                                            {
-                                                string meetingParticipantStr = "";
-                                                bool firstReview = true;
-                                                foreach (var aScheduleItem in scheduleForWorkUnit)
-                                                {
-                                                    if (firstReview)
-                                                    {
-                                                        meetingParticipantStr = $"{aScheduleItem.InterviewSession}({aScheduleItem.ParticipantName})";
-                                                    }
-                                                    else
-                                                    {
-                                                        meetingParticipantStr = meetingParticipantStr + $" {aScheduleItem.InterviewSession}({aScheduleItem.ParticipantName})";
-                                                    }
-                                                }
-                                                aWks.Cells[rowX, 8].Value = meetingParticipantStr;
-                                            }
-
-                                            rowX++;
-
-                                            Range oeRow = tmpl1Wks.Rows[cOERow];
-                                            for (int y = 0; y < 1; y++)
-                                            {
-                                                Range destOERow = aWks.Rows[rowX];
-                                                oeRow.Copy(destOERow);
-                                                aWks.Cells[rowX, 2].Value = workUnitToAdd.Name;
-                                                rowX++;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
-                        }
-
-                    }
+            ////                            // workUnitsInScope contains all the work units, so now add them to the sheet
+            ////                            foreach (WorkUnit workUnitToAdd in aProcess.WorkUnits)
+            ////                            {
+            ////                                // List the work unit in scope
+            ////                                Range yelloRow = tmpl1Wks.Rows[cTemplateYellowRow];
+            ////                                Range destYellowRow = aWks.Rows[rowX];
+            ////                                yelloRow.Copy(destYellowRow);
+            ////                                aWks.Cells[rowX, 2].Value = $"{aPractice.Acronym} {aPractice.Level}.{aPractice.Number}";
+            ////                                aWks.Cells[rowX, 3].Value = workUnitToAdd.Name;
 
 
-                }
+            ////                                // identify the interviewees
+            ////                                List<Schedule2> scheduleForWorkUnit = Schedule2List.Where(x => x.WorkID == workUnitToAdd.ID).ToList();
+            ////                                if (scheduleForWorkUnit.Count > 0)
+            ////                                {
+            ////                                    string meetingParticipantStr = "";
+            ////                                    bool firstReview = true;
+            ////                                    foreach (var aScheduleItem in scheduleForWorkUnit)
+            ////                                    {
+            ////                                        if (firstReview)
+            ////                                        {
+            ////                                            meetingParticipantStr = $"{aScheduleItem.InterviewSession}({aScheduleItem.ParticipantName})";
+            ////                                        }
+            ////                                        else
+            ////                                        {
+            ////                                            meetingParticipantStr = meetingParticipantStr + $" {aScheduleItem.InterviewSession}({aScheduleItem.ParticipantName})";
+            ////                                        }
+            ////                                    }
+            ////                                    aWks.Cells[rowX, 8].Value = meetingParticipantStr;
+            ////                                }
 
-            }
+            ////                                rowX++;
+
+            ////                                Range oeRow = tmpl1Wks.Rows[cOERow];
+            ////                                for (int y = 0; y < 1; y++)
+            ////                                {
+            ////                                    Range destOERow = aWks.Rows[rowX];
+            ////                                    oeRow.Copy(destOERow);
+            ////                                    aWks.Cells[rowX, 2].Value = workUnitToAdd.Name;
+            ////                                    rowX++;
+            ////                                }
+            ////                            }
+            ////                        }
+            ////                    }
+            ////                }
+
+            ////            }
+
+            ////        }
+
+
+            ////    }
+
+            ////}
         }
 
         private const int cDemixOEToolSearchUntilEmptyColumn = 1;
@@ -2579,174 +2590,178 @@ namespace BASE
 
         private void btnDemixTstLinksAndEngl_Click(object sender, EventArgs e)
         {
-            // *** Setup the main sheet
-            // excelApp.Visible = true;
+            // Remove from release 3.8.0.44
 
-            // *** Load main
-            //mainWorkbook = excelApp.Workbooks.Open(persistentData.OEdatabasePathFile);
+            ////// *** Setup the main sheet
+            ////// excelApp.Visible = true;
 
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
-            {
-                //MessageBox.Show($"File {Path.GetFileName(persistentData.OEdatabasePathFile)}" +
-                //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.OEdatabasePathFile)}" +
-                //    "\n\rdoes not exists");
-                MessageBox.Show("File not found, has it been moved or deleted?");
-                return;
-            }
-            string basePath = Path.GetDirectoryName(persistentData.DemixToolPathFile);
+            ////// *** Load main
+            //////mainWorkbook = excelApp.Workbooks.Open(persistentData.OEdatabasePathFile);
 
-            lblStatus.Text = "OEdb:";
-            string statusStr = "";
-            foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
-            {
-                switch (wksOEdb.Name)
-                {
+            ////if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
+            ////{
+            ////    //MessageBox.Show($"File {Path.GetFileName(persistentData.OEdatabasePathFile)}" +
+            ////    //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.OEdatabasePathFile)}" +
+            ////    //    "\n\rdoes not exists");
+            ////    MessageBox.Show("File not found, has it been moved or deleted?");
+            ////    return;
+            ////}
+            ////string basePath = Path.GetDirectoryName(persistentData.DemixToolPathFile);
 
-                    case "CAR":
-                    case "CM":
-                    case "DAR":
-                    case "EST":
-                    case "MC":
-                    case "MPM":
-                    case "OT":
-                    case "PAD":
-                    case "PCM":
-                    case "PLAN":
-                    case "PQA":
-                    case "PR":
-                    case "RDM":
-                    case "RSK":
-                    case "VV":
-                    case "PI":
-                    case "TS":
-                    case "GOV":
-                    case "II":
+            ////lblStatus.Text = "OEdb:";
+            ////string statusStr = "";
+            ////foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
+            ////{
+            ////    switch (wksOEdb.Name)
+            ////    {
 
-                        //if (wksOEdb.Name=="PI")
-                        //{
-                        //    int stop = 1;
-                        //}
-                        // *** Find the number of rows
-                        int NumberOfRows = Helper.FindEndOfWorksheet(wksOEdb, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
-                        // Range columnToClear = wksOEdb.Range["Y:Z"];
-                        // columnToClear.Clear();
+            ////        case "CAR":
+            ////        case "CM":
+            ////        case "DAR":
+            ////        case "EST":
+            ////        case "MC":
+            ////        case "MPM":
+            ////        case "OT":
+            ////        case "PAD":
+            ////        case "PCM":
+            ////        case "PLAN":
+            ////        case "PQA":
+            ////        case "PR":
+            ////        case "RDM":
+            ////        case "RSK":
+            ////        case "VV":
+            ////        case "PI":
+            ////        case "TS":
+            ////        case "GOV":
+            ////        case "II":
 
-                        // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
-                        Range mainRange = wksOEdb.Range["A" + cDemixOEToolHeadingStartRow, "Z" + NumberOfRows];
+            ////            //if (wksOEdb.Name=="PI")
+            ////            //{
+            ////            //    int stop = 1;
+            ////            //}
+            ////            // *** Find the number of rows
+            ////            int NumberOfRows = Helper.FindEndOfWorksheet(wksOEdb, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
+            ////            // Range columnToClear = wksOEdb.Range["Y:Z"];
+            ////            // columnToClear.Clear();
 
-                        // *** List all the hyperlinks https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Link/Retrieve-Hyperlinks-from-an-Excel-Sheet-in-C-VB.NET.html
-                        Hyperlinks hyperLinkList = mainRange.Hyperlinks;
-                        List<Hyperlink> hyperLinksToAdd = new List<Hyperlink>();
+            ////            // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
+            ////            Range mainRange = wksOEdb.Range["A" + cDemixOEToolHeadingStartRow, "Z" + NumberOfRows];
 
-                        int hyperLinkRow;
-                        int hyperLinkCol;
-                        string hyperlinkAddress;
-                        string PathFileToTest;
-                        string PathEnglish;
+            ////            // *** List all the hyperlinks https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Link/Retrieve-Hyperlinks-from-an-Excel-Sheet-in-C-VB.NET.html
+            ////            Hyperlinks hyperLinkList = mainRange.Hyperlinks;
+            ////            List<Hyperlink> hyperLinksToAdd = new List<Hyperlink>();
 
-                        string englishFullPathFile;
-                        Boolean fileFound;
+            ////            int hyperLinkRow;
+            ////            int hyperLinkCol;
+            ////            string hyperlinkAddress;
+            ////            string PathFileToTest;
+            ////            string PathEnglish;
 
-                        foreach (Hyperlink aHyperlink in hyperLinkList)
-                        {
-                            // *** Take each hyperlink and test it
-                            hyperLinkRow = aHyperlink.Range.Row;
-                            //if (hyperLinkRow == 9 && wksOEdb.Name == "PI")
-                            //{
-                            //    int stop = 1;
-                            //}
-                            hyperLinkCol = aHyperlink.Range.Column;
-                            hyperlinkAddress = aHyperlink.Address;
+            ////            string englishFullPathFile;
+            ////            Boolean fileFound;
 
-                            // *** Test if the file exists
-                            fileFound = false;
-                            PathFileToTest = Path.Combine(basePath, hyperlinkAddress);
-                            if (File.Exists(PathFileToTest))
-                            {
-                                mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "f"].Value = "ok file";
-                                fileFound = true;
-                            }
-                            else
-                            {
-                                if (Directory.Exists(PathFileToTest))
-                                {
-                                    mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "f"].Value = "ok directory";
-                                }
-                                else
-                                {
-                                    mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "f"].Value = "Not ok";
-                                }
-                            }
+            ////            foreach (Hyperlink aHyperlink in hyperLinkList)
+            ////            {
+            ////                // *** Take each hyperlink and test it
+            ////                hyperLinkRow = aHyperlink.Range.Row;
+            ////                //if (hyperLinkRow == 9 && wksOEdb.Name == "PI")
+            ////                //{
+            ////                //    int stop = 1;
+            ////                //}
+            ////                hyperLinkCol = aHyperlink.Range.Column;
+            ////                hyperlinkAddress = aHyperlink.Address;
 
-                            // *** Test if the english version exists
-                            PathEnglish = Path.Combine(Path.GetDirectoryName(PathFileToTest), Path.GetFileNameWithoutExtension(PathFileToTest));
-                            englishFullPathFile = "";
-                            string theExtension = Path.GetExtension(PathFileToTest);
-                            switch (theExtension.ToLower().Trim())
-                            {
-                                case ".xls":
-                                case ".xlsx":
-                                case ".xlsm":
-                                    englishFullPathFile = PathEnglish + "-engl.xlsx";
-                                    break;
-                                case ".doc":
-                                case ".docx":
-                                case ".docm":
-                                    englishFullPathFile = PathEnglish + "-engl.docx";
-                                    break;
-                                case ".ppt":
-                                case ".pptx":
-                                case ".pptm":
-                                    englishFullPathFile = PathEnglish + "-engl.pptx";
-                                    break;
+            ////                // *** Test if the file exists
+            ////                fileFound = false;
+            ////                PathFileToTest = Path.Combine(basePath, hyperlinkAddress);
+            ////                if (File.Exists(PathFileToTest))
+            ////                {
+            ////                    mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "f"].Value = "ok file";
+            ////                    fileFound = true;
+            ////                }
+            ////                else
+            ////                {
+            ////                    if (Directory.Exists(PathFileToTest))
+            ////                    {
+            ////                        mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "f"].Value = "ok directory";
+            ////                    }
+            ////                    else
+            ////                    {
+            ////                        mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "f"].Value = "Not ok";
+            ////                    }
+            ////                }
 
-                            }
-                            if (englishFullPathFile != "")
-                            {
-                                // *** list the new hyperlink
-                                if (fileFound && File.Exists(englishFullPathFile))
-                                { // file exists, add it
-                                  // mainRange[hyperLinkRow - cOEDatabaseHeadingStartRow + 1, "z"].Value = "engl";
-                                    string remainderPath = englishFullPathFile.Remove(0, basePath.Length + 1);
-                                    string formulaStr = "=hyperlink(\"" + remainderPath + "\",\"engl\")";
-                                    mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"].Formula = formulaStr;
+            ////                // *** Test if the english version exists
+            ////                PathEnglish = Path.Combine(Path.GetDirectoryName(PathFileToTest), Path.GetFileNameWithoutExtension(PathFileToTest));
+            ////                englishFullPathFile = "";
+            ////                string theExtension = Path.GetExtension(PathFileToTest);
+            ////                switch (theExtension.ToLower().Trim())
+            ////                {
+            ////                    case ".xls":
+            ////                    case ".xlsx":
+            ////                    case ".xlsm":
+            ////                        englishFullPathFile = PathEnglish + "-engl.xlsx";
+            ////                        break;
+            ////                    case ".doc":
+            ////                    case ".docx":
+            ////                    case ".docm":
+            ////                        englishFullPathFile = PathEnglish + "-engl.docx";
+            ////                        break;
+            ////                    case ".ppt":
+            ////                    case ".pptx":
+            ////                    case ".pptm":
+            ////                        englishFullPathFile = PathEnglish + "-engl.pptx";
+            ////                        break;
 
-                                }
-                                else
-                                {
-                                    mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"].Value = "none";
-                                }
-                            }
-                        }
+            ////                }
+            ////                if (englishFullPathFile != "")
+            ////                {
+            ////                    // *** list the new hyperlink
+            ////                    if (fileFound && File.Exists(englishFullPathFile))
+            ////                    { // file exists, add it
+            ////                      // mainRange[hyperLinkRow - cOEDatabaseHeadingStartRow + 1, "z"].Value = "engl";
+            ////                        string remainderPath = englishFullPathFile.Remove(0, basePath.Length + 1);
+            ////                        string formulaStr = "=hyperlink(\"" + remainderPath + "\",\"engl\")";
+            ////                        mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"].Formula = formulaStr;
 
-                        // *** Show the status
-                        statusStr = statusStr + wksOEdb.Name + ".";
-                        lblStatus.Text = statusStr;
-                        break;
-                }
-            }
-            statusStr = statusStr + "done";
-            lblStatus.Text = statusStr;
+            ////                    }
+            ////                    else
+            ////                    {
+            ////                        mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"].Value = "none";
+            ////                    }
+            ////                }
+            ////            }
 
-            MessageBox.Show("Done");
+            ////            // *** Show the status
+            ////            statusStr = statusStr + wksOEdb.Name + ".";
+            ////            lblStatus.Text = statusStr;
+            ////            break;
+            ////    }
+            ////}
+            ////statusStr = statusStr + "done";
+            ////lblStatus.Text = statusStr;
+
+            ////MessageBox.Show("Done");
 
         }
 
         private void btnImportOE_Click(object sender, EventArgs e)
         {
-            OpenFileDialog OEsource = new OpenFileDialog();
-            OEsource.InitialDirectory = Path.GetDirectoryName(persistentData.DemixTool_ToImport_PathFile);
-            OEsource.RestoreDirectory = true;
-            OEsource.Title = "Select source OE file to import";
-            OEsource.DefaultExt = "*.xlsm";
-            if (OEsource.ShowDialog() == DialogResult.OK)
-            {
-                lblOEdbSource.Text = OEsource.FileName;
-                persistentData.DemixTool_ToImport_PathFile = OEsource.FileName;
-                persistentData.SavePersistentData(persistentData);
+            // Remove from release 3.8.0.44
 
-                lblDemixTool2Import.Text = persistentData.DemixTool_ToImport_PathFile;
-            }
+            ////OpenFileDialog OEsource = new OpenFileDialog();
+            ////OEsource.InitialDirectory = Path.GetDirectoryName(persistentData.DemixTool_ToImport_PathFile);
+            ////OEsource.RestoreDirectory = true;
+            ////OEsource.Title = "Select source OE file to import";
+            ////OEsource.DefaultExt = "*.xlsm";
+            ////if (OEsource.ShowDialog() == DialogResult.OK)
+            ////{
+            ////    lblOEdbSource.Text = OEsource.FileName;
+            ////    persistentData.DemixTool_ToImport_PathFile = OEsource.FileName;
+            ////    persistentData.SavePersistentData(persistentData);
+
+            ////    lblDemixTool2Import.Text = persistentData.DemixTool_ToImport_PathFile;
+            ////}
         }
 
         private void label3_Click(object sender, EventArgs e)
@@ -2756,86 +2771,87 @@ namespace BASE
 
         private void btnDemixOEMerge_Click(object sender, EventArgs e)
         {
+            // Remove from release 3.8.0.44
 
-            // *** Load source
-            //sourceWorkbook = excelApp.Workbooks.Open(persistentData.AppToolSourcePathFile);
-            if ((sourceWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixTool_ToImport_PathFile)) == null)
-            {
-                //MessageBox.Show($"File {Path.GetFileName(persistentData.AppToolSourcePathFile)}" +
-                //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.AppToolSourcePathFile)}" +
-                //    "\n\rdoes not exists");
-                MessageBox.Show("File not found, has it been moved or deleted?");
-                return;
-            }
-            // *** Load main
-            //mainWorkbook = excelApp.Workbooks.Open(persistentData.AppToolMainPathFile);
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
-            {
-                //MessageBox.Show($"File {Path.GetFileName(persistentData.AppToolMainPathFile)}" +
-                //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.AppToolMainPathFile)}" +
-                //    "\n\rdoes not exists");
-                MessageBox.Show("File not found, has it been moved or deleted?");
-                return;
-            }
+            ////// *** Load source
+            //////sourceWorkbook = excelApp.Workbooks.Open(persistentData.AppToolSourcePathFile);
+            ////if ((sourceWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixTool_ToImport_PathFile)) == null)
+            ////{
+            ////    //MessageBox.Show($"File {Path.GetFileName(persistentData.AppToolSourcePathFile)}" +
+            ////    //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.AppToolSourcePathFile)}" +
+            ////    //    "\n\rdoes not exists");
+            ////    MessageBox.Show("File not found, has it been moved or deleted?");
+            ////    return;
+            ////}
+            ////// *** Load main
+            //////mainWorkbook = excelApp.Workbooks.Open(persistentData.AppToolMainPathFile);
+            ////if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
+            ////{
+            ////    //MessageBox.Show($"File {Path.GetFileName(persistentData.AppToolMainPathFile)}" +
+            ////    //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.AppToolMainPathFile)}" +
+            ////    //    "\n\rdoes not exists");
+            ////    MessageBox.Show("File not found, has it been moved or deleted?");
+            ////    return;
+            ////}
 
-            //  int row;
-            //  string sValueN;
-            Worksheet wsMain;
+            //////  int row;
+            //////  string sValueN;
+            ////Worksheet wsMain;
 
-            lblStatus.Text = "";
-            string statusStr = "";
-            foreach (Worksheet wsSource in sourceWorkbook.Sheets)
-            {
+            ////lblStatus.Text = "";
+            ////string statusStr = "";
+            ////foreach (Worksheet wsSource in sourceWorkbook.Sheets)
+            ////{
 
-                switch (wsSource.Name)
-                {
+            ////    switch (wsSource.Name)
+            ////    {
 
-                    case "CAR":
-                    case "CM":
-                    case "DAR":
-                    case "EST":
-                    case "MC":
-                    case "MPM":
-                    case "OT":
-                    case "PAD":
-                    case "PCM":
-                    case "PLAN":
-                    case "PQA":
-                    case "PR":
-                    case "RDM":
-                    case "RSK":
-                    case "VV":
-                    case "PI":
-                    case "TS":
-                    case "II":
-                    case "GOV":
+            ////        case "CAR":
+            ////        case "CM":
+            ////        case "DAR":
+            ////        case "EST":
+            ////        case "MC":
+            ////        case "MPM":
+            ////        case "OT":
+            ////        case "PAD":
+            ////        case "PCM":
+            ////        case "PLAN":
+            ////        case "PQA":
+            ////        case "PR":
+            ////        case "RDM":
+            ////        case "RSK":
+            ////        case "VV":
+            ////        case "PI":
+            ////        case "TS":
+            ////        case "II":
+            ////        case "GOV":
 
-                        wsMain = mainWorkbook.Worksheets[wsSource.Name];
-                        // *** Search string
+            ////            wsMain = mainWorkbook.Worksheets[wsSource.Name];
+            ////            // *** Search string
 
-                        //const int cDemixOEToolEmptyColumn = 1;
-                        //const int cDemixOEToolHeadingStartRow = 8;
-                        //const int cDemixOEToolMaxRows = 1000;
+            ////            //const int cDemixOEToolEmptyColumn = 1;
+            ////            //const int cDemixOEToolHeadingStartRow = 8;
+            ////            //const int cDemixOEToolMaxRows = 1000;
 
 
-                        // *** Find the number of rows
-                        int NumberOfRows = Helper.FindEndOfWorksheet(wsSource, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
+            ////            // *** Find the number of rows
+            ////            int NumberOfRows = Helper.FindEndOfWorksheet(wsSource, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
 
-                        // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
-                        //ProcessRowsUsingObject(wsMain, wsSource, NumberOfRows, ref statusStr);
-                        ProcessRowsUsingExcel(wsMain, wsSource, NumberOfRows, ref statusStr);
+            ////            // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
+            ////            //ProcessRowsUsingObject(wsMain, wsSource, NumberOfRows, ref statusStr);
+            ////            ProcessRowsUsingExcel(wsMain, wsSource, NumberOfRows, ref statusStr);
 
-                        break;
+            ////            break;
 
-                }
+            ////    }
 
-            }
-            statusStr = statusStr + "done";
-            lblStatus.Text = statusStr;
+            ////}
+            ////statusStr = statusStr + "done";
+            ////lblStatus.Text = statusStr;
 
-            MessageBox.Show("Done");
+            ////MessageBox.Show("Done");
 
-            // Iterate through source, if you find [upload], change to [done-upload] AND copy full line to main
+            ////// Iterate through source, if you find [upload], change to [done-upload] AND copy full line to main
 
         }
 
@@ -3003,103 +3019,104 @@ namespace BASE
 
         private void btnBuildOUMaps_Click(object sender, EventArgs e)
         {
-            // *** Build temperary dictionary
-            buildTempDictionary();
+            // Remove from release 3.8.0.44
+            ////// *** Build temperary dictionary
+            ////buildTempDictionary();
 
-            // *** Identify pand s files
+            ////// *** Identify pand s files
 
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
-            {
-                MessageBox.Show("File not found, has it been moved or deleted?");
-                return;
-            }
-            string basePath = Path.GetDirectoryName(persistentData.DemixToolPathFile);
+            ////if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
+            ////{
+            ////    MessageBox.Show("File not found, has it been moved or deleted?");
+            ////    return;
+            ////}
+            ////string basePath = Path.GetDirectoryName(persistentData.DemixToolPathFile);
 
-            //  lblStatus.Text = "OEdb:";
+            //////  lblStatus.Text = "OEdb:";
 
-            var wksNameArray = WorkUnitList.Where(x => x.ID.Substring(0, 1).ToUpper() == "P" || x.ID.Substring(0, 1).ToUpper() == "S").ToArray();
-            //{ "p1", "p2", "p3", "p4", "p5", "p6", "s1", "s2", "s3", "s4" };
-            string statusStr = "";
+            ////var wksNameArray = WorkUnitList.Where(x => x.ID.Substring(0, 1).ToUpper() == "P" || x.ID.Substring(0, 1).ToUpper() == "S").ToArray();
+            //////{ "p1", "p2", "p3", "p4", "p5", "p6", "s1", "s2", "s3", "s4" };
+            ////string statusStr = "";
 
-            // *** For each p&s build the maps
+            ////// *** For each p&s build the maps
 
-            foreach (var aWksNameX in wksNameArray)
-            {
-                // copy tmp and rename 
-                Worksheet projectWks = mainWorkbook.Worksheets["tmp"];
-                projectWks.Copy(After: projectWks);
-                projectWks = mainWorkbook.Worksheets["tmp (2)"];
-                projectWks.Name = aWksNameX.ID;
-                projectWks.Cells[1, 1].Value = aWksNameX.Name;
+            ////foreach (var aWksNameX in wksNameArray)
+            ////{
+            ////    // copy tmp and rename 
+            ////    Worksheet projectWks = mainWorkbook.Worksheets["tmp"];
+            ////    projectWks.Copy(After: projectWks);
+            ////    projectWks = mainWorkbook.Worksheets["tmp (2)"];
+            ////    projectWks.Name = aWksNameX.ID;
+            ////    projectWks.Cells[1, 1].Value = aWksNameX.Name;
 
-                // setup the links to the detail data
-                lblStatus.Text = aWksNameX.ID + "(" + aWksNameX.Name + ")" + "OEdb:";
-                statusStr = lblStatus.Text;
-                //Worksheet projectWks = mainWorkbook.Worksheets[aWksName];
+            ////    // setup the links to the detail data
+            ////    lblStatus.Text = aWksNameX.ID + "(" + aWksNameX.Name + ")" + "OEdb:";
+            ////    statusStr = lblStatus.Text;
+            ////    //Worksheet projectWks = mainWorkbook.Worksheets[aWksName];
 
-                foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
-                {
-                    switch (wksOEdb.Name)
-                    {
+            ////    foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
+            ////    {
+            ////        switch (wksOEdb.Name)
+            ////        {
 
-                        case "CAR":
-                        case "CM":
-                        case "DAR":
-                        case "EST":
-                        case "MC":
-                        case "MPM":
-                        case "OT":
-                        case "PAD":
-                        case "PCM":
-                        case "PLAN":
-                        case "PQA":
-                        case "PR":
-                        case "RDM":
-                        case "RSK":
-                        case "VV":
-                        case "PI":
-                        case "TS":
-                            //  case "GOV":
-                            //   case "II":
+            ////            case "CAR":
+            ////            case "CM":
+            ////            case "DAR":
+            ////            case "EST":
+            ////            case "MC":
+            ////            case "MPM":
+            ////            case "OT":
+            ////            case "PAD":
+            ////            case "PCM":
+            ////            case "PLAN":
+            ////            case "PQA":
+            ////            case "PR":
+            ////            case "RDM":
+            ////            case "RSK":
+            ////            case "VV":
+            ////            case "PI":
+            ////            case "TS":
+            ////                //  case "GOV":
+            ////                //   case "II":
 
-                            int NumberOfRows = Helper.FindEndOfWorksheet(wksOEdb, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
-                            for (int rowX = cDemixOEToolHeadingStartRow; rowX <= NumberOfRows; rowX++)
-                            {
-                                // Search column B for the key
-                                string headingType = wksOEdb.Cells[rowX, 1]?.Value?.ToString().Trim();
-                                if (string.Compare(headingType, "4 Prac_Instan", ignoreCase: true) == 0)
-                                {
-                                    // is it the correct project
-                                    string projectNumber = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString();
-                                    if (projectNumber.Substring(0, 2) == projectWks.Name)
-                                    {
-                                        string keyStr = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
-                                        string rowColStr = FindDictionaryValue(TmpDictRowCol, keyStr);
-                                        if (!string.IsNullOrEmpty(rowColStr))
-                                        {
-                                            //projectWks.Range[rowColStr].Value = wksOEdb.Cells[rowX, 15]?.Value?.ToString() ?? "-";
-                                            projectWks.Range[rowColStr].Formula = $"={wksOEdb.Name}!O{rowX}"; //=TS!O11
-                                        }
+            ////                int NumberOfRows = Helper.FindEndOfWorksheet(wksOEdb, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
+            ////                for (int rowX = cDemixOEToolHeadingStartRow; rowX <= NumberOfRows; rowX++)
+            ////                {
+            ////                    // Search column B for the key
+            ////                    string headingType = wksOEdb.Cells[rowX, 1]?.Value?.ToString().Trim();
+            ////                    if (string.Compare(headingType, "4 Prac_Instan", ignoreCase: true) == 0)
+            ////                    {
+            ////                        // is it the correct project
+            ////                        string projectNumber = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString();
+            ////                        if (projectNumber.Substring(0, 2) == projectWks.Name)
+            ////                        {
+            ////                            string keyStr = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
+            ////                            string rowColStr = FindDictionaryValue(TmpDictRowCol, keyStr);
+            ////                            if (!string.IsNullOrEmpty(rowColStr))
+            ////                            {
+            ////                                //projectWks.Range[rowColStr].Value = wksOEdb.Cells[rowX, 15]?.Value?.ToString() ?? "-";
+            ////                                projectWks.Range[rowColStr].Formula = $"={wksOEdb.Name}!O{rowX}"; //=TS!O11
+            ////                            }
 
-                                    }
-                                }
+            ////                        }
+            ////                    }
 
-                            }
+            ////                }
 
 
 
-                            // *** Show the status
-                            statusStr = statusStr + wksOEdb.Name + ".";
-                            lblStatus.Text = statusStr;
-                            break;
-                    }
-                }
-            }
+            ////                // *** Show the status
+            ////                statusStr = statusStr + wksOEdb.Name + ".";
+            ////                lblStatus.Text = statusStr;
+            ////                break;
+            ////        }
+            ////    }
+            ////}
 
-            statusStr = statusStr + "done";
-            lblStatus.Text = statusStr;
+            ////statusStr = statusStr + "done";
+            ////lblStatus.Text = statusStr;
 
-            MessageBox.Show("Done");
+            ////MessageBox.Show("Done");
         }
 
         private string FindDictionaryValue(Dictionary<string, string> aDict, string KeyStr)
@@ -3128,173 +3145,178 @@ namespace BASE
 
         private void btnExtractOEFindings_Click(object sender, EventArgs e)
         {
-            // *** Load main CMMI tool
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
-            {
-                MessageBox.Show("File not found, has it been moved or deleted?");
-                return;
-            }
+            // Remove from release 3.8.0.44
 
-            // *** Does the main workbook contain a findings sheet, if not add one, if it does, assign it and clear it
-            Worksheet findingsWks = AssignOrCreateWorksheet(mainWorkbook, "Findings");
-            findingsWks.Range["A:C"].Clear();
-            findingsWks.Cells[1, 1].Value = "PA";
-            findingsWks.Cells[1, 2].Value = "Strength/Weakness/Improvement";
-            findingsWks.Cells[1, 3].Value = "Description";
+            //// *** Load main CMMI tool
+            //if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
+            //{
+            //    MessageBox.Show("File not found, has it been moved or deleted?");
+            //    return;
+            //}
+
+            //// *** Does the main workbook contain a findings sheet, if not add one, if it does, assign it and clear it
+            //Worksheet findingsWks = AssignOrCreateWorksheet(mainWorkbook, "Findings");
+            //findingsWks.Range["A:C"].Clear();
+            //findingsWks.Cells[1, 1].Value = "PA";
+            //findingsWks.Cells[1, 2].Value = "Strength/Weakness/Improvement";
+            //findingsWks.Cells[1, 3].Value = "Description";
 
 
-            int findigsRow = 2;
+            //int findigsRow = 2;
 
-            lblStatus.Text = "";
-            string statusStr = "";
-            foreach (Worksheet wksMain in mainWorkbook.Worksheets)
-            {
-                switch (wksMain.Name)
-                {
+            //lblStatus.Text = "";
+            //string statusStr = "";
+            //foreach (Worksheet wksMain in mainWorkbook.Worksheets)
+            //{
+            //    switch (wksMain.Name)
+            //    {
 
-                    case "CAR":
-                    case "CM":
-                    case "DAR":
-                    case "EST":
-                    case "MC":
-                    case "MPM":
-                    case "OT":
-                    case "PAD":
-                    case "PCM":
-                    case "PLAN":
-                    case "PQA":
-                    case "PR":
-                    case "RDM":
-                    case "RSK":
-                    case "VV":
-                    case "PI":
-                    case "TS":
-                    case "GOV":
-                    case "II":
-                        HelperExtractFindingsDemixOE(wksMain, findingsWks, cDXXSearchNumberOfWksRowsCol, cDMostPAStartRow, cDMostPAEndRow, ref findigsRow);
-                        statusStr = statusStr + "." + wksMain.Name;
-                        break;
+            //        case "CAR":
+            //        case "CM":
+            //        case "DAR":
+            //        case "EST":
+            //        case "MC":
+            //        case "MPM":
+            //        case "OT":
+            //        case "PAD":
+            //        case "PCM":
+            //        case "PLAN":
+            //        case "PQA":
+            //        case "PR":
+            //        case "RDM":
+            //        case "RSK":
+            //        case "VV":
+            //        case "PI":
+            //        case "TS":
+            //        case "GOV":
+            //        case "II":
+            //            HelperExtractFindingsDemixOE(wksMain, findingsWks, cDXXSearchNumberOfWksRowsCol, cDMostPAStartRow, cDMostPAEndRow, ref findigsRow);
+            //            statusStr = statusStr + "." + wksMain.Name;
+            //            break;
 
-                }
-                lblStatus.Text = statusStr;
-            }
-            //  wksMain.Application.Visible = true;
-            findingsWks.Activate();
-            MessageBox.Show("Findings extracted");
+            //    }
+            //    lblStatus.Text = statusStr;
+            //}
+            ////  wksMain.Application.Visible = true;
+            //findingsWks.Activate();
+            //MessageBox.Show("Findings extracted");
         }
 
         private void btnAbridge_Click(object sender, EventArgs e)
         {
-            // *** Setup the main sheet
-            // excelApp.Visible = true;
 
-            // *** Load main
-            //mainWorkbook = excelApp.Workbooks.Open(persistentData.OEdatabasePathFile);
+            // Remove from release 3.8.0.44
+            
+            ////// *** Setup the main sheet
+            ////// excelApp.Visible = true;
 
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
-            {
-                //MessageBox.Show($"File {Path.GetFileName(persistentData.OEdatabasePathFile)}" +
-                //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.OEdatabasePathFile)}" +
-                //    "\n\rdoes not exists");
-                MessageBox.Show("File not found, has it been moved or deleted?");
-                return;
-            }
-            string basePath = Path.GetDirectoryName(persistentData.DemixToolPathFile);
+            ////// *** Load main
+            //////mainWorkbook = excelApp.Workbooks.Open(persistentData.OEdatabasePathFile);
 
-            lblStatus.Text = "OEdb:";
-            string statusStr = "";
-            foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
-            {
-                int fileNumber = 1;
+            ////if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
+            ////{
+            ////    //MessageBox.Show($"File {Path.GetFileName(persistentData.OEdatabasePathFile)}" +
+            ////    //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.OEdatabasePathFile)}" +
+            ////    //    "\n\rdoes not exists");
+            ////    MessageBox.Show("File not found, has it been moved or deleted?");
+            ////    return;
+            ////}
+            ////string basePath = Path.GetDirectoryName(persistentData.DemixToolPathFile);
 
-                switch (wksOEdb.Name)
-                {
+            ////lblStatus.Text = "OEdb:";
+            ////string statusStr = "";
+            ////foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
+            ////{
+            ////    int fileNumber = 1;
 
-                    case "CAR":
-                    case "CM":
-                    case "DAR":
-                    case "EST":
-                    case "MC":
-                    case "MPM":
-                    case "OT":
-                    case "PAD":
-                    case "PCM":
-                    case "PLAN":
-                    case "PQA":
-                    case "PR":
-                    case "RDM":
-                    case "RSK":
-                    case "VV":
-                    case "PI":
-                    case "TS":
-                    case "GOV":
-                    case "II":
+            ////    switch (wksOEdb.Name)
+            ////    {
 
-                        //if (wksOEdb.Name=="PI")
-                        //{
-                        //    int stop = 1;
-                        //}
-                        // *** Find the number of rows
-                        int NumberOfRows = Helper.FindEndOfWorksheet(wksOEdb, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
-                        // Range columnToClear = wksOEdb.Range["Y:Z"];
-                        // columnToClear.Clear();
+            ////        case "CAR":
+            ////        case "CM":
+            ////        case "DAR":
+            ////        case "EST":
+            ////        case "MC":
+            ////        case "MPM":
+            ////        case "OT":
+            ////        case "PAD":
+            ////        case "PCM":
+            ////        case "PLAN":
+            ////        case "PQA":
+            ////        case "PR":
+            ////        case "RDM":
+            ////        case "RSK":
+            ////        case "VV":
+            ////        case "PI":
+            ////        case "TS":
+            ////        case "GOV":
+            ////        case "II":
 
-                        // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
-                        Range mainRange = wksOEdb.Range["A" + cDemixOEToolHeadingStartRow, "Z" + NumberOfRows];
+            ////            //if (wksOEdb.Name=="PI")
+            ////            //{
+            ////            //    int stop = 1;
+            ////            //}
+            ////            // *** Find the number of rows
+            ////            int NumberOfRows = Helper.FindEndOfWorksheet(wksOEdb, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
+            ////            // Range columnToClear = wksOEdb.Range["Y:Z"];
+            ////            // columnToClear.Clear();
 
-                        // *** List all the hyperlinks https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Link/Retrieve-Hyperlinks-from-an-Excel-Sheet-in-C-VB.NET.html
-                        Hyperlinks hyperLinkList = mainRange.Hyperlinks;
-                        List<Hyperlink> hyperLinksToAdd = new List<Hyperlink>();
+            ////            // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
+            ////            Range mainRange = wksOEdb.Range["A" + cDemixOEToolHeadingStartRow, "Z" + NumberOfRows];
 
-                        int hyperLinkRow;
-                        int hyperLinkCol;
-                        string hyperlinkAddress;
+            ////            // *** List all the hyperlinks https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Link/Retrieve-Hyperlinks-from-an-Excel-Sheet-in-C-VB.NET.html
+            ////            Hyperlinks hyperLinkList = mainRange.Hyperlinks;
+            ////            List<Hyperlink> hyperLinksToAdd = new List<Hyperlink>();
 
-                        foreach (Hyperlink aHyperlink in hyperLinkList)
-                        {
-                            // *** Take each hyperlink and test it
-                            hyperLinkRow = aHyperlink.Range.Row;
-                            hyperLinkCol = aHyperlink.Range.Column;
-                            hyperlinkAddress = aHyperlink.Address;
+            ////            int hyperLinkRow;
+            ////            int hyperLinkCol;
+            ////            string hyperlinkAddress;
 
-                            // *** Test if the file exists
+            ////            foreach (Hyperlink aHyperlink in hyperLinkList)
+            ////            {
+            ////                // *** Take each hyperlink and test it
+            ////                hyperLinkRow = aHyperlink.Range.Row;
+            ////                hyperLinkCol = aHyperlink.Range.Column;
+            ////                hyperlinkAddress = aHyperlink.Address;
 
-                            mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"].Value = "engl";
-                            mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol] = mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"];
-                            mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol].Value = wksOEdb.Name + fileNumber.ToString("D2");
-                            fileNumber++;
+            ////                // *** Test if the file exists
+
+            ////                mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"].Value = "engl";
+            ////                mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol] = mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"];
+            ////                mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol].Value = wksOEdb.Name + fileNumber.ToString("D2");
+            ////                fileNumber++;
 
 
-                        }
-                        foreach (Hyperlink aHyperlink in hyperLinkList)
-                        {
-                            hyperLinkRow = aHyperlink.Range.Row;
-                            hyperLinkCol = aHyperlink.Range.Column;
-                            //mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol].HorizontalAlignment = 
-                            //mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol].VerticalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                            aHyperlink.Delete();
+            ////            }
+            ////            foreach (Hyperlink aHyperlink in hyperLinkList)
+            ////            {
+            ////                hyperLinkRow = aHyperlink.Range.Row;
+            ////                hyperLinkCol = aHyperlink.Range.Column;
+            ////                //mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol].HorizontalAlignment = 
+            ////                //mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol].VerticalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+            ////                aHyperlink.Delete();
 
-                            // https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.tools.excel.namedrange.font?view=vsto-2017
+            ////                // https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.tools.excel.namedrange.font?view=vsto-2017
 
-                            wksOEdb.Cells[hyperLinkRow, hyperLinkCol].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                            wksOEdb.Cells[hyperLinkRow, hyperLinkCol].VerticalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-                            wksOEdb.Cells[hyperLinkRow, hyperLinkCol].Font.Color = Color.Blue; // https://docs.devexpress.com/OfficeFileAPI/12357/spreadsheet-document-api/examples/formatting/how-to-change-cell-font-and-background-color
+            ////                wksOEdb.Cells[hyperLinkRow, hyperLinkCol].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+            ////                wksOEdb.Cells[hyperLinkRow, hyperLinkCol].VerticalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
+            ////                wksOEdb.Cells[hyperLinkRow, hyperLinkCol].Font.Color = Color.Blue; // https://docs.devexpress.com/OfficeFileAPI/12357/spreadsheet-document-api/examples/formatting/how-to-change-cell-font-and-background-color
 
-                            wksOEdb.Cells[hyperLinkRow, hyperLinkCol].Font.UnderLine = true; // https://www.gemboxsoftware.com/spreadsheet/examples/c-sharp-vb-net-excel-style-formatting/202
+            ////                wksOEdb.Cells[hyperLinkRow, hyperLinkCol].Font.UnderLine = true; // https://www.gemboxsoftware.com/spreadsheet/examples/c-sharp-vb-net-excel-style-formatting/202
 
-                            // Range aRange = wksOEdb.Range[hyperLinkRow, hyperLinkCol];
+            ////                // Range aRange = wksOEdb.Range[hyperLinkRow, hyperLinkCol];
 
-                        }
-                        // *** Show the status
-                        statusStr = statusStr + wksOEdb.Name + ".";
-                        lblStatus.Text = statusStr;
-                        break;
-                }
-            }
-            statusStr = statusStr + "done";
-            lblStatus.Text = statusStr;
+            ////            }
+            ////            // *** Show the status
+            ////            statusStr = statusStr + wksOEdb.Name + ".";
+            ////            lblStatus.Text = statusStr;
+            ////            break;
+            ////    }
+            ////}
+            ////statusStr = statusStr + "done";
+            ////lblStatus.Text = statusStr;
 
-            MessageBox.Show("Done");
+            ////MessageBox.Show("Done");
         }
 
         private void tabDemixTool_Click(object sender, EventArgs e)

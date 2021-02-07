@@ -13,4 +13,7 @@
   <PropertyGroup>
     <EnableSecurityDebugging>false</EnableSecurityDebugging>
   </PropertyGroup>
+  <PropertyGroup>
+    <DebugSecurityZoneURL>https://www.demix.org/apps/</DebugSecurityZoneURL>
+  </PropertyGroup>
 </Project>
