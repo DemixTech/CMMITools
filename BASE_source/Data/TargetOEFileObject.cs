@@ -787,6 +787,72 @@ namespace BASE.Data
             return true;
         }
 
+        public bool MergeATMintoATL2(System.Windows.Forms.Label lblStatus, TargetOEFileObject fileToImport)
+        {
+
+            // *** Load source
+            Workbook sourceWorkbook;
+            if ((sourceWorkbook = Helper.CheckIfOpenAndOpen(fileToImport._directoryFileName)) == null)
+            {
+                MessageBox.Show("File not found, has it been moved or deleted?");
+                return false;
+            }
+            // *** Load main
+            Workbook mainWorkbook;
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            {
+                MessageBox.Show("File not found, has it been moved or deleted?");
+                return false;
+            }
+
+            //  string sValueN;
+            Worksheet wsMain;
+
+            lblStatus.Text = "";
+            foreach (Worksheet wsSource in sourceWorkbook.Sheets)
+            {
+
+                switch (wsSource.Name)
+                {
+
+                    case "CAR":
+                    case "CM":
+                    case "DAR":
+                    case "EST":
+                    case "MC":
+                    case "MPM":
+                    case "OT":
+                    case "PAD":
+                    case "PCM":
+                    case "PLAN":
+                    case "PQA":
+                    case "PR":
+                    case "RDM":
+                    case "RSK":
+                    case "VV":
+                    case "PI":
+                    case "TS":
+                    case "II":
+                    case "GOV":
+
+                        wsMain = mainWorkbook.Worksheets[wsSource.Name];
+                        // *** Find the number of rows
+                        int NumberOfRows = Helper.FindEndOfWorksheet(wsSource, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
+
+                        // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
+                        //ProcessRowsUsingObject(wsMain, wsSource, NumberOfRows, ref statusStr);
+                        ProcessRowsUsingExcel(wsMain, wsSource, NumberOfRows);
+                        lblStatus.Text = lblStatus.Text + " " + wsSource.Name;
+                        break;
+
+                }
+
+            }
+            lblStatus.Text = lblStatus.Text + "done";
+            MessageBox.Show("Done");
+            return true;
+
+        }
 
 
         // ********** HELPER METHODS ****************
@@ -896,6 +962,58 @@ namespace BASE.Data
 
         }
 
+        private void ProcessRowsUsingExcel(Worksheet wsMain, Worksheet wsSource, int NumberOfRows)
+        {
+            // *** Clear the columns
+            Range wsMainToClear = wsMain.Range[wsMain.Cells[9, 17], wsMain.Cells[NumberOfRows, 17]];
+            wsMainToClear.Interior.Color = Color.White;
+            
+            Range wsImportToClear = wsSource.Range[wsSource.Cells[9, 17], wsSource.Cells[NumberOfRows, 17]];
+            wsImportToClear.Interior.Color = Color.White;
+
+            // *** search rows for for upload
+            for (int rowS = cDemixOEToolHeadingStartRow; rowS < (NumberOfRows + cDemixOEToolHeadingStartRow); rowS++)
+            {
+                var cellX = wsSource.Cells[rowS, 17].Value;
+                if (cellX != null)
+                {
+                    string cellXStr = cellX.ToString().Trim().ToUpper();
+
+                    if (cellXStr == "Y" || cellXStr == "YES") // Colum Q has a "Y" or "YES"
+                    {
+                        // wsMain.Range[wsMain.Cells[rowS, 1], wsMain.Cells[rowS, 16]] = wsSource.Range[wsSource.Cells[rowS, 1], wsSource.Cells[rowS, 16]]; // Rows[rowS];
+                        copyRow(wsMain, wsSource, rowS, 1, 18);
+
+                        // Colors from https://safeery2k.wordpress.com/2013/06/19/system-drawing-knowncolor/
+
+                        wsMain.Cells[rowS, 17].Value = DateTime.Now.ToString("s"); // put the short date time here
+                        wsMain.Cells[rowS, 17].Interior.Color = Color.Cyan;
+                       
+                        wsSource.Cells[rowS, 17].Value = "updated";
+                        wsSource.Cells[rowS, 17].Interior.Color = Color.Lime;
+                    }
+                }
+            }
+
+        }
+
+        private void copyRow(Worksheet wsMain, Worksheet wsSource, int row, int startCol, int endCol)
+        {
+            for (int aCol = startCol; aCol <= endCol; aCol++)
+            {
+
+                if (wsSource.Cells[row, aCol] != null) // && aCol != 4) // do not copy col D
+                {
+                    // https://docs.devexpress.com/OfficeFileAPI/12235/spreadsheet-document-api/examples/cells/how-to-copy-cell-data-only-cell-style-only-or-cell-data-with-style
+                    Range sourceCell = wsSource.Cells[row, aCol];
+                    Range destCell = wsMain.Cells[row, aCol];
+
+                    destCell.Value = sourceCell.Value; // .CopyFromRecordset(sourceCell);
+                    destCell.Interior.Color = sourceCell.Interior.Color;
+
+                }
+            }
+        }
 
     }
 

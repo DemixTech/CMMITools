@@ -36,6 +36,7 @@ namespace BASE
         #region globals
         const string CTargetCASFileXML = @"BASE\TargetCASFileXML.xml";
         const string CTargetOEdbFileXML = @"BASE\TargetOEdbFileXML.xml";
+        const string CTargetOEdbImportFileXML = @"BASE\TargetOEdbImportFileXML.xml";
         const string CQuestionFileXML = @"BASE\TargetQuestionModelFileXML.xml";
 
         private const string cPath_start = @"C:\Users\PietervanZyl\Demix (Pty) Ltd\Demix Global - PieterVZ\4_Appraisals\2020-12-11 (A5) R370 D5360 C51813 Goshine Tech";
@@ -106,6 +107,7 @@ namespace BASE
         // *** BASE file objects
         private TargetCASFileObject CASFileObject;
         private TargetOEFileObject CASOEdbObject;
+        private TargetOEFileObject CASOEdbImportObject;
         private TargetQuestionsFileObject BASEQuestionObject;
 
 
@@ -137,17 +139,23 @@ namespace BASE
             // *** Startup program objects
             CASFileObject = new TargetCASFileObject();
             CASFileObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetCASFileXML), lblCASPathXML, lblCASFileXML, lblCASPlanPathText, lblCASPlanFileText);
-            CASFileObject.LoadPersistantXMLdata(); // .LoadPersistant(); // Load saved information if available
+            CASFileObject.LoadPersistantXMLdata(); // 
 
             // *** Startup oeDb objects
             CASOEdbObject = new TargetOEFileObject();
             CASOEdbObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetOEdbFileXML), lblOEPathXML2, lblOEFileXML2, lblOEPath2, lblOEFile2);
-            CASOEdbObject.LoadPersistantXMLdata(); // .LoadPersistant(); // Load saved information if available
+            CASOEdbObject.LoadPersistantXMLdata(); // 
 
-            // *** Startup oeDb objects
+            // *** Startup oeDb import objects
+            CASOEdbImportObject = new TargetOEFileObject();
+            CASOEdbImportObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetOEdbImportFileXML), lblPathOEdbImportXML2, lblFileOEdbImportXML2,
+                lblPathOEdbImport2, lblFileOEdbImport2); ;
+            CASOEdbImportObject.LoadPersistantXMLdata(); //
+
+            // *** Startup Question objects
             BASEQuestionObject = new TargetQuestionsFileObject();
             BASEQuestionObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CQuestionFileXML), lblQMPathXML2, lblQMfileXML2, lblQuestionPath2, lblQuestionFile2);
-            BASEQuestionObject.LoadPersistantXMLdata(); // .LoadPersistant(); // Load saved information if available
+            BASEQuestionObject.LoadPersistantXMLdata(); // 
 
 
             persistentData.LoadPersistentData();
@@ -3463,6 +3471,39 @@ namespace BASE
             {
                 MessageBox.Show($"Could not build the abridged OEdb");
             }
+        }
+
+        private void btnImportOEdb2_Click(object sender, EventArgs e)
+        {
+            //CASFileObject.LoadPersistant();
+            if (CASOEdbImportObject.SelectFileToLoad(TargetFileObject.COEdbATMinName) == false)
+            {
+                MessageBox.Show($"No file selected.");
+            }
+            else
+            {
+                CASOEdbImportObject.SavePersistant(CASOEdbImportObject);
+            }
+        }
+
+        private void btnMergeATMintoATL2_Click(object sender, EventArgs e)
+        {
+            if (CASOEdbImportObject == null)
+            {
+                MessageBox.Show($"The import OEdbATM has not been selected");
+                return;
+            }
+            if (CASOEdbObject == null)
+            {
+                MessageBox.Show($"The main OEdbATL file has not been selected");
+                return;
+            }
+
+            if (CASOEdbObject.MergeATMintoATL2(lblStatus, CASOEdbImportObject) == false)
+            {
+                MessageBox.Show($"The mergining has not been completed.");
+            }
+
         }
     }
 }

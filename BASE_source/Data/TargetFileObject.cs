@@ -16,7 +16,8 @@ namespace BASE.Data
     abstract public class TargetFileObject
     {
         public const string CCASinName = "CAS"; // This string must be present in the filename (not the directory) to be valid
-        public const string COEdbinName = "OEdb"; // This string must be present in the filename (not the directory) to be valid
+        public const string COEdbinName = "OEdbATL"; // This string must be present in the filename (not the directory) to be valid
+        public const string COEdbATMinName = "OEdbATM"; // The team leads version of the OEdb
         public const string CQuestionInName = "Question"; // Question is in the name
 
         // https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlattributes.xmlignore?view=net-5.0
