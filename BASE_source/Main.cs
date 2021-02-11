@@ -38,6 +38,8 @@ namespace BASE
         const string CTargetOEdbFileXML = @"BASE\TargetOEdbFileXML.xml";
         const string CTargetOEdbImportFileXML = @"BASE\TargetOEdbImportFileXML.xml";
         const string CQuestionFileXML = @"BASE\TargetQuestionModelFileXML.xml";
+        const string CDataReferenceFileXML = @"BASE\TargetDataReferenceFileXML.xml";
+        const string CPresentationFileXML = @"BASE\TargetPresentationFileXML.xml";
 
         private const string cPath_start = @"C:\Users\PietervanZyl\Demix (Pty) Ltd\Demix Global - PieterVZ\4_Appraisals\2020-12-11 (A5) R370 D5360 C51813 Goshine Tech";
         private const int cProjectHeadingStartRow = 2; // tab:Projects start row
@@ -100,7 +102,7 @@ namespace BASE
         private Workbook sourceWorkbook;
         private Workbook mainWorkbook;
 
-        private Workbook questionWorkbook; // The workbook that contains the questions and the model
+    //    private Workbook questionWorkbook; // The workbook that contains the questions and the model
 
         public PersistentData persistentData = new PersistentData();
 
@@ -109,6 +111,10 @@ namespace BASE
         private TargetOEFileObject CASOEdbObject;
         private TargetOEFileObject CASOEdbImportObject;
         private TargetQuestionsFileObject BASEQuestionObject;
+
+        private TargetDataReferenceFileObject BASEDataReferenceObject;
+        private TargetPresentationFileObject BASEPresentationObject;
+
 
 
         #endregion
@@ -157,7 +163,20 @@ namespace BASE
             BASEQuestionObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CQuestionFileXML), lblQMPathXML2, lblQMfileXML2, lblQuestionPath2, lblQuestionFile2);
             BASEQuestionObject.LoadPersistantXMLdata(); // 
 
+            // *** Startup Data reference object
+            BASEDataReferenceObject = new TargetDataReferenceFileObject();
+            BASEDataReferenceObject.InitialiseObject(CDataReferenceFileXML, lblDataReferenceXMLPath2, lblDataReferenceXMLFile2,
+                lblXlsxPath2, lblXlsxFile2);
+            BASEDataReferenceObject.LoadPersistantXMLdata();
 
+            // *** Startup presentation object
+            BASEPresentationObject = new TargetPresentationFileObject();
+            BASEPresentationObject.InitialiseObject(CPresentationFileXML, lblPresentationXMLPath2, lblPresentationXMLFile2,
+                lblPptxPath2, lblPptxFile2);
+            BASEPresentationObject.LoadPersistantXMLdata();
+
+
+            // *** Old code
             persistentData.LoadPersistentData();
             lblWorkingDirectory.Text = persistentData.LastAppraisalDirectory;
             lblPlanName.Text = persistentData.CASPlanName;
@@ -269,7 +288,7 @@ namespace BASE
             // aWorkbook = excelApp.Workbooks.Open(filePath);
 
 
-            if ((aWorkbook = Helper.CheckIfOpenAndOpen(filePath)) == null)
+            if ((aWorkbook = Helper.CheckIfOpenAndOpenXlsx(filePath)) == null)
             {
                 //MessageBox.Show($"File {Path.GetFileName(filePath)}" +
                 //    $"\n\rDirectory {Path.GetDirectoryName(filePath)}" +
@@ -933,7 +952,7 @@ namespace BASE
                 // *** Load main
                 //mainWorkbook = excelApp.Workbooks.Open(persistentData.AppToolMainPathFile);
 
-                if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.AppToolSourcePathFile)) == null)
+                if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(persistentData.AppToolSourcePathFile)) == null)
                 {
                     //MessageBox.Show($"File {Path.GetFileName(persistentData.AppToolMainPathFile)}" +
                     //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.AppToolMainPathFile)}" +
@@ -1079,7 +1098,7 @@ namespace BASE
             // *** Load main
             //mainWorkbook = excelApp.Workbooks.Open(persistentData.AppToolMainPathFile);
             ;
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.AppToolMainPathFile)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(persistentData.AppToolMainPathFile)) == null)
             {
                 //MessageBox.Show($"File {Path.GetFileName(persistentData.AppToolMainPathFile)}" +
                 //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.AppToolMainPathFile)}" +
@@ -1220,7 +1239,7 @@ namespace BASE
 
             // *** Load source
             //sourceWorkbook = excelApp.Workbooks.Open(persistentData.AppToolSourcePathFile);
-            if ((sourceWorkbook = Helper.CheckIfOpenAndOpen(persistentData.AppToolSourcePathFile)) == null)
+            if ((sourceWorkbook = Helper.CheckIfOpenAndOpenXlsx(persistentData.AppToolSourcePathFile)) == null)
             {
                 //MessageBox.Show($"File {Path.GetFileName(persistentData.AppToolSourcePathFile)}" +
                 //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.AppToolSourcePathFile)}" +
@@ -1230,7 +1249,7 @@ namespace BASE
             }
             // *** Load main
             //mainWorkbook = excelApp.Workbooks.Open(persistentData.AppToolMainPathFile);
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.AppToolMainPathFile)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(persistentData.AppToolMainPathFile)) == null)
             {
                 //MessageBox.Show($"File {Path.GetFileName(persistentData.AppToolMainPathFile)}" +
                 //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.AppToolMainPathFile)}" +
@@ -1393,7 +1412,7 @@ namespace BASE
             // *** Load main
             // mainWorkbook = excelApp.Workbooks.Open(persistentData.AppToolMainPathFile);
 
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.AppToolMainPathFile)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(persistentData.AppToolMainPathFile)) == null)
             {
                 //MessageBox.Show($"File {Path.GetFileName(persistentData.AppToolMainPathFile)}" +
                 //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.AppToolMainPathFile)}" +
@@ -1456,7 +1475,7 @@ namespace BASE
 
             // *** Load main CMMI tool
             // mainWorkbook = excelApp.Workbooks.Open(persistentData.AppToolMainPathFile);
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.AppToolMainPathFile)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(persistentData.AppToolMainPathFile)) == null)
             {
                 //MessageBox.Show($"File {Path.GetFileName(persistentData.AppToolMainPathFile)}" +
                 //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.AppToolMainPathFile)}" +
@@ -1738,7 +1757,7 @@ namespace BASE
             // *** Load main
             //mainWorkbook = excelApp.Workbooks.Open(persistentData.OEdatabasePathFile);
 
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.OEdatabasePathFile)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(persistentData.OEdatabasePathFile)) == null)
             {
                 //MessageBox.Show($"File {Path.GetFileName(persistentData.OEdatabasePathFile)}" +
                 //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.OEdatabasePathFile)}" +
@@ -1892,7 +1911,7 @@ namespace BASE
             // *** Load main
             // mainWorkbook = excelApp.Workbooks.Open(persistentData.AppToolMainPathFile);
 
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.AppToolMainPathFile)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(persistentData.AppToolMainPathFile)) == null)
             {
                 //MessageBox.Show($"File {Path.GetFileName(persistentData.AppToolMainPathFile)}" +
                 //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.AppToolMainPathFile)}" +
@@ -2104,7 +2123,7 @@ namespace BASE
         {
 
             // *** Load main
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.AppToolMainPathFile)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(persistentData.AppToolMainPathFile)) == null)
             {
                 MessageBox.Show("File not found, has it been moved or deleted?");
                 return;
@@ -2984,7 +3003,7 @@ namespace BASE
             TmpDicValue.Clear();
             TmpDictRowCol.Clear();
 
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(persistentData.DemixToolPathFile)) == null)
             {
                 MessageBox.Show("File not found, has it been moved or deleted?");
                 return;
@@ -3525,6 +3544,53 @@ namespace BASE
             {
                 MessageBox.Show($"The mergining has not been completed.");
             }
+
+        }
+
+        private void btnSelectXlsxAdmin_Click(object sender, EventArgs e)
+        {
+            if (BASEDataReferenceObject.SelectFileToLoad("Data_Reference") == false)
+            {
+                MessageBox.Show($"No file selected.");
+            }
+            else
+            {
+                BASEDataReferenceObject.SavePersistant(BASEDataReferenceObject);
+            }
+        }
+
+
+        private void btnSelectPptxAdmin_Click(object sender, EventArgs e)
+        {
+            if (BASEPresentationObject.SelectFileToLoad("") == false)
+            {
+                MessageBox.Show($"No file selected.");
+            }
+            else
+            {
+                BASEPresentationObject.SavePersistant(BASEPresentationObject);
+            }
+        }
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
+            if (BASEPresentationObject.UpdateLinks(BASEDataReferenceObject) == true)
+            { // file was loaded
+                BASEPresentationObject.SavePersistant(BASEPresentationObject);
+            }
+            else
+            { // file was not loaded
+                MessageBox.Show($"Link updates not successfull!");
+            }
+
+
+            return;
+
 
         }
     }

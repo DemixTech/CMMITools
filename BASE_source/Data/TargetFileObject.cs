@@ -86,29 +86,29 @@ namespace BASE.Data
         abstract public bool LoadPersistantXMLdata();
         abstract public void SavePersistant(object o);
         //{
-            //try
-            //{
-            //    if (File.Exists(_directoryFileNameXML))
-            //    {
-            //        // If the directory and file name exists, laod the data
-            //        var xs = new XmlSerializer(typeof(TargetFileObject));
-            //        using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
-            //        {
-            //            var pData = (TargetFileObject)xs.Deserialize(xmlLoad);
-            //            this.DirectoryFileName = pData._directoryFileName;
-            //        }
-            //        return true;
-            //    }
-            //    else
-            //    {
-            //        return false; // file could not be loaded
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Error {ex.Message} loading {_directoryFileNameXML}");
-            //    return false;
-            //}
+        //try
+        //{
+        //    if (File.Exists(_directoryFileNameXML))
+        //    {
+        //        // If the directory and file name exists, laod the data
+        //        var xs = new XmlSerializer(typeof(TargetFileObject));
+        //        using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
+        //        {
+        //            var pData = (TargetFileObject)xs.Deserialize(xmlLoad);
+        //            this.DirectoryFileName = pData._directoryFileName;
+        //        }
+        //        return true;
+        //    }
+        //    else
+        //    {
+        //        return false; // file could not be loaded
+        //    }
+        //}
+        //catch (Exception ex)
+        //{
+        //    MessageBox.Show($"Error {ex.Message} loading {_directoryFileNameXML}");
+        //    return false;
+        //}
         //}
 
         // save persistent data
@@ -142,7 +142,7 @@ namespace BASE.Data
 
         public bool SelectFileToLoad(string fileNameKeyWord)
 
-      //  virtual public bool LoadFileData(string fileNameKeyWord)
+        //  virtual public bool LoadFileData(string fileNameKeyWord)
         {
             // Check if the excel process is running
 
@@ -163,10 +163,8 @@ namespace BASE.Data
             if (sourceFile2.ShowDialog() == DialogResult.OK)
             {
                 // *** If the file name does not contain CAS, then we need to abort
-
-                if (Path.GetFileName(sourceFile2.FileName).ToUpper().Contains(fileNameKeyWord.ToUpper()))
+                if (string.IsNullOrEmpty(fileNameKeyWord) || Path.GetFileName(sourceFile2.FileName).ToUpper().Contains(fileNameKeyWord.ToUpper()))
                 {
-
                     // Set cursor as hourglass
                     //Cursor.Current = Cursors.WaitCursor;
                     this.DirectoryFileName = sourceFile2.FileName;
@@ -178,6 +176,7 @@ namespace BASE.Data
                     MessageBox.Show($"The filename {Path.GetFileName(sourceFile2.FileName)} does not contain the keyword \"{fileNameKeyWord}\"");
                     return false;
                 }
+
             }
             else
             {

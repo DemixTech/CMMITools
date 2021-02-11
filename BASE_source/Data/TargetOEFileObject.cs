@@ -121,7 +121,7 @@ namespace BASE.Data
 
             // open demix tool, if not open
             Workbook demixToolWkb;
-            if ((demixToolWkb = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            if ((demixToolWkb = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 MessageBox.Show("Cannot open the demix tool, is the file moved or deleted?");
                 return false;
@@ -353,7 +353,7 @@ namespace BASE.Data
             // *** Load main
             //mainWorkbook = excelApp.Workbooks.Open(persistentData.OEdatabasePathFile);
             Workbook mainWorkbook;
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 MessageBox.Show("File not found, has it been moved or deleted?");
                 return false;
@@ -504,7 +504,7 @@ namespace BASE.Data
         {
             // *** Load main CMMI tool
             Workbook mainWorkbook;
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 MessageBox.Show("File not found, has it been moved or deleted?");
                 return false;
@@ -568,7 +568,7 @@ namespace BASE.Data
 
             // *** Identify pand s files
             Workbook mainWorkbook;
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 MessageBox.Show("File not found, has it been moved or deleted?");
                 return false;
@@ -683,7 +683,7 @@ namespace BASE.Data
 
             // Now process the abridged filename
             Workbook mainWorkbook;
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(abridgedFileName)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(abridgedFileName)) == null)
             {
                 MessageBox.Show("File not found, has it been moved or deleted?");
                 return false;
@@ -792,14 +792,14 @@ namespace BASE.Data
 
             // *** Load source
             Workbook sourceWorkbook;
-            if ((sourceWorkbook = Helper.CheckIfOpenAndOpen(fileToImport._directoryFileName)) == null)
+            if ((sourceWorkbook = Helper.CheckIfOpenAndOpenXlsx(fileToImport._directoryFileName)) == null)
             {
                 MessageBox.Show("File not found, has it been moved or deleted?");
                 return false;
             }
             // *** Load main
             Workbook mainWorkbook;
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 MessageBox.Show("File not found, has it been moved or deleted?");
                 return false;
@@ -921,7 +921,7 @@ namespace BASE.Data
             TmpDictRowCol.Clear();
 
             Workbook mainWorkbook;
-            if ((mainWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 MessageBox.Show("File not found, has it been moved or deleted?");
                 return;

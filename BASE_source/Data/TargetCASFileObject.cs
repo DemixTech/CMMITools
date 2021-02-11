@@ -89,7 +89,7 @@ namespace BASE.Data
             Workbook aWorkbook;
 
             Cursor.Current = Cursors.WaitCursor;
-            if ((aWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            if ((aWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 // Set cursor as default arrow
                 Cursor.Current = Cursors.Default;
@@ -308,7 +308,7 @@ namespace BASE.Data
         {
             Workbook aWorkbook;
             Cursor.Current = Cursors.WaitCursor;
-            if ((aWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            if ((aWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 // Set cursor as default arrow
                 Cursor.Current = Cursors.Default;
@@ -341,7 +341,7 @@ namespace BASE.Data
         {
             Workbook aWorkbook;
             Cursor.Current = Cursors.WaitCursor;
-            if ((aWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            if ((aWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 // Set cursor as default arrow
                 Cursor.Current = Cursors.Default;
@@ -474,7 +474,7 @@ namespace BASE.Data
         {
             Workbook aWorkbook;
             Cursor.Current = Cursors.WaitCursor;
-            if ((aWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            if ((aWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 // Set cursor as default arrow
                 Cursor.Current = Cursors.Default;
@@ -573,7 +573,7 @@ namespace BASE.Data
             Workbook aWorkbook;
 
             Cursor.Current = Cursors.WaitCursor;
-            if ((aWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+            if ((aWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 // Set cursor as default arrow
                 Cursor.Current = Cursors.Default;

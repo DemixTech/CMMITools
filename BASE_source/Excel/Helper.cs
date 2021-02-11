@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop;
 using Microsoft.Office.Interop.Excel;
+using Microsoft.Office.Interop.PowerPoint;
 using BASE.Data;
 
 namespace BASE
@@ -105,7 +106,7 @@ namespace BASE
         /// <param name="pathA"></param>
         /// <returns></returns>
 
-        public static Workbook CheckIfOpenAndOpen(string pathA)
+        public static Workbook CheckIfOpenAndOpenXlsx(string pathA)
         {
 
             List<Workbook> listOfWorkbooks;
@@ -126,6 +127,33 @@ namespace BASE
                 Workbook bWkb = excelApp.Workbooks.Open(pathA);
                 bWkb.Application.Visible = true;
                 return bWkb;
+            }
+            return null;
+
+        }
+
+
+        public static Presentation CheckIfOpenAndOpenPptx(string pathA)
+        {
+
+            List<Presentation> listOfPresentations;
+            listOfPresentations = PptxGetRunningOjbects(); // Get all the open workbooks
+            foreach (Presentation aPptx in listOfPresentations)
+            {
+                string pathFileName = Path.Combine(aPptx.Path, aPptx.Name);
+                if (string.Compare(pathA, pathFileName.Trim(), ignoreCase: true) == 0)
+                { // string matches workbook exists, open it
+                    aPptx.Application.Visible = Microsoft.Office.Core.MsoTriState.msoCTrue;
+                    return aPptx;
+                }
+            }
+            // Workbook does not exists, open or create it
+            if (File.Exists(pathA))
+            {
+                Microsoft.Office.Interop.PowerPoint.Application pptxApp = new Microsoft.Office.Interop.PowerPoint.Application();
+                Presentation bPptx = pptxApp.Presentations.Open(pathA);
+                bPptx.Application.Visible = Microsoft.Office.Core.MsoTriState.msoCTrue;
+                return bPptx;
             }
             return null;
 
@@ -189,6 +217,58 @@ namespace BASE
                 if (lMonikerList != null) Marshal.ReleaseComObject(lMonikerList);
             }
             return listOfWorkbooks;
+        }
+
+        public static List<Presentation> PptxGetRunningOjbects()
+        {
+            IRunningObjectTable lRunningObjectTable = null;
+            IEnumMoniker lMonikerList = null;
+            List<Presentation> listOfPresentations = new List<Presentation>();
+
+            try
+            {
+                // Query Running Object Table 
+                if (GetRunningObjectTable(0, out lRunningObjectTable) != 0 || lRunningObjectTable == null)
+                {
+                    return listOfPresentations;
+                }
+
+                // List Monikers
+                lRunningObjectTable.EnumRunning(out lMonikerList);
+
+                // Start Enumeration
+                lMonikerList.Reset();
+
+                // Array used for enumerating Monikers
+                IMoniker[] lMonikerContainer = new IMoniker[1];
+
+                IntPtr lPointerFetchedMonikers = IntPtr.Zero;
+
+                // foreach Moniker
+                while (lMonikerList.Next(1, lMonikerContainer, lPointerFetchedMonikers) == 0)
+                {
+                    object lComObject;
+                    lRunningObjectTable.GetObject(lMonikerContainer[0], out lComObject);
+
+                    // Check the object is an Excel workbook
+                    if (lComObject is Microsoft.Office.Interop.PowerPoint.Presentation)
+                    {
+                        Microsoft.Office.Interop.PowerPoint.Presentation lPptxPresentation = (Microsoft.Office.Interop.PowerPoint.Presentation)lComObject;
+                        // Show the Window Handle 
+                        // MessageBox.Show("Found Excel Application with Window Handle " + lExcelWorkbook.Application.Hwnd);
+                        listOfPresentations.Add(lPptxPresentation);
+
+                        //MessageBox.Show($"Workbook name {lExcelWorkbook.Name}");
+                    }
+                }
+            }
+            finally
+            {
+                // Release ressources
+                if (lRunningObjectTable != null) Marshal.ReleaseComObject(lRunningObjectTable);
+                if (lMonikerList != null) Marshal.ReleaseComObject(lMonikerList);
+            }
+            return listOfPresentations;
         }
 
         public static PracticeArea ProcessPracticeArea(Workbook questionWkb, string worksheetName)

@@ -86,7 +86,7 @@ namespace BASE.Data
             else
             {
                 Workbook questionWorkbook;
-                if ((questionWorkbook = Helper.CheckIfOpenAndOpen(_directoryFileName)) == null)
+                if ((questionWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
                 {
                     // *** 
                     MessageBox.Show("File not found, has it been moved or deleted?");
