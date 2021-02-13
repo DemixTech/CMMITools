@@ -4,7 +4,7 @@
   <description asmv2:iconFile="BASEIcon.ico" asmv2:publisher="Demix" co.v1:suiteName="B.A.S.E." asmv2:product="B.A.S.E." asmv2:supportUrl="http://www.demix.org/tools" co.v1:errorReportUrl="http://www.demix.org/tools" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="BASE" version="3.8.0.47" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="BASE" version="3.8.0.48" language="neutral" processorArchitecture="msil" />
     <commandLine file="BASE.exe" parameters="" />
   </entryPoint>
   <co.v1:useManifestForTrust xmlns="urn:schemas-microsoft-com:asm.v1" />
@@ -45,13 +45,13 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="BASE.exe" size="250624">
-      <assemblyIdentity name="BASE" version="3.8.0.47" language="neutral" processorArchitecture="msil" />
+      <assemblyIdentity name="BASE" version="3.8.0.48" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>8pmkXevzbPtmdGi4TgSyAJ1As0SdCqOgI/3sm/gNHwY=</dsig:DigestValue>
+        <dsig:DigestValue>QO9+OvQXWmrtS0jbQNpOkmw3Q7nc0UVSC1P1LbTY//s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
