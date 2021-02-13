@@ -85,55 +85,13 @@ namespace BASE.Data
         // Load information about this TargetFileObject
         abstract public bool LoadPersistantXMLdata();
         abstract public void SavePersistant(object o);
-        //{
-        //try
-        //{
-        //    if (File.Exists(_directoryFileNameXML))
-        //    {
-        //        // If the directory and file name exists, laod the data
-        //        var xs = new XmlSerializer(typeof(TargetFileObject));
-        //        using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
-        //        {
-        //            var pData = (TargetFileObject)xs.Deserialize(xmlLoad);
-        //            this.DirectoryFileName = pData._directoryFileName;
-        //        }
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false; // file could not be loaded
-        //    }
-        //}
-        //catch (Exception ex)
-        //{
-        //    MessageBox.Show($"Error {ex.Message} loading {_directoryFileNameXML}");
-        //    return false;
-        //}
-        //}
 
-        // save persistent data
-        ////virtual public void SavePersistant()
-        ////{
-        ////    if (!Directory.Exists(Path.GetDirectoryName(_directoryFileNameXML)))
-        ////    {
-        ////        Directory.CreateDirectory(Path.GetDirectoryName(_directoryFileNameXML)); ;
-        ////    }
-        ////    var xs = new XmlSerializer(typeof(TargetFileObject));
-        ////    using (FileStream stream = File.Create(_directoryFileNameXML))
-        ////    {
-        ////        xs.Serialize(stream, this);
-        ////    }
-        ////}
+        public virtual void ClearPathFile()
+        {
+            DirectoryFileName = "";
+            SavePersistant(this);
+        }
 
-        ////virtual public void SavePersistant(TargetFileObject theTargetObject)
-        ////{
-        ////    // base.SavePersistant();
-        ////    var xs = new XmlSerializer(typeof(TargetFileObject));
-        ////    using (FileStream stream = File.Create(_directoryFileNameXML))
-        ////    {
-        ////        xs.Serialize(stream, theTargetObject);
-        ////    }
-        ////}
 
         /// <summary>
         /// Open a dialog box and select a file (not open it, but select it)

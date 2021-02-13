@@ -145,7 +145,7 @@
             // lblWorkingDirectory
             // 
             this.lblWorkingDirectory.AutoSize = true;
-            this.lblWorkingDirectory.Location = new System.Drawing.Point(232, 64);
+            this.lblWorkingDirectory.Location = new System.Drawing.Point(178, 84);
             this.lblWorkingDirectory.Name = "lblWorkingDirectory";
             this.lblWorkingDirectory.Size = new System.Drawing.Size(131, 20);
             this.lblWorkingDirectory.TabIndex = 3;
@@ -693,7 +693,9 @@
             // 
             this.tabPage1.Controls.Add(this.lblPptxFile2);
             this.tabPage1.Controls.Add(this.lblXlsxFile2);
+            this.tabPage1.Controls.Add(this.lblWorkingDirectory);
             this.tabPage1.Controls.Add(this.lblPptxPath2);
+            this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.lblXlsxPath2);
             this.tabPage1.Controls.Add(this.button5);
             this.tabPage1.Controls.Add(this.btnSelectXlsxAdmin);
@@ -717,7 +719,7 @@
             // lblPptxFile2
             // 
             this.lblPptxFile2.AutoSize = true;
-            this.lblPptxFile2.Location = new System.Drawing.Point(43, 323);
+            this.lblPptxFile2.Location = new System.Drawing.Point(43, 361);
             this.lblPptxFile2.Name = "lblPptxFile2";
             this.lblPptxFile2.Size = new System.Drawing.Size(64, 20);
             this.lblPptxFile2.TabIndex = 13;
@@ -726,7 +728,7 @@
             // lblXlsxFile2
             // 
             this.lblXlsxFile2.AutoSize = true;
-            this.lblXlsxFile2.Location = new System.Drawing.Point(43, 202);
+            this.lblXlsxFile2.Location = new System.Drawing.Point(41, 307);
             this.lblXlsxFile2.Name = "lblXlsxFile2";
             this.lblXlsxFile2.Size = new System.Drawing.Size(62, 20);
             this.lblXlsxFile2.TabIndex = 12;
@@ -735,7 +737,7 @@
             // lblPptxPath2
             // 
             this.lblPptxPath2.AutoSize = true;
-            this.lblPptxPath2.Location = new System.Drawing.Point(41, 303);
+            this.lblPptxPath2.Location = new System.Drawing.Point(41, 341);
             this.lblPptxPath2.Name = "lblPptxPath2";
             this.lblPptxPath2.Size = new System.Drawing.Size(76, 20);
             this.lblPptxPath2.TabIndex = 11;
@@ -744,7 +746,7 @@
             // lblXlsxPath2
             // 
             this.lblXlsxPath2.AutoSize = true;
-            this.lblXlsxPath2.Location = new System.Drawing.Point(43, 182);
+            this.lblXlsxPath2.Location = new System.Drawing.Point(41, 287);
             this.lblXlsxPath2.Name = "lblXlsxPath2";
             this.lblXlsxPath2.Size = new System.Drawing.Size(74, 20);
             this.lblXlsxPath2.TabIndex = 10;
@@ -752,7 +754,7 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(45, 361);
+            this.button5.Location = new System.Drawing.Point(559, 228);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(211, 47);
             this.button5.TabIndex = 9;
@@ -762,21 +764,21 @@
             // 
             // btnSelectXlsxAdmin
             // 
-            this.btnSelectXlsxAdmin.Location = new System.Drawing.Point(45, 132);
+            this.btnSelectXlsxAdmin.Location = new System.Drawing.Point(45, 228);
             this.btnSelectXlsxAdmin.Name = "btnSelectXlsxAdmin";
-            this.btnSelectXlsxAdmin.Size = new System.Drawing.Size(211, 47);
+            this.btnSelectXlsxAdmin.Size = new System.Drawing.Size(231, 47);
             this.btnSelectXlsxAdmin.TabIndex = 8;
-            this.btnSelectXlsxAdmin.Text = "Select xlsx";
+            this.btnSelectXlsxAdmin.Text = "Select data reference (xlsx)";
             this.btnSelectXlsxAdmin.UseVisualStyleBackColor = true;
             this.btnSelectXlsxAdmin.Click += new System.EventHandler(this.btnSelectXlsxAdmin_Click);
             // 
             // btnSelectPptxAdmin
             // 
-            this.btnSelectPptxAdmin.Location = new System.Drawing.Point(45, 253);
+            this.btnSelectPptxAdmin.Location = new System.Drawing.Point(309, 228);
             this.btnSelectPptxAdmin.Name = "btnSelectPptxAdmin";
-            this.btnSelectPptxAdmin.Size = new System.Drawing.Size(211, 47);
+            this.btnSelectPptxAdmin.Size = new System.Drawing.Size(225, 47);
             this.btnSelectPptxAdmin.TabIndex = 7;
-            this.btnSelectPptxAdmin.Text = "Select pptx";
+            this.btnSelectPptxAdmin.Text = "Select presentation(pptx)";
             this.btnSelectPptxAdmin.UseVisualStyleBackColor = true;
             this.btnSelectPptxAdmin.Click += new System.EventHandler(this.btnSelectPptxAdmin_Click);
             // 
@@ -802,7 +804,7 @@
             // 
             // btnChange
             // 
-            this.btnChange.Location = new System.Drawing.Point(699, 82);
+            this.btnChange.Location = new System.Drawing.Point(641, 127);
             this.btnChange.Name = "btnChange";
             this.btnChange.Size = new System.Drawing.Size(178, 44);
             this.btnChange.TabIndex = 4;
@@ -812,7 +814,7 @@
             // 
             // txtTo
             // 
-            this.txtTo.Location = new System.Drawing.Point(478, 82);
+            this.txtTo.Location = new System.Drawing.Point(422, 128);
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(178, 26);
             this.txtTo.TabIndex = 3;
@@ -821,7 +823,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(372, 82);
+            this.label2.Location = new System.Drawing.Point(359, 128);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(57, 20);
             this.label2.TabIndex = 2;
@@ -830,7 +832,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 82);
+            this.label1.Location = new System.Drawing.Point(43, 128);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(76, 20);
             this.label1.TabIndex = 1;
@@ -838,7 +840,7 @@
             // 
             // txtFrom
             // 
-            this.txtFrom.Location = new System.Drawing.Point(147, 82);
+            this.txtFrom.Location = new System.Drawing.Point(131, 128);
             this.txtFrom.Name = "txtFrom";
             this.txtFrom.Size = new System.Drawing.Size(178, 26);
             this.txtFrom.TabIndex = 0;
@@ -1177,9 +1179,7 @@
             // 
             this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Controls.Add(this.LblSourceFilePlan2);
-            this.tabPage3.Controls.Add(this.lblWorkingDirectory);
             this.tabPage3.Controls.Add(this.lblPlanName);
-            this.tabPage3.Controls.Add(this.label3);
             this.tabPage3.Location = new System.Drawing.Point(4, 29);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(1211, 496);
@@ -1208,7 +1208,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(66, 64);
+            this.label3.Location = new System.Drawing.Point(41, 84);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(131, 20);
             this.label3.TabIndex = 24;

@@ -164,7 +164,7 @@ namespace BASE.Data
             {
                 fileLinksStr += $"{uStr}\n";
             }
-            MessageBox.Show($"The links are \n{fileLinksStr}");
+            //MessageBox.Show($"The links are \n{fileLinksStr}");
 
             SearchAndReplace(_directoryFileName, onlyPathFileList, BASEDataReferenceObject._directoryFileName);
 
@@ -175,16 +175,105 @@ namespace BASE.Data
         // To search and replace content in a document part.
         public static void SearchAndReplace(string _directoryFileName2, List<string> searchStringList2, string replacementStr)
         {
-            // Make a copy of orrignial
+            // *** Make a copy of orrignial
+            string pathStr = Path.GetDirectoryName(_directoryFileName2);
+            string fileNoExt = Path.GetFileNameWithoutExtension(_directoryFileName2);
+            string extStr = Path.GetExtension(_directoryFileName2);
+            string dateTimeStr = DateTime.Now.ToString("g").Replace("/", "").Replace(":", ""); ;
+
+            string backupFileStr = Path.Combine(pathStr, fileNoExt + dateTimeStr + extStr);
+            int fileSuffix = 0;
+            while (File.Exists(backupFileStr))
+            {
+                fileSuffix++;
+                backupFileStr = Path.Combine(pathStr, fileNoExt + dateTimeStr + "_" + fileSuffix + extStr);
+            }
+            File.Copy(_directoryFileName2, backupFileStr);
+
+            // *** Reading a zip file
+            string ListOfZips = "All entries\n";
+
+            // https://docs.telerik.com/devtools/document-processing/libraries/radziplibrary/features/update-ziparchive
+            try
+            {
+                using (Stream stream = File.Open(_directoryFileName2, FileMode.Open))
+                {
+                    using (ZipArchive archive = new ZipArchive(stream, ZipArchiveMode.Update, false, null))
+                    {
+                        // Display the list of the files in the selected zip file using the ZipArchive.Entries property. 
+                        foreach (ZipArchiveEntry zipFile in archive.Entries)
+                        {
+                            ListOfZips += zipFile.FullName + "\n";
+
+                            if (zipFile.FullName.Length > 17 && (zipFile.FullName.Substring(0, 17) == "ppt/slides/_rels/"))
+                            {
+
+                                // *** open the file and update it 
+                                Stream entryStream = zipFile.Open();
+                                StreamReader reader = new StreamReader(entryStream);
+                                string docText = reader.ReadToEnd();
+
+                                // *** find and replace content
+                                //string contentReplaced = content.Replace("line", "<replaced line>");
+                                //if (string.IsNullOrEmpty(contentReplaced)) { contentReplaced = "My line to insert."; }
+                                foreach (string aString in searchStringList2)
+                                {
+                                    var cleanString = aString.Replace("/", @"\"); // FindAndSubstituteAll(aString, " ", "%20");
+                                                                                  //cleanString = FindAndSubstituteAll(cleanString, "/", @"\");
+                                    int locationIndex = 0;
+                                    do
+                                    {
+                                        locationIndex = FindAndSubstituteSeachString(ref docText, locationIndex, cleanString, replacementStr);
+                                        if (locationIndex > 0)
+                                        {
+                                            string stopHere = "";
+                                        }
+                                    } while (locationIndex >= 0 && (locationIndex < docText.Length));
+
+                                }
+
+                                //entryStream.Seek(0, SeekOrigin.End);
+                                // *** write content back
+                                entryStream.Seek(0, SeekOrigin.Begin);
+                                StreamWriter writer = new StreamWriter(entryStream);
+                                writer.WriteLine(docText);
+                                writer.Flush();
+                            }
+                        }
+                    }
+
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Message:{ex.Message}");
+            }
+
+
+          //  MessageBox.Show($"List of zips\n {ListOfZips}");
+        }
+
+
+
+        public static void SearchAndReplaceOld(string _directoryFileName2, List<string> searchStringList2, string replacementStr)
+        {
+            // *** Make a copy of orrignial
             string pathStr = Path.GetDirectoryName(_directoryFileName2);
             string fileNoExt = Path.GetFileNameWithoutExtension(_directoryFileName2);
             string extStr = Path.GetExtension(_directoryFileName2);
             string dateTimeStr = DateTime.Now.ToString("g").Replace('/', '-');
-            dateTimeStr += dateTimeStr + DateTime.Now.Second.ToString("00");
-            dateTimeStr = dateTimeStr.Replace(':', ' ');
-            string backupFileStr = Path.Combine(pathStr, fileNoExt + dateTimeStr + extStr);
-            File.Copy(_directoryFileName2, backupFileStr);
 
+            string backupFileStr = Path.Combine(pathStr, fileNoExt + dateTimeStr + extStr);
+            int fileSuffix = 0;
+            while (File.Exists(backupFileStr))
+            {
+                fileSuffix++;
+                backupFileStr = Path.Combine(pathStr, fileNoExt + dateTimeStr + "_" + fileSuffix + extStr);
+            }
+
+            File.Copy(_directoryFileName2, backupFileStr);
 
             // *** Reading a zip file
             string ListOfZips = "";
@@ -378,7 +467,6 @@ namespace BASE.Data
 
             //}
         }
-
         private static string FindAndSubstituteAll(string incommingStr, string searchString, string replacementString)
         {
             int startIndex = 0;

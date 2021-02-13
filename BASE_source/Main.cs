@@ -25,6 +25,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using BASE.Data;
 using System.Reflection;
+using System.IO.Compression;
 
 //using Microsoft.Office.Interop.Excel;
 
@@ -102,7 +103,7 @@ namespace BASE
         private Workbook sourceWorkbook;
         private Workbook mainWorkbook;
 
-    //    private Workbook questionWorkbook; // The workbook that contains the questions and the model
+        //    private Workbook questionWorkbook; // The workbook that contains the questions and the model
 
         public PersistentData persistentData = new PersistentData();
 
@@ -3225,7 +3226,7 @@ namespace BASE
         {
 
             // Remove from release 3.8.0.44
-            
+
             ////// *** Setup the main sheet
             ////// excelApp.Visible = true;
 
@@ -3549,6 +3550,7 @@ namespace BASE
 
         private void btnSelectXlsxAdmin_Click(object sender, EventArgs e)
         {
+            
             if (BASEDataReferenceObject.SelectFileToLoad("Data_Reference") == false)
             {
                 MessageBox.Show($"No file selected.");
@@ -3556,6 +3558,7 @@ namespace BASE
             else
             {
                 BASEDataReferenceObject.SavePersistant(BASEDataReferenceObject);
+                //BASEPresentationObject.ClearPathFile();
             }
         }
 
@@ -3569,6 +3572,7 @@ namespace BASE
             else
             {
                 BASEPresentationObject.SavePersistant(BASEPresentationObject);
+                //BASEDataReferenceObject.ClearPathFile();
             }
         }
         private void tabPage1_Click(object sender, EventArgs e)
@@ -3578,20 +3582,93 @@ namespace BASE
 
         private void button5_Click(object sender, EventArgs e)
         {
+            // *** Open and update
             //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
+            string presentationPath = Path.GetDirectoryName(BASEPresentationObject._directoryFileName);
+            string dataReferencePath = Path.GetDirectoryName(BASEDataReferenceObject._directoryFileName);
+                
+            if (presentationPath != dataReferencePath)
+            {
+                var resultX = MessageBox.Show($"The data reference and presentation files are in different directories\n" +
+                    $"Data={dataReferencePath}\nPresentation={presentationPath}\nPress [Yes] to continue and [No] to stop and first correct.", caption: "Warning", MessageBoxButtons.YesNo);
+                if (resultX != DialogResult.Yes) return;
+            }
             if (BASEPresentationObject.UpdateLinks(BASEDataReferenceObject) == true)
             { // file was loaded
                 BASEPresentationObject.SavePersistant(BASEPresentationObject);
+                MessageBox.Show($"Links updated!");
             }
             else
             { // file was not loaded
-                MessageBox.Show($"Link updates not successfull!");
+                MessageBox.Show($"Link updates unsuccessfull!");
             }
 
+        }
 
-            return;
+        private void WorkinWritingToZip()
+        {
+            // *** Open and update
+
+            string fileNameNoExt = Path.GetFileNameWithoutExtension(BASEPresentationObject._directoryFileName);
+            string fileExt = Path.GetExtension(BASEPresentationObject._directoryFileName);
+            string directoryName = Path.GetDirectoryName(BASEPresentationObject._directoryFileName);
+
+            string zipFileName = Path.Combine(directoryName, fileNameNoExt + ".zip");
+
+            File.Copy(BASEPresentationObject._directoryFileName, zipFileName);
+            
+
+                //Path.Combine(Path.GetDirectoryName(BASEDataReferenceObject._directoryFileName),
+                //"myZip.zip");
+
+            // https://docs.telerik.com/devtools/document-processing/libraries/radziplibrary/features/update-ziparchive
+            try
+            {
+                using (Stream stream = File.Open(zipFileName, FileMode.Open))
+                {
+                    using (ZipArchive archive = new ZipArchive(stream, ZipArchiveMode.Update, false, null))
+                    {
+                        // Display the list of the files in the selected zip file using the ZipArchive.Entries property. 
+                        foreach (ZipArchiveEntry zEntry in archive.Entries)
+                        {
+                            string aStr = zEntry.FullName;
+                        }
+
+                        // *** Add entry
+                        ZipArchiveEntry aNewEntry1 = archive.CreateEntry("myprogramEntry.txt");
+                        ZipArchiveEntry aNewEntry2 = archive.GetEntry("text.txt");
+                        if (aNewEntry2 == null) aNewEntry2 = archive.CreateEntry("text.txt");
+
+                        // *** Delete entry
+                        ZipArchiveEntry addedEntry1 = archive.GetEntry("myprogramEntry.txt");
+                        addedEntry1.Delete();
 
 
+                        // *** Update entry
+                        ZipArchiveEntry entry2 = archive.GetEntry("text.txt");
+                        if (entry2 != null)
+                        {
+                            Stream entryStream = entry2.Open();
+                            StreamReader reader = new StreamReader(entryStream);
+                            string content = reader.ReadToEnd();
+                            string contentReplaced = content.Replace("line", "<replaced line>");
+                            if (string.IsNullOrEmpty(contentReplaced)) { contentReplaced = "My line to insert."; }
+                            //entryStream.Seek(0, SeekOrigin.End);
+                            entryStream.Seek(0, SeekOrigin.Begin);
+                            StreamWriter writer = new StreamWriter(entryStream);
+                            writer.WriteLine(contentReplaced);
+                            writer.Flush();
+                        }
+
+                    }
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Message:{ex.Message}");
+            }
         }
     }
 }
