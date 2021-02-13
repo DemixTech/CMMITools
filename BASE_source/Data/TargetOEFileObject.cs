@@ -129,26 +129,49 @@ namespace BASE.Data
 
             // generic variables
             Worksheet tmpl1Wks = demixToolWkb.Worksheets["Template1"];
+            Worksheet tmpl2Wks = demixToolWkb.Worksheets["Template2"];
 
-            // demixToolWkb contains the opened workbook
+
+            // *** delete all the existing sheets
+            var daY = demixToolWkb.Application.DisplayAlerts;
+            demixToolWkb.Application.DisplayAlerts = false;
+
+            foreach (PracticeArea aPAtoDeete in BASEQuestionObject2.CMMIModel2)
+            {
+                Worksheet aWksToDelete = Helper.FindWorksheet(demixToolWkb, aPAtoDeete.PAcode.ToString());
+                if (aWksToDelete != null)
+                {
+                    aWksToDelete.Delete();
+                }
+
+            }
+            demixToolWkb.Application.DisplayAlerts = daY;
+
+            // *** demixToolWkb contains the opened workbook, now create the OEdb PAs
             foreach (PracticeArea aPracticeArea in BASEQuestionObject2.CMMIModel2)
             {
                 // DEBUG CODE, SKIP most PAs
                 //if (mostPAs.Contains(aPracticeArea.PAcode.ToString())) continue;
                 // create a worksheet if it does not exist
+
                 //Worksheet aWks = Helper.OpenOrElseCreateWks(demixToolWkb, aPracticeArea.PAcode.ToString());
+                var daX = demixToolWkb.Application.DisplayAlerts;
+                demixToolWkb.Application.DisplayAlerts = false;
                 foreach (Worksheet findWks in demixToolWkb.Worksheets)
                 {
                     if (findWks.Name == aPracticeArea.PAcode.ToString()) findWks.Delete();
                 }
+                demixToolWkb.Application.DisplayAlerts = daX;
+
                 // Copy the template2 over that worksheet
-                Worksheet sourceWks;
-                Worksheet aWks;
-                sourceWks = demixToolWkb.Worksheets["Template2"];
+                Worksheet sourceWks = demixToolWkb.Worksheets["Template2"];
+
                 //aWks = demixToolWkb.Worksheets.Add();
-                int numberOfWks = demixToolWkb.Worksheets.Count;
-                sourceWks.Copy(After: demixToolWkb.Worksheets[numberOfWks]);
-                aWks = demixToolWkb.Worksheets[numberOfWks + 1];
+                //int numberOfWks = demixToolWkb.Worksheets.Count;
+                int wksCount1 = demixToolWkb.Worksheets.Count;
+                sourceWks.Copy(After:demixToolWkb.Worksheets[wksCount1]);// demixToolWkb.Worksheets[numberOfWks]);
+                Worksheet aWks = demixToolWkb.Worksheets[wksCount1+1];
+
                 aWks.Name = aPracticeArea.PAcode.ToString();
 
                 // Setup the headings
@@ -688,7 +711,7 @@ namespace BASE.Data
                 MessageBox.Show("File not found, has it been moved or deleted?");
                 return false;
             }
-           // string basePath = Path.GetDirectoryName(persistentData.DemixToolPathFile);
+            // string basePath = Path.GetDirectoryName(persistentData.DemixToolPathFile);
 
             lblStatus.Text = "OEdb:";
             string statusStr = "";
@@ -967,7 +990,7 @@ namespace BASE.Data
             // *** Clear the columns
             Range wsMainToClear = wsMain.Range[wsMain.Cells[9, 17], wsMain.Cells[NumberOfRows, 17]];
             wsMainToClear.Interior.Color = Color.White;
-            
+
             Range wsImportToClear = wsSource.Range[wsSource.Cells[9, 17], wsSource.Cells[NumberOfRows, 17]];
             wsImportToClear.Interior.Color = Color.White;
 
@@ -988,7 +1011,7 @@ namespace BASE.Data
 
                         wsMain.Cells[rowS, 17].Value = DateTime.Now.ToString("s"); // put the short date time here
                         wsMain.Cells[rowS, 17].Interior.Color = Color.Cyan;
-                       
+
                         wsSource.Cells[rowS, 17].Value = "updated";
                         wsSource.Cells[rowS, 17].Interior.Color = Color.Lime;
                     }

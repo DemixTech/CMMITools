@@ -13,11 +13,6 @@ C:\Users\PietervanZyl\source\repos\Demix\BASE\obj\Debug\Scheduler.application
 C:\Users\PietervanZyl\source\repos\Demix\BASE\obj\Debug\BASE.csproj.CopyComplete
 C:\Users\PietervanZyl\source\repos\Demix\BASE\obj\Debug\Scheduler.exe
 C:\Users\PietervanZyl\source\repos\Demix\BASE\obj\Debug\Scheduler.pdb
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csprojAssemblyReference.cache
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.Main.resources
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.Properties.Resources.resources
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csproj.GenerateResource.cache
-C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csproj.CoreCompileInputs.cache
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\bin\Debug\BASE.exe.config
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\bin\Debug\BASE.exe.manifest
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\bin\Debug\BASE.application
@@ -28,6 +23,11 @@ C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\bin\Debug\System.Co
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\bin\Debug\System.IO.Compression.dll
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\bin\Debug\System.IO.Compression.ZipFile.dll
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\bin\Debug\DocumentFormat.OpenXml.xml
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csprojAssemblyReference.cache
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.Main.resources
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.Properties.Resources.resources
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csproj.GenerateResource.cache
+C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csproj.CoreCompileInputs.cache
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.TrustInfo.xml
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.exe.manifest
 C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.application

@@ -116,8 +116,7 @@ namespace BASE
         private TargetDataReferenceFileObject BASEDataReferenceObject;
         private TargetPresentationFileObject BASEPresentationObject;
 
-
-
+        
         #endregion
 
         public string VersionLabel
@@ -175,7 +174,6 @@ namespace BASE
             BASEPresentationObject.InitialiseObject(CPresentationFileXML, lblPresentationXMLPath2, lblPresentationXMLFile2,
                 lblPptxPath2, lblPptxFile2);
             BASEPresentationObject.LoadPersistantXMLdata();
-
 
             // *** Old code
             persistentData.LoadPersistentData();
@@ -3470,6 +3468,38 @@ namespace BASE
             //    private TargetCASFileObject CASFileObject;
             //private TargetOEFileObject CASOEdbObject;
             //private TargetQuestionsFileObject BASEQuestionObject;
+
+            // *** Check if Questions are loaded, if not
+            if (BASEQuestionObject == null || !File.Exists(BASEQuestionObject._directoryFileName))
+            {
+                MessageBox.Show($"The Question and OEdb template file has not been selected. Please select first!");
+                return;
+            }
+
+            if (CASFileObject == null || !File.Exists(CASFileObject._directoryFileName))
+            {
+                MessageBox.Show($"The CAS plan not been selected. Please select first!");
+                return;
+            }
+            // *** Create a copy of the template
+            string fileName = Path.GetFileName(BASEQuestionObject._directoryFileName).Substring(0, 9) + "BASE_OEdbATL";
+            string extStr = Path.GetExtension(BASEQuestionObject._directoryFileName);
+
+            string pathStr = Path.GetDirectoryName(CASFileObject._directoryFileName);
+            
+            // *** Check if it exists, keep looking and create new copy
+            int counter = 0;
+            string OEdbPathFileStr = Path.Combine(pathStr, fileName + extStr);
+            while (File.Exists(OEdbPathFileStr))
+            {
+                counter++;
+                // https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-numeric-format-strings
+                OEdbPathFileStr = Path.Combine(pathStr, fileName + counter.ToString() + extStr);
+            }
+            File.Copy(BASEQuestionObject._directoryFileName, OEdbPathFileStr);
+
+            // *** Assign the new copy to CASOEdbObject
+            CASOEdbObject.DirectoryFileName = OEdbPathFileStr;
 
             if (CASOEdbObject.GenerateFullOEdb2(CASFileObject, BASEQuestionObject) == false)
             {

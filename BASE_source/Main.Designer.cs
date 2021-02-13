@@ -84,6 +84,7 @@
             this.lblPptxFile2 = new System.Windows.Forms.Label();
             this.lblXlsxFile2 = new System.Windows.Forms.Label();
             this.lblPptxPath2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.lblXlsxPath2 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
             this.btnSelectXlsxAdmin = new System.Windows.Forms.Button();
@@ -131,7 +132,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -426,13 +426,13 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabDemixPlan);
-            this.tabControl1.Controls.Add(this.tabDemixTool);
             this.tabControl1.Controls.Add(this.tabQuestions);
+            this.tabControl1.Controls.Add(this.tabDemixTool);
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabCMMI_ApprTool);
             this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Location = new System.Drawing.Point(33, 52);
+            this.tabControl1.Location = new System.Drawing.Point(36, 52);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1219, 529);
@@ -450,7 +450,6 @@
             this.tabDemixTool.Controls.Add(this.btnBuildOUMaps2);
             this.tabDemixTool.Controls.Add(this.btnExtractFindings2);
             this.tabDemixTool.Controls.Add(this.btnTestLinksAndEngl2);
-            this.tabDemixTool.Controls.Add(this.btnGenerateOEdb2);
             this.tabDemixTool.Controls.Add(this.lblOEFile2);
             this.tabDemixTool.Controls.Add(this.lblOEPath2);
             this.tabDemixTool.Controls.Add(this.label13);
@@ -563,9 +562,9 @@
             // 
             // btnGenerateOEdb2
             // 
-            this.btnGenerateOEdb2.Location = new System.Drawing.Point(17, 90);
+            this.btnGenerateOEdb2.Location = new System.Drawing.Point(31, 238);
             this.btnGenerateOEdb2.Name = "btnGenerateOEdb2";
-            this.btnGenerateOEdb2.Size = new System.Drawing.Size(211, 47);
+            this.btnGenerateOEdb2.Size = new System.Drawing.Size(211, 56);
             this.btnGenerateOEdb2.TabIndex = 38;
             this.btnGenerateOEdb2.Text = "Generate OEdb tool";
             this.btnGenerateOEdb2.UseVisualStyleBackColor = true;
@@ -621,6 +620,7 @@
             // 
             this.tabQuestions.Controls.Add(this.btnReloadQuestionsAndModel2);
             this.tabQuestions.Controls.Add(this.lblQuestionPath2);
+            this.tabQuestions.Controls.Add(this.btnGenerateOEdb2);
             this.tabQuestions.Controls.Add(this.lblQuestionFile2);
             this.tabQuestions.Controls.Add(this.label20);
             this.tabQuestions.Controls.Add(this.label21);
@@ -630,12 +630,12 @@
             this.tabQuestions.Padding = new System.Windows.Forms.Padding(3);
             this.tabQuestions.Size = new System.Drawing.Size(1211, 496);
             this.tabQuestions.TabIndex = 4;
-            this.tabQuestions.Text = "Questions";
+            this.tabQuestions.Text = "Questions and templates";
             this.tabQuestions.UseVisualStyleBackColor = true;
             // 
             // btnReloadQuestionsAndModel2
             // 
-            this.btnReloadQuestionsAndModel2.Location = new System.Drawing.Point(31, 84);
+            this.btnReloadQuestionsAndModel2.Location = new System.Drawing.Point(31, 127);
             this.btnReloadQuestionsAndModel2.Name = "btnReloadQuestionsAndModel2";
             this.btnReloadQuestionsAndModel2.Size = new System.Drawing.Size(211, 89);
             this.btnReloadQuestionsAndModel2.TabIndex = 40;
@@ -646,7 +646,7 @@
             // lblQuestionPath2
             // 
             this.lblQuestionPath2.AutoSize = true;
-            this.lblQuestionPath2.Location = new System.Drawing.Point(92, 197);
+            this.lblQuestionPath2.Location = new System.Drawing.Point(92, 366);
             this.lblQuestionPath2.Name = "lblQuestionPath2";
             this.lblQuestionPath2.Size = new System.Drawing.Size(98, 20);
             this.lblQuestionPath2.TabIndex = 39;
@@ -655,7 +655,7 @@
             // lblQuestionFile2
             // 
             this.lblQuestionFile2.AutoSize = true;
-            this.lblQuestionFile2.Location = new System.Drawing.Point(92, 227);
+            this.lblQuestionFile2.Location = new System.Drawing.Point(92, 396);
             this.lblQuestionFile2.Name = "lblQuestionFile2";
             this.lblQuestionFile2.Size = new System.Drawing.Size(90, 20);
             this.lblQuestionFile2.TabIndex = 38;
@@ -664,7 +664,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(44, 227);
+            this.label20.Location = new System.Drawing.Point(44, 396);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(34, 20);
             this.label20.TabIndex = 37;
@@ -673,7 +673,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(44, 197);
+            this.label21.Location = new System.Drawing.Point(44, 366);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(42, 20);
             this.label21.TabIndex = 36;
@@ -683,9 +683,9 @@
             // 
             this.btnSelectQuestionAndModel2.Location = new System.Drawing.Point(31, 31);
             this.btnSelectQuestionAndModel2.Name = "btnSelectQuestionAndModel2";
-            this.btnSelectQuestionAndModel2.Size = new System.Drawing.Size(211, 47);
+            this.btnSelectQuestionAndModel2.Size = new System.Drawing.Size(211, 81);
             this.btnSelectQuestionAndModel2.TabIndex = 2;
-            this.btnSelectQuestionAndModel2.Text = "Select file";
+            this.btnSelectQuestionAndModel2.Text = "Select question and OEdb template file";
             this.btnSelectQuestionAndModel2.UseVisualStyleBackColor = true;
             this.btnSelectQuestionAndModel2.Click += new System.EventHandler(this.btnSelectQuestionAndModel2_Click);
             // 
@@ -742,6 +742,15 @@
             this.lblPptxPath2.Size = new System.Drawing.Size(76, 20);
             this.lblPptxPath2.TabIndex = 11;
             this.lblPptxPath2.Text = "Pptx path";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(41, 84);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(131, 20);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Working directory";
             // 
             // lblXlsxPath2
             // 
@@ -1204,15 +1213,6 @@
             this.LblSourceFilePlan2.Size = new System.Drawing.Size(54, 20);
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(41, 84);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(131, 20);
-            this.label3.TabIndex = 24;
-            this.label3.Text = "Working directory";
             // 
             // Main
             // 
