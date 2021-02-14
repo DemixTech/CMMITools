@@ -584,16 +584,22 @@ namespace BASE.Data
             return true;
         }
 
-        public bool BuildOUMaps2(System.Windows.Forms.Label lblStatus, TargetCASFileObject CASFileObject2)
+        public bool BuildOUMaps2(System.Windows.Forms.Label lblStatus, TargetCASFileObject CASFileObject2, TargetQuestionsFileObject QuestionFileObject2)
         {
             // *** Build temperary dictionary
             buildTempDictionary();
 
-            // *** Identify pand s files
+            // *** Identify p and s files
             Workbook mainWorkbook;
             if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 MessageBox.Show("File not found, has it been moved or deleted?");
+                return false;
+            }
+            // *** Check if the QuestionFileObject exists
+            if (QuestionFileObject2 == null || QuestionFileObject2.MapRecords == null)
+            {
+                MessageBox.Show("Question and model file incompleted. First reload it and then rerun the MAP creation.");
                 return false;
             }
             //string basePath = Path.GetDirectoryName(_directoryFileName);
@@ -654,14 +660,19 @@ namespace BASE.Data
                                 {
                                     // is it the correct project
                                     string projectNumber = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString();
-                                    if (projectNumber.Substring(0, 2) == projectWks.Name)
+                                    if (projectNumber.Substring(0, 2).ToUpper() == projectWks.Name.ToUpper())
                                     {
-                                        string keyStr = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
-                                        string rowColStr = FindDictionaryValue(TmpDictRowCol, keyStr);
-                                        if (!string.IsNullOrEmpty(rowColStr))
+                                        //string keyStr = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
+
+                                        string levleStrX = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
+                                        MapRecord aMapRecord = QuestionFileObject2.MapRecords.FirstOrDefault(x => x.PALevelStr == levleStrX);
+
+
+                                        //string rowColStr = FindDictionaryValue(TmpDictRowCol, keyStr);
+                                        if (aMapRecord != null)
                                         {
                                             //projectWks.Range[rowColStr].Value = wksOEdb.Cells[rowX, 15]?.Value?.ToString() ?? "-";
-                                            projectWks.Range[rowColStr].Formula = $"={wksOEdb.Name}!O{rowX}"; //=TS!O11
+                                            projectWks.Range[aMapRecord.RowColStr].Formula = $"={wksOEdb.Name}!O{rowX}"; //=TS!O11
                                         }
 
                                     }

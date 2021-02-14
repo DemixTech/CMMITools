@@ -150,6 +150,7 @@
   <ItemGroup>
     <Compile Include="Data\ExampleActivity.cs" />
     <Compile Include="Data\ExampleWorkProduct.cs" />
+    <Compile Include="Data\MapRecord.cs" />
     <Compile Include="Data\Organisation.cs" />
     <Compile Include="Data\OrganizationalUnit.cs" />
     <Compile Include="Data\OUProcess.cs" />

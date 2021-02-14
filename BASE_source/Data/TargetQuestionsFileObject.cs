@@ -15,8 +15,15 @@ namespace BASE.Data
     public class TargetQuestionsFileObject : TargetFileObject
     {
         public string Myname = "Pieter van ZYl";
-        
-        public List<PracticeArea> CMMIModel2 = new List<PracticeArea>();
+
+        public List<PracticeArea> CMMIModel2 = new List<PracticeArea>(); // Defines the full CMMI model with practices, questions, artifacts and activities
+
+        public List<MapRecord> MapRecords = new List<MapRecord>(); // Map records define the layout of characterisation map
+
+        const int CtmpStartRow = 4; // exclude heading at 3
+        const int CtmpEndRow = 35;
+        const int CtmpStartCol = 3; // exclude Practice nubmer at 2
+        const int CtmpEndCol = 21;
 
         public override bool LoadPersistantXMLdata()
         {
@@ -35,6 +42,7 @@ namespace BASE.Data
                         // *** Load the object elements belwo
                         this.Myname = pData.Myname;
                         this.CMMIModel2 = pData.CMMIModel2;
+                        this.MapRecords = pData.MapRecords;
                     }
                     return true; // loaded successfull
                 }
@@ -74,7 +82,6 @@ namespace BASE.Data
             }
         }
 
-
         public bool LoadTheQuestionAndModelFile(System.Windows.Forms.Label lblStatus2)
         {
             // *** Test if the question file exists
@@ -108,11 +115,62 @@ namespace BASE.Data
                     statusStr += worksheetName + " ";
                     lblStatus2.Text = statusStr;
                 }
-                return true;
 
             }
-
-
+            BuildMapRecords();
+            return true;
         }
+
+        private void BuildMapRecords()
+        {
+            MapRecords.Clear();
+
+            Workbook mainWorkbook;
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
+            {
+                MessageBox.Show("File not found, has it been moved or deleted?");
+                return;
+            }
+            //string basePath = Path.GetDirectoryName(persistentData.DemixToolPathFile);
+
+            //lblStatus.Text = "OEdb:";
+            //string statusStr = "";
+
+            Worksheet tmpWks = Helper.FindWorksheet(mainWorkbook, "tmp");
+            if (tmpWks == null) MessageBox.Show($"The tmp worksheet could not be found. Use the latest-new OEdb template!");
+            //mainWorkbook.Worksheets["tmp"];
+            for (int rowX = CtmpStartRow; rowX <= CtmpEndRow; rowX++)
+            {
+                for (int colY = CtmpStartCol; colY <= CtmpEndCol; colY++)
+                {
+                    string PAstr = tmpWks.Cells[CtmpStartRow - 1, colY]?.Value?.ToString() ?? "";
+                    string numberStr = tmpWks.Cells[rowX, CtmpStartCol - 1]?.Value?.ToString() ?? "";
+                    numberStr = numberStr.Replace(',', '.');
+                    string KeyStr = PAstr + " " + numberStr;
+
+                    // *** Build the map from the spreadhseet *** Enhancemenet build the map from the CMMI Model
+                    string cellStr = tmpWks.Cells[rowX, colY]?.Value?.ToString() ?? ""; // Note this can be OOS, -, or something else
+                    bool OoSValue = false;
+                    if (tmpWks.Cells[rowX, colY]?.Value == "OoS") OoSValue = true;
+                    string RowColStr = Helper.GetExcelColumnName(colY) + rowX.ToString();
+
+                    if (!string.IsNullOrEmpty(cellStr))
+                    {
+                        MapRecord aMapRecord = new MapRecord()
+                        {
+                            PAstr = PAstr,
+                            Col = colY,
+                            Row = rowX,
+                            LevelStr = numberStr,
+                            OoS = OoSValue,
+                            RowColStr = RowColStr,
+                            PALevelStr = PAstr + " " + numberStr,
+                        };
+                        MapRecords.Add(aMapRecord);
+                    }
+                }
+            }
+        }
+
     }
 }
