@@ -169,8 +169,8 @@ namespace BASE.Data
                 //aWks = demixToolWkb.Worksheets.Add();
                 //int numberOfWks = demixToolWkb.Worksheets.Count;
                 int wksCount1 = demixToolWkb.Worksheets.Count;
-                sourceWks.Copy(After:demixToolWkb.Worksheets[wksCount1]);// demixToolWkb.Worksheets[numberOfWks]);
-                Worksheet aWks = demixToolWkb.Worksheets[wksCount1+1];
+                sourceWks.Copy(After: demixToolWkb.Worksheets[wksCount1]);// demixToolWkb.Worksheets[numberOfWks]);
+                Worksheet aWks = demixToolWkb.Worksheets[wksCount1 + 1];
 
                 aWks.Name = aPracticeArea.PAcode.ToString();
 
@@ -1033,10 +1033,10 @@ namespace BASE.Data
 
         private void copyRow(Worksheet wsMain, Worksheet wsSource, int row, int startCol, int endCol)
         {
+            // *** copy each cell column for column in the row
             for (int aCol = startCol; aCol <= endCol; aCol++)
             {
-
-                if (wsSource.Cells[row, aCol] != null) // && aCol != 4) // do not copy col D
+                if (wsSource.Cells[row, aCol] != null) // If the cell is not null, copy it
                 {
                     // https://docs.devexpress.com/OfficeFileAPI/12235/spreadsheet-document-api/examples/cells/how-to-copy-cell-data-only-cell-style-only-or-cell-data-with-style
                     Range sourceCell = wsSource.Cells[row, aCol];
@@ -1047,6 +1047,29 @@ namespace BASE.Data
 
                 }
             }
+            // *** clear current hyperlinks
+            Range destRow = wsMain.Rows[row]; // .Range[wsMain.Cells[row, startCol], wsMain.Cells[row, startCol]];
+            foreach (Hyperlink hLink in destRow.Hyperlinks)
+            {
+                hLink.Delete();
+            }
+
+            // *** Copy changes made to hyperlinks in the row
+            Range sourceRow = wsSource.Rows[row]; // [wsSource.Cells[row, startCol], wsSource.Cells[row, startCol]];
+            foreach (Hyperlink hLink in sourceRow.Hyperlinks)
+            {
+                // Range hLinkRng = hLink.Range; // .Address;
+                // https://stackoverflow.com/questions/26257577/c-sharp-excel-how-to-add-hyperlink-with-cell-link
+                // destRow.Hyperlinks.Add(destRow.Cells[hLink.Address.);
+                wsMain.Hyperlinks.Add(
+                    Anchor:wsMain.Cells[hLink.Range.Row, hLink.Range.Column],
+                    Address:hLink.Address.ToString(),
+                    TextToDisplay:hLink.TextToDisplay);
+                //var x = 1;
+
+            }
+
+
         }
 
     }

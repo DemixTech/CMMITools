@@ -29,10 +29,10 @@
     <ProductName>B.A.S.E.</ProductName>
     <PublisherName>Demix</PublisherName>
     <SuiteName>B.A.S.E.</SuiteName>
-    <MinimumRequiredVersion>3.8.0.49</MinimumRequiredVersion>
+    <MinimumRequiredVersion>3.8.0.53</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>51</ApplicationRevision>
+    <ApplicationRevision>54</ApplicationRevision>
     <ApplicationVersion>3.8.0.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -59,7 +59,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>99F9B8C10F7C82D01FF6279117214B1D4CFE8DB3</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8D2135E6A49219722F82157D0E1EC49C83FB8844</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
@@ -81,7 +81,7 @@
     <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestTimestampUrl>http://tsa.starfieldtech.com</ManifestTimestampUrl>
+    <ManifestTimestampUrl>http://timestamp.digicert.com</ManifestTimestampUrl>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>BASEIcon.ico</ApplicationIcon>

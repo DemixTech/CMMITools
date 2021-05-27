@@ -538,7 +538,7 @@ namespace BASE.Data
                 casProjectWks.Cells[prjRow, 6].Value = "";
                 casProjectWks.Cells[prjRow, 7].Value = "";
                 casProjectWks.Cells[prjRow, 8].Value = OrganizationalUnit.Name;
-                casProjectWks.Cells[prjRow, 9].Value = "Same as business ojbective.";
+                casProjectWks.Cells[prjRow, 9].Value = "Same as business objective.";
                 casProjectWks.Cells[prjRow, 10].Value = aProject.Lifecycle;
                 casProjectWks.Cells[prjRow, 11].Value = aProject.StartDate;
                 casProjectWks.Cells[prjRow, 12].Value = aProject.EndDate;
