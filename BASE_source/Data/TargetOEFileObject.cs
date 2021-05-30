@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace BASE.Data
+
+
 {
     [Serializable]
     public class TargetOEFileObject : TargetFileObject
@@ -1013,18 +1015,56 @@ namespace BASE.Data
                 {
                     string cellXStr = cellX.ToString().Trim().ToUpper();
 
+                    bool updateMade = false;
                     if (cellXStr == "Y" || cellXStr == "YES") // Colum Q has a "Y" or "YES"
                     {
                         // wsMain.Range[wsMain.Cells[rowS, 1], wsMain.Cells[rowS, 16]] = wsSource.Range[wsSource.Cells[rowS, 1], wsSource.Cells[rowS, 16]]; // Rows[rowS];
-                        copyRow(wsMain, wsSource, rowS, 1, 18);
 
-                        // Colors from https://safeery2k.wordpress.com/2013/06/19/system-drawing-knowncolor/
+                        if (wsSource.Cells[rowS, 1]?.Value != null)
+                        {
+                            switch (wsSource.Cells[rowS, 1].Value.ToString())
+                            {
+                                case "1 Prac_Group":
+                                    copyRow(wsMain, wsSource, rowS, 12, 18); // Start from L
+                                    updateMade = true;
+                                    break;
+                                case "2 Prac_OU":
+                                    copyRow(wsMain, wsSource, rowS, 3, 18); // Start from C
+                                    updateMade = true;
+                                    break;
+                                case "3 Process":
+                                    copyRow(wsMain, wsSource, rowS, 12, 18); // Start from L
+                                    updateMade = true;
+                                    break;
+                                case "4 Prac_Instan":
+                                    copyRow(wsMain, wsSource, rowS, 9, 18); // Start from I
+                                    updateMade = true;
+                                    break;
+                                case "5 OE":
+                                    copyRow(wsMain, wsSource, rowS, 3, 18); // Start from C 
+                                    updateMade = true;
+                                    break;
+                                default:
+                                    copyRow(wsMain, wsSource, rowS, 1, 18);
+                                    updateMade = true;
+                                    break;
+                            }
 
-                        wsMain.Cells[rowS, 17].Value = DateTime.Now.ToString("s"); // put the short date time here
-                        wsMain.Cells[rowS, 17].Interior.Color = Color.Cyan;
+                            // Based on the switch statement above, updateMade will always be true. Leave this for easier readability and for when there 
+                            // maybe a case in future where updateMade maybe false.
+                            if (updateMade == true) 
+                            {
+                                // Colors from https://safeery2k.wordpress.com/2013/06/19/system-drawing-knowncolor/
 
-                        wsSource.Cells[rowS, 17].Value = "updated";
-                        wsSource.Cells[rowS, 17].Interior.Color = Color.Lime;
+                                wsMain.Cells[rowS, 17].Value = DateTime.Now.ToString("s"); // put the short date time here
+                                wsMain.Cells[rowS, 17].Interior.Color = Color.Cyan;
+
+                                wsSource.Cells[rowS, 17].Value = "updated";
+                                wsSource.Cells[rowS, 17].Interior.Color = Color.Lime;
+                            }
+                        }
+
+
                     }
                 }
             }
@@ -1044,7 +1084,6 @@ namespace BASE.Data
 
                     destCell.Value = sourceCell.Value; // .CopyFromRecordset(sourceCell);
                     destCell.Interior.Color = sourceCell.Interior.Color;
-
                 }
             }
             // *** clear current hyperlinks
@@ -1062,9 +1101,9 @@ namespace BASE.Data
                 // https://stackoverflow.com/questions/26257577/c-sharp-excel-how-to-add-hyperlink-with-cell-link
                 // destRow.Hyperlinks.Add(destRow.Cells[hLink.Address.);
                 wsMain.Hyperlinks.Add(
-                    Anchor:wsMain.Cells[hLink.Range.Row, hLink.Range.Column],
-                    Address:hLink.Address.ToString(),
-                    TextToDisplay:hLink.TextToDisplay);
+                    Anchor: wsMain.Cells[hLink.Range.Row, hLink.Range.Column],
+                    Address: hLink.Address.ToString(),
+                    TextToDisplay: hLink.TextToDisplay);
                 //var x = 1;
 
             }
