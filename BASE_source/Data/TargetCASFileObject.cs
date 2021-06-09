@@ -84,7 +84,7 @@ namespace BASE.Data
         //{
         //}
 
-        public bool LoadCASFile()
+        public bool LoadCASFile(out string returnMessage)
         {
             Workbook aWorkbook;
 
@@ -93,7 +93,7 @@ namespace BASE.Data
             {
                 // Set cursor as default arrow
                 Cursor.Current = Cursors.Default;
-                MessageBox.Show("File not found, has it been moved or deleted?");
+                returnMessage = "File not found, has it been moved or deleted?";
                 return false;
             }
 
@@ -293,10 +293,10 @@ namespace BASE.Data
             // *** Done
 
             Cursor.Current = Cursors.Default;
-            MessageBox.Show($"CAS plan information loaded\nProjects={WorkUnitList2.Where(x => x.WorkType == EWorkType.project).Count()}\n" +
+            returnMessage = $"CAS plan information loaded\nProjects={WorkUnitList2.Where(x => x.WorkType == EWorkType.project).Count()}\n" +
                 $"Support={WorkUnitList2.Where(x => x.WorkType == EWorkType.support).Count()}\n" +
                 $"Processes={OUProcessesList2.Count()}\n" +
-                $"Staff entries={StaffList2.Count()}\nSchedule2 entries={Schedule2List2.Count()}");
+                $"Staff entries={StaffList2.Count()}\nSchedule2 entries={Schedule2List2.Count()}";
 
             return true;
 
@@ -337,7 +337,7 @@ namespace BASE.Data
             return true;
         }
 
-        public bool Generate_OUParticipants(bool insertRole)
+        public bool Generate_OUParticipants(bool insertRole, out string returnMessage)
         {
             Workbook aWorkbook;
             Cursor.Current = Cursors.WaitCursor;
@@ -345,7 +345,7 @@ namespace BASE.Data
             {
                 // Set cursor as default arrow
                 Cursor.Current = Cursors.Default;
-                MessageBox.Show("File not found, has it been moved or deleted?");
+                returnMessage = "File not found, has it been moved or deleted?";
                 return false;
             }
 
@@ -466,11 +466,10 @@ namespace BASE.Data
             if (insertRole) ouPAs.Range["B1", $"B{rowOUPAX - 1}"].Interior.ColorIndex = 6; // Yellow
 
             Cursor.Current = Cursors.Default;
-            MessageBox.Show($"Staff entries={StaffList2.Count()}\nSchedule2 entries={Schedule2List2.Count()}");
-
+            returnMessage = $"Staff entries={StaffList2.Count()}\nSchedule2 entries={Schedule2List2.Count()}";
             return true;
         }
-        public bool Generate_SupportAndProjectCASSheets()
+        public bool Generate_SupportAndProjectCASSheets(out string returnMessage)
         {
             Workbook aWorkbook;
             Cursor.Current = Cursors.WaitCursor;
@@ -478,7 +477,7 @@ namespace BASE.Data
             {
                 // Set cursor as default arrow
                 Cursor.Current = Cursors.Default;
-                MessageBox.Show("File not found, has it been moved or deleted?");
+                returnMessage = "File not found, has it been moved or deleted?";
                 return false;
             }
 
@@ -561,14 +560,14 @@ namespace BASE.Data
 
 
             Cursor.Current = Cursors.Default;
-            MessageBox.Show($"Support entries={supportFunctionsList.Count()}\nProject entries={projectList.Count()}");
+            returnMessage = $"Support entries={supportFunctionsList.Count()}\nProject entries={projectList.Count()}";
 
             return true;
         }
 
 
 
-        public bool CreateSchedule1()
+        public bool CreateSchedule1(out string returnMessage)
         {
             Workbook aWorkbook;
 
@@ -577,7 +576,7 @@ namespace BASE.Data
             {
                 // Set cursor as default arrow
                 Cursor.Current = Cursors.Default;
-                MessageBox.Show("File not found, has it been moved or deleted?");
+                returnMessage = "File not found, has it been moved or deleted?";
                 return false;
             }
 
@@ -599,6 +598,8 @@ namespace BASE.Data
             List<Schedule1Entry> includedList = new List<Schedule1Entry>();
             List<Schedule1Entry> excludedList = new List<Schedule1Entry>();
 
+            int reqStaff = 0;
+            int optStaff = 0;
             foreach (var workUnit in WorkUnitList2)
             {
                 var listOfSampledPAs = workUnit.PAlist.Where(x => x.SampleType == ESampleType.added || x.SampleType == ESampleType.sampled);
@@ -644,12 +645,14 @@ namespace BASE.Data
                                 aSchedule1Entry.include = true;
                                 includedList.Insert(~inListIndex, aSchedule1Entry);
                                 schedule.Cells[outRow, 7].Value = "x";
+                                reqStaff++;
                             }
                             else
                             { // already included, put in excludedList
                                 aSchedule1Entry.include = false;
                                 excludedList.Add(aSchedule1Entry);
                                 schedule.Cells[outRow, 7].Value = "";
+                                optStaff++;
                             }
                             outRow++;
 
@@ -659,77 +662,7 @@ namespace BASE.Data
                 }
             }
 
-            // *** Find distinct participants
-            //Worksheet responsibilities = aWorkbook.Sheets["Responsibilities"];
-            //responsibilities.Cells.Clear();
-            //int respRow = 2;
-            //var distinctParticipants = StaffList2.Select(x => x.Name)
-            //    .Distinct()
-            //    .OrderBy(q => q)
-            //    .ToList();
-
-            //List<string> projectNameList = new List<string>();
-            //List<string> projectWorkIDList = new List<string>();
-            //List<EPAcode> practiceAreaList = new List<EPAcode>();
-            //foreach (var distincParticipant in distinctParticipants)
-            //{
-            //    // first clear the names and practice list
-            //    projectNameList.Clear();
-            //    projectWorkIDList.Clear();
-            //    practiceAreaList.Clear();
-
-            //    // *** List all the Projects
-            //    var participantSubset = StaffList2.Where(x => x.Name == distincParticipant);
-            //    foreach (var aParticipant in participantSubset)
-            //    {
-            //        // Add a project if it does not exists
-            //        var x = projectNameList.BinarySearch(aParticipant.WorkName);
-            //        if (x < 0)
-            //        { // Not in list, add it
-            //            projectNameList.Insert(~x, aParticipant.WorkName);
-            //            projectWorkIDList.Insert(~x, aParticipant.WorkID);
-            //        }
-            //        else
-            //        {
-            //            // in list, ignore it
-            //        }
-            //        // Add the PAs if it does not exist
-            //        foreach (var aPa in aParticipant.PAlist)
-            //        {
-            //            var pai = practiceAreaList.BinarySearch(aPa.PAcode);
-            //            if (pai < 0)
-            //            {
-            //                // Not in list, add it
-            //                practiceAreaList.Insert(~pai, aPa.PAcode);
-            //            }
-            //            else
-            //            {
-            //                // In list, ignore it
-            //            }
-            //        }
-            //    }
-
-            //    // for this participant, output the practicenames and practice areas to the spreadhseet
-            //    responsibilities.Cells[respRow++, 1].Value = distincParticipant;
-            //    responsibilities.Cells[respRow++, 2].Value = "Project/Work";
-            //    for (int i = 0; i < projectNameList.Count(); i++)
-            //    //foreach (var aprojName in projectNameList)
-            //    {
-            //        //responsibilities.Cells[respRow++, 3].Value = aprojName.ToString();
-            //        // projectWorkIDList
-            //        responsibilities.Cells[respRow++, 3].Value =
-            //            projectWorkIDList[i] + " " + projectNameList[i];
-            //        //aprojName.ToString();
-            //    }
-            //    responsibilities.Cells[respRow++, 2].Value = "Practice Area";
-            //    foreach (var aPA in practiceAreaList)
-            //    {
-            //        responsibilities.Cells[respRow++, 3].Value = aPA.ToString();
-            //    }
-
-            //}
-
-            MessageBox.Show("Draft Schedule completed");
+            returnMessage = $"Required staff={reqStaff}\nOptional staff={optStaff}";
             return true;
         }
 

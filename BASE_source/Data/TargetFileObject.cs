@@ -98,9 +98,8 @@ namespace BASE.Data
         /// </summary>
         /// <returns></returns>
 
-        public bool SelectFileToLoad(string fileNameKeyWord)
-
         //  virtual public bool LoadFileData(string fileNameKeyWord)
+        public bool SelectFileToLoad(string fileNameKeyWord, out string returnMessage)
         {
             // Check if the excel process is running
 
@@ -127,17 +126,19 @@ namespace BASE.Data
                     //Cursor.Current = Cursors.WaitCursor;
                     this.DirectoryFileName = sourceFile2.FileName;
                     // this.SavePersistant();
+                    returnMessage = $"{Path.GetFileName(sourceFile2.FileName)} selected.";
                     return true;
                 }
                 else
                 { // Filename does not contain CCASinName
-                    MessageBox.Show($"The filename {Path.GetFileName(sourceFile2.FileName)} does not contain the keyword \"{fileNameKeyWord}\"");
+                    returnMessage = $"The filename {Path.GetFileName(sourceFile2.FileName)} does not contain the keyword \"{fileNameKeyWord}\"";
                     return false;
                 }
 
             }
             else
             {
+                returnMessage = "User cancelled.";
                 return false;
             }
         }

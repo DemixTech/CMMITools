@@ -3355,97 +3355,136 @@ namespace BASE
         private void btnOpenBaseCASPlan_Click(object sender, EventArgs e)
         {
             //CASFileObject.LoadPersistant();
-            if (CASFileObject.SelectFileToLoad(TargetFileObject.CCASinName) == false)
+            string returnMessage;
+            if (CASFileObject.SelectFileToLoad(TargetFileObject.CCASinName,out returnMessage))
             {
-                MessageBox.Show($"No file selected.");
+                // All ok
+                MessageBox.Show("Open CAS plan ... completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                CASFileObject.SavePersistant(CASFileObject);
             }
             else
             {
-                CASFileObject.SavePersistant(CASFileObject);
+                // MessageBox.Show("Error generating Support and Project CAS sheets!");
+                MessageBox.Show("Open CAS plan ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
         private void btnReloadCASPlan_Click(object sender, EventArgs e)
         {
-            //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
-            if (CASFileObject.LoadCASFile() == true)
-            { // file was loaded
+            string returnMessage;
+            if (CASFileObject.LoadCASFile(out returnMessage) == true)
+            {
+                // All ok
+                MessageBox.Show("Reload plan ... completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                // file was loaded
                 CASFileObject.SavePersistant(CASFileObject);
+
             }
             else
-            { // file was not loaded
+            {
+                // file was not loaded
+                MessageBox.Show("Reload plan ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
             return;
-
 
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            if (CASFileObject.CreateSchedule1() == true)
+            string returnMessage;
+            if (CASFileObject.CreateSchedule1(out returnMessage) == true)
             { // Generated the schedule
-
+                MessageBox.Show("Generate draft schedule ... completed!" + Environment.NewLine + returnMessage,
+                        "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else
             {// Could not generate schedule
-
+                MessageBox.Show("Generate draft schedule ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void btnReloadSchedule2AndGenerateCASSheets_Click(object sender, EventArgs e)
         {
             //CASFileObject.ReloadSchedule2();
             //bool insertRole = ;
-            if (CASFileObject.Generate_OUParticipants(chkInsertRole.Checked)) // This includes reloading it
+            string returnMessage;
+            if (CASFileObject.Generate_OUParticipants(chkInsertRole.Checked, out returnMessage)) // This includes reloading it
             { // All ok
-
+                
+                    MessageBox.Show("Reload Schedule2 and generate ALL Participant CAS sheets ... completed!" + Environment.NewLine + returnMessage,
+                        "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else
             {
-                MessageBox.Show("Error reloading schedule 2 and generating CAS sheets!");
+                MessageBox.Show("Reload Schedule2 and generate ALL Participant CAS sheets ... failed!" + Environment.NewLine + returnMessage,
+                   "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void btnGenerating_SupportAndProjectCASSheets(object sender, EventArgs e)
         {
-            if (CASFileObject.Generate_SupportAndProjectCASSheets())
+            string returnMessage;
+            if (CASFileObject.Generate_SupportAndProjectCASSheets(out returnMessage))
             {
                 // All ok
+                MessageBox.Show("Generate Support and Project CAS sheets ... completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else
             {
-                MessageBox.Show("Error generating Support and Project CAS sheets!");
+                // MessageBox.Show("Error generating Support and Project CAS sheets!");
+                MessageBox.Show("Generate Support and Project CAS sheets ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //CASFileObject.LoadPersistant();
-            if (CASOEdbObject.SelectFileToLoad(TargetFileObject.COEdbinName) == false)
+            
+            string returnMessage;
+            if (CASOEdbObject.SelectFileToLoad(TargetFileObject.COEdbinName, out returnMessage))
             {
-                MessageBox.Show($"No file selected.");
+                // All ok
+                MessageBox.Show("Open OEdb ... completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                CASOEdbObject.SavePersistant(CASOEdbObject);
             }
             else
             {
-                CASOEdbObject.SavePersistant(CASOEdbObject);
+                // MessageBox.Show("Error generating Support and Project CAS sheets!");
+                MessageBox.Show("Open OEdb ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
+
         }
 
         private void btnSelectQuestionAndModel2_Click(object sender, EventArgs e)
         {
             //BASEQuestionObject 
-            if (BASEQuestionObject.SelectFileToLoad(TargetFileObject.CQuestionInName) == false)
+            string returnMessage;
+            if (BASEQuestionObject.SelectFileToLoad(TargetFileObject.CQuestionInName, out returnMessage))
             {
-                MessageBox.Show($"No file selected.");
+                // All ok
+                MessageBox.Show("Select question and OEdb template file ... completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                BASEQuestionObject.SavePersistant(BASEQuestionObject);
             }
             else
             {
+                // MessageBox.Show("Error generating Support and Project CAS sheets!");
+                MessageBox.Show("Select question and OEdb template file ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-
-                BASEQuestionObject.SavePersistant(BASEQuestionObject);
             }
         }
 
@@ -3485,7 +3524,7 @@ namespace BASE
             string extStr = Path.GetExtension(BASEQuestionObject._directoryFileName);
 
             string pathStr = Path.GetDirectoryName(CASFileObject._directoryFileName);
-            
+
             // *** Check if it exists, keep looking and create new copy
             int counter = 0;
             string OEdbPathFileStr = Path.Combine(pathStr, fileName + extStr);
@@ -3547,14 +3586,32 @@ namespace BASE
         private void btnImportOEdb2_Click(object sender, EventArgs e)
         {
             //CASFileObject.LoadPersistant();
-            if (CASOEdbImportObject.SelectFileToLoad(TargetFileObject.COEdbATMinName) == false)
+            //if (CASOEdbImportObject.SelectFileToLoad(TargetFileObject.COEdbATMinName) == false)
+            //{
+            //    MessageBox.Show($"No file selected.");
+            //}
+            //else
+            //{
+            //    CASOEdbImportObject.SavePersistant(CASOEdbImportObject);
+            //}
+
+            string returnMessage;
+            if (CASOEdbImportObject.SelectFileToLoad(TargetFileObject.COEdbATMinName, out returnMessage))
             {
-                MessageBox.Show($"No file selected.");
+                // All ok
+                MessageBox.Show("Open OEdbATM ... completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                CASOEdbImportObject.SavePersistant(CASOEdbImportObject);
             }
             else
             {
-                CASOEdbImportObject.SavePersistant(CASOEdbImportObject);
+                // MessageBox.Show("Error generating Support and Project CAS sheets!");
+                MessageBox.Show("Open OEdbATM ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
+
+
         }
 
         private void btnMergeATMintoATL2_Click(object sender, EventArgs e)
@@ -3579,29 +3636,60 @@ namespace BASE
 
         private void btnSelectXlsxAdmin_Click(object sender, EventArgs e)
         {
-            
-            if (BASEDataReferenceObject.SelectFileToLoad("Data_Reference") == false)
+
+            //if (BASEDataReferenceObject.SelectFileToLoad("Data_Reference") == false)
+            //{
+            //    MessageBox.Show($"No file selected.");
+            //}
+            //else
+            //{
+            //    BASEDataReferenceObject.SavePersistant(BASEDataReferenceObject);
+            //    //BASEPresentationObject.ClearPathFile();
+            //}
+
+            string returnMessage;
+            if (BASEDataReferenceObject.SelectFileToLoad("Data_Reference", out returnMessage))
             {
-                MessageBox.Show($"No file selected.");
+                // All ok
+                MessageBox.Show("Open DataReference ... completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                BASEDataReferenceObject.SavePersistant(BASEDataReferenceObject);
             }
             else
             {
-                BASEDataReferenceObject.SavePersistant(BASEDataReferenceObject);
-                //BASEPresentationObject.ClearPathFile();
+                // MessageBox.Show("Error generating Support and Project CAS sheets!");
+                MessageBox.Show("Open DataReference ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
 
         private void btnSelectPptxAdmin_Click(object sender, EventArgs e)
         {
-            if (BASEPresentationObject.SelectFileToLoad("") == false)
+            //if (BASEPresentationObject.SelectFileToLoad("") == false)
+            //{
+            //    MessageBox.Show($"No file selected.");
+            //}
+            //else
+            //{
+            //    BASEPresentationObject.SavePersistant(BASEPresentationObject);
+            //    //BASEDataReferenceObject.ClearPathFile();
+            //}
+            string returnMessage;
+            if (BASEPresentationObject.SelectFileToLoad("", out returnMessage))
             {
-                MessageBox.Show($"No file selected.");
+                // All ok
+                MessageBox.Show("BASE Presentation ... completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                BASEPresentationObject.SavePersistant(BASEPresentationObject);
             }
             else
             {
-                BASEPresentationObject.SavePersistant(BASEPresentationObject);
-                //BASEDataReferenceObject.ClearPathFile();
+                // MessageBox.Show("Error generating Support and Project CAS sheets!");
+                MessageBox.Show("BASE Presentation ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
         private void tabPage1_Click(object sender, EventArgs e)
@@ -3615,7 +3703,7 @@ namespace BASE
             //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
             string presentationPath = Path.GetDirectoryName(BASEPresentationObject._directoryFileName);
             string dataReferencePath = Path.GetDirectoryName(BASEDataReferenceObject._directoryFileName);
-                
+
             if (presentationPath != dataReferencePath)
             {
                 var resultX = MessageBox.Show($"The data reference and presentation files are in different directories\n" +
@@ -3645,10 +3733,10 @@ namespace BASE
             string zipFileName = Path.Combine(directoryName, fileNameNoExt + ".zip");
 
             File.Copy(BASEPresentationObject._directoryFileName, zipFileName);
-            
 
-                //Path.Combine(Path.GetDirectoryName(BASEDataReferenceObject._directoryFileName),
-                //"myZip.zip");
+
+            //Path.Combine(Path.GetDirectoryName(BASEDataReferenceObject._directoryFileName),
+            //"myZip.zip");
 
             // https://docs.telerik.com/devtools/document-processing/libraries/radziplibrary/features/update-ziparchive
             try
@@ -3707,9 +3795,9 @@ namespace BASE
             // For gov for each process 1) create an entry and 2) add OEdb gov MapRecords
 
             // For ii for each process 1) create and entry and 2) add OEdb ii MapReocrds
-            
+
             // Run through th eii worksheet and populate ii_gov
-            
+
             // Run through the gov worksheet and popluate the ii_gov map
 
         }
