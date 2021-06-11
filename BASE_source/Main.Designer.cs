@@ -65,6 +65,7 @@
             this.label21 = new System.Windows.Forms.Label();
             this.btnSelectQuestionAndModel2 = new System.Windows.Forms.Button();
             this.tabDemixTool = new System.Windows.Forms.TabPage();
+            this.btnBuildIIandGovMaps = new System.Windows.Forms.Button();
             this.btnMergeATMintoATL2 = new System.Windows.Forms.Button();
             this.lblFileOEdbImport2 = new System.Windows.Forms.Label();
             this.lblPathOEdbImport2 = new System.Windows.Forms.Label();
@@ -132,7 +133,6 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
-            this.btnBuildIIandGovMaps = new System.Windows.Forms.Button();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -384,7 +384,7 @@
             this.btnOpenBaseCASPlan.Name = "btnOpenBaseCASPlan";
             this.btnOpenBaseCASPlan.Size = new System.Drawing.Size(211, 47);
             this.btnOpenBaseCASPlan.TabIndex = 36;
-            this.btnOpenBaseCASPlan.Text = "Select plan";
+            this.btnOpenBaseCASPlan.Text = "Open CAS plan";
             this.btnOpenBaseCASPlan.UseVisualStyleBackColor = true;
             this.btnOpenBaseCASPlan.Click += new System.EventHandler(this.btnOpenBaseCASPlan_Click);
             // 
@@ -548,6 +548,16 @@
             this.tabDemixTool.Text = "OEdb Tool";
             this.tabDemixTool.UseVisualStyleBackColor = true;
             this.tabDemixTool.Click += new System.EventHandler(this.tabDemixTool_Click);
+            // 
+            // btnBuildIIandGovMaps
+            // 
+            this.btnBuildIIandGovMaps.Location = new System.Drawing.Point(248, 153);
+            this.btnBuildIIandGovMaps.Name = "btnBuildIIandGovMaps";
+            this.btnBuildIIandGovMaps.Size = new System.Drawing.Size(211, 47);
+            this.btnBuildIIandGovMaps.TabIndex = 48;
+            this.btnBuildIIandGovMaps.Text = "Build ii and gov maps";
+            this.btnBuildIIandGovMaps.UseVisualStyleBackColor = true;
+            this.btnBuildIIandGovMaps.Click += new System.EventHandler(this.btnBuildIIandGovMaps_Click);
             // 
             // btnMergeATMintoATL2
             // 
@@ -1215,16 +1225,6 @@
             this.LblSourceFilePlan2.Size = new System.Drawing.Size(54, 20);
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
-            // 
-            // btnBuildIIandGovMaps
-            // 
-            this.btnBuildIIandGovMaps.Location = new System.Drawing.Point(248, 153);
-            this.btnBuildIIandGovMaps.Name = "btnBuildIIandGovMaps";
-            this.btnBuildIIandGovMaps.Size = new System.Drawing.Size(211, 47);
-            this.btnBuildIIandGovMaps.TabIndex = 48;
-            this.btnBuildIIandGovMaps.Text = "Build ii and gov maps";
-            this.btnBuildIIandGovMaps.UseVisualStyleBackColor = true;
-            this.btnBuildIIandGovMaps.Click += new System.EventHandler(this.btnBuildIIandGovMaps_Click);
             // 
             // Main
             // 
