@@ -3548,10 +3548,14 @@ namespace BASE
 
         private void btnTestLinksAndEngl2_Click(object sender, EventArgs e)
         {
-            if (CASOEdbObject.TestLinksAndEnglish2(lblStatus) == false)
+            string resultMessage;
+            if (CASOEdbObject.TestLinksAndEnglish2(lblStatus, out resultMessage) == false)
 
             {
-                MessageBox.Show($"Could not complete the link testing task!");
+                MessageBox.Show($"Failure: {resultMessage}");
+            } else
+            {
+                MessageBox.Show($"Success: {resultMessage}");
             }
         }
 
@@ -3627,9 +3631,22 @@ namespace BASE
                 return;
             }
 
-            if (CASOEdbObject.MergeATMintoATL2(lblStatus, CASOEdbImportObject) == false)
+            string resultMessage;
+            if (CASOEdbObject.MergeATMintoATL2(lblStatus, CASOEdbImportObject, out resultMessage) == false)
             {
-                MessageBox.Show($"The mergining has not been completed.");
+                MessageBox.Show($"The mergining has not been completed.\n{resultMessage}" );
+            }
+            else
+            {
+                // Merging was completed successfully. Recheck and link the english
+                if (CASOEdbObject.TestLinksAndEnglish2(lblStatus, out resultMessage) == false)
+
+                {
+                    MessageBox.Show($"Failed: {resultMessage}");
+                } else
+                {
+                    MessageBox.Show($"Successfull: {resultMessage}");
+                }
             }
 
         }

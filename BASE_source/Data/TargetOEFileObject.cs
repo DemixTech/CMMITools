@@ -369,7 +369,7 @@ namespace BASE.Data
             return true;
         }
 
-        public bool TestLinksAndEnglish2(System.Windows.Forms.Label lblStatus)
+        public bool TestLinksAndEnglish2(System.Windows.Forms.Label lblStatus, out string resultMessage)
         {
 
             // *** Setup the main sheet
@@ -380,7 +380,7 @@ namespace BASE.Data
             Workbook mainWorkbook;
             if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
-                MessageBox.Show("File not found, has it been moved or deleted?");
+                resultMessage = "File not found, has it been moved or deleted?";
                 return false;
             }
             string basePath = Path.GetDirectoryName(_directoryFileName);
@@ -518,9 +518,9 @@ namespace BASE.Data
             statusStr = statusStr + "done";
             lblStatus.Text = statusStr;
 
-            MessageBox.Show("Done");
+            //MessageBox.Show("Done");
 
-
+            resultMessage = "English links updated";
             return true;
         }
 
@@ -823,21 +823,21 @@ namespace BASE.Data
             return true;
         }
 
-        public bool MergeATMintoATL2(System.Windows.Forms.Label lblStatus, TargetOEFileObject fileToImport)
+        public bool MergeATMintoATL2(System.Windows.Forms.Label lblStatus, TargetOEFileObject fileToImport, out string resultMessage)
         {
 
             // *** Load source
             Workbook sourceWorkbook;
             if ((sourceWorkbook = Helper.CheckIfOpenAndOpenXlsx(fileToImport._directoryFileName)) == null)
             {
-                MessageBox.Show("File not found, has it been moved or deleted?");
+                resultMessage = "File not found, has it been moved or deleted?";
                 return false;
             }
             // *** Load main
             Workbook mainWorkbook;
             if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
-                MessageBox.Show("File not found, has it been moved or deleted?");
+                resultMessage =  "File not found, has it been moved or deleted?";
                 return false;
             }
 
@@ -847,6 +847,14 @@ namespace BASE.Data
             lblStatus.Text = "";
             foreach (Worksheet wsSource in sourceWorkbook.Sheets)
             {
+
+                // Clear filters if it is set
+                // https://stackoverflow.com/questions/13204064/turn-off-filters
+                if (wsSource.AutoFilter != null)
+                {
+                    wsSource.AutoFilterMode = false;
+                }
+
 
                 switch (wsSource.Name)
                 {
@@ -872,6 +880,15 @@ namespace BASE.Data
                     case "GOV":
 
                         wsMain = mainWorkbook.Worksheets[wsSource.Name];
+
+                        // *** Clear filters if it is set
+                        // https://stackoverflow.com/questions/13204064/turn-off-filters
+                        if (wsMain.AutoFilter != null)
+                        {
+                            wsMain.AutoFilterMode = false;
+                        }
+
+
                         // *** Find the number of rows
                         int NumberOfRows = Helper.FindEndOfWorksheet(wsSource, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
 
@@ -885,7 +902,7 @@ namespace BASE.Data
 
             }
             lblStatus.Text = lblStatus.Text + "done";
-            MessageBox.Show("Done");
+            resultMessage = "Successfull completed";
             return true;
 
         }
