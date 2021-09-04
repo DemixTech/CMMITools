@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using System.Xml.Serialization;
 
@@ -368,6 +369,7 @@ namespace BASE.Data
 
             return true;
         }
+        
 
         public bool TestLinksAndEnglish2(System.Windows.Forms.Label lblStatus, out string resultMessage)
         {
@@ -524,6 +526,197 @@ namespace BASE.Data
             return true;
         }
 
+        public bool AddRemoveURLText(System.Windows.Forms.Label lblStatus, 
+            bool addTextCheck,
+            string textToAddOrRemove,
+            out string resultMessage)
+        {
+
+            // *** Remove url characters
+            textToAddOrRemove = HttpUtility.UrlDecode(textToAddOrRemove); 
+
+            // *** Setup the main sheet
+            // excelApp.Visible = true;
+
+            // *** Load main
+            //mainWorkbook = excelApp.Workbooks.Open(persistentData.OEdatabasePathFile);
+            Workbook mainWorkbook;
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
+            {
+                resultMessage = "File not found, has it been moved or deleted?";
+                return false;
+            }
+            string basePath = Path.GetDirectoryName(_directoryFileName);
+
+            lblStatus.Text = "OEdb:";
+            string statusStr = "";
+            foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
+            {
+                switch (wksOEdb.Name)
+                {
+
+                    case "CAR":
+                    case "CM":
+                    case "DAR":
+                    case "EST":
+                    case "MC":
+                    case "MPM":
+                    case "OT":
+                    case "PAD":
+                    case "PCM":
+                    case "PLAN":
+                    case "PQA":
+                    case "PR":
+                    case "RDM":
+                    case "RSK":
+                    case "VV":
+                    case "PI":
+                    case "TS":
+                    case "GOV":
+                    case "II":
+
+                        //if (wksOEdb.Name=="PI")
+                        //{
+                        //    int stop = 1;
+                        //}
+                        // *** Find the number of rows
+                        int NumberOfRows = Helper.FindEndOfWorksheet(wksOEdb, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
+                        // Range columnToClear = wksOEdb.Range["Y:Z"];
+                        // columnToClear.Clear();
+
+                        // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
+                        Range mainRange = wksOEdb.Range["A" + cDemixOEToolHeadingStartRow, "Z" + NumberOfRows];
+
+                        // *** List all the hyperlinks https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Link/Retrieve-Hyperlinks-from-an-Excel-Sheet-in-C-VB.NET.html
+                        Hyperlinks hyperLinkList = mainRange.Hyperlinks;
+                        List<Hyperlink> hyperLinksToAdd = new List<Hyperlink>();
+
+                        int hyperLinkRow;
+                        int hyperLinkCol;
+                        string hyperlinkAddress;
+                        string PathFileToTest;
+                        string PathEnglish;
+
+                        string englishFullPathFile;
+                        Boolean fileFound;
+
+                        foreach (Hyperlink aHyperlink in hyperLinkList)
+                        {
+                            // *** Take each hyperlink and test it
+                            hyperLinkRow = aHyperlink.Range.Row;
+                            //if (hyperLinkRow == 9 && wksOEdb.Name == "PI")
+                            //{
+                            //    int stop = 1;
+                            //}
+                            hyperLinkCol = aHyperlink.Range.Column;
+                            hyperlinkAddress = aHyperlink.Address;
+
+                            // *** Test for add or remove
+                            if (addTextCheck)
+                            {
+                                // *** add text infront of the url
+                                hyperlinkAddress = textToAddOrRemove + hyperlinkAddress;
+                                aHyperlink.Address = hyperlinkAddress;
+                            }
+                            else
+                            {
+                                // *** remove text infront of the url
+                                if (hyperlinkAddress.Length < textToAddOrRemove.Length)
+                                {
+                                    // the hyperlink is < than the string to remove, skip to next
+                                } else
+                                {
+                                    string strPart1;
+                                    string strPart2;
+                                    strPart1 = hyperlinkAddress.Substring(0, textToAddOrRemove.Length);
+                                    strPart2 = hyperlinkAddress.Substring(textToAddOrRemove.Length,
+                                        hyperlinkAddress.Length - textToAddOrRemove.Length);
+                                    if (String.Compare(strPart1, textToAddOrRemove, false) == 0)
+                                    { // Strings are the same - case ignored
+                                        hyperlinkAddress = strPart2;
+                                        aHyperlink.Address = strPart2;
+
+                                    } else
+                                    { // Strings are different
+                                    }
+                                }
+                            }
+
+                            // *** Test if the file exists
+                            fileFound = false;
+                            PathFileToTest = Path.Combine(basePath, hyperlinkAddress);
+                            if (File.Exists(PathFileToTest))
+                            {
+                                mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "f"].Value = "ok file";
+                                fileFound = true;
+                            }
+                            else
+                            {
+                                if (Directory.Exists(PathFileToTest))
+                                {
+                                    mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "f"].Value = "ok directory";
+                                }
+                                else
+                                {
+                                    mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "f"].Value = "Not ok";
+                                }
+                            }
+
+                            // *** Test if the english version exists
+                            PathEnglish = Path.Combine(Path.GetDirectoryName(PathFileToTest), Path.GetFileNameWithoutExtension(PathFileToTest));
+                            englishFullPathFile = "";
+                            string theExtension = Path.GetExtension(PathFileToTest);
+                            switch (theExtension.ToLower().Trim())
+                            {
+                                case ".xls":
+                                case ".xlsx":
+                                case ".xlsm":
+                                    englishFullPathFile = PathEnglish + "-engl.xlsx";
+                                    break;
+                                case ".doc":
+                                case ".docx":
+                                case ".docm":
+                                    englishFullPathFile = PathEnglish + "-engl.docx";
+                                    break;
+                                case ".ppt":
+                                case ".pptx":
+                                case ".pptm":
+                                    englishFullPathFile = PathEnglish + "-engl.pptx";
+                                    break;
+
+                            }
+                            if (englishFullPathFile != "")
+                            {
+                                // *** list the new hyperlink
+                                if (fileFound && File.Exists(englishFullPathFile))
+                                { // file exists, add it
+                                  // mainRange[hyperLinkRow - cOEDatabaseHeadingStartRow + 1, "z"].Value = "engl";
+                                    string remainderPath = englishFullPathFile.Remove(0, basePath.Length + 1);
+                                    string formulaStr = "=hyperlink(\"" + remainderPath + "\",\"engl\")";
+                                    mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"].Formula = formulaStr;
+
+                                }
+                                else
+                                {
+                                    mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"].Value = "none";
+                                }
+                            }
+                        }
+
+                        // *** Show the status
+                        statusStr = statusStr + wksOEdb.Name + ".";
+                        lblStatus.Text = statusStr;
+                        break;
+                }
+            }
+            statusStr = statusStr + "done";
+            lblStatus.Text = statusStr;
+
+            //MessageBox.Show("Done");
+
+            resultMessage = "English links updated";
+            return true;
+        }
 
         public bool ExtractOEFindings2(System.Windows.Forms.Label lblStatus)
         {

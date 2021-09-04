@@ -3818,5 +3818,39 @@ namespace BASE
             // Run through the gov worksheet and popluate the ii_gov map
 
         }
+
+        private void btnRemoveText_Click(object sender, EventArgs e)
+        {
+            string resultMessage;
+            bool addText = false;
+            string textToAddRemove = txtAddRemoveText.Text.ToString();
+            if (CASOEdbObject.AddRemoveURLText(lblStatus,addText,
+                textToAddRemove,out resultMessage) == false)
+
+            {
+                MessageBox.Show($"Failure: {resultMessage}");
+            }
+            else
+            {
+                MessageBox.Show($"Success: {resultMessage}");
+            }
+        }
+
+        private void btnAddText_Click(object sender, EventArgs e)
+        {
+            string resultMessage;
+            bool addText = true;
+            string textToAddRemove = txtAddRemoveText.Text.ToString();
+            if (CASOEdbObject.AddRemoveURLText(lblStatus, addText,
+                textToAddRemove, out resultMessage) == false)
+
+            {
+                MessageBox.Show($"Failure: {resultMessage}");
+            }
+            else
+            {
+                MessageBox.Show($"Success: {resultMessage}");
+            }
+        }
     }
 }

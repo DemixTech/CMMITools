@@ -133,6 +133,10 @@
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
+            this.txtAddRemoveText = new System.Windows.Forms.TextBox();
+            this.lblAddRemoveText = new System.Windows.Forms.Label();
+            this.btnRemoveText = new System.Windows.Forms.Button();
+            this.btnAddText = new System.Windows.Forms.Button();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -524,6 +528,10 @@
             // 
             // tabDemixTool
             // 
+            this.tabDemixTool.Controls.Add(this.btnAddText);
+            this.tabDemixTool.Controls.Add(this.btnRemoveText);
+            this.tabDemixTool.Controls.Add(this.lblAddRemoveText);
+            this.tabDemixTool.Controls.Add(this.txtAddRemoveText);
             this.tabDemixTool.Controls.Add(this.btnBuildIIandGovMaps);
             this.tabDemixTool.Controls.Add(this.btnMergeATMintoATL2);
             this.tabDemixTool.Controls.Add(this.lblFileOEdbImport2);
@@ -1226,6 +1234,42 @@
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
             // 
+            // txtAddRemoveText
+            // 
+            this.txtAddRemoveText.Location = new System.Drawing.Point(726, 45);
+            this.txtAddRemoveText.Name = "txtAddRemoveText";
+            this.txtAddRemoveText.Size = new System.Drawing.Size(326, 26);
+            this.txtAddRemoveText.TabIndex = 49;
+            // 
+            // lblAddRemoveText
+            // 
+            this.lblAddRemoveText.AutoSize = true;
+            this.lblAddRemoveText.Location = new System.Drawing.Point(726, 16);
+            this.lblAddRemoveText.Name = "lblAddRemoveText";
+            this.lblAddRemoveText.Size = new System.Drawing.Size(225, 20);
+            this.lblAddRemoveText.TabIndex = 50;
+            this.lblAddRemoveText.Text = "Text to add/remove from URLs";
+            // 
+            // btnRemoveText
+            // 
+            this.btnRemoveText.Location = new System.Drawing.Point(726, 90);
+            this.btnRemoveText.Name = "btnRemoveText";
+            this.btnRemoveText.Size = new System.Drawing.Size(160, 47);
+            this.btnRemoveText.TabIndex = 51;
+            this.btnRemoveText.Text = "Remove";
+            this.btnRemoveText.UseVisualStyleBackColor = true;
+            this.btnRemoveText.Click += new System.EventHandler(this.btnRemoveText_Click);
+            // 
+            // btnAddText
+            // 
+            this.btnAddText.Location = new System.Drawing.Point(892, 90);
+            this.btnAddText.Name = "btnAddText";
+            this.btnAddText.Size = new System.Drawing.Size(160, 47);
+            this.btnAddText.TabIndex = 52;
+            this.btnAddText.Text = "Add";
+            this.btnAddText.UseVisualStyleBackColor = true;
+            this.btnAddText.Click += new System.EventHandler(this.btnAddText_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -1364,6 +1408,10 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Button btnBuildIIandGovMaps;
+        private System.Windows.Forms.Button btnAddText;
+        private System.Windows.Forms.Button btnRemoveText;
+        private System.Windows.Forms.Label lblAddRemoveText;
+        private System.Windows.Forms.TextBox txtAddRemoveText;
     }
 }
 
