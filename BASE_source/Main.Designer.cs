@@ -34,6 +34,7 @@
             this.lblOEdbSource = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.tabCMMI_ApprTool = new System.Windows.Forms.TabPage();
+            this.btnSetAllFM = new System.Windows.Forms.Button();
             this.btnRemoveUpload = new System.Windows.Forms.Button();
             this.btnIIGOVrating = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -65,6 +66,10 @@
             this.label21 = new System.Windows.Forms.Label();
             this.btnSelectQuestionAndModel2 = new System.Windows.Forms.Button();
             this.tabDemixTool = new System.Windows.Forms.TabPage();
+            this.btnAddText = new System.Windows.Forms.Button();
+            this.btnRemoveText = new System.Windows.Forms.Button();
+            this.lblAddRemoveText = new System.Windows.Forms.Label();
+            this.txtAddRemoveText = new System.Windows.Forms.TextBox();
             this.btnBuildIIandGovMaps = new System.Windows.Forms.Button();
             this.btnMergeATMintoATL2 = new System.Windows.Forms.Button();
             this.lblFileOEdbImport2 = new System.Windows.Forms.Label();
@@ -131,12 +136,29 @@
             this.lblDefaults = new System.Windows.Forms.Label();
             this.lblOEdbPathFile = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.lblToolkitImportFile = new System.Windows.Forms.Label();
+            this.lblToolkitImportPath = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label35 = new System.Windows.Forms.Label();
+            this.lblToolkitImportFileXML = new System.Windows.Forms.Label();
+            this.lblToolkitImportPathXML = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.lblToolkitMasterFileXML = new System.Windows.Forms.Label();
+            this.lblToolkitMasterPathXML = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.lblToolkitMasterFile = new System.Windows.Forms.Label();
+            this.lblToolkitMasterPath = new System.Windows.Forms.Label();
+            this.label48 = new System.Windows.Forms.Label();
+            this.label49 = new System.Windows.Forms.Label();
+            this.label50 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
-            this.txtAddRemoveText = new System.Windows.Forms.TextBox();
-            this.lblAddRemoveText = new System.Windows.Forms.Label();
-            this.btnRemoveText = new System.Windows.Forms.Button();
-            this.btnAddText = new System.Windows.Forms.Button();
+            this.btnCreateRRstats = new System.Windows.Forms.Button();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -194,6 +216,7 @@
             // 
             // tabCMMI_ApprTool
             // 
+            this.tabCMMI_ApprTool.Controls.Add(this.btnSetAllFM);
             this.tabCMMI_ApprTool.Controls.Add(this.btnRemoveUpload);
             this.tabCMMI_ApprTool.Controls.Add(this.btnIIGOVrating);
             this.tabCMMI_ApprTool.Controls.Add(this.label5);
@@ -213,6 +236,16 @@
             this.tabCMMI_ApprTool.TabIndex = 1;
             this.tabCMMI_ApprTool.Text = "CMMI Tool";
             this.tabCMMI_ApprTool.UseVisualStyleBackColor = true;
+            // 
+            // btnSetAllFM
+            // 
+            this.btnSetAllFM.Location = new System.Drawing.Point(271, 297);
+            this.btnSetAllFM.Name = "btnSetAllFM";
+            this.btnSetAllFM.Size = new System.Drawing.Size(212, 62);
+            this.btnSetAllFM.TabIndex = 28;
+            this.btnSetAllFM.Text = "Set all FM + OU FM";
+            this.btnSetAllFM.UseVisualStyleBackColor = true;
+            this.btnSetAllFM.Click += new System.EventHandler(this.btnSetAllFM_Click);
             // 
             // btnRemoveUpload
             // 
@@ -528,6 +561,7 @@
             // 
             // tabDemixTool
             // 
+            this.tabDemixTool.Controls.Add(this.btnCreateRRstats);
             this.tabDemixTool.Controls.Add(this.btnAddText);
             this.tabDemixTool.Controls.Add(this.btnRemoveText);
             this.tabDemixTool.Controls.Add(this.lblAddRemoveText);
@@ -556,6 +590,42 @@
             this.tabDemixTool.Text = "OEdb Tool";
             this.tabDemixTool.UseVisualStyleBackColor = true;
             this.tabDemixTool.Click += new System.EventHandler(this.tabDemixTool_Click);
+            // 
+            // btnAddText
+            // 
+            this.btnAddText.Location = new System.Drawing.Point(892, 90);
+            this.btnAddText.Name = "btnAddText";
+            this.btnAddText.Size = new System.Drawing.Size(160, 47);
+            this.btnAddText.TabIndex = 52;
+            this.btnAddText.Text = "Add";
+            this.btnAddText.UseVisualStyleBackColor = true;
+            this.btnAddText.Click += new System.EventHandler(this.btnAddText_Click);
+            // 
+            // btnRemoveText
+            // 
+            this.btnRemoveText.Location = new System.Drawing.Point(726, 90);
+            this.btnRemoveText.Name = "btnRemoveText";
+            this.btnRemoveText.Size = new System.Drawing.Size(160, 47);
+            this.btnRemoveText.TabIndex = 51;
+            this.btnRemoveText.Text = "Remove";
+            this.btnRemoveText.UseVisualStyleBackColor = true;
+            this.btnRemoveText.Click += new System.EventHandler(this.btnRemoveText_Click);
+            // 
+            // lblAddRemoveText
+            // 
+            this.lblAddRemoveText.AutoSize = true;
+            this.lblAddRemoveText.Location = new System.Drawing.Point(726, 16);
+            this.lblAddRemoveText.Name = "lblAddRemoveText";
+            this.lblAddRemoveText.Size = new System.Drawing.Size(225, 20);
+            this.lblAddRemoveText.TabIndex = 50;
+            this.lblAddRemoveText.Text = "Text to add/remove from URLs";
+            // 
+            // txtAddRemoveText
+            // 
+            this.txtAddRemoveText.Location = new System.Drawing.Point(726, 45);
+            this.txtAddRemoveText.Name = "txtAddRemoveText";
+            this.txtAddRemoveText.Size = new System.Drawing.Size(326, 26);
+            this.txtAddRemoveText.TabIndex = 49;
             // 
             // btnBuildIIandGovMaps
             // 
@@ -1206,6 +1276,26 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.lblToolkitImportFile);
+            this.tabPage3.Controls.Add(this.lblToolkitImportPath);
+            this.tabPage3.Controls.Add(this.label30);
+            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.label35);
+            this.tabPage3.Controls.Add(this.lblToolkitImportFileXML);
+            this.tabPage3.Controls.Add(this.lblToolkitImportPathXML);
+            this.tabPage3.Controls.Add(this.label38);
+            this.tabPage3.Controls.Add(this.label39);
+            this.tabPage3.Controls.Add(this.label40);
+            this.tabPage3.Controls.Add(this.lblToolkitMasterFileXML);
+            this.tabPage3.Controls.Add(this.lblToolkitMasterPathXML);
+            this.tabPage3.Controls.Add(this.label43);
+            this.tabPage3.Controls.Add(this.label44);
+            this.tabPage3.Controls.Add(this.label45);
+            this.tabPage3.Controls.Add(this.lblToolkitMasterFile);
+            this.tabPage3.Controls.Add(this.lblToolkitMasterPath);
+            this.tabPage3.Controls.Add(this.label48);
+            this.tabPage3.Controls.Add(this.label49);
+            this.tabPage3.Controls.Add(this.label50);
             this.tabPage3.Controls.Add(this.label4);
             this.tabPage3.Controls.Add(this.LblSourceFilePlan2);
             this.tabPage3.Controls.Add(this.lblPlanName);
@@ -1215,6 +1305,186 @@
             this.tabPage3.TabIndex = 7;
             this.tabPage3.Text = "Debug";
             this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // lblToolkitImportFile
+            // 
+            this.lblToolkitImportFile.AutoSize = true;
+            this.lblToolkitImportFile.Location = new System.Drawing.Point(124, 402);
+            this.lblToolkitImportFile.Name = "lblToolkitImportFile";
+            this.lblToolkitImportFile.Size = new System.Drawing.Size(129, 20);
+            this.lblToolkitImportFile.TabIndex = 82;
+            this.lblToolkitImportFile.Text = "Toolkit Import file";
+            // 
+            // lblToolkitImportPath
+            // 
+            this.lblToolkitImportPath.AutoSize = true;
+            this.lblToolkitImportPath.Location = new System.Drawing.Point(124, 382);
+            this.lblToolkitImportPath.Name = "lblToolkitImportPath";
+            this.lblToolkitImportPath.Size = new System.Drawing.Size(142, 20);
+            this.lblToolkitImportPath.TabIndex = 81;
+            this.lblToolkitImportPath.Text = "Toolkit Import Path";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(81, 382);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(42, 20);
+            this.label30.TabIndex = 80;
+            this.label30.Text = "Path";
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(81, 402);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(34, 20);
+            this.label31.TabIndex = 79;
+            this.label31.Text = "File";
+            // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(69, 362);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(105, 20);
+            this.label35.TabIndex = 78;
+            this.label35.Text = "Toolkit Import";
+            // 
+            // lblToolkitImportFileXML
+            // 
+            this.lblToolkitImportFileXML.AutoSize = true;
+            this.lblToolkitImportFileXML.Location = new System.Drawing.Point(124, 342);
+            this.lblToolkitImportFileXML.Name = "lblToolkitImportFileXML";
+            this.lblToolkitImportFileXML.Size = new System.Drawing.Size(166, 20);
+            this.lblToolkitImportFileXML.TabIndex = 77;
+            this.lblToolkitImportFileXML.Text = "Toolkit Import XML file";
+            // 
+            // lblToolkitImportPathXML
+            // 
+            this.lblToolkitImportPathXML.AutoSize = true;
+            this.lblToolkitImportPathXML.Location = new System.Drawing.Point(124, 322);
+            this.lblToolkitImportPathXML.Name = "lblToolkitImportPathXML";
+            this.lblToolkitImportPathXML.Size = new System.Drawing.Size(178, 20);
+            this.lblToolkitImportPathXML.TabIndex = 76;
+            this.lblToolkitImportPathXML.Text = "Toolkit Import XML path";
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(81, 322);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(42, 20);
+            this.label38.TabIndex = 75;
+            this.label38.Text = "Path";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(81, 342);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(34, 20);
+            this.label39.TabIndex = 74;
+            this.label39.Text = "File";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(69, 302);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(142, 20);
+            this.label40.TabIndex = 73;
+            this.label40.Text = "Toolkit Import XML";
+            // 
+            // lblToolkitMasterFileXML
+            // 
+            this.lblToolkitMasterFileXML.AutoSize = true;
+            this.lblToolkitMasterFileXML.Location = new System.Drawing.Point(121, 213);
+            this.lblToolkitMasterFileXML.Name = "lblToolkitMasterFileXML";
+            this.lblToolkitMasterFileXML.Size = new System.Drawing.Size(169, 20);
+            this.lblToolkitMasterFileXML.TabIndex = 72;
+            this.lblToolkitMasterFileXML.Text = "Toolkit Master XML file";
+            // 
+            // lblToolkitMasterPathXML
+            // 
+            this.lblToolkitMasterPathXML.AutoSize = true;
+            this.lblToolkitMasterPathXML.Location = new System.Drawing.Point(121, 193);
+            this.lblToolkitMasterPathXML.Name = "lblToolkitMasterPathXML";
+            this.lblToolkitMasterPathXML.Size = new System.Drawing.Size(181, 20);
+            this.lblToolkitMasterPathXML.TabIndex = 71;
+            this.lblToolkitMasterPathXML.Text = "Toolkit Master XML path";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(78, 193);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(42, 20);
+            this.label43.TabIndex = 70;
+            this.label43.Text = "Path";
+            // 
+            // label44
+            // 
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(78, 213);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(34, 20);
+            this.label44.TabIndex = 69;
+            this.label44.Text = "File";
+            // 
+            // label45
+            // 
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(66, 173);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(145, 20);
+            this.label45.TabIndex = 68;
+            this.label45.Text = "Toolkit Master XML";
+            // 
+            // lblToolkitMasterFile
+            // 
+            this.lblToolkitMasterFile.AutoSize = true;
+            this.lblToolkitMasterFile.Location = new System.Drawing.Point(124, 278);
+            this.lblToolkitMasterFile.Name = "lblToolkitMasterFile";
+            this.lblToolkitMasterFile.Size = new System.Drawing.Size(132, 20);
+            this.lblToolkitMasterFile.TabIndex = 67;
+            this.lblToolkitMasterFile.Text = "Toolkit Master file";
+            // 
+            // lblToolkitMasterPath
+            // 
+            this.lblToolkitMasterPath.AutoSize = true;
+            this.lblToolkitMasterPath.Location = new System.Drawing.Point(124, 258);
+            this.lblToolkitMasterPath.Name = "lblToolkitMasterPath";
+            this.lblToolkitMasterPath.Size = new System.Drawing.Size(144, 20);
+            this.lblToolkitMasterPath.TabIndex = 66;
+            this.lblToolkitMasterPath.Text = "Toolkit Master path";
+            // 
+            // label48
+            // 
+            this.label48.AutoSize = true;
+            this.label48.Location = new System.Drawing.Point(81, 258);
+            this.label48.Name = "label48";
+            this.label48.Size = new System.Drawing.Size(42, 20);
+            this.label48.TabIndex = 65;
+            this.label48.Text = "Path";
+            // 
+            // label49
+            // 
+            this.label49.AutoSize = true;
+            this.label49.Location = new System.Drawing.Point(81, 278);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(34, 20);
+            this.label49.TabIndex = 64;
+            this.label49.Text = "File";
+            // 
+            // label50
+            // 
+            this.label50.AutoSize = true;
+            this.label50.Location = new System.Drawing.Point(69, 238);
+            this.label50.Name = "label50";
+            this.label50.Size = new System.Drawing.Size(137, 20);
+            this.label50.TabIndex = 63;
+            this.label50.Text = "Toolkit Master File";
             // 
             // label4
             // 
@@ -1234,41 +1504,15 @@
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
             // 
-            // txtAddRemoveText
+            // btnCreateRRstats
             // 
-            this.txtAddRemoveText.Location = new System.Drawing.Point(726, 45);
-            this.txtAddRemoveText.Name = "txtAddRemoveText";
-            this.txtAddRemoveText.Size = new System.Drawing.Size(326, 26);
-            this.txtAddRemoveText.TabIndex = 49;
-            // 
-            // lblAddRemoveText
-            // 
-            this.lblAddRemoveText.AutoSize = true;
-            this.lblAddRemoveText.Location = new System.Drawing.Point(726, 16);
-            this.lblAddRemoveText.Name = "lblAddRemoveText";
-            this.lblAddRemoveText.Size = new System.Drawing.Size(225, 20);
-            this.lblAddRemoveText.TabIndex = 50;
-            this.lblAddRemoveText.Text = "Text to add/remove from URLs";
-            // 
-            // btnRemoveText
-            // 
-            this.btnRemoveText.Location = new System.Drawing.Point(726, 90);
-            this.btnRemoveText.Name = "btnRemoveText";
-            this.btnRemoveText.Size = new System.Drawing.Size(160, 47);
-            this.btnRemoveText.TabIndex = 51;
-            this.btnRemoveText.Text = "Remove";
-            this.btnRemoveText.UseVisualStyleBackColor = true;
-            this.btnRemoveText.Click += new System.EventHandler(this.btnRemoveText_Click);
-            // 
-            // btnAddText
-            // 
-            this.btnAddText.Location = new System.Drawing.Point(892, 90);
-            this.btnAddText.Name = "btnAddText";
-            this.btnAddText.Size = new System.Drawing.Size(160, 47);
-            this.btnAddText.TabIndex = 52;
-            this.btnAddText.Text = "Add";
-            this.btnAddText.UseVisualStyleBackColor = true;
-            this.btnAddText.Click += new System.EventHandler(this.btnAddText_Click);
+            this.btnCreateRRstats.Location = new System.Drawing.Point(726, 177);
+            this.btnCreateRRstats.Name = "btnCreateRRstats";
+            this.btnCreateRRstats.Size = new System.Drawing.Size(326, 42);
+            this.btnCreateRRstats.TabIndex = 53;
+            this.btnCreateRRstats.Text = "Create RR stats";
+            this.btnCreateRRstats.UseVisualStyleBackColor = true;
+            this.btnCreateRRstats.Click += new System.EventHandler(this.btnCreateRRstats_Click);
             // 
             // Main
             // 
@@ -1412,6 +1656,28 @@
         private System.Windows.Forms.Button btnRemoveText;
         private System.Windows.Forms.Label lblAddRemoveText;
         private System.Windows.Forms.TextBox txtAddRemoveText;
+        private System.Windows.Forms.Button btnSetAllFM;
+        private System.Windows.Forms.Label lblToolkitImportFile;
+        private System.Windows.Forms.Label lblToolkitImportPath;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.Label lblToolkitImportFileXML;
+        private System.Windows.Forms.Label lblToolkitImportPathXML;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label lblToolkitMasterFileXML;
+        private System.Windows.Forms.Label lblToolkitMasterPathXML;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label lblToolkitMasterFile;
+        private System.Windows.Forms.Label lblToolkitMasterPath;
+        private System.Windows.Forms.Label label48;
+        private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Label label50;
+        private System.Windows.Forms.Button btnCreateRRstats;
     }
 }
 

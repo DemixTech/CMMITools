@@ -49,9 +49,9 @@ namespace BASE
             }
 
         }
-        private const int cThresholdForEndOfDataInSheet = 10;
+        private const int cThresholdForEndOfDataInSheet = 7;
 
-        public static int FindEndOfWorksheetBrute(Worksheet aWks, int columToSearch, int firstRow = 1, int lastRow = 50000)
+        public static int FindEndOfWorksheetBrute(Worksheet aWks, int columToSearch, int firstRow = 1, int lastRow = 50000, int endOfSheetThresholdTest = cThresholdForEndOfDataInSheet)
         {
             //double aVal = Char.GetNumericValue('A');
             //Char aCol = Convert.ToChar(aVal - 1 + columToSearch);
@@ -75,7 +75,7 @@ namespace BASE
                 else
                 {
                     thresHold++;
-                    if (thresHold >= cThresholdForEndOfDataInSheet) return contentFoundAtRow + firstRow - 1;
+                    if (thresHold >= endOfSheetThresholdTest) return contentFoundAtRow + firstRow - 1;
                 }
 
             }

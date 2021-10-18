@@ -1101,6 +1101,67 @@ namespace BASE.Data
         }
 
 
+        public bool CreateRRStats(System.Windows.Forms.Label lblStatus, out string resultMessage)
+        {
+            // *** Load main CMMI tool
+            Workbook mainWorkbook;
+            if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
+            {
+                resultMessage = "File not found, has it been moved or deleted?";
+                return false;
+            }
+
+            // *** Does the main workbook contain a findings sheet, if not add one, if it does, assign it and clear it
+            Worksheet findingsWks = Helper.AssignOrCreateWorksheet(mainWorkbook, "RRStats", "Tables");
+            findingsWks.Range["A:C"].Clear();
+            findingsWks.Cells[1, 1].Value = "PA";
+            findingsWks.Cells[1, 2].Value = "Strength/Weakness/Improvement";
+            findingsWks.Cells[1, 3].Value = "Description";
+
+
+            int findigsRow = 2;
+
+            lblStatus.Text = "";
+            string statusStr = "";
+            foreach (Worksheet wksMain in mainWorkbook.Worksheets)
+            {
+                switch (wksMain.Name)
+                {
+
+                    case "CAR":
+                    case "CM":
+                    case "DAR":
+                    case "EST":
+                    case "MC":
+                    case "MPM":
+                    case "OT":
+                    case "PAD":
+                    case "PCM":
+                    case "PLAN":
+                    case "PQA":
+                    case "PR":
+                    case "RDM":
+                    case "RSK":
+                    case "VV":
+                    case "PI":
+                    case "TS":
+                    case "GOV":
+                    case "II":
+                        HelperExtractFindingsDemixOE(wksMain, findingsWks, cDXXSearchNumberOfWksRowsCol, cDMostPAStartRow, cDMostPAEndRow, ref findigsRow);
+                        statusStr = statusStr + "." + wksMain.Name;
+                        break;
+
+
+
+                }
+                lblStatus.Text = statusStr;
+            }
+            //  wksMain.Application.Visible = true;
+            findingsWks.Activate();
+            MessageBox.Show("Findings extracted");
+            return true;
+        }
+
         // ********** HELPER METHODS ****************
 
         private void HelperExtractFindingsDemixOE(Worksheet wksMain, Worksheet wksFindings, int searchForEndOfWksColumn, int startRow, int EndRow, ref int findigsRow)

@@ -42,6 +42,9 @@ namespace BASE
         const string CDataReferenceFileXML = @"BASE\TargetDataReferenceFileXML.xml";
         const string CPresentationFileXML = @"BASE\TargetPresentationFileXML.xml";
 
+        const string CTargetToolkitMasterFileXML = @"BASE\TargetToolkitMasterFileXML.xml";
+        const string CTargetToolkitImportFileXML = @"BASE\TargetToolkitImportFileXML.xml";
+
         private const string cPath_start = @"C:\Users\PietervanZyl\Demix (Pty) Ltd\Demix Global - PieterVZ\4_Appraisals\2020-12-11 (A5) R370 D5360 C51813 Goshine Tech";
         private const int cProjectHeadingStartRow = 2; // tab:Projects start row
         private const int cSupportHeadingStartRow = 2; // tab:Support start row
@@ -116,6 +119,9 @@ namespace BASE
         private TargetDataReferenceFileObject BASEDataReferenceObject;
         private TargetPresentationFileObject BASEPresentationObject;
 
+        private TargetToolkitObject ToolkitMasterFileObject;
+        private TargetToolkitObject ToolkitImportFileObject;
+
         #endregion
 
         public string VersionLabel
@@ -173,6 +179,16 @@ namespace BASE
             BASEPresentationObject.InitialiseObject(CPresentationFileXML, lblPresentationXMLPath2, lblPresentationXMLFile2,
                 lblPptxPath2, lblPptxFile2);
             BASEPresentationObject.LoadPersistantXMLdata();
+
+            // *** Startup program objects
+            ToolkitMasterFileObject = new TargetToolkitObject();
+            ToolkitMasterFileObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetToolkitMasterFileXML), lblToolkitMasterPathXML, lblToolkitMasterFileXML, lblToolkitMasterPath, lblToolkitMasterFile);
+            ToolkitMasterFileObject.LoadPersistantXMLdata(); // 
+
+            // *** Startup oeDb objects
+            ToolkitImportFileObject = new TargetToolkitObject();
+            ToolkitImportFileObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetToolkitImportFileXML), lblToolkitImportPathXML, lblToolkitImportFileXML, lblToolkitImportPath, lblToolkitImportFile);
+            ToolkitImportFileObject.LoadPersistantXMLdata(); // 
 
             // *** Old code
             persistentData.LoadPersistentData();
@@ -901,42 +917,73 @@ namespace BASE
 
         private void btnSelectMainTool_Click(object sender, EventArgs e)
         {
-            OpenFileDialog AppToolMain = new OpenFileDialog();
-            AppToolMain.InitialDirectory = Path.GetDirectoryName(persistentData.AppToolMainPathFile);
-            AppToolMain.RestoreDirectory = true;
-            AppToolMain.Title = "Select main OE file";
-            AppToolMain.DefaultExt = "*.xlsm";
-            if (AppToolMain.ShowDialog() == DialogResult.OK)
+            //OpenFileDialog AppToolMain = new OpenFileDialog();
+            //AppToolMain.InitialDirectory = Path.GetDirectoryName(persistentData.AppToolMainPathFile);
+            //AppToolMain.RestoreDirectory = true;
+            //AppToolMain.Title = "Select main OE file";
+            //AppToolMain.DefaultExt = "*.xlsm";
+            //if (AppToolMain.ShowDialog() == DialogResult.OK)
+            //{
+            //    lblOEdbMain.Text = AppToolMain.FileName;
+            //    persistentData.AppToolMainPathFile = AppToolMain.FileName;
+            //    persistentData.SavePersistentData(persistentData);
+
+
+            //    //excelApp.Visible = true;
+
+            //    //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
+
+            //}
+            //CASFileObject.LoadPersistant();
+            string returnMessage;
+            if (ToolkitMasterFileObject.SelectFileToLoad(TargetFileObject.CToolkitATLInName, out returnMessage))
             {
-                lblOEdbMain.Text = AppToolMain.FileName;
-                persistentData.AppToolMainPathFile = AppToolMain.FileName;
-                persistentData.SavePersistentData(persistentData);
-
-
-                //excelApp.Visible = true;
-
-                //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
+                // All ok
+                MessageBox.Show("Open ATL Toolkit .. completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                ToolkitMasterFileObject.SavePersistant(ToolkitMasterFileObject);
+            }
+            else
+            {
+                // MessageBox.Show("Error generating Support and Project CAS sheets!");
+                MessageBox.Show("Open ATL Toolkit ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
 
         private void btnSelectImportFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog OEsource = new OpenFileDialog();
-            OEsource.InitialDirectory = Path.GetDirectoryName(persistentData.AppToolSourcePathFile);
-            OEsource.RestoreDirectory = true;
-            OEsource.Title = "Select source OE file";
-            OEsource.DefaultExt = "*.xlsm";
-            if (OEsource.ShowDialog() == DialogResult.OK)
+            //OpenFileDialog OEsource = new OpenFileDialog();
+            //OEsource.InitialDirectory = Path.GetDirectoryName(persistentData.AppToolSourcePathFile);
+            //OEsource.RestoreDirectory = true;
+            //OEsource.Title = "Select source OE file";
+            //OEsource.DefaultExt = "*.xlsm";
+            //if (OEsource.ShowDialog() == DialogResult.OK)
+            //{
+            //    lblOEdbSource.Text = OEsource.FileName;
+            //    persistentData.AppToolSourcePathFile = OEsource.FileName;
+            //    persistentData.SavePersistentData(persistentData);
+
+
+            //    //excelApp.Visible = true;
+
+            //    //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
+
+            //}
+            string returnMessage;
+            if (ToolkitImportFileObject.SelectFileToLoad(TargetFileObject.CToolkitATMInName, out returnMessage))
             {
-                lblOEdbSource.Text = OEsource.FileName;
-                persistentData.AppToolSourcePathFile = OEsource.FileName;
-                persistentData.SavePersistentData(persistentData);
-
-
-                //excelApp.Visible = true;
-
-                //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
+                // All ok
+                MessageBox.Show("Open ATM Toolkit .. completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                ToolkitImportFileObject.SavePersistant(ToolkitImportFileObject);
+            }
+            else
+            {
+                // MessageBox.Show("Error generating Support and Project CAS sheets!");
+                MessageBox.Show("Open ATM Toolkit ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
@@ -3851,6 +3898,35 @@ namespace BASE
             {
                 MessageBox.Show($"Success: {resultMessage}");
             }
+        }
+
+        private void btnSetAllFM_Click(object sender, EventArgs e)
+        {
+            string resultMessage;
+            if (ToolkitMasterFileObject.SetAllTo_FullyMet(lblStatus, out resultMessage) == false)
+
+            {
+                MessageBox.Show($"Failure: {resultMessage}");
+            }
+            else
+            {
+                MessageBox.Show($"Success: {resultMessage}");
+            }
+        }
+
+        private void btnCreateRRstats_Click(object sender, EventArgs e)
+        {
+            string resultMessage;
+            if (CASOEdbObject.CreateRRStats(lblStatus, out resultMessage) == false)
+
+            {
+                MessageBox.Show($"Stats creation failed: {resultMessage}");
+            }
+            else
+            {
+                MessageBox.Show($"Stats creation success: {resultMessage}");
+            }
+
         }
     }
 }

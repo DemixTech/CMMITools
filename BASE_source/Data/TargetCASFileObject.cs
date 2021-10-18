@@ -10,7 +10,9 @@ using System.Windows.Forms;
 using System.Xml.Serialization;
 
 namespace BASE.Data
+
 {
+
     [Serializable]
     public class TargetCASFileObject : TargetFileObject
     {

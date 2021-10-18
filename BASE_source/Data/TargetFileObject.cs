@@ -20,6 +20,10 @@ namespace BASE.Data
         public const string COEdbATMinName = "OEdbATM"; // The team leads version of the OEdb
         public const string CQuestionInName = "Question"; // Question is in the name
 
+        public const string CToolkitATLInName = "ToolkitATL"; // Question is in the name
+        public const string CToolkitATMInName = "ToolkitATM"; // Question is in the name
+
+
         // https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlattributes.xmlignore?view=net-5.0
         //https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlattributes.xmlignore?view=net-5.0#System_Xml_Serialization_XmlAttributes_XmlIgnore
 
