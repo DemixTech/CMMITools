@@ -29,10 +29,10 @@
     <ProductName>B.A.S.E.</ProductName>
     <PublisherName>Demix</PublisherName>
     <SuiteName>B.A.S.E.</SuiteName>
-    <MinimumRequiredVersion>3.8.1.55</MinimumRequiredVersion>
+    <MinimumRequiredVersion>3.8.1.58</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>57</ApplicationRevision>
+    <ApplicationRevision>59</ApplicationRevision>
     <ApplicationVersion>3.8.1.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>

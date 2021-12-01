@@ -851,11 +851,18 @@ namespace BASE.Data
                             {
                                 // Search column B for the key
                                 string headingType = wksOEdb.Cells[rowX, 1]?.Value?.ToString().Trim();
-                                if (string.Compare(headingType, "4 Prac_Instan", ignoreCase: true) == 0)
+
+                                //if (string.Compare(headingType, "4 Prac_Instan", ignoreCase: true) == 0)
+                                if (headingType.ToLower().Contains("4 Prac_Instan".ToLower()))
                                 {
                                     // is it the correct project
-                                    string projectNumber = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString();
-                                    if (projectNumber.Substring(0, 2).ToUpper() == projectWks.Name.ToUpper())
+                                    //string projectNumber = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString();
+                                    //string projectNumberOnly = projectNumber .Substring(0, 2).ToUpper();
+
+                                    string projectNumberOnly = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString().Substring(0, 2).ToUpper();
+                                    string projectWksNumberOnly = projectWks.Name.Substring(0, 2).ToUpper();
+                                    //if (projectNumber.Substring(0, 2).ToUpper() == projectWks.Name.ToUpper())
+                                    if (projectNumberOnly == projectWksNumberOnly)
                                     {
                                         //string keyStr = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
 
@@ -947,19 +954,29 @@ namespace BASE.Data
                     case "TS":
                     case "GOV":
                     case "II":
+                        // *** Set worksheet Zoom to 80
+                        wksOEdb.Activate();
+                       // mainWorkbook.ActiveSheet.Zoom = 80; Werk nie
+                        wksOEdb.Range["A1"].Select();
+                        wksOEdb.PageSetup.Zoom = 80;
+                        
 
-                        //if (wksOEdb.Name=="PI")
-                        //{
-                        //    int stop = 1;
-                        //}
+                        // *** Format row 1 to row 7
+                        wksOEdb.Rows["1:7"].WrapText = false;
+
                         // *** Find the number of rows
                         int NumberOfRows = Helper.FindEndOfWorksheet(wksOEdb, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
                         // Range columnToClear = wksOEdb.Range["Y:Z"];
                         // columnToClear.Clear();
 
+                        //*** Delete column P and r
+                        wksOEdb.Range[$"P9:P{NumberOfRows}"].Value = "";
+                        wksOEdb.Range[$"R9:R{NumberOfRows}"].Value = "";
+
                         // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
                         Range mainRange = wksOEdb.Range["A" + cDemixOEToolHeadingStartRow, "Z" + NumberOfRows];
 
+                        
                         // *** List all the hyperlinks https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Link/Retrieve-Hyperlinks-from-an-Excel-Sheet-in-C-VB.NET.html
                         Hyperlinks hyperLinkList = mainRange.Hyperlinks;
                         List<Hyperlink> hyperLinksToAdd = new List<Hyperlink>();
@@ -980,6 +997,7 @@ namespace BASE.Data
                             mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"].Value = "engl";
                             mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol] = mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"];
                             mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol].Value = wksOEdb.Name + fileNumber.ToString("D2");
+                            mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "c"].Value = "Evidence link";
                             fileNumber++;
 
 
@@ -1123,6 +1141,7 @@ namespace BASE.Data
 
             lblStatus.Text = "";
             string statusStr = "";
+            resultMessage = "";
             foreach (Worksheet wksMain in mainWorkbook.Worksheets)
             {
                 switch (wksMain.Name)
@@ -1159,6 +1178,7 @@ namespace BASE.Data
             //  wksMain.Application.Visible = true;
             findingsWks.Activate();
             MessageBox.Show("Findings extracted");
+            resultMessage = "Completed";
             return true;
         }
 
