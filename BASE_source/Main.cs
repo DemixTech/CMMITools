@@ -3620,7 +3620,11 @@ namespace BASE
             if (CASOEdbObject.BuildOUMaps2(lblStatus, CASFileObject, BASEQuestionObject) == false)
 
             {
-                MessageBox.Show($"Could not build the OU maps!");
+                MessageBox.Show($"Could not build the OU maps!" +
+                    "\nDelete any p1, p2 ... and s1, s2 ... sheets that was created" + 
+                    "\nDelete any tmp (1), tmp (2) ... that was created" +
+                    "\nDO NOT DELETE tmp" +
+                    "\nFix any sheets issues and try again!");
             }
         }
 

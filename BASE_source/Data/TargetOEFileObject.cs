@@ -369,7 +369,7 @@ namespace BASE.Data
 
             return true;
         }
-        
+
 
         public bool TestLinksAndEnglish2(System.Windows.Forms.Label lblStatus, out string resultMessage)
         {
@@ -526,14 +526,14 @@ namespace BASE.Data
             return true;
         }
 
-        public bool AddRemoveURLText(System.Windows.Forms.Label lblStatus, 
+        public bool AddRemoveURLText(System.Windows.Forms.Label lblStatus,
             bool addTextCheck,
             string textToAddOrRemove,
             out string resultMessage)
         {
 
             // *** Remove url characters
-            textToAddOrRemove = HttpUtility.UrlDecode(textToAddOrRemove); 
+            textToAddOrRemove = HttpUtility.UrlDecode(textToAddOrRemove);
 
             // *** Setup the main sheet
             // excelApp.Visible = true;
@@ -624,7 +624,8 @@ namespace BASE.Data
                                 if (hyperlinkAddress.Length < textToAddOrRemove.Length)
                                 {
                                     // the hyperlink is < than the string to remove, skip to next
-                                } else
+                                }
+                                else
                                 {
                                     string strPart1;
                                     string strPart2;
@@ -636,7 +637,8 @@ namespace BASE.Data
                                         hyperlinkAddress = strPart2;
                                         aHyperlink.Address = strPart2;
 
-                                    } else
+                                    }
+                                    else
                                     { // Strings are different
                                     }
                                 }
@@ -805,15 +807,23 @@ namespace BASE.Data
             //{ "p1", "p2", "p3", "p4", "p5", "p6", "s1", "s2", "s3", "s4" };
             string statusStr = "";
 
-            // *** For each p&s build the maps
-
+            // *** For each p&s build the maps 
             foreach (var aWksNameX in wksNameArray)
             {
                 // copy tmp and rename 
                 Worksheet projectWks = mainWorkbook.Worksheets["tmp"];
                 projectWks.Copy(After: projectWks);
                 projectWks = mainWorkbook.Worksheets["tmp (2)"];
-                projectWks.Name = aWksNameX.ID;
+                try
+                {
+                    projectWks.Name = aWksNameX.ID;
+                }
+                catch (Exception ex)
+                {
+                    statusStr = ex.Message;
+                    MessageBox.Show($"Message about Sheet name [{projectWks.Name.ToString()}] [{statusStr}]", "Error");
+                    return false;
+                }
                 projectWks.Cells[1, 1].Value = aWksNameX.Name;
 
                 // setup the links to the detail data
@@ -823,6 +833,7 @@ namespace BASE.Data
 
                 foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
                 {
+
                     switch (wksOEdb.Name)
                     {
 
@@ -853,31 +864,44 @@ namespace BASE.Data
                                 string headingType = wksOEdb.Cells[rowX, 1]?.Value?.ToString().Trim();
 
                                 //if (string.Compare(headingType, "4 Prac_Instan", ignoreCase: true) == 0)
-                                if (headingType.ToLower().Contains("4 Prac_Instan".ToLower()))
+                                if (string.IsNullOrEmpty(headingType))
                                 {
-                                    // is it the correct project
-                                    //string projectNumber = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString();
-                                    //string projectNumberOnly = projectNumber .Substring(0, 2).ToUpper();
+                                    if (MessageBox.Show(
+                                        $"Heading in Sheet[{wksOEdb.Name}] at row[{rowX}] is [{headingType?.ToString() ?? "null"}]." + "" +
+                                        "\nContinue (Y/N)",
+                                        "Warning",
+                                        MessageBoxButtons.YesNo) == DialogResult.No) return false;
 
-                                    string projectNumberOnly = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString().Substring(0, 2).ToUpper();
-                                    string projectWksNumberOnly = projectWks.Name.Substring(0, 2).ToUpper();
-                                    //if (projectNumber.Substring(0, 2).ToUpper() == projectWks.Name.ToUpper())
-                                    if (projectNumberOnly == projectWksNumberOnly)
+                                }
+                                else
+                                {
+                                    if (headingType.ToLower().Contains("4 Prac_Instan".ToLower()))
                                     {
-                                        //string keyStr = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
+                                        // is it the correct project
+                                        //string projectNumber = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString();
+                                        //string projectNumberOnly = projectNumber .Substring(0, 2).ToUpper();
 
-                                        string levleStrX = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
-                                        MapRecord aMapRecord = QuestionFileObject2.MapRecords.FirstOrDefault(x => x.PALevelStr == levleStrX);
-
-
-                                        //string rowColStr = FindDictionaryValue(TmpDictRowCol, keyStr);
-                                        if (aMapRecord != null)
+                                        string projectNumberOnly = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString().Substring(0, 2).ToUpper();
+                                        string projectWksNumberOnly = projectWks.Name.Substring(0, 2).ToUpper();
+                                        //if (projectNumber.Substring(0, 2).ToUpper() == projectWks.Name.ToUpper())
+                                        if (projectNumberOnly == projectWksNumberOnly)
                                         {
-                                            //projectWks.Range[rowColStr].Value = wksOEdb.Cells[rowX, 15]?.Value?.ToString() ?? "-";
-                                            projectWks.Range[aMapRecord.RowColStr].Formula = $"={wksOEdb.Name}!O{rowX}"; //=TS!O11
-                                        }
+                                            //string keyStr = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
 
+                                            string levleStrX = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
+                                            MapRecord aMapRecord = QuestionFileObject2.MapRecords.FirstOrDefault(x => x.PALevelStr == levleStrX);
+
+
+                                            //string rowColStr = FindDictionaryValue(TmpDictRowCol, keyStr);
+                                            if (aMapRecord != null)
+                                            {
+                                                //projectWks.Range[rowColStr].Value = wksOEdb.Cells[rowX, 15]?.Value?.ToString() ?? "-";
+                                                projectWks.Range[aMapRecord.RowColStr].Formula = $"={wksOEdb.Name}!O{rowX}"; //=TS!O11
+                                            }
+
+                                        }
                                     }
+
                                 }
 
                             }
@@ -892,6 +916,98 @@ namespace BASE.Data
                 }
             }
 
+            // *** For the OU build the maps
+            Worksheet ouWks = mainWorkbook.Worksheets["ou"];
+            ouWks.Activate();
+            foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
+            {
+
+                switch (wksOEdb.Name)
+                {
+
+                    case "CAR":
+                    case "CM":
+                    case "DAR":
+                    case "EST":
+                    case "MC":
+                    case "MPM":
+                    case "OT":
+                    case "PAD":
+                    case "PCM":
+                    case "PLAN":
+                    case "PQA":
+                    case "PR":
+                    case "RDM":
+                    case "RSK":
+                    case "VV":
+                    case "PI":
+                    case "TS":
+                        //  case "GOV":
+                        //   case "II":
+
+                        int NumberOfRows = Helper.FindEndOfWorksheet(wksOEdb, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
+                        for (int rowX = cDemixOEToolHeadingStartRow; rowX <= NumberOfRows; rowX++)
+                        {
+                            // Search column B for the key
+                            string headingType = wksOEdb.Cells[rowX, 1]?.Value?.ToString().Trim();
+
+                            //if (string.Compare(headingType, "4 Prac_Instan", ignoreCase: true) == 0)
+                            if (string.IsNullOrEmpty(headingType))
+                            {
+                                if (MessageBox.Show(
+                                    $"Heading in Sheet[{wksOEdb.Name}] at row[{rowX}] is [{headingType?.ToString() ?? "null"}]." + "" +
+                                    "\nContinue (Y/N)",
+                                    "Warning",
+                                    MessageBoxButtons.YesNo) == DialogResult.No) return false;
+
+                            }
+                            else
+                            {
+                                if (headingType.ToLower().Contains("2 Prac_OU".ToLower()))
+                                {
+                                    // is it the Practice summary
+                                    string ouNumberOnly = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString().Substring(0, 2).ToUpper();
+                                    string ouWksNumberOnly = ouWks.Name.Substring(0, 2).ToUpper();
+
+                                    string levleStrX = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
+                                    MapRecord aMapRecord = QuestionFileObject2.MapRecords.FirstOrDefault(x => x.PALevelStr == levleStrX);
+
+
+                                    //string rowColStr = FindDictionaryValue(TmpDictRowCol, keyStr);
+                                    if (aMapRecord != null)
+                                    {
+                                        //projectWks.Range[rowColStr].Value = wksOEdb.Cells[rowX, 15]?.Value?.ToString() ?? "-";
+                                        ouWks.Range[aMapRecord.RowColStr].Formula = $"={wksOEdb.Name}!O{rowX}"; //=TS!O11
+                                    }
+                                }
+                                if (headingType.ToLower().Contains("1 Prac_Group".ToLower()))
+                                {
+                                    // is it the Level summary
+                                    //string ouLevel = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString().ToUpper();
+                                    //string ouWksNumberOnly = ouWks.Name.Substring(0, 2).ToUpper();
+                                    //string keyStr = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
+                                    
+                                    string levleStrX = wksOEdb.Name.ToUpper() + " " + wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
+                                    MapRecord aMapRecord = QuestionFileObject2.MapRecords.FirstOrDefault(x => x.PALevelStr == levleStrX);
+
+                                    //string rowColStr = FindDictionaryValue(TmpDictRowCol, keyStr);
+                                    if (aMapRecord != null)
+                                    {
+                                        //projectWks.Range[rowColStr].Value = wksOEdb.Cells[rowX, 15]?.Value?.ToString() ?? "-";
+                                        ouWks.Range[aMapRecord.RowColStr].Formula = $"={wksOEdb.Name}!O{rowX}"; //=TS!O11
+                                    }
+                                }
+                            }
+                        }
+
+
+
+                        // *** Show the status
+                        statusStr = statusStr + wksOEdb.Name + ".";
+                        lblStatus.Text = statusStr;
+                        break;
+                }
+            }
             statusStr = statusStr + "done";
             lblStatus.Text = statusStr;
 
@@ -956,10 +1072,10 @@ namespace BASE.Data
                     case "II":
                         // *** Set worksheet Zoom to 80
                         wksOEdb.Activate();
-                       // mainWorkbook.ActiveSheet.Zoom = 80; Werk nie
+                        // mainWorkbook.ActiveSheet.Zoom = 80; Werk nie
                         wksOEdb.Range["A1"].Select();
                         wksOEdb.PageSetup.Zoom = 80;
-                        
+
 
                         // *** Format row 1 to row 7
                         wksOEdb.Rows["1:7"].WrapText = false;
@@ -976,7 +1092,7 @@ namespace BASE.Data
                         // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
                         Range mainRange = wksOEdb.Range["A" + cDemixOEToolHeadingStartRow, "Z" + NumberOfRows];
 
-                        
+
                         // *** List all the hyperlinks https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Link/Retrieve-Hyperlinks-from-an-Excel-Sheet-in-C-VB.NET.html
                         Hyperlinks hyperLinkList = mainRange.Hyperlinks;
                         List<Hyperlink> hyperLinksToAdd = new List<Hyperlink>();
@@ -1048,7 +1164,7 @@ namespace BASE.Data
             Workbook mainWorkbook;
             if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
-                resultMessage =  "File not found, has it been moved or deleted?";
+                resultMessage = "File not found, has it been moved or deleted?";
                 return false;
             }
 
@@ -1343,7 +1459,7 @@ namespace BASE.Data
 
                             // Based on the switch statement above, updateMade will always be true. Leave this for easier readability and for when there 
                             // maybe a case in future where updateMade maybe false.
-                            if (updateMade == true) 
+                            if (updateMade == true)
                             {
                                 // Colors from https://safeery2k.wordpress.com/2013/06/19/system-drawing-knowncolor/
 
