@@ -55,3 +55,4 @@ C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.application
 C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csproj.CopyComplete
 C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.exe
 C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.pdb
+C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\obj\Debug\BASE.csproj.AssemblyReference.cache

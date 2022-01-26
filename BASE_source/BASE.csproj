@@ -13,7 +13,7 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>true</IsWebBootstrapper>
-    <PublishUrl>C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_install\</PublishUrl>
+    <PublishUrl>C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_install\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Web</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -23,7 +23,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>https://www.demix.org/apps/</InstallUrl>
+    <InstallUrl>https://demix.org/tools/</InstallUrl>
     <SupportUrl>http://www.demix.org/tools</SupportUrl>
     <ErrorReportUrl>http://www.demix.org/tools</ErrorReportUrl>
     <ProductName>B.A.S.E.</ProductName>

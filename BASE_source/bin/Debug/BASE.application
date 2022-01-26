@@ -8,7 +8,7 @@
         <expiration maximumAge="0" unit="days" />
       </update>
     </subscription>
-    <deploymentProvider codebase="https://www.demix.org/apps/BASE.application" />
+    <deploymentProvider codebase="https://demix.org/tools/BASE.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
     <framework targetVersion="4.7" profile="Full" supportedRuntime="4.0.30319" />
