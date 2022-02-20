@@ -29,11 +29,11 @@
     <ProductName>B.A.S.E.</ProductName>
     <PublisherName>Demix</PublisherName>
     <SuiteName>B.A.S.E.</SuiteName>
-    <MinimumRequiredVersion>3.8.1.59</MinimumRequiredVersion>
+    <MinimumRequiredVersion>4.1.1.1</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>59</ApplicationRevision>
-    <ApplicationVersion>3.8.1.59</ApplicationVersion>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>4.1.1.2</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -59,7 +59,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>99F9B8C10F7C82D01FF6279117214B1D4CFE8DB3</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>78896EFC49F50F96CA60E6B9E750D755D7EC88AE</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestKeyFile>
@@ -72,7 +72,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
+    <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
     <TargetZone>Internet</TargetZone>
