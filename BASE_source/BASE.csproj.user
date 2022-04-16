@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PublishUrlHistory>C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_install\|publish\|C:\Users\PietervanZyl\Documents\GitHub\CMMITools\BASE_install\|C:\WorkingDir\BASEdeploy\|https://github.com/DemixTech/CMMITools/tree/main/BASE_install/</PublishUrlHistory>
-    <InstallUrlHistory>https://demix.org/apps/publish.htm/|https://demix.org/tools/|https://www.demix.org/apps/|http://www.demix.org/apps/</InstallUrlHistory>
+    <InstallUrlHistory>https://demix.org/apps/|https://demix.org/apps/publish.htm/|https://demix.org/tools/|https://www.demix.org/apps/|http://www.demix.org/apps/</InstallUrlHistory>
     <SupportUrlHistory>http://www.demix.org/tools</SupportUrlHistory>
     <UpdateUrlHistory>https://github.com/DemixTech/CMMITools/tree/main/BASE_install/|http://demix.org/apps/|http://demix.org/apps/publish.htm/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
