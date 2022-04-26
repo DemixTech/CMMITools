@@ -30,11 +30,11 @@
     <ProductName>Base</ProductName>
     <PublisherName>Demix %28Pty%29 Ltd</PublisherName>
     <SuiteName>B.A.S.E</SuiteName>
-    <MinimumRequiredVersion>4.1.1.12</MinimumRequiredVersion>
+    <MinimumRequiredVersion>4.1.1.13</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>12</ApplicationRevision>
-    <ApplicationVersion>4.1.1.12</ApplicationVersion>
+    <ApplicationRevision>14</ApplicationRevision>
+    <ApplicationVersion>4.1.1.14</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
