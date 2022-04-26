@@ -30,11 +30,11 @@
     <ProductName>Base</ProductName>
     <PublisherName>Demix %28Pty%29 Ltd</PublisherName>
     <SuiteName>B.A.S.E</SuiteName>
-    <MinimumRequiredVersion>4.1.1.8</MinimumRequiredVersion>
+    <MinimumRequiredVersion>4.1.1.12</MinimumRequiredVersion>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>10</ApplicationRevision>
-    <ApplicationVersion>4.1.1.%2a</ApplicationVersion>
+    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationVersion>4.1.1.12</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -60,10 +60,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>D25F15D4ACA6B63EE139610FD45B16DC1064F14C</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>7BC322DBF1CDF45F6D396E6AEA0E27EE25D31233</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>BASE_7_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -195,9 +196,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="BASE_7_TemporaryKey.pfx" />
     <None Include="delete\BASE_TemporaryKey.pfx" />
-    <None Include="demix_v4.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
