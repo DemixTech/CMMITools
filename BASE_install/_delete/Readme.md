@@ -1,2 +1,0 @@
-Install the B.A.S.E. (Benchmark Appraisal Support Environment) tools from [Demix](https://www.demix.org/apps/publish.htm).
-See all templates, source, documentation and code here on [GitHub](https://github.com/DemixTech/CMMITools)
