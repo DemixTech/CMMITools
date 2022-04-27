@@ -37,8 +37,6 @@ C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\bin\Release\BASE.exe
 C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\bin\Release\BASE.pdb
 C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\bin\Release\DocumentFormat.OpenXml.dll
 C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\bin\Release\System.ComponentModel.Annotations.dll
-C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\bin\Release\System.IO.Compression.dll
-C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\bin\Release\System.IO.Compression.ZipFile.dll
 C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\bin\Release\DocumentFormat.OpenXml.xml
 C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\obj\Release\BASE.csproj.AssemblyReference.cache
 C:\Users\pwjva\Documents\GitHub\CMMITools\BASE_source\obj\Release\BASE.csproj.SuggestedBindingRedirects.cache
