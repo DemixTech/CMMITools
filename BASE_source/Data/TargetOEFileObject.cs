@@ -529,11 +529,15 @@ namespace BASE.Data
         public bool AddRemoveURLText(System.Windows.Forms.Label lblStatus,
             bool addTextCheck,
             string textToAddOrRemove,
+            bool UrlDecodeSwitch, 
             out string resultMessage)
         {
 
             // *** Remove url characters
-            textToAddOrRemove = HttpUtility.UrlDecode(textToAddOrRemove);
+            if (!UrlDecodeSwitch)
+            {
+                textToAddOrRemove = HttpUtility.UrlDecode(textToAddOrRemove);
+            }
 
             // *** Setup the main sheet
             // excelApp.Visible = true;

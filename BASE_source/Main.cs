@@ -3872,18 +3872,26 @@ namespace BASE
 
         private void btnRemoveText_Click(object sender, EventArgs e)
         {
-            string resultMessage;
+            string resultMessage1;
+            string resultMessage2;
             bool addText = false;
             string textToAddRemove = txtAddRemoveText.Text.ToString();
             if (CASOEdbObject.AddRemoveURLText(lblStatus,addText,
-                textToAddRemove,out resultMessage) == false)
+                textToAddRemove,true, out resultMessage1) == false)
 
             {
-                MessageBox.Show($"Failure: {resultMessage}");
+                MessageBox.Show($"Failure1: {resultMessage1}");
             }
             else
             {
-                MessageBox.Show($"Success: {resultMessage}");
+                if (CASOEdbObject.AddRemoveURLText(lblStatus, addText,
+                textToAddRemove, false, out resultMessage2) == false)
+                {
+                    MessageBox.Show($"Success1: {resultMessage1} + Failure2: {resultMessage2}");
+                } else
+                { 
+                    MessageBox.Show($"Success1: {resultMessage1} + Success2: {resultMessage2}");
+                }
             }
         }
 
@@ -3893,7 +3901,7 @@ namespace BASE
             bool addText = true;
             string textToAddRemove = txtAddRemoveText.Text.ToString();
             if (CASOEdbObject.AddRemoveURLText(lblStatus, addText,
-                textToAddRemove, out resultMessage) == false)
+                textToAddRemove, true, out resultMessage) == false)
 
             {
                 MessageBox.Show($"Failure: {resultMessage}");
