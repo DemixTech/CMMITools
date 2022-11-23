@@ -1511,11 +1511,18 @@ namespace BASE.Data
                 // Range hLinkRng = hLink.Range; // .Address;
                 // https://stackoverflow.com/questions/26257577/c-sharp-excel-how-to-add-hyperlink-with-cell-link
                 // destRow.Hyperlinks.Add(destRow.Cells[hLink.Address.);
+                try
+                {
+
                 wsMain.Hyperlinks.Add(
                     Anchor: wsMain.Cells[hLink.Range.Row, hLink.Range.Column],
                     Address: hLink.Address.ToString(),
                     TextToDisplay: hLink.TextToDisplay);
                 //var x = 1;
+                } catch (Exception ex)
+                {
+
+                }
 
             }
 
