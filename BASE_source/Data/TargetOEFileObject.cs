@@ -1,4 +1,6 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using DocumentFormat.OpenXml.ExtendedProperties;
+using DocumentFormat.OpenXml.Wordprocessing;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -9,6 +11,8 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 using System.Xml.Serialization;
+using Color = System.Drawing.Color;
+using Hyperlink = Microsoft.Office.Interop.Excel.Hyperlink;
 
 namespace BASE.Data
 
@@ -414,28 +418,41 @@ namespace BASE.Data
                     case "GOV":
                     case "II":
 
-                        //if (wksOEdb.Name=="PI")
-                        //{
-                        //    int stop = 1;
-                        //}
+                        // *** List all the hyperlinks https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Link/Retrieve-Hyperlinks-from-an-Excel-Sheet-in-C-VB.NET.html
+
                         // *** Find the number of rows
                         int NumberOfRows = Helper.FindEndOfWorksheet(wksOEdb, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
-                        // Range columnToClear = wksOEdb.Range["Y:Z"];
-                        // columnToClear.Clear();
 
                         // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
                         Range mainRange = wksOEdb.Range["A" + cDemixOEToolHeadingStartRow, "Z" + NumberOfRows];
 
-                        // *** List all the hyperlinks https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Link/Retrieve-Hyperlinks-from-an-Excel-Sheet-in-C-VB.NET.html
                         Hyperlinks hyperLinkList = mainRange.Hyperlinks;
-                        List<Hyperlink> hyperLinksToAdd = new List<Hyperlink>();
+                        //List<Hyperlink> hyperLinksToAdd = new List<Hyperlink>();
 
                         int hyperLinkRow;
                         int hyperLinkCol;
                         string hyperlinkAddress;
+                        // Delete hyperlinks not in column D
+                        foreach (Hyperlink aHyperlink in hyperLinkList)
+                        {
+                            // *** Take each hyperlink and test it
+                            hyperLinkRow = aHyperlink.Range.Row;
+                            hyperLinkCol = aHyperlink.Range.Column;
+                            if (hyperLinkCol != 4) // if not column D
+                            {
+
+                                aHyperlink.Delete();
+                            }
+                            else // in column D
+                            {
+
+                            }
+                        }
+
+                        // *** Now only hyperlinks in column D remains, rerun procedure
+
                         string PathFileToTest;
                         string PathEnglish;
-
                         string englishFullPathFile;
                         Boolean fileFound;
 
@@ -443,10 +460,6 @@ namespace BASE.Data
                         {
                             // *** Take each hyperlink and test it
                             hyperLinkRow = aHyperlink.Range.Row;
-                            //if (hyperLinkRow == 9 && wksOEdb.Name == "PI")
-                            //{
-                            //    int stop = 1;
-                            //}
                             hyperLinkCol = aHyperlink.Range.Column;
                             hyperlinkAddress = aHyperlink.Address;
 
@@ -491,7 +504,10 @@ namespace BASE.Data
                                 case ".pptm":
                                     englishFullPathFile = PathEnglish + "-engl.pptx";
                                     break;
+                                default:
+                                    englishFullPathFile = "unknown";
 
+                                    break;
                             }
                             if (englishFullPathFile != "")
                             {
@@ -509,6 +525,7 @@ namespace BASE.Data
                                     mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"].Value = "none";
                                 }
                             }
+
                         }
 
                         // *** Show the status
@@ -529,7 +546,7 @@ namespace BASE.Data
         public bool AddRemoveURLText(System.Windows.Forms.Label lblStatus,
             bool addTextCheck,
             string textToAddOrRemove,
-            bool UrlDecodeSwitch, 
+            bool UrlDecodeSwitch,
             out string resultMessage)
         {
 
@@ -990,7 +1007,7 @@ namespace BASE.Data
                                     //string ouLevel = wksOEdb.Cells[rowX + 1, 2]?.Value?.ToString().ToUpper();
                                     //string ouWksNumberOnly = ouWks.Name.Substring(0, 2).ToUpper();
                                     //string keyStr = wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
-                                    
+
                                     string levleStrX = wksOEdb.Name.ToUpper() + " " + wksOEdb.Cells[rowX, 2]?.Value?.ToString().Trim();
                                     MapRecord aMapRecord = QuestionFileObject2.MapRecords.FirstOrDefault(x => x.PALevelStr == levleStrX);
 
@@ -1220,15 +1237,21 @@ namespace BASE.Data
                         }
 
 
-                        // *** Find the number of rows
-                        int NumberOfRows = Helper.FindEndOfWorksheet(wsSource, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
-
-                        // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
-                        //ProcessRowsUsingObject(wsMain, wsSource, NumberOfRows, ref statusStr);
-                        ProcessRowsUsingExcel(wsMain, wsSource, NumberOfRows);
+                        // *** Find the number of rows in wsSource
+                        int NumberOfRowsMain = Helper.FindEndOfWorksheet(wsMain, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
+                        int NumberOfRowsSource = Helper.FindEndOfWorksheet(wsSource, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
+                        if (NumberOfRowsMain != NumberOfRowsSource)
+                        {
+                            MessageBox.Show($"Rows missmatch for {wsSource.Name} ATM={NumberOfRowsSource} ATL={NumberOfRowsMain}");
+                        }
+                        else
+                        {
+                            // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
+                            //ProcessRowsUsingObject(wsMain, wsSource, NumberOfRows, ref statusStr);
+                            ProcessRowsUsingExcel(wsMain, wsSource, NumberOfRowsSource);
+                        }
                         lblStatus.Text = lblStatus.Text + " " + wsSource.Name;
                         break;
-
                 }
 
             }
@@ -1413,10 +1436,10 @@ namespace BASE.Data
         {
             // *** Clear the columns
             Range wsMainToClear = wsMain.Range[wsMain.Cells[9, 17], wsMain.Cells[NumberOfRows, 17]];
-            wsMainToClear.Interior.Color = Color.White;
+            wsMainToClear.Interior.Color = System.Drawing.Color.White;
 
             Range wsImportToClear = wsSource.Range[wsSource.Cells[9, 17], wsSource.Cells[NumberOfRows, 17]];
-            wsImportToClear.Interior.Color = Color.White;
+            wsImportToClear.Interior.Color = System.Drawing.Color.White;
 
             // *** search rows for for upload
             for (int rowS = cDemixOEToolHeadingStartRow; rowS < (NumberOfRows + cDemixOEToolHeadingStartRow); rowS++)
@@ -1424,54 +1447,62 @@ namespace BASE.Data
                 var cellX = wsSource.Cells[rowS, 17].Value;
                 if (cellX != null)
                 {
-                    string cellXStr = cellX.ToString().Trim().ToUpper();
+                    string cellXStr = cellX.ToString().Trim().ToLower();
 
                     bool updateMade = false;
-                    if (cellXStr == "Y" || cellXStr == "YES") // Colum Q has a "Y" or "YES"
+                    if (cellXStr == "y" || cellXStr == "yes") // Colum Q has a "y" or "yes"
                     {
                         // wsMain.Range[wsMain.Cells[rowS, 1], wsMain.Cells[rowS, 16]] = wsSource.Range[wsSource.Cells[rowS, 1], wsSource.Cells[rowS, 16]]; // Rows[rowS];
 
                         if (wsSource.Cells[rowS, 1]?.Value != null)
                         {
-                            switch (wsSource.Cells[rowS, 1].Value.ToString())
-                            {
-                                case "1 Prac_Group":
-                                    copyRow(wsMain, wsSource, rowS, 12, 18); // Start from L
-                                    updateMade = true;
-                                    break;
-                                case "2 Prac_OU":
-                                    copyRow(wsMain, wsSource, rowS, 3, 18); // Start from C
-                                    updateMade = true;
-                                    break;
-                                case "3 Process":
-                                    copyRow(wsMain, wsSource, rowS, 12, 18); // Start from L
-                                    updateMade = true;
-                                    break;
-                                case "4 Prac_Instan":
-                                    copyRow(wsMain, wsSource, rowS, 9, 18); // Start from I
-                                    updateMade = true;
-                                    break;
-                                case "5 OE":
-                                    copyRow(wsMain, wsSource, rowS, 3, 18); // Start from C 
-                                    updateMade = true;
-                                    break;
-                                default:
-                                    copyRow(wsMain, wsSource, rowS, 1, 18);
-                                    updateMade = true;
-                                    break;
+                            if (string.Compare(wsSource.Cells[rowS, 1].Value.ToString(),
+                                    wsMain.Cells[rowS, 1].Value.ToString()) != 0) {
+                                MessageBox.Show($"Abort merge for PA {wsMain.Name}: Type missmatch at row{rowS}");
+                                return; // Exit the function
                             }
-
-                            // Based on the switch statement above, updateMade will always be true. Leave this for easier readability and for when there 
-                            // maybe a case in future where updateMade maybe false.
-                            if (updateMade == true)
+                            else
                             {
-                                // Colors from https://safeery2k.wordpress.com/2013/06/19/system-drawing-knowncolor/
+                                switch (wsSource.Cells[rowS, 1].Value.ToString())
+                                {
+                                    case "1 Prac_Group":
+                                        copyRow(wsMain, wsSource, rowS, 12, 18); // Start from L
+                                        updateMade = true;
+                                        break;
+                                    case "2 Prac_OU":
+                                        copyRow(wsMain, wsSource, rowS, 3, 18); // Start from C
+                                        updateMade = true;
+                                        break;
+                                    case "3 Process":
+                                        copyRow(wsMain, wsSource, rowS, 12, 18); // Start from L
+                                        updateMade = true;
+                                        break;
+                                    case "4 Prac_Instan":
+                                        copyRow(wsMain, wsSource, rowS, 9, 18); // Start from I
+                                        updateMade = true;
+                                        break;
+                                    case "5 OE":
+                                        copyRow(wsMain, wsSource, rowS, 3, 18); // Start from C 
+                                        updateMade = true;
+                                        break;
+                                    default:
+                                        copyRow(wsMain, wsSource, rowS, 1, 18);
+                                        updateMade = true;
+                                        break;
+                                }
 
-                                wsMain.Cells[rowS, 17].Value = DateTime.Now.ToString("s"); // put the short date time here
-                                wsMain.Cells[rowS, 17].Interior.Color = Color.Cyan;
+                                // Based on the switch statement above, updateMade will always be true. Leave this for easier readability and for when there 
+                                // maybe a case in future where updateMade maybe false.
+                                if (updateMade == true)
+                                {
+                                    // Colors from https://safeery2k.wordpress.com/2013/06/19/system-drawing-knowncolor/
 
-                                wsSource.Cells[rowS, 17].Value = "updated";
-                                wsSource.Cells[rowS, 17].Interior.Color = Color.Lime;
+                                    wsMain.Cells[rowS, 17].Value = DateTime.Now.ToString("s"); // put the short date time here
+                                    wsMain.Cells[rowS, 17].Interior.Color = System.Drawing.Color.Cyan;
+
+                                    wsSource.Cells[rowS, 17].Value = "updated";
+                                    wsSource.Cells[rowS, 17].Interior.Color = System.Drawing.Color.Lime;
+                                }
                             }
                         }
 
@@ -1511,11 +1542,19 @@ namespace BASE.Data
                 // Range hLinkRng = hLink.Range; // .Address;
                 // https://stackoverflow.com/questions/26257577/c-sharp-excel-how-to-add-hyperlink-with-cell-link
                 // destRow.Hyperlinks.Add(destRow.Cells[hLink.Address.);
-                wsMain.Hyperlinks.Add(
-                    Anchor: wsMain.Cells[hLink.Range.Row, hLink.Range.Column],
-                    Address: hLink.Address.ToString(),
-                    TextToDisplay: hLink.TextToDisplay);
-                //var x = 1;
+                try
+                {
+
+                    wsMain.Hyperlinks.Add(
+                        Anchor: wsMain.Cells[hLink.Range.Row, hLink.Range.Column],
+                        Address: hLink.Address.ToString(),
+                        TextToDisplay: hLink.TextToDisplay);
+                    //var x = 1;
+                }
+                catch (Exception ex)
+                {
+
+                }
 
             }
 
