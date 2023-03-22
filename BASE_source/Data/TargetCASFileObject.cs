@@ -221,7 +221,7 @@ namespace BASE.Data
             }
 
             // Step 5: *** Load OU information
-            Worksheet casP1Wks = aWorkbook.Sheets["P1PA-SS"];
+            Worksheet casP1Wks = aWorkbook.Sheets["P1-OrgScope"];
             this.Organisation = new Organisation();
             Organisation.Name = casP1Wks.Cells[16, 2]?.Value?.ToString() ?? "No name";
             Organisation.AddressLine1 = casP1Wks.Cells[18, 2]?.Value?.ToString() ?? "Address line 1";

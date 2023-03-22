@@ -11,7 +11,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Demix (Pty) Ltd")]
 [assembly: AssemblyProduct("BASE")]
-[assembly: AssemblyCopyright("Copyright ©  2020,2021, 2022 Demix (Pty) Ltd")]
+[assembly: AssemblyCopyright("Copyright ©  2020,2021 Demix (Pty) Ltd")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -33,7 +33,7 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("4.1.2.18")]
+[assembly: AssemblyVersion("5.1.1.1")]
 [assembly: NeutralResourcesLanguage("en")]
 //[assembly: AssemblyVersion("1.0.0.0")]
 //[assembly: AssemblyFileVersion("1.0.0.0")]

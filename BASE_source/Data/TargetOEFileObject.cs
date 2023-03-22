@@ -1,13 +1,8 @@
-﻿using DocumentFormat.OpenXml.ExtendedProperties;
-using DocumentFormat.OpenXml.Wordprocessing;
-using Microsoft.Office.Interop.Excel;
+﻿using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -1044,15 +1039,26 @@ namespace BASE.Data
             string fileExt = Path.GetExtension(_directoryFileName);
             string pathSTr = Path.GetDirectoryName(_directoryFileName);
             string abridgedFileName;
+            string abridgedFileNameXlsx="";
+
+            string firstCharacter;
             int counter = 1;
             do
             {
                 abridgedFileName = Path.Combine(pathSTr, fileNameNoExt + counter.ToString() + fileExt);
+                abridgedFileNameXlsx = Path.Combine(pathSTr, fileNameNoExt + counter.ToString() + ".xlsx");
+
                 counter++;
             } while (File.Exists(abridgedFileName));
 
             // At this point the abridgedFileName should not exist, so copy it
             File.Copy(_directoryFileName, abridgedFileName);
+
+            var resultTVDelete = MessageBox.Show(
+                text: "Remove TV Sheets?",
+                caption: "Options",
+                buttons: MessageBoxButtons.YesNo);
+
 
             // Now process the abridged filename
             Workbook mainWorkbook;
@@ -1106,9 +1112,21 @@ namespace BASE.Data
                         // Range columnToClear = wksOEdb.Range["Y:Z"];
                         // columnToClear.Clear();
 
-                        //*** Delete column P and r
+                        //*** Delete column P and R
                         wksOEdb.Range[$"P9:P{NumberOfRows}"].Value = "";
                         wksOEdb.Range[$"R9:R{NumberOfRows}"].Value = "";
+
+                        //*** Delete column K where column A char 1 = 4 or 5
+                        for (int rowColA = cDMostPAStartRow; rowColA <= NumberOfRows; rowColA++)
+                        {
+                            firstCharacter = wksOEdb.Range[$"A{rowColA}"].Value;
+                            firstCharacter = firstCharacter?.Substring(0, 1) ?? "";
+
+                            if (firstCharacter == "4" || firstCharacter == "5")
+                            {
+                                wksOEdb.Range[$"K{rowColA}"].Value = "";
+                            }
+                        }
 
                         // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
                         Range mainRange = wksOEdb.Range["A" + cDemixOEToolHeadingStartRow, "Z" + NumberOfRows];
@@ -1164,8 +1182,45 @@ namespace BASE.Data
                         break;
                 }
             }
+
+            statusStr = statusStr + "...deleting.";
+
+            mainWorkbook.Application.DisplayAlerts = false;
+
+            mainWorkbook.Worksheets["Tools"].Delete();
+            mainWorkbook.Worksheets["FindingsDB"].Delete();
+            mainWorkbook.Worksheets["QuestionsDB"].Delete();
+            mainWorkbook.Worksheets["Template1"].Delete();
+            mainWorkbook.Worksheets["Template2"].Delete();
+            mainWorkbook.Worksheets["Processes"].Delete();
+            mainWorkbook.Worksheets["Tasks"].Delete();
+            mainWorkbook.Worksheets["Working"].Delete();
+            mainWorkbook.Worksheets["tmp"].Delete();
+
+            if (resultTVDelete == DialogResult.Yes)
+            {
+                foreach (Worksheet wksTV in mainWorkbook.Worksheets)
+                {
+                    string wksName = wksTV.Name;
+                    if (wksName?.Substring(0, 2)?.ToUpper() == "TV")
+                    {
+                        wksTV.Delete();
+                    }
+
+                }
+            }
+
+            mainWorkbook.Application.DisplayAlerts = true;
+
             statusStr = statusStr + "done";
             lblStatus.Text = statusStr;
+
+            mainWorkbook.Application.DisplayAlerts = false;
+            mainWorkbook.Application.EnableEvents = false;
+            mainWorkbook.SaveAs(Filename: abridgedFileNameXlsx,
+                FileFormat: 51);
+            mainWorkbook.Application.EnableEvents = true;
+            mainWorkbook.Application.DisplayAlerts = true;
 
             MessageBox.Show("Done");
             return true;
