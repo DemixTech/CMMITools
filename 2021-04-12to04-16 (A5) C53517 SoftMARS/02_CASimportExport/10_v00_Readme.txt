@@ -1,2 +1,0 @@
-The performance report typically goes through many iterations, including information received from EPG, updates by the ATL and, ATMs and the template downloaded from CAS.
-Use this file to track the versions of the performance report.

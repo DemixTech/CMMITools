@@ -1,0 +1,1 @@
+All startup related information can be stored here, such as A3 agreements.
