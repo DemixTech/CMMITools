@@ -1,4 +1,4 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using ExcelAlias = Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,7 +11,7 @@ using System.Xml.Serialization;
 namespace BASE.Data
 {
     [Serializable]
-    public class TargetToolkitObject : TargetFileObject
+    public class MddToolkit : AbstractFile
     {
 
         const int cToolkitSearchUntilEmptyColumnNotIIGOV = 2;
@@ -31,10 +31,10 @@ namespace BASE.Data
                 if (File.Exists(_directoryFileNameXML))
                 {
                     // If the directory and file name exists, laod the data
-                    var xs = new XmlSerializer(typeof(TargetToolkitObject));
+                    var xs = new XmlSerializer(typeof(MddToolkit));
                     using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
                     {
-                        var pData = (TargetToolkitObject)xs.Deserialize(xmlLoad);
+                        var pData = (MddToolkit)xs.Deserialize(xmlLoad);
                         this.DirectoryFileName = pData._directoryFileName;
 
                         // *** Load the object elements belwo
@@ -57,13 +57,13 @@ namespace BASE.Data
 
         public override void SavePersistant(object o)
         {
-            if (o is TargetToolkitObject tko)
+            if (o is MddToolkit tko)
             {
                 if (!Directory.Exists(Path.GetDirectoryName(_directoryFileNameXML)))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(_directoryFileNameXML));
                 }
-                var xs = new XmlSerializer(typeof(TargetToolkitObject));
+                var xs = new XmlSerializer(typeof(MddToolkit));
                 using (FileStream stream = File.Create(_directoryFileNameXML))
                 {
                     xs.Serialize(stream, tko);
@@ -86,7 +86,7 @@ namespace BASE.Data
 
             // *** Load main
             //mainWorkbook = excelApp.Workbooks.Open(persistentData.OEdatabasePathFile);
-            Workbook mainWorkbook;
+            ExcelAlias.Workbook mainWorkbook;
             if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
                 resultMessage = "File not found, has it been moved or deleted?";
@@ -98,7 +98,7 @@ namespace BASE.Data
             lblStatus.Text = statusStr;
 
             int LastUsedRow = 1;
-            foreach (Worksheet wksToolkitMaster in mainWorkbook.Worksheets)
+            foreach (ExcelAlias.Worksheet wksToolkitMaster in mainWorkbook.Worksheets)
             {
                 bool IIAndGOV = false;
                 bool ProcessPA = false;
@@ -147,7 +147,7 @@ namespace BASE.Data
 
                     // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
                     //Range mainRange = wksToolkitMaster.Range["A" + cToolkitHeadingStartRow, "Z" + LastUsedRow];
-                    Range mainRange = wksToolkitMaster.Range["A1", "Z" + LastUsedRow];
+                    ExcelAlias.Range mainRange = wksToolkitMaster.Range["A1", "Z" + LastUsedRow];
 
                     // *** Process the worksheet here
                     for (int row = cToolkitHeadingStartRow + 1; row <= LastUsedRow; row++)
@@ -215,6 +215,59 @@ namespace BASE.Data
             return true;
         }
 
+        public bool PopulateToolkitFromOEdb(System.Windows.Forms.Label lblStatus, OEdbFile oeDbFile, CasPlanFile casPlanFile, out string resultMessage)
+        {
+            resultMessage = "Successfull.";
+            //mainWorkbook = excelApp.Workbooks.Open(persistentData.OEdatabasePathFile);
+            ExcelAlias.Workbook mddToolkitWorkbook;
+            if ((mddToolkitWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
+            {
+                resultMessage = "MDD Toolkit file not found, has it been moved or deleted?";
+                return false;
+            }
+            string basePath = Path.GetDirectoryName(_directoryFileName);
+
+
+            ExcelAlias.Workbook oeDbWorkbook;
+            if ((oeDbWorkbook = Helper.CheckIfOpenAndOpenXlsx(oeDbFile._directoryFileName)) == null)
+            {
+                resultMessage = "OEdb file not found, has it been moved or deleted?";
+                return false;
+            }
+
+            ExcelAlias.Workbook casPlanWorkbook;
+            if ((casPlanWorkbook = Helper.CheckIfOpenAndOpenXlsx(casPlanFile._directoryFileName)) == null)
+            {
+                resultMessage = "CAS Plan file not found, has it been moved or deleted?";
+                return false;
+            }
+
+            // write status here string statusStr = "Toolkit master:";
+            // write status herelblStatus.Text = statusStr;
+
+            // Build the "Organizaional Unit Summary"
+            ExcelAlias.Worksheet ouSummaryWks = mddToolkitWorkbook.Worksheets["Organizational Unit Summary"];
+            ouSummaryWks.Cells[17, 2].Value2 = casPlanFile.Organisation.Name;
+            ouSummaryWks.Cells[18, 2].Value2 = casPlanFile.OrganizationalUnit.Name;
+            string fullAddess = casPlanFile.Organisation.FullAddress;
+
+            ouSummaryWks.Cells[19, 2].Value2 = casPlanFile.Organisation.FullAddress;
+            ouSummaryWks.Cells[20, 2].Value2 = casPlanFile.Phase2Start;
+            ouSummaryWks.Cells[21, 2].Value2 = casPlanFile.Phase2End;
+
+            // List the work units
+            int workUnitRow = 40;
+            foreach (WorkUnit aWorkUnit in casPlanFile.WorkUnitList2)
+            {
+                ouSummaryWks.Cells[workUnitRow, 2].Value2 = aWorkUnit.Name;
+                workUnitRow++;
+            }
+            ouSummaryWks.Cells[38, 2].Value2 = casPlanFile.WorkUnitList2.Count();
+
+
+            return true;
+
+        }
 
 
 

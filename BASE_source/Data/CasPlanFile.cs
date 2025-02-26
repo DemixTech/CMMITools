@@ -1,10 +1,11 @@
-﻿using Microsoft.Office.Interop.Excel;
+﻿using ExcelAlias = Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Serialization;
@@ -14,7 +15,7 @@ namespace BASE.Data
 {
 
     [Serializable]
-    public class TargetCASFileObject : TargetFileObject
+    public class CasPlanFile : AbstractFile
     {
         private const int cProjectHeadingStartRow2 = 2; // tab:Projects start row
         private const int cSupportHeadingStartRow2 = 2; // tab:Support start row
@@ -33,6 +34,12 @@ namespace BASE.Data
         public List<Staff> StaffList2 = new List<Staff>(); // Contian all the participant
         public List<OUProcess> OUProcessesList2 = new List<OUProcess>(); // Contain the processess and all their projects. Should only be initialised after WorkUnitList is established
         public List<Schedule2> Schedule2List2 = new List<Schedule2>(); // Contains the schedule 2 information
+
+        // Appraisal Dates 
+        public DateTime Phase1Start { get; set; }
+        public DateTime Phase2Start { get; set; }
+        public DateTime Phase2End { get; set; }
+        public DateTime Phase3End { get; set; }
 
 
         //public Dictionary<string, int> DictionaryOUPracticeAreas = new Dictionary<string, int>(); // This list is defined in Tab:BASE and defines the offset (key) to a practice area
@@ -62,20 +69,21 @@ namespace BASE.Data
 
         public override void SavePersistant(object o)
         {
-            if (o is TargetCASFileObject tc)
+            if (o is CasPlanFile tc)
             {
                 if (!Directory.Exists(Path.GetDirectoryName(_directoryFileNameXML)))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(_directoryFileNameXML)); ;
                 }
 
-                var xs = new XmlSerializer(typeof(TargetCASFileObject));
+                var xs = new XmlSerializer(typeof(CasPlanFile));
                 using (FileStream stream = File.Create(_directoryFileNameXML))
                 {
                     xs.Serialize(stream, tc);
                 }
 
-            } else
+            }
+            else
             {
                 throw new NotImplementedException("Object missmatched");
 
@@ -88,7 +96,7 @@ namespace BASE.Data
 
         public bool LoadCASFile(out string returnMessage)
         {
-            Workbook aWorkbook;
+            ExcelAlias.Workbook aWorkbook;
 
             Cursor.Current = Cursors.WaitCursor;
             if ((aWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
@@ -106,7 +114,7 @@ namespace BASE.Data
             StaffList2.Clear();
 
             // Step 2: Open the spreadhseet and process it
-            Worksheet projectWks = aWorkbook.Sheets["Project&Support"];
+            ExcelAlias.Worksheet projectWks = aWorkbook.Sheets["Project&Support"];
             int row = cProjectHeadingStartRow2 + 1;
             string sValue2 = projectWks.Cells[row, 1].Value2;
             while (!string.IsNullOrEmpty(sValue2))
@@ -206,7 +214,7 @@ namespace BASE.Data
             } // Process until end is found
 
             // Step 4: Open the participant spreadhseet and process it
-            Worksheet participantWks = aWorkbook.Sheets["Staff"];
+            ExcelAlias.Worksheet participantWks = aWorkbook.Sheets["Staff"];
             row = cStaffHeadingStartRow2 + 1;
             string sValue5 = participantWks.Cells[row, 1].Value2;
             while (!string.IsNullOrEmpty(sValue5))
@@ -221,27 +229,46 @@ namespace BASE.Data
             }
 
             // Step 5: *** Load OU information
-            Worksheet casP1Wks = aWorkbook.Sheets["P1-OrgScope"];
+            ExcelAlias.Worksheet casP1Wks = aWorkbook.Sheets["P1-OrgScope"];
             this.Organisation = new Organisation();
-            Organisation.Name = casP1Wks.Cells[16, 2]?.Value?.ToString() ?? "No name";
-            Organisation.AddressLine1 = casP1Wks.Cells[18, 2]?.Value?.ToString() ?? "Address line 1";
-            Organisation.AddressLine2 = casP1Wks.Cells[19, 2]?.Value?.ToString() ?? "Address line 2";
-            Organisation.City = casP1Wks.Cells[20, 2]?.Value?.ToString() ?? "City";
-            Organisation.State = casP1Wks.Cells[21, 2]?.Value?.ToString() ?? "State";
-            Organisation.ZipCode = casP1Wks.Cells[22, 2]?.Value?.ToString() ?? "ZipCode";
-            Organisation.Country = casP1Wks.Cells[23, 2]?.Value?.ToString() ?? "Country";
+
+            Microsoft.Office.Interop.Excel.Range ouData = casP1Wks.get_Range("B16", "B52");
+
+            Organisation.Name = ouData.Cells[1, 1]?.Value?.ToString() ?? "Empty OU name"; // ouData`.[1, 1]?.Value?.ToString() ?? "empty ou"; //  casP1Wks.Cells[16, 2]?.Value?.ToString() ?? "No name";
+            Organisation.AddressLine1 = ouData.Cells[3, 1]?.Value?.ToString() ?? "Address line 1";
+            Organisation.AddressLine2 = ouData.Cells[4, 1]?.Value?.ToString() ?? "Address line 2";
+            Organisation.City = ouData.Cells[5, 1]?.Value?.ToString() ?? "City";
+            Organisation.State = ouData.Cells[6, 1]?.Value?.ToString() ?? "State";
+            Organisation.ZipCode = ouData.Cells[7, 1]?.Value?.ToString() ?? "ZipCode";
+            Organisation.Country = ouData.Cells[8, 1]?.Value?.ToString() ?? "Country";
 
             this.OrganizationalUnit = new OrganizationalUnit();
-            OrganizationalUnit.Name = casP1Wks.Cells[31, 2]?.Value?.ToString() ?? "OU Name";
-            string MaturityLevelStr = casP1Wks.Cells[75, 2]?.Value?.ToString() ?? "Maturity Level 1";
+            OrganizationalUnit.Name = ouData.Cells[18, 1]?.Value?.ToString() ?? "OU Name";
+            string MaturityLevelStr = ouData.Cells[35, 1]?.Value?.ToString() ?? "No ML 0";
             //System.Text.RegularExpressions.Regex
+
             string MaturityLevelNumberStr = Regex.Match(MaturityLevelStr, @"\d+").Value;
             OrganizationalUnit.MaturityLevel = int.Parse(MaturityLevelNumberStr);
+
+            // Load appraisal dates
+            DateTime tempDateTime;
+            string tempDateTimeVal = "";
+
+            Phase1Start = DateTime.TryParse(casP1Wks.Cells[69, 2].Value?.ToString(), out tempDateTime)
+                ? tempDateTime : new DateTime(2025, 1, 1, 0, 0, 0); // or another default/fallback value
+            Phase2Start = DateTime.TryParse(casP1Wks.Cells[85, 2].Value?.ToString(), out tempDateTime)
+                ? tempDateTime : new DateTime(2025, 2, 1, 0, 0, 0); // or another default/fallback value
+            Phase2End = DateTime.TryParse(casP1Wks.Cells[87, 2].Value?.ToString(), out tempDateTime)
+                ? tempDateTime : new DateTime(2025, 2, 7, 0, 0, 0); // or another default/fallback value
+            Phase3End = DateTime.TryParse(casP1Wks.Cells[92, 2].Value?.ToString(), out tempDateTime)
+                ? tempDateTime : new DateTime(2025, 2, 21, 0, 0, 0); // or another default/fallback value
+
+            
 
             // Step 4: Load Scheduel 2
             Schedule2List2.Clear();
 
-            Worksheet schedule2Wks = aWorkbook.Sheets["Schedule2"];
+            ExcelAlias.Worksheet schedule2Wks = aWorkbook.Sheets["Schedule2"];
             int NumberOfRows = Helper.FindEndOfWorksheet(schedule2Wks, 1, cSchedule2HeadingStartRow2, 200);
             for (int rowS = cSchedule2HeadingStartRow2 + 1; rowS <= NumberOfRows; rowS++)
             {
@@ -254,7 +281,7 @@ namespace BASE.Data
 
 
             // Step 5 : Load Base lookups
-            Worksheet baseLookupWks = aWorkbook.Sheets["BASE"];
+            ExcelAlias.Worksheet baseLookupWks = aWorkbook.Sheets["BASE"];
             int NumberOfRowsInCol1 = Helper.FindEndOfWorksheet(baseLookupWks, CBASE_OUPracticeAreaCol, CBASE_OUPracticeAreaStratRow, 50);
             DictionaryOUPracticeAreas.Clear();
             for (int aRow = CBASE_OUPracticeAreaStratRow; aRow <= NumberOfRowsInCol1; aRow++)
@@ -282,6 +309,8 @@ namespace BASE.Data
                 DictionaryProjectHeadings.Add(headingStr);// .Add(PAstr, aRow - CBASE_OUPracticeAreaStratRow);
             }
 
+
+
             //public List<String> DictionarySupportHeadings = new List<string>();
             //private const int CBASE_SupportHeadingsCol = 2;
             //private const int CBASE_SupportHeadingsRowStart = 3;
@@ -308,7 +337,7 @@ namespace BASE.Data
 
         public bool ReloadSchedule2()
         {
-            Workbook aWorkbook;
+            ExcelAlias.Workbook aWorkbook;
             Cursor.Current = Cursors.WaitCursor;
             if ((aWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
@@ -321,7 +350,7 @@ namespace BASE.Data
             // Step 4: Load Scheduel 2
             Schedule2List2.Clear();
 
-            Worksheet schedule2Wks = aWorkbook.Sheets["Schedule2"];
+            ExcelAlias.Worksheet schedule2Wks = aWorkbook.Sheets["Schedule2"];
             int NumberOfRows = Helper.FindEndOfWorksheet(schedule2Wks, 1, cSchedule2HeadingStartRow2, 200);
             for (int rowS = cSchedule2HeadingStartRow2 + 1; rowS <= NumberOfRows; rowS++)
             {
@@ -341,7 +370,7 @@ namespace BASE.Data
 
         public bool Generate_OUParticipants(bool insertRole, out string returnMessage)
         {
-            Workbook aWorkbook;
+            ExcelAlias.Workbook aWorkbook;
             Cursor.Current = Cursors.WaitCursor;
             if ((aWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
@@ -354,7 +383,7 @@ namespace BASE.Data
             // *** Reload schedule 2
             Schedule2List2.Clear();
 
-            Worksheet schedule2Wks = aWorkbook.Sheets["Schedule2"];
+            ExcelAlias.Worksheet schedule2Wks = aWorkbook.Sheets["Schedule2"];
             int NumberOfRows = Helper.FindEndOfWorksheet(schedule2Wks, 1, cSchedule2HeadingStartRow2, 200);
             for (int rowS = cSchedule2HeadingStartRow2 + 1; rowS <= NumberOfRows; rowS++)
             {
@@ -366,7 +395,7 @@ namespace BASE.Data
             }
 
             // *** Populate OUParticipants
-            Worksheet ouPartWks = aWorkbook.Sheets["C_OUParticipants"];
+            ExcelAlias.Worksheet ouPartWks = aWorkbook.Sheets["C_OUParticipants"];
             ouPartWks.Cells.Clear();
             ouPartWks.Cells[1, 1].Value = "Participant's Full Name (required)";
             ouPartWks.Cells[1, 2].Value = "Participant's Role (required)";
@@ -400,7 +429,7 @@ namespace BASE.Data
             {
                 ColOffset = 2;
             }
-            Worksheet ouProjects = aWorkbook.Sheets["C_OUProjects"];
+            ExcelAlias.Worksheet ouProjects = aWorkbook.Sheets["C_OUProjects"];
             ouProjects.Cells.Clear();
             ouProjects.Cells[1, 1].Value = "Participant Name";
             if (insertRole) ouProjects.Cells[1, 2].Value = "ROLE-DELETE";
@@ -428,7 +457,7 @@ namespace BASE.Data
             if (insertRole) ouProjects.Range["B1", $"B{rowOUPX - 1}"].Interior.ColorIndex = 6; // Yellow
 
             // Build OUPAs
-            Worksheet ouPAs = aWorkbook.Sheets["C_OUPracticeAreas"];
+            ExcelAlias.Worksheet ouPAs = aWorkbook.Sheets["C_OUPracticeAreas"];
             ouPAs.Cells.Clear();
             ouPAs.Cells[1, 1].Value = "Participant Name";
             if (insertRole) ouPAs.Cells[1, 2].Value = "ROLE-DELETE";
@@ -473,7 +502,7 @@ namespace BASE.Data
         }
         public bool Generate_SupportAndProjectCASSheets(out string returnMessage)
         {
-            Workbook aWorkbook;
+            ExcelAlias.Workbook aWorkbook;
             Cursor.Current = Cursors.WaitCursor;
             if ((aWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
             {
@@ -484,7 +513,7 @@ namespace BASE.Data
             }
 
             // *** Do support sheet
-            Worksheet casSupportWks = aWorkbook.Sheets["C_Support"];
+            ExcelAlias.Worksheet casSupportWks = aWorkbook.Sheets["C_Support"];
             casSupportWks.Cells.Clear();
             // int NumberOfRows = Helper.FindEndOfWorksheet(casSupportWks, 1, cSchedule2HeadingStartRow2, 200);
             for (int col = 1; col < DictionarySupportHeadings.Count; col++)
@@ -519,7 +548,7 @@ namespace BASE.Data
             }
 
             // *** Do project sheet
-            Worksheet casProjectWks = aWorkbook.Sheets["C_Projects"];
+            ExcelAlias.Worksheet casProjectWks = aWorkbook.Sheets["C_Projects"];
             casProjectWks.Cells.Clear();
             // int NumberOfRows = Helper.FindEndOfWorksheet(casSupportWks, 1, cSchedule2HeadingStartRow2, 200);
             for (int col = 1; col < DictionaryProjectHeadings.Count; col++)
@@ -571,7 +600,7 @@ namespace BASE.Data
 
         public bool CreateSchedule1(out string returnMessage)
         {
-            Workbook aWorkbook;
+            ExcelAlias.Workbook aWorkbook;
 
             Cursor.Current = Cursors.WaitCursor;
             if ((aWorkbook = Helper.CheckIfOpenAndOpenXlsx(_directoryFileName)) == null)
@@ -583,7 +612,7 @@ namespace BASE.Data
             }
 
             // Step 4: Show schedule
-            Worksheet schedule = aWorkbook.Sheets["Schedule"];
+            ExcelAlias.Worksheet schedule = aWorkbook.Sheets["Schedule"];
             schedule.Cells.Clear();
             schedule.Cells[1, 1].Value = "WorkID";
             schedule.Cells[1, 2].Value = "Work name";
@@ -676,10 +705,10 @@ namespace BASE.Data
                 if (File.Exists(_directoryFileNameXML))
                 {
                     // If the directory and file name exists, laod the data
-                    var xs = new XmlSerializer(typeof(TargetCASFileObject));
+                    var xs = new XmlSerializer(typeof(CasPlanFile));
                     using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
                     {
-                        var pData = (TargetCASFileObject)xs.Deserialize(xmlLoad);
+                        var pData = (CasPlanFile)xs.Deserialize(xmlLoad);
                         this.DirectoryFileName = pData._directoryFileName;
 
                         // *** TargetCASFielObject fields and properties

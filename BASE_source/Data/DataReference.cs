@@ -9,7 +9,7 @@ using System.Xml.Serialization;
 
 namespace BASE.Data
 {
-    public class TargetDataReferenceFileObject : TargetFileObject
+    public class DataReference : AbstractFile
     {
         public override bool LoadPersistantXMLdata()
         {
@@ -19,10 +19,10 @@ namespace BASE.Data
                 if (File.Exists(_directoryFileNameXML))
                 {
                     // If the directory and file name exists, laod the data
-                    var xs = new XmlSerializer(typeof(TargetDataReferenceFileObject)); // TargetCASFileObject));
+                    var xs = new XmlSerializer(typeof(DataReference)); // TargetCASFileObject));
                     using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
                     {
-                        var pData = (TargetDataReferenceFileObject)xs.Deserialize(xmlLoad);
+                        var pData = (DataReference)xs.Deserialize(xmlLoad);
                         this.DirectoryFileName = pData._directoryFileName;
 
                         // *** Load the object elements belwo
@@ -44,14 +44,14 @@ namespace BASE.Data
 
         public override void SavePersistant(object o)
         {
-            if (o is TargetDataReferenceFileObject tc)
+            if (o is DataReference tc)
             {
                 if (!Directory.Exists(Path.GetDirectoryName(_directoryFileNameXML)))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(_directoryFileNameXML)); ;
                 }
 
-                var xs = new XmlSerializer(typeof(TargetDataReferenceFileObject));
+                var xs = new XmlSerializer(typeof(DataReference));
                 using (FileStream stream = File.Create(_directoryFileNameXML))
                 {
                     xs.Serialize(stream, tc);

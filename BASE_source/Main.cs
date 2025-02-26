@@ -35,8 +35,8 @@ namespace BASE
     {
 
         #region globals
-        const string CTargetCASFileXML = @"BASE\TargetCASFileXML.xml";
-        const string CTargetOEdbFileXML = @"BASE\TargetOEdbFileXML.xml";
+        const string TARGET_CAS_FILE_XML = @"BASE\CasPlanFileXML.xml";
+        const string TARGET_OEDB_FILE_XML = @"BASE\OEdbFile.xml";
         const string CTargetOEdbImportFileXML = @"BASE\TargetOEdbImportFileXML.xml";
         const string CQuestionFileXML = @"BASE\TargetQuestionModelFileXML.xml";
         const string CDataReferenceFileXML = @"BASE\TargetDataReferenceFileXML.xml";
@@ -111,16 +111,16 @@ namespace BASE
         public PersistentData persistentData = new PersistentData();
 
         // *** BASE file objects
-        private TargetCASFileObject CASFileObject;
-        private TargetOEFileObject CASOEdbObject;
-        private TargetOEFileObject CASOEdbImportObject;
-        private TargetQuestionsFileObject BASEQuestionObject;
+        private CasPlanFile casPlanFile;
+        private OEdbFile oeDbAtlFile;
+        private OEdbFile oeDbAtmFile;
+        private QuestionsFile Obj_Questions_File;
 
-        private TargetDataReferenceFileObject BASEDataReferenceObject;
-        private TargetPresentationFileObject BASEPresentationObject;
+        private DataReference BASEDataReferenceObject;
+        private PresentationFile BASEPresentationObject;
 
-        private TargetToolkitObject ToolkitMasterFileObject;
-        private TargetToolkitObject ToolkitImportFileObject;
+        private MddToolkit mddToolkitFile;
+        private MddToolkit mddToolkitForImportFile;
 
         #endregion
 
@@ -148,47 +148,47 @@ namespace BASE
             //lblWorkingDirectory.Text = Path.GetTempPath(); //Environment.SpecialFolder.Personal.ToString();
 
             // *** Startup program objects
-            CASFileObject = new TargetCASFileObject();
-            CASFileObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetCASFileXML), lblCASPathXML, lblCASFileXML, lblCASPlanPathText, lblCASPlanFileText);
-            CASFileObject.LoadPersistantXMLdata(); // 
+            casPlanFile = new CasPlanFile();
+            casPlanFile.InitialiseObject(Path.Combine(Path.GetTempPath(), TARGET_CAS_FILE_XML), lblCASPathXML, lblCASFileXML, lblCASPlanPathText, lblCASPlanFileText);
+            casPlanFile.LoadPersistantXMLdata(); // 
 
             // *** Startup oeDb objects
-            CASOEdbObject = new TargetOEFileObject();
-            CASOEdbObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetOEdbFileXML), lblOEPathXML2, lblOEFileXML2, lblOEPath2, lblOEFile2);
-            CASOEdbObject.LoadPersistantXMLdata(); // 
+            oeDbAtlFile = new OEdbFile();
+            oeDbAtlFile.InitialiseObject(Path.Combine(Path.GetTempPath(), TARGET_OEDB_FILE_XML), lblOEPathXML2, lblOEFileXML2, lblOEPath2, lblOEFile2);
+            oeDbAtlFile.LoadPersistantXMLdata(); // 
 
             // *** Startup oeDb import objects
-            CASOEdbImportObject = new TargetOEFileObject();
-            CASOEdbImportObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetOEdbImportFileXML), lblPathOEdbImportXML2, lblFileOEdbImportXML2,
+            oeDbAtmFile = new OEdbFile();
+            oeDbAtmFile.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetOEdbImportFileXML), lblPathOEdbImportXML2, lblFileOEdbImportXML2,
                 lblPathOEdbImport2, lblFileOEdbImport2); ;
-            CASOEdbImportObject.LoadPersistantXMLdata(); //
+            oeDbAtmFile.LoadPersistantXMLdata(); //
 
             // *** Startup Question objects
-            BASEQuestionObject = new TargetQuestionsFileObject();
-            BASEQuestionObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CQuestionFileXML), lblQMPathXML2, lblQMfileXML2, lblQuestionPath2, lblQuestionFile2);
-            BASEQuestionObject.LoadPersistantXMLdata(); // 
+            Obj_Questions_File = new QuestionsFile();
+            Obj_Questions_File.InitialiseObject(Path.Combine(Path.GetTempPath(), CQuestionFileXML), lblQMPathXML2, lblQMfileXML2, lblQuestionPath2, lblQuestionFile2);
+            Obj_Questions_File.LoadPersistantXMLdata(); // 
 
             // *** Startup Data reference object
-            BASEDataReferenceObject = new TargetDataReferenceFileObject();
+            BASEDataReferenceObject = new DataReference();
             BASEDataReferenceObject.InitialiseObject(CDataReferenceFileXML, lblDataReferenceXMLPath2, lblDataReferenceXMLFile2,
                 lblXlsxPath2, lblXlsxFile2);
             BASEDataReferenceObject.LoadPersistantXMLdata();
 
             // *** Startup presentation object
-            BASEPresentationObject = new TargetPresentationFileObject();
+            BASEPresentationObject = new PresentationFile();
             BASEPresentationObject.InitialiseObject(CPresentationFileXML, lblPresentationXMLPath2, lblPresentationXMLFile2,
                 lblPptxPath2, lblPptxFile2);
             BASEPresentationObject.LoadPersistantXMLdata();
 
             // *** Startup program objects
-            ToolkitMasterFileObject = new TargetToolkitObject();
-            ToolkitMasterFileObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetToolkitMasterFileXML), lblToolkitMasterPathXML, lblToolkitMasterFileXML, lblToolkitMasterPath, lblToolkitMasterFile);
-            ToolkitMasterFileObject.LoadPersistantXMLdata(); // 
+            mddToolkitFile = new MddToolkit();
+            mddToolkitFile.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetToolkitMasterFileXML), lblToolkitMasterPathXML, lblToolkitMasterFileXML, lblToolkitMasterPath, lblToolkitMasterFile);
+            mddToolkitFile.LoadPersistantXMLdata(); // 
 
             // *** Startup oeDb objects
-            ToolkitImportFileObject = new TargetToolkitObject();
-            ToolkitImportFileObject.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetToolkitImportFileXML), lblToolkitImportPathXML, lblToolkitImportFileXML, lblToolkitImportPath, lblToolkitImportFile);
-            ToolkitImportFileObject.LoadPersistantXMLdata(); // 
+            mddToolkitForImportFile = new MddToolkit();
+            mddToolkitForImportFile.InitialiseObject(Path.Combine(Path.GetTempPath(), CTargetToolkitImportFileXML), lblToolkitImportPathXML, lblToolkitImportFileXML, lblToolkitImportPath, lblToolkitImportFile);
+            mddToolkitForImportFile.LoadPersistantXMLdata(); // 
 
             // *** Old code
             persistentData.LoadPersistentData();
@@ -517,431 +517,18 @@ namespace BASE
             }
         }
 
-        private void btnLoadSchedule2_tab_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void btnLoadSchedule2tab_Click(object sender, EventArgs e)
-        {
-            // Remove from release 3.8.0.44
-            //// loadSchedule2();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnGenerateScheduleTab_Click(object sender, EventArgs e)
-        {
-            ////// Remove from release 3.8.0.44
-            ////// Step 4: Show schedule
-            ////Worksheet schedule = aWorkbook.Sheets["Schedule"];
-            ////schedule.Cells.Clear();
-            ////schedule.Cells[1, 1].Value = "WorkID";
-            ////schedule.Cells[1, 2].Value = "Work name";
-            ////schedule.Cells[1, 3].Value = "PA";
-            ////schedule.Cells[1, 4].Value = "Participant Name";
-            ////schedule.Cells[1, 5].Value = "Role";
-            ////schedule.Cells[1, 6].Value = "WordID2";
-            ////schedule.Cells[1, 7].Value = "Included";
-            ////// https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Set-Excel-Background-Color-with-C-VB.NET.html
-            ////// schedule.Range["A1:A6"].Style.Color = Color.BlueViolet;
-
-            ////// *** For each project selected PA, find the participants that acted in that role
-            ////int outRow = 2;
-            ////List<Schedule1Entry> includedList = new List<Schedule1Entry>();
-            ////List<Schedule1Entry> excludedList = new List<Schedule1Entry>();
-
-            ////foreach (var workUnit in WorkUnitList)
-            ////{
-            ////    var listOfSampledPAs = workUnit.PAlist.Where(x => x.SampleType == ESampleType.added || x.SampleType == ESampleType.sampled);
-            ////    foreach (var aSampledPA in listOfSampledPAs)
-            ////    {
-            ////        // This is all the sampled PAs
-            ////        var workUnitStaffList = StaffList.Where(x => x.WorkID == workUnit.ID);
-            ////        foreach (var workUnitParticipant in workUnitStaffList)
-            ////        {
-            ////            // Find the practice areas that match
-            ////            var participantForSampledWorkUnitPA = workUnitParticipant.PAlist.Where(x => x.PAcode == aSampledPA.PAcode);
-            ////            bool found;
-            ////            if (participantForSampledWorkUnitPA.Count() == 0)
-            ////            { // nothing found here
-            ////                found = false; // nothing found
-            ////            }
-            ////            else
-            ////            {
-            ////                // proces this list
-            ////                found = true;
-            ////                schedule.Cells[outRow, 1].Value = workUnit.ID.ToString();
-            ////                schedule.Cells[outRow, 2].Value = workUnit.Name.ToString();
-            ////                schedule.Cells[outRow, 3].Value = aSampledPA.PAcode.ToString();
-            ////                schedule.Cells[outRow, 4].Value = workUnitParticipant.Name;
-            ////                schedule.Cells[outRow, 5].Value = workUnitParticipant.Role;
-            ////                schedule.Cells[outRow, 6].Value = workUnitParticipant.WorkID;
-
-            ////                // check if the workUnit.ID and PAcode is not already in the list, if it is, then it is a unecessary duplicate. If duplicate, skip include
-            ////                Schedule1Entry aSchedule1Entry = new Schedule1Entry()
-            ////                {
-            ////                    ID = workUnit.ID.ToString(),
-            ////                    Name = workUnit.Name.ToString(),
-            ////                    PAcode = aSampledPA.PAcode.ToString(),
-            ////                    ParticipantName = workUnitParticipant.Name,
-            ////                    ParticipantRole = workUnitParticipant.Role,
-            ////                    WorkIDcheck = workUnitParticipant.WorkID,
-            ////                    //  include = false, set below to make reading more clear
-            ////                };
-
-            ////                int inListIndex = includedList.FindIndex(x => x.ID == aSchedule1Entry.ID && x.PAcode == aSchedule1Entry.PAcode); ;
-            ////                if (inListIndex < 0)
-            ////                { // not in list, insert in includedList
-            ////                    aSchedule1Entry.include = true;
-            ////                    includedList.Insert(~inListIndex, aSchedule1Entry);
-            ////                    schedule.Cells[outRow, 7].Value = "x";
-            ////                }
-            ////                else
-            ////                { // already included, put in excludedList
-            ////                    aSchedule1Entry.include = false;
-            ////                    excludedList.Add(aSchedule1Entry);
-            ////                    schedule.Cells[outRow, 7].Value = "";
-            ////                }
-            ////                outRow++;
-
-
-            ////            }
-            ////        }
-            ////    }
-            ////}
-
-            ////// *** Find distinct participants
-            ////Worksheet responsibilities = aWorkbook.Sheets["Responsibilities"];
-            ////responsibilities.Cells.Clear();
-            ////int respRow = 2;
-            ////var distinctParticipants = StaffList.Select(x => x.Name)
-            ////    .Distinct()
-            ////    .OrderBy(q => q)
-            ////    .ToList();
-
-            ////List<string> projectNameList = new List<string>();
-            ////List<string> projectWorkIDList = new List<string>();
-            ////List<EPAcode> practiceAreaList = new List<EPAcode>();
-            ////foreach (var distincParticipant in distinctParticipants)
-            ////{
-            ////    // first clear the names and practice list
-            ////    projectNameList.Clear();
-            ////    projectWorkIDList.Clear();
-            ////    practiceAreaList.Clear();
-
-            ////    // *** List all the Projects
-            ////    var participantSubset = StaffList.Where(x => x.Name == distincParticipant);
-            ////    foreach (var aParticipant in participantSubset)
-            ////    {
-            ////        // Add a project if it does not exists
-            ////        var x = projectNameList.BinarySearch(aParticipant.WorkName);
-            ////        if (x < 0)
-            ////        { // Not in list, add it
-            ////            projectNameList.Insert(~x, aParticipant.WorkName);
-            ////            projectWorkIDList.Insert(~x, aParticipant.WorkID);
-            ////        }
-            ////        else
-            ////        {
-            ////            // in list, ignore it
-            ////        }
-            ////        // Add the PAs if it does not exist
-            ////        foreach (var aPa in aParticipant.PAlist)
-            ////        {
-            ////            var pai = practiceAreaList.BinarySearch(aPa.PAcode);
-            ////            if (pai < 0)
-            ////            {
-            ////                // Not in list, add it
-            ////                practiceAreaList.Insert(~pai, aPa.PAcode);
-            ////            }
-            ////            else
-            ////            {
-            ////                // In list, ignore it
-            ////            }
-            ////        }
-            ////    }
-
-            ////    // for this participant, output the practicenames and practice areas to the spreadhseet
-            ////    responsibilities.Cells[respRow++, 1].Value = distincParticipant;
-            ////    responsibilities.Cells[respRow++, 2].Value = "Project/Work";
-            ////    for (int i = 0; i < projectNameList.Count(); i++)
-            ////    //foreach (var aprojName in projectNameList)
-            ////    {
-            ////        //responsibilities.Cells[respRow++, 3].Value = aprojName.ToString();
-            ////        // projectWorkIDList
-            ////        responsibilities.Cells[respRow++, 3].Value =
-            ////            projectWorkIDList[i] + " " + projectNameList[i];
-            ////        //aprojName.ToString();
-            ////    }
-            ////    responsibilities.Cells[respRow++, 2].Value = "Practice Area";
-            ////    foreach (var aPA in practiceAreaList)
-            ////    {
-            ////        responsibilities.Cells[respRow++, 3].Value = aPA.ToString();
-            ////    }
-
-            ////}
-
-            ////MessageBox.Show("Draft Schedule completed");
-
-        }
-
-        private void btnSelectPlanTab_Click(object sender, EventArgs e)
-        {
-            // Delete from release 3.8.0.44
-
-            ////#region btnSelectPlanTab
-
-            ////// Clear background color
-            //////lblstat lbStatCASPlanLoaded.BackColor = Control.DefaultBackColor;
-
-            ////// Check if the excel process is running
-
-            ////OpenFileDialog sourceFile2 = new OpenFileDialog();
-            ////sourceFile2.InitialDirectory = persistentData.LastAppraisalDirectory; //cPath_start;
-            ////sourceFile2.RestoreDirectory = true;
-            ////sourceFile2.Title = "Select source file";
-            ////sourceFile2.DefaultExt = "*.xlsx";
-            ////if (sourceFile2.ShowDialog() == DialogResult.OK)
-            ////{
-            ////    // Set cursor as hourglass
-            ////    Cursor.Current = Cursors.WaitCursor;
-
-            ////    LblSourceFilePlan2.Text = sourceFile2.FileName;
-            ////    // *** save new file
-            ////    persistentData.LastAppraisalDirectory = Path.GetDirectoryName(sourceFile2.FileName);
-            ////    persistentData.CASPlanName = Path.GetFileName(sourceFile2.FileName);
-            ////    persistentData.SavePersistentData(persistentData);
-            ////    lblWorkingDirectory.Text = persistentData.LastAppraisalDirectory;
-            ////    lblPlanName.Text = persistentData.CASPlanName;
-
-            ////    //excelApp.Visible = true;
-
-            ////    //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
-
-            ////    if ((aWorkbook = Helper.CheckIfOpenAndOpen(LblSourceFilePlan2.Text.ToString())) == null)
-            ////    {
-            ////        //MessageBox.Show($"File {Path.GetFileName(LblSourceFilePlan2.Text.ToString())}" +
-            ////        //    $"\n\rDirectory {Path.GetDirectoryName(LblSourceFilePlan2.Text.ToString())}" +
-            ////        //    "\n\rdoes not exists");
-
-
-            ////        // Set cursor as default arrow
-            ////        Cursor.Current = Cursors.Default;
-            ////        MessageBox.Show("File not found, has it been moved or deleted?");
-            ////        return;
-            ////    }
-
-            ////    // Step 0: Clear the list to start afresh
-            ////    WorkUnitList.Clear();
-            ////    StaffList.Clear();
-
-            ////    // Step 1: Open the spreadhseet and process it
-            ////    Worksheet projectWks = aWorkbook.Sheets["Project&Support"];
-            ////    int row = cProjectHeadingStartRow + 1;
-            ////    string sValue2 = projectWks.Cells[row, 1].Value2;
-            ////    while (!string.IsNullOrEmpty(sValue2))
-            ////    {
-            ////        // Process the list
-            ////        WorkUnit aNewWorkUnitItem;
-            ////        char firstChar = sValue2.ToUpper()[0];
-            ////        switch (firstChar)
-            ////        {
-            ////            case 'P':
-            ////                aNewWorkUnitItem = new WorkUnit()
-            ////                {
-            ////                    WorkType = EWorkType.project,
-            ////                };
-            ////                aNewWorkUnitItem.AddWorkType(EWorkType.project, projectWks, row, cProjectHeadingStartRow);
-            ////                break;
-            ////            case 'S':
-            ////                aNewWorkUnitItem = new WorkUnit()
-            ////                {
-            ////                    WorkType = EWorkType.support,
-            ////                };
-            ////                aNewWorkUnitItem.AddWorkType(EWorkType.support, projectWks, row, cProjectHeadingStartRow);
-            ////                break;
-            ////            default:
-            ////                aNewWorkUnitItem = new WorkUnit()
-            ////                {
-            ////                    WorkType = EWorkType.nothing,
-            ////                };
-            ////                break;
-            ////        }
-
-            ////        WorkUnitList.Add(aNewWorkUnitItem);
-            ////        row++;
-            ////        sValue2 = projectWks.Cells[row, 1].Value2;
-            ////    }
-            ////    // Step 2: Create the process list
-            ////    OUProcessesList.Clear();
-
-            ////    // Start at col 29 (AC) and search to the right until you find END
-            ////    int columnX = 29;
-            ////    int headerRow = 2; // Row where the processes are defined (below this row is the marking for the projects)
-            ////    string cellProcess = projectWks.Cells[headerRow, columnX].Value;
-            ////    int lastRowToProcess = Helper.FindEndOfWorksheet(projectWks, 1, 3, 50);
-            ////    while (cellProcess != "END")
-            ////    {
-            ////        // Load the process name
-            ////        OUProcess aProcess = new OUProcess();
-            ////        aProcess.Name = cellProcess;
-
-            ////        // Find asssociated projects
-            ////        for (int rowX = 3; rowX <= lastRowToProcess; rowX++)
-            ////        {
-            ////            string cellMarkedX = projectWks.Cells[rowX, columnX]?.Value;
-            ////            if (cellMarkedX?.ToLower() == "x")
-            ////            { // Marked x, proxcess it
-            ////                string workIdStr = projectWks.Cells[rowX, 1]?.Value;
-            ////                // The workId must be valid, cannot be null or empty
-            ////                if (string.IsNullOrEmpty(workIdStr))
-            ////                {
-            ////                    MessageBox.Show($"WorkID at {rowX} cannot be null or empty");
-            ////                }
-            ////                else
-            ////                {
-            ////                    // Use the workIdStr to find the WorkUnit and attach it to the process
-            ////                    WorkUnit aWorkunit = WorkUnitList.Find(x => x.ID.ToLower() == workIdStr.ToLower());
-            ////                    if (aWorkunit == null)
-            ////                    {
-            ////                        MessageBox.Show($"No work unit found in list for {workIdStr}! Please review Projects table.");
-            ////                    }
-            ////                    else
-            ////                    { // Add the work unit found
-            ////                        aProcess.WorkUnits.Add(aWorkunit);
-            ////                    }
-            ////                }
-
-            ////            }
-            ////        }
-            ////        // Add the process and search for the next one in the next column
-            ////        OUProcessesList.Add(aProcess);
-
-            ////        // Test for endless loop
-            ////        if (columnX++ > 100)
-            ////        {
-            ////            MessageBox.Show("END not found. See if end is listed in Row 2 of Projects tab!");
-            ////            break;
-            ////        }
-            ////        else
-            ////        {
-            ////            cellProcess = projectWks.Cells[headerRow, columnX].Value;
-            ////        }
-            ////    } // Process until end is found
-
-            ////    // Step 2: Open the support spreadhseet and process it
-            ////    //Worksheet supportWks = aWorkbook.Sheets["Support"];
-            ////    //row = cSupportHeadingStartRow + 1;
-            ////    //string sValue4 = supportWks.Cells[row, 1].Value2;
-            ////    //while (!string.IsNullOrEmpty(sValue4))
-            ////    //{
-            ////    //    // Process the list
-            ////    //    WorkUnit aNewWorkUnitItem = new WorkUnit(EWorkType.support, supportWks, row, cSupportHeadingStartRow);
-            ////    //    if (aNewWorkUnitItem.WorkType != EWorkType.nothing) WorkUnitList.Add(aNewWorkUnitItem);
-
-            ////    //    row++;
-            ////    //    sValue4 = supportWks.Cells[row, 1].Value2;
-            ////    //}
-
-            ////    // Step 3: Open the participant spreadhseet and process it
-            ////    Worksheet participantWks = aWorkbook.Sheets["Staff"];
-            ////    row = cStaffHeadingStartRow + 1;
-            ////    string sValue5 = participantWks.Cells[row, 1].Value2;
-            ////    while (!string.IsNullOrEmpty(sValue5))
-            ////    {
-            ////        // Process the list
-            ////        Staff aNewParticipant = new Staff();
-            ////        aNewParticipant.StaffAdd(participantWks, row, cStaffHeadingStartRow);
-            ////        if (aNewParticipant.WorkID != null) StaffList.Add(aNewParticipant);
-
-            ////        row++;
-            ////        sValue5 = participantWks.Cells[row, 1].Value2;
-            ////    }
-            ////    // *** Load OU information
-
-            ////    // Set cursor as default arrow
-            ////    Cursor.Current = Cursors.Default;
-            ////    MessageBox.Show("Workbook loaded. Projects and support functions loaded. Processess loaded. Staff loaded.");
-
-            ////    // Step 4: Load Scheduel 2
-            ////    loadSchedule2();
-            ////}
-
-            ////// Set background color - loaded
-            //////   lbStatCASPlanLoaded.BackColor = Color.LightGreen;
-
-            ////#endregion
-
-        }
-
-        //private void button1_Click_1(object sender, EventArgs e)
-        //{
-
-        //}
-
-        private void btnExcelRunning_Click(object sender, EventArgs e)
-        {
-            // Microsoft.Office.Interop.Excel.Application excelApp2 = new Microsoft.Office.Interop.Excel.Application();
-            // https://social.msdn.microsoft.com/Forums/vstudio/en-US/c2a48936-b58f-4487-84ec-dfae842e2fd1/how-to-check-to-see-if-excel-application-is-already-open?forum=csharpgeneral
-            Process[] processlist = Process.GetProcesses();
-            var subList = processlist.Where(x => x.ProcessName == "EXCEL").ToList();
-            if (subList.Count > 0)
-            {
-                string excelListStr = "";
-                foreach (var aExcelProcess in subList)
-                {
-                    excelListStr += $"Process id {aExcelProcess.Id} and name {aExcelProcess.ProcessName}\n\r";
-                }
-                MessageBox.Show(excelListStr + "is running");
-                List<Workbook> listOfWorkbooks = Helper.ExcelGetRunningOjbects();
-
-                MessageBox.Show($"Number of workbooks {listOfWorkbooks.Count}");
-                foreach (var aWkb in listOfWorkbooks)
-                {
-                    string aPath = aWkb.Path;
-                    aWkb.Application.Visible = true;
-                }
-
-
-
-
-            }
-            else
-            {
-                MessageBox.Show($"No instances of Excel is running");
-            }
-        }
 
         private void btnSelectMainTool_Click(object sender, EventArgs e)
         {
-            //OpenFileDialog AppToolMain = new OpenFileDialog();
-            //AppToolMain.InitialDirectory = Path.GetDirectoryName(persistentData.AppToolMainPathFile);
-            //AppToolMain.RestoreDirectory = true;
-            //AppToolMain.Title = "Select main OE file";
-            //AppToolMain.DefaultExt = "*.xlsm";
-            //if (AppToolMain.ShowDialog() == DialogResult.OK)
-            //{
-            //    lblOEdbMain.Text = AppToolMain.FileName;
-            //    persistentData.AppToolMainPathFile = AppToolMain.FileName;
-            //    persistentData.SavePersistentData(persistentData);
 
-
-            //    //excelApp.Visible = true;
-
-            //    //aWorkbook = excelApp.Workbooks.Open(LblSourceFilePlan2.Text.ToString());
-
-            //}
-            //CASFileObject.LoadPersistant();
             string returnMessage;
-            if (ToolkitMasterFileObject.SelectFileToLoad(TargetFileObject.CToolkitATLInName, out returnMessage))
+            if (mddToolkitFile.SelectFileToLoad(MddToolkit.MDD_TOOLKIT_IN_NAME, out returnMessage))
             {
                 // All ok
                 MessageBox.Show("Open ATL Toolkit .. completed!" + Environment.NewLine + returnMessage,
                     "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                ToolkitMasterFileObject.SavePersistant(ToolkitMasterFileObject);
+                mddToolkitFile.SavePersistant(mddToolkitFile);
             }
             else
             {
@@ -972,12 +559,12 @@ namespace BASE
 
             //}
             string returnMessage;
-            if (ToolkitImportFileObject.SelectFileToLoad(TargetFileObject.CToolkitATMInName, out returnMessage))
+            if (mddToolkitForImportFile.SelectFileToLoad(MddToolkit.MDD_TOOLKIT_ATM_IN_NAME, out returnMessage))
             {
                 // All ok
                 MessageBox.Show("Open ATM Toolkit .. completed!" + Environment.NewLine + returnMessage,
                     "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                ToolkitImportFileObject.SavePersistant(ToolkitImportFileObject);
+                mddToolkitForImportFile.SavePersistant(mddToolkitForImportFile);
             }
             else
             {
@@ -3207,208 +2794,22 @@ namespace BASE
         const int cDXXImprovementCol = 14;
 
 
-        private void btnExtractOEFindings_Click(object sender, EventArgs e)
-        {
-            // Remove from release 3.8.0.44
-
-            //// *** Load main CMMI tool
-            //if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
-            //{
-            //    MessageBox.Show("File not found, has it been moved or deleted?");
-            //    return;
-            //}
-
-            //// *** Does the main workbook contain a findings sheet, if not add one, if it does, assign it and clear it
-            //Worksheet findingsWks = AssignOrCreateWorksheet(mainWorkbook, "Findings");
-            //findingsWks.Range["A:C"].Clear();
-            //findingsWks.Cells[1, 1].Value = "PA";
-            //findingsWks.Cells[1, 2].Value = "Strength/Weakness/Improvement";
-            //findingsWks.Cells[1, 3].Value = "Description";
-
-
-            //int findigsRow = 2;
-
-            //lblStatus.Text = "";
-            //string statusStr = "";
-            //foreach (Worksheet wksMain in mainWorkbook.Worksheets)
-            //{
-            //    switch (wksMain.Name)
-            //    {
-
-            //        case "CAR":
-            //        case "CM":
-            //        case "DAR":
-            //        case "EST":
-            //        case "MC":
-            //        case "MPM":
-            //        case "OT":
-            //        case "PAD":
-            //        case "PCM":
-            //        case "PLAN":
-            //        case "PQA":
-            //        case "PR":
-            //        case "RDM":
-            //        case "RSK":
-            //        case "VV":
-            //        case "PI":
-            //        case "TS":
-            //        case "GOV":
-            //        case "II":
-            //            HelperExtractFindingsDemixOE(wksMain, findingsWks, cDXXSearchNumberOfWksRowsCol, cDMostPAStartRow, cDMostPAEndRow, ref findigsRow);
-            //            statusStr = statusStr + "." + wksMain.Name;
-            //            break;
-
-            //    }
-            //    lblStatus.Text = statusStr;
-            //}
-            ////  wksMain.Application.Visible = true;
-            //findingsWks.Activate();
-            //MessageBox.Show("Findings extracted");
-        }
-
-        private void btnAbridge_Click(object sender, EventArgs e)
-        {
-
-            // Remove from release 3.8.0.44
-
-            ////// *** Setup the main sheet
-            ////// excelApp.Visible = true;
-
-            ////// *** Load main
-            //////mainWorkbook = excelApp.Workbooks.Open(persistentData.OEdatabasePathFile);
-
-            ////if ((mainWorkbook = Helper.CheckIfOpenAndOpen(persistentData.DemixToolPathFile)) == null)
-            ////{
-            ////    //MessageBox.Show($"File {Path.GetFileName(persistentData.OEdatabasePathFile)}" +
-            ////    //    $"\n\rDirectory {Path.GetDirectoryName(persistentData.OEdatabasePathFile)}" +
-            ////    //    "\n\rdoes not exists");
-            ////    MessageBox.Show("File not found, has it been moved or deleted?");
-            ////    return;
-            ////}
-            ////string basePath = Path.GetDirectoryName(persistentData.DemixToolPathFile);
-
-            ////lblStatus.Text = "OEdb:";
-            ////string statusStr = "";
-            ////foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
-            ////{
-            ////    int fileNumber = 1;
-
-            ////    switch (wksOEdb.Name)
-            ////    {
-
-            ////        case "CAR":
-            ////        case "CM":
-            ////        case "DAR":
-            ////        case "EST":
-            ////        case "MC":
-            ////        case "MPM":
-            ////        case "OT":
-            ////        case "PAD":
-            ////        case "PCM":
-            ////        case "PLAN":
-            ////        case "PQA":
-            ////        case "PR":
-            ////        case "RDM":
-            ////        case "RSK":
-            ////        case "VV":
-            ////        case "PI":
-            ////        case "TS":
-            ////        case "GOV":
-            ////        case "II":
-
-            ////            //if (wksOEdb.Name=="PI")
-            ////            //{
-            ////            //    int stop = 1;
-            ////            //}
-            ////            // *** Find the number of rows
-            ////            int NumberOfRows = Helper.FindEndOfWorksheet(wksOEdb, cDemixOEToolSearchUntilEmptyColumn, cDemixOEToolHeadingStartRow, cDemixOEToolMaxRows);
-            ////            // Range columnToClear = wksOEdb.Range["Y:Z"];
-            ////            // columnToClear.Clear();
-
-            ////            // *** extract the source and destination range https://stackoverflow.com/questions/910400/reading-from-excel-range-into-multidimensional-array-c-sharp
-            ////            Range mainRange = wksOEdb.Range["A" + cDemixOEToolHeadingStartRow, "Z" + NumberOfRows];
-
-            ////            // *** List all the hyperlinks https://www.e-iceblue.com/Tutorials/Spire.XLS/Spire.XLS-Program-Guide/Link/Retrieve-Hyperlinks-from-an-Excel-Sheet-in-C-VB.NET.html
-            ////            Hyperlinks hyperLinkList = mainRange.Hyperlinks;
-            ////            List<Hyperlink> hyperLinksToAdd = new List<Hyperlink>();
-
-            ////            int hyperLinkRow;
-            ////            int hyperLinkCol;
-            ////            string hyperlinkAddress;
-
-            ////            foreach (Hyperlink aHyperlink in hyperLinkList)
-            ////            {
-            ////                // *** Take each hyperlink and test it
-            ////                hyperLinkRow = aHyperlink.Range.Row;
-            ////                hyperLinkCol = aHyperlink.Range.Column;
-            ////                hyperlinkAddress = aHyperlink.Address;
-
-            ////                // *** Test if the file exists
-
-            ////                mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"].Value = "engl";
-            ////                mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol] = mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, "e"];
-            ////                mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol].Value = wksOEdb.Name + fileNumber.ToString("D2");
-            ////                fileNumber++;
-
-
-            ////            }
-            ////            foreach (Hyperlink aHyperlink in hyperLinkList)
-            ////            {
-            ////                hyperLinkRow = aHyperlink.Range.Row;
-            ////                hyperLinkCol = aHyperlink.Range.Column;
-            ////                //mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol].HorizontalAlignment = 
-            ////                //mainRange[hyperLinkRow - cDemixOEToolHeadingStartRow + 1, hyperLinkCol].VerticalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-            ////                aHyperlink.Delete();
-
-            ////                // https://docs.microsoft.com/en-us/dotnet/api/microsoft.office.tools.excel.namedrange.font?view=vsto-2017
-
-            ////                wksOEdb.Cells[hyperLinkRow, hyperLinkCol].HorizontalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-            ////                wksOEdb.Cells[hyperLinkRow, hyperLinkCol].VerticalAlignment = Microsoft.Office.Interop.Excel.XlHAlign.xlHAlignCenter;
-            ////                wksOEdb.Cells[hyperLinkRow, hyperLinkCol].Font.Color = Color.Blue; // https://docs.devexpress.com/OfficeFileAPI/12357/spreadsheet-document-api/examples/formatting/how-to-change-cell-font-and-background-color
-
-            ////                wksOEdb.Cells[hyperLinkRow, hyperLinkCol].Font.UnderLine = true; // https://www.gemboxsoftware.com/spreadsheet/examples/c-sharp-vb-net-excel-style-formatting/202
-
-            ////                // Range aRange = wksOEdb.Range[hyperLinkRow, hyperLinkCol];
-
-            ////            }
-            ////            // *** Show the status
-            ////            statusStr = statusStr + wksOEdb.Name + ".";
-            ////            lblStatus.Text = statusStr;
-            ////            break;
-            ////    }
-            ////}
-            ////statusStr = statusStr + "done";
-            ////lblStatus.Text = statusStr;
-
-            ////MessageBox.Show("Done");
-        }
-
         private void tabDemixTool_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void lbStatCASPlanLoaded_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnBuildPandS_Click(object sender, EventArgs e)
-        {
-
-            int i = 1;
-        }
-
         private void btnOpenBaseCASPlan_Click(object sender, EventArgs e)
         {
-            //CASFileObject.LoadPersistant();
+
+            // Open CAS Plan
             string returnMessage;
-            if (CASFileObject.SelectFileToLoad(TargetFileObject.CCASinName,out returnMessage))
+            if (casPlanFile.SelectFileToLoad(CasPlanFile.CAS_IN_NAME, out returnMessage))
             {
                 // All ok
                 MessageBox.Show("Open CAS plan ... completed!" + Environment.NewLine + returnMessage,
                     "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                CASFileObject.SavePersistant(CASFileObject);
+                casPlanFile.SavePersistant(casPlanFile);
             }
             else
             {
@@ -3422,14 +2823,14 @@ namespace BASE
         private void btnReloadCASPlan_Click(object sender, EventArgs e)
         {
             string returnMessage;
-            if (CASFileObject.LoadCASFile(out returnMessage) == true)
+            if (casPlanFile.LoadCASFile(out returnMessage) == true)
             {
                 // All ok
                 MessageBox.Show("Reload plan ... completed!" + Environment.NewLine + returnMessage,
                     "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
                 // file was loaded
-                CASFileObject.SavePersistant(CASFileObject);
+                casPlanFile.SavePersistant(casPlanFile);
 
             }
             else
@@ -3445,7 +2846,7 @@ namespace BASE
         private void button1_Click_1(object sender, EventArgs e)
         {
             string returnMessage;
-            if (CASFileObject.CreateSchedule1(out returnMessage) == true)
+            if (casPlanFile.CreateSchedule1(out returnMessage) == true)
             { // Generated the schedule
                 MessageBox.Show("Generate draft schedule ... completed!" + Environment.NewLine + returnMessage,
                         "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -3463,11 +2864,11 @@ namespace BASE
             //CASFileObject.ReloadSchedule2();
             //bool insertRole = ;
             string returnMessage;
-            if (CASFileObject.Generate_OUParticipants(chkInsertRole.Checked, out returnMessage)) // This includes reloading it
+            if (casPlanFile.Generate_OUParticipants(chkInsertRole.Checked, out returnMessage)) // This includes reloading it
             { // All ok
-                
-                    MessageBox.Show("Reload Schedule2 and generate ALL Participant CAS sheets ... completed!" + Environment.NewLine + returnMessage,
-                        "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+
+                MessageBox.Show("Reload Schedule2 and generate ALL Participant CAS sheets ... completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
             else
             {
@@ -3479,7 +2880,7 @@ namespace BASE
         private void btnGenerating_SupportAndProjectCASSheets(object sender, EventArgs e)
         {
             string returnMessage;
-            if (CASFileObject.Generate_SupportAndProjectCASSheets(out returnMessage))
+            if (casPlanFile.Generate_SupportAndProjectCASSheets(out returnMessage))
             {
                 // All ok
                 MessageBox.Show("Generate Support and Project CAS sheets ... completed!" + Environment.NewLine + returnMessage,
@@ -3496,14 +2897,14 @@ namespace BASE
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+
             string returnMessage;
-            if (CASOEdbObject.SelectFileToLoad(TargetFileObject.COEdbinName, out returnMessage))
+            if (oeDbAtlFile.SelectFileToLoad(OEdbFile.OEDB_ATL_IN_NAME, out returnMessage))
             {
                 // All ok
                 MessageBox.Show("Open OEdb ... completed!" + Environment.NewLine + returnMessage,
                     "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                CASOEdbObject.SavePersistant(CASOEdbObject);
+                oeDbAtlFile.SavePersistant(oeDbAtlFile);
             }
             else
             {
@@ -3519,12 +2920,12 @@ namespace BASE
         {
             //BASEQuestionObject 
             string returnMessage;
-            if (BASEQuestionObject.SelectFileToLoad(TargetFileObject.CQuestionInName, out returnMessage))
+            if (Obj_Questions_File.SelectFileToLoad(QuestionsFile.QUESTION_IN_NAME, out returnMessage))
             {
                 // All ok
                 MessageBox.Show("Select question and OEdb template file ... completed!" + Environment.NewLine + returnMessage,
                     "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                BASEQuestionObject.SavePersistant(BASEQuestionObject);
+                Obj_Questions_File.SavePersistant(Obj_Questions_File);
             }
             else
             {
@@ -3537,14 +2938,14 @@ namespace BASE
 
         private void btnReloadQuestionsAndModel2_Click(object sender, EventArgs e)
         {
-            if (BASEQuestionObject.LoadTheQuestionAndModelFile(lblStatus) == false)
+            if (Obj_Questions_File.LoadTheQuestionAndModelFile(lblStatus) == false)
             {
                 MessageBox.Show($"Could not read the questions and model file.");
             }
             else
             {
 
-                BASEQuestionObject.SavePersistant(BASEQuestionObject);
+                Obj_Questions_File.SavePersistant(Obj_Questions_File);
             }
         }
 
@@ -3555,22 +2956,22 @@ namespace BASE
             //private TargetQuestionsFileObject BASEQuestionObject;
 
             // *** Check if Questions are loaded, if not
-            if (BASEQuestionObject == null || !File.Exists(BASEQuestionObject._directoryFileName))
+            if (Obj_Questions_File == null || !File.Exists(Obj_Questions_File._directoryFileName))
             {
                 MessageBox.Show($"The Question and OEdb template file has not been selected. Please select first!");
                 return;
             }
 
-            if (CASFileObject == null || !File.Exists(CASFileObject._directoryFileName))
+            if (casPlanFile == null || !File.Exists(casPlanFile._directoryFileName))
             {
                 MessageBox.Show($"The CAS plan not been selected. Please select first!");
                 return;
             }
             // *** Create a copy of the template
-            string fileName = Path.GetFileName(BASEQuestionObject._directoryFileName).Substring(0, 9) + "BASE_OEdbATL";
-            string extStr = Path.GetExtension(BASEQuestionObject._directoryFileName);
+            string fileName = Path.GetFileName(Obj_Questions_File._directoryFileName).Substring(0, 9) + "BASE_OEdbATL";
+            string extStr = Path.GetExtension(Obj_Questions_File._directoryFileName);
 
-            string pathStr = Path.GetDirectoryName(CASFileObject._directoryFileName);
+            string pathStr = Path.GetDirectoryName(casPlanFile._directoryFileName);
 
             // *** Check if it exists, keep looking and create new copy
             int counter = 0;
@@ -3581,12 +2982,12 @@ namespace BASE
                 // https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-numeric-format-strings
                 OEdbPathFileStr = Path.Combine(pathStr, fileName + counter.ToString() + extStr);
             }
-            File.Copy(BASEQuestionObject._directoryFileName, OEdbPathFileStr);
+            File.Copy(Obj_Questions_File._directoryFileName, OEdbPathFileStr);
 
             // *** Assign the new copy to CASOEdbObject
-            CASOEdbObject.DirectoryFileName = OEdbPathFileStr;
+            oeDbAtlFile.DirectoryFileName = OEdbPathFileStr;
 
-            if (CASOEdbObject.GenerateFullOEdb2(CASFileObject, BASEQuestionObject) == false)
+            if (oeDbAtlFile.GenerateFullOEdb2(casPlanFile, Obj_Questions_File) == false)
             {
                 MessageBox.Show($"Could not complete the OE database generation!");
             }
@@ -3596,11 +2997,12 @@ namespace BASE
         private void btnTestLinksAndEngl2_Click(object sender, EventArgs e)
         {
             string resultMessage;
-            if (CASOEdbObject.TestLinksAndEnglish2(lblStatus, out resultMessage) == false)
+            if (oeDbAtlFile.TestLinksAndEnglish2(lblStatus, out resultMessage) == false)
 
             {
                 MessageBox.Show($"Failure: {resultMessage}");
-            } else
+            }
+            else
             {
                 MessageBox.Show($"Success: {resultMessage}");
             }
@@ -3608,7 +3010,7 @@ namespace BASE
 
         private void btnExtractFindings2_Click(object sender, EventArgs e)
         {
-            if (CASOEdbObject.ExtractOEFindings2(lblStatus) == false)
+            if (oeDbAtlFile.ExtractOEFindings2(lblStatus) == false)
 
             {
                 MessageBox.Show($"Could not complete finding extraction!");
@@ -3617,11 +3019,11 @@ namespace BASE
 
         private void btnBuildOUMaps2_Click(object sender, EventArgs e)
         {
-            if (CASOEdbObject.BuildOUMaps2(lblStatus, CASFileObject, BASEQuestionObject) == false)
+            if (oeDbAtlFile.BuildOUMaps2(lblStatus, casPlanFile, Obj_Questions_File) == false)
 
             {
                 MessageBox.Show($"Could not build the OU maps!" +
-                    "\nDelete any p1, p2 ... and s1, s2 ... sheets that was created" + 
+                    "\nDelete any p1, p2 ... and s1, s2 ... sheets that was created" +
                     "\nDelete any tmp (1), tmp (2) ... that was created" +
                     "\nDO NOT DELETE tmp" +
                     "\nFix any sheets issues and try again!");
@@ -3631,7 +3033,7 @@ namespace BASE
         private void btnBuildAbridged2_Click(object sender, EventArgs e)
         {
 
-            if (CASOEdbObject.BuildAbridgedOEdb2(lblStatus) == false)
+            if (oeDbAtlFile.BuildAbridgedOEdb2(lblStatus) == false)
 
             {
                 MessageBox.Show($"Could not build the abridged OEdb");
@@ -3651,12 +3053,12 @@ namespace BASE
             //}
 
             string returnMessage;
-            if (CASOEdbImportObject.SelectFileToLoad(TargetFileObject.COEdbATMinName, out returnMessage))
+            if (oeDbAtmFile.SelectFileToLoad(OEdbFile.OEDB_ATM_IN_NAME, out returnMessage))
             {
                 // All ok
                 MessageBox.Show("Open OEdbATM ... completed!" + Environment.NewLine + returnMessage,
                     "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                CASOEdbImportObject.SavePersistant(CASOEdbImportObject);
+                oeDbAtmFile.SavePersistant(oeDbAtmFile);
             }
             else
             {
@@ -3671,30 +3073,31 @@ namespace BASE
 
         private void btnMergeATMintoATL2_Click(object sender, EventArgs e)
         {
-            if (CASOEdbImportObject == null)
+            if (oeDbAtmFile == null)
             {
                 MessageBox.Show($"The import OEdbATM has not been selected");
                 return;
             }
-            if (CASOEdbObject == null)
+            if (oeDbAtlFile == null)
             {
                 MessageBox.Show($"The main OEdbATL file has not been selected");
                 return;
             }
 
             string resultMessage;
-            if (CASOEdbObject.MergeATMintoATL2(lblStatus, CASOEdbImportObject, out resultMessage) == false)
+            if (oeDbAtlFile.MergeATMintoATL2(lblStatus, oeDbAtmFile, out resultMessage) == false)
             {
-                MessageBox.Show($"The mergining has not been completed.\n{resultMessage}" );
+                MessageBox.Show($"The mergining has not been completed.\n{resultMessage}");
             }
             else
             {
                 // Merging was completed successfully. Recheck and link the english
-                if (CASOEdbObject.TestLinksAndEnglish2(lblStatus, out resultMessage) == false)
+                if (oeDbAtlFile.TestLinksAndEnglish2(lblStatus, out resultMessage) == false)
 
                 {
                     MessageBox.Show($"Failed: {resultMessage}");
-                } else
+                }
+                else
                 {
                     MessageBox.Show($"Successfull: {resultMessage}");
                 }
@@ -3790,71 +3193,6 @@ namespace BASE
 
         }
 
-        private void WorkinWritingToZip()
-        {
-            // *** Open and update
-
-            string fileNameNoExt = Path.GetFileNameWithoutExtension(BASEPresentationObject._directoryFileName);
-            string fileExt = Path.GetExtension(BASEPresentationObject._directoryFileName);
-            string directoryName = Path.GetDirectoryName(BASEPresentationObject._directoryFileName);
-
-            string zipFileName = Path.Combine(directoryName, fileNameNoExt + ".zip");
-
-            File.Copy(BASEPresentationObject._directoryFileName, zipFileName);
-
-
-            //Path.Combine(Path.GetDirectoryName(BASEDataReferenceObject._directoryFileName),
-            //"myZip.zip");
-
-            // https://docs.telerik.com/devtools/document-processing/libraries/radziplibrary/features/update-ziparchive
-            try
-            {
-                using (Stream stream = File.Open(zipFileName, FileMode.Open))
-                {
-                    using (ZipArchive archive = new ZipArchive(stream, ZipArchiveMode.Update, false, null))
-                    {
-                        // Display the list of the files in the selected zip file using the ZipArchive.Entries property. 
-                        foreach (ZipArchiveEntry zEntry in archive.Entries)
-                        {
-                            string aStr = zEntry.FullName;
-                        }
-
-                        // *** Add entry
-                        ZipArchiveEntry aNewEntry1 = archive.CreateEntry("myprogramEntry.txt");
-                        ZipArchiveEntry aNewEntry2 = archive.GetEntry("text.txt");
-                        if (aNewEntry2 == null) aNewEntry2 = archive.CreateEntry("text.txt");
-
-                        // *** Delete entry
-                        ZipArchiveEntry addedEntry1 = archive.GetEntry("myprogramEntry.txt");
-                        addedEntry1.Delete();
-
-
-                        // *** Update entry
-                        ZipArchiveEntry entry2 = archive.GetEntry("text.txt");
-                        if (entry2 != null)
-                        {
-                            Stream entryStream = entry2.Open();
-                            StreamReader reader = new StreamReader(entryStream);
-                            string content = reader.ReadToEnd();
-                            string contentReplaced = content.Replace("line", "<replaced line>");
-                            if (string.IsNullOrEmpty(contentReplaced)) { contentReplaced = "My line to insert."; }
-                            //entryStream.Seek(0, SeekOrigin.End);
-                            entryStream.Seek(0, SeekOrigin.Begin);
-                            StreamWriter writer = new StreamWriter(entryStream);
-                            writer.WriteLine(contentReplaced);
-                            writer.Flush();
-                        }
-
-                    }
-
-
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Message:{ex.Message}");
-            }
-        }
 
         private void btnBuildIIandGovMaps_Click(object sender, EventArgs e)
         {
@@ -3876,20 +3214,21 @@ namespace BASE
             string resultMessage2;
             bool addText = false;
             string textToAddRemove = txtAddRemoveText.Text.ToString();
-            if (CASOEdbObject.AddRemoveURLText(lblStatus,addText,
-                textToAddRemove,true, out resultMessage1) == false)
+            if (oeDbAtlFile.AddRemoveURLText(lblStatus, addText,
+                textToAddRemove, true, out resultMessage1) == false)
 
             {
                 MessageBox.Show($"Failure1: {resultMessage1}");
             }
             else
             {
-                if (CASOEdbObject.AddRemoveURLText(lblStatus, addText,
+                if (oeDbAtlFile.AddRemoveURLText(lblStatus, addText,
                 textToAddRemove, false, out resultMessage2) == false)
                 {
                     MessageBox.Show($"Success1: {resultMessage1} + Failure2: {resultMessage2}");
-                } else
-                { 
+                }
+                else
+                {
                     MessageBox.Show($"Success1: {resultMessage1} + Success2: {resultMessage2}");
                 }
             }
@@ -3900,7 +3239,7 @@ namespace BASE
             string resultMessage;
             bool addText = true;
             string textToAddRemove = txtAddRemoveText.Text.ToString();
-            if (CASOEdbObject.AddRemoveURLText(lblStatus, addText,
+            if (oeDbAtlFile.AddRemoveURLText(lblStatus, addText,
                 textToAddRemove, true, out resultMessage) == false)
 
             {
@@ -3915,7 +3254,7 @@ namespace BASE
         private void btnSetAllFM_Click(object sender, EventArgs e)
         {
             string resultMessage;
-            if (ToolkitMasterFileObject.SetAllTo_FullyMet(lblStatus, out resultMessage) == false)
+            if (mddToolkitFile.SetAllTo_FullyMet(lblStatus, out resultMessage) == false)
 
             {
                 MessageBox.Show($"Failure: {resultMessage}");
@@ -3929,7 +3268,7 @@ namespace BASE
         private void btnCreateRRstats_Click(object sender, EventArgs e)
         {
             string resultMessage;
-            if (CASOEdbObject.CreateRRStats(lblStatus, out resultMessage) == false)
+            if (oeDbAtlFile.CreateRRStats(lblStatus, out resultMessage) == false)
 
             {
                 MessageBox.Show($"Stats creation failed: {resultMessage}");
@@ -3937,6 +3276,94 @@ namespace BASE
             else
             {
                 MessageBox.Show($"Stats creation success: {resultMessage}");
+            }
+
+        }
+
+        private void button_Build_ISACA_HeatMap(object sender, EventArgs e)
+        {
+            if (oeDbAtmFile == null)
+            {
+                MessageBox.Show($"The import OEdbATM has not been selected");
+                return;
+            }
+            if (oeDbAtlFile == null)
+            {
+                MessageBox.Show($"The main OEdbATL file has not been selected");
+                return;
+            }
+
+            string resultMessage;
+            if (oeDbAtlFile.MergeATMintoATL2(lblStatus, oeDbAtmFile, out resultMessage) == false)
+            {
+                MessageBox.Show($"The mergining has not been completed.\n{resultMessage}");
+            }
+            else
+            {
+                // Merging was completed successfully. Recheck and link the english
+                if (oeDbAtlFile.TestLinksAndEnglish2(lblStatus, out resultMessage) == false)
+
+                {
+                    MessageBox.Show($"Failed: {resultMessage}");
+                }
+                else
+                {
+                    MessageBox.Show($"Successfull: {resultMessage}");
+                }
+            }
+
+        }
+
+        private void button_Load_ISACA_HeatMap_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void buttonBuildISACA_Click(object sender, EventArgs e)
+        {
+            if (mddToolkitFile == null)
+            {
+                MessageBox.Show($"The Toolkit has not been selected");
+                return;
+            }
+            if (oeDbAtlFile == null)
+            {
+                MessageBox.Show($"The main OEdbATL file has not been selected");
+                return;
+            }
+            if (casPlanFile == null)
+            {
+                MessageBox.Show($"The main CAS Plan file has not been selected");
+                return;
+            }
+
+            string resultMessage;
+            if (mddToolkitFile.PopulateToolkitFromOEdb(lblStatus, oeDbAtlFile, casPlanFile, out resultMessage) == false)
+            {
+                MessageBox.Show($"Toolkit was not populated.\n Reason:{resultMessage}");
+            }
+            else
+            {
+                MessageBox.Show($"Toolkit populated successfully.");
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string returnMessage;
+            if (oeDbAtlFile.SelectFileToLoad(OEdbFile.OEDB_ATL_IN_NAME, out returnMessage))
+            {
+                // All ok
+                MessageBox.Show("Open OEdb ... completed!" + Environment.NewLine + returnMessage,
+                    "Completed", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                oeDbAtlFile.SavePersistant(oeDbAtlFile);
+            }
+            else
+            {
+                // MessageBox.Show("Error generating Support and Project CAS sheets!");
+                MessageBox.Show("Open OEdb ... failed!" + Environment.NewLine + returnMessage,
+                    "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
 
         }

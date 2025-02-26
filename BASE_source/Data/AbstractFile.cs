@@ -13,15 +13,15 @@ namespace BASE.Data
     /// TargetFile is an object that contains information for a file, including saving its content to XML and loading it whe it starts up
     /// </summary>
     [Serializable]
-    abstract public class TargetFileObject
+    abstract public class AbstractFile // was TargetFileObject
     {
-        public const string CCASinName = "CAS"; // This string must be present in the filename (not the directory) to be valid
-        public const string COEdbinName = "OEdbATL"; // This string must be present in the filename (not the directory) to be valid
-        public const string COEdbATMinName = "OEdbATM"; // The team leads version of the OEdb
-        public const string CQuestionInName = "Question"; // Question is in the name
+        public const string CAS_IN_NAME = "CAS"; // This string must be present in the filename (not the directory) to be valid
+        public const string OEDB_ATL_IN_NAME = "OEdbATL"; // This string must be present in the filename (not the directory) to be valid
+        public const string OEDB_ATM_IN_NAME = "OEdbATM"; // The team leads version of the OEdb
+        public const string QUESTION_IN_NAME = "Question"; // Question is in the name
 
-        public const string CToolkitATLInName = "ToolkitATL"; // Question is in the name
-        public const string CToolkitATMInName = "ToolkitATM"; // Question is in the name
+        public const string MDD_TOOLKIT_IN_NAME = "MDD-Toolkit"; // Question is in the name
+        public const string MDD_TOOLKIT_ATM_IN_NAME = "MDD-Toolkit-ATM"; // Question is in the name
 
 
         // https://docs.microsoft.com/en-us/dotnet/api/system.xml.serialization.xmlattributes.xmlignore?view=net-5.0

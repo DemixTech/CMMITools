@@ -12,7 +12,7 @@ using Label = Microsoft.Office.Interop.Excel.Label;
 namespace BASE.Data
 {
     [Serializable]
-    public class TargetQuestionsFileObject : TargetFileObject
+    public class QuestionsFile : AbstractFile
     {
         public string Myname = "Pieter van ZYl";
 
@@ -33,10 +33,10 @@ namespace BASE.Data
                 if (File.Exists(_directoryFileNameXML))
                 {
                     // If the directory and file name exists, laod the data
-                    var xs = new XmlSerializer(typeof(TargetQuestionsFileObject)); // TargetCASFileObject));
+                    var xs = new XmlSerializer(typeof(QuestionsFile)); // TargetCASFileObject));
                     using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
                     {
-                        var pData = (TargetQuestionsFileObject)xs.Deserialize(xmlLoad);
+                        var pData = (QuestionsFile)xs.Deserialize(xmlLoad);
                         this.DirectoryFileName = pData._directoryFileName;
 
                         // *** Load the object elements belwo
@@ -61,14 +61,14 @@ namespace BASE.Data
 
         public override void SavePersistant(object o)
         {
-            if (o is TargetQuestionsFileObject tc)
+            if (o is QuestionsFile tc)
             {
                 if (!Directory.Exists(Path.GetDirectoryName(_directoryFileNameXML)))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(_directoryFileNameXML)); ;
                 }
 
-                var xs = new XmlSerializer(typeof(TargetQuestionsFileObject));
+                var xs = new XmlSerializer(typeof(QuestionsFile));
                 using (FileStream stream = File.Create(_directoryFileNameXML))
                 {
                     xs.Serialize(stream, tc);

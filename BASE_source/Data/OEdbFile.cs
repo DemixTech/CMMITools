@@ -14,7 +14,7 @@ namespace BASE.Data
 
 {
     [Serializable]
-    public class TargetOEFileObject : TargetFileObject
+    public class OEdbFile : AbstractFile
     {
 
         const int cDemixOEToolSearchUntilEmptyColumn = 1;
@@ -53,10 +53,10 @@ namespace BASE.Data
                 if (File.Exists(_directoryFileNameXML))
                 {
                     // If the directory and file name exists, laod the data
-                    var xs = new XmlSerializer(typeof(TargetOEFileObject)); // TargetCASFileObject));
+                    var xs = new XmlSerializer(typeof(OEdbFile)); // TargetCASFileObject));
                     using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
                     {
-                        var pData = (TargetOEFileObject)xs.Deserialize(xmlLoad);
+                        var pData = (OEdbFile)xs.Deserialize(xmlLoad);
                         this.DirectoryFileName = pData._directoryFileName;
 
                         // *** Load the object elements belwo
@@ -79,14 +79,14 @@ namespace BASE.Data
 
         public override void SavePersistant(object o)
         {
-            if (o is TargetOEFileObject tc)
+            if (o is OEdbFile tc)
             {
                 if (!Directory.Exists(Path.GetDirectoryName(_directoryFileNameXML)))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(_directoryFileNameXML)); ;
                 }
 
-                var xs = new XmlSerializer(typeof(TargetOEFileObject));
+                var xs = new XmlSerializer(typeof(OEdbFile));
                 using (FileStream stream = File.Create(_directoryFileNameXML))
                 {
                     xs.Serialize(stream, tc);
@@ -100,7 +100,7 @@ namespace BASE.Data
             }
         }
 
-        public bool GenerateFullOEdb2(TargetCASFileObject CASFileObject2, TargetQuestionsFileObject BASEQuestionObject2)
+        public bool GenerateFullOEdb2(CasPlanFile CASFileObject2, QuestionsFile BASEQuestionObject2)
         {
             DialogResult dialogResult = MessageBox.Show("Make sure Processess are correcly listed in tab:Project&Support! Continue?", "Warning", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
@@ -797,7 +797,7 @@ namespace BASE.Data
             return true;
         }
 
-        public bool BuildOUMaps2(System.Windows.Forms.Label lblStatus, TargetCASFileObject CASFileObject2, TargetQuestionsFileObject QuestionFileObject2)
+        public bool BuildOUMaps2(System.Windows.Forms.Label lblStatus, CasPlanFile CASFileObject2, QuestionsFile QuestionFileObject2)
         {
             // *** Build temperary dictionary
             buildTempDictionary();
@@ -1226,7 +1226,7 @@ namespace BASE.Data
             return true;
         }
 
-        public bool MergeATMintoATL2(System.Windows.Forms.Label lblStatus, TargetOEFileObject fileToImport, out string resultMessage)
+        public bool MergeATMintoATL2(System.Windows.Forms.Label lblStatus, OEdbFile fileToImport, out string resultMessage)
         {
 
             // *** Load source

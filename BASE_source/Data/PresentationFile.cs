@@ -25,7 +25,7 @@ using Drawing = DocumentFormat.OpenXml.Drawing;
 
 namespace BASE.Data
 {
-    public class TargetPresentationFileObject : TargetFileObject
+    public class PresentationFile : AbstractFile
     {
         public override bool LoadPersistantXMLdata()
         {
@@ -35,10 +35,10 @@ namespace BASE.Data
                 if (File.Exists(_directoryFileNameXML))
                 {
                     // If the directory and file name exists, laod the data
-                    var xs = new XmlSerializer(typeof(TargetPresentationFileObject)); // TargetCASFileObject));
+                    var xs = new XmlSerializer(typeof(PresentationFile)); // TargetCASFileObject));
                     using (FileStream xmlLoad = File.Open(_directoryFileNameXML, FileMode.Open))
                     {
-                        var pData = (TargetPresentationFileObject)xs.Deserialize(xmlLoad);
+                        var pData = (PresentationFile)xs.Deserialize(xmlLoad);
                         this.DirectoryFileName = pData._directoryFileName;
 
                         // *** Load the object elements belwo
@@ -60,14 +60,14 @@ namespace BASE.Data
 
         public override void SavePersistant(object o)
         {
-            if (o is TargetPresentationFileObject tc)
+            if (o is PresentationFile tc)
             {
                 if (!Directory.Exists(Path.GetDirectoryName(_directoryFileNameXML)))
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(_directoryFileNameXML)); ;
                 }
 
-                var xs = new XmlSerializer(typeof(TargetPresentationFileObject));
+                var xs = new XmlSerializer(typeof(PresentationFile));
                 using (FileStream stream = File.Create(_directoryFileNameXML))
                 {
                     xs.Serialize(stream, tc);
@@ -82,7 +82,7 @@ namespace BASE.Data
         }
 
 
-        public bool UpdateLinks(TargetDataReferenceFileObject BASEDataReferenceObject)
+        public bool UpdateLinks(DataReference BASEDataReferenceObject)
         {
             if (BASEDataReferenceObject == null || string.IsNullOrEmpty(BASEDataReferenceObject._directoryFileName))
             {
