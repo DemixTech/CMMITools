@@ -21,8 +21,11 @@ namespace BASE.Data
         public string Stage; // 
         public DateTime StartDate;
         public DateTime EndDate;
+
         public bool Include; // include in sample, yes/no
-        public List<PracticeArea> PAlist = new List<PracticeArea>();
+
+        public List<PracticeArea> PAlist { get; set; } = new List<PracticeArea>();
+        //public int TheOECount { get; set; } = 0;
 
         // When returning WorkType = EWorkTYpe.nothing, then this instantiation of WorkUnit object can be discarded
         public WorkUnit() //EWorkType workType2, Worksheet prjWks, int row, int headingRow)

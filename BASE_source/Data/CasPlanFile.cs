@@ -279,7 +279,6 @@ namespace BASE.Data
                 if (aNewSchedule2Record.WorkID != null) Schedule2List2.Add(aNewSchedule2Record);
             }
 
-
             // Step 5 : Load Base lookups
             ExcelAlias.Worksheet baseLookupWks = aWorkbook.Sheets["BASE"];
             int NumberOfRowsInCol1 = Helper.FindEndOfWorksheet(baseLookupWks, CBASE_OUPracticeAreaCol, CBASE_OUPracticeAreaStratRow, 50);

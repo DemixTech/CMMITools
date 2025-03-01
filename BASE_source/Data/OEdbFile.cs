@@ -17,19 +17,19 @@ namespace BASE.Data
     public class OEdbFile : AbstractFile
     {
 
-        const int cDemixOEToolSearchUntilEmptyColumn = 1;
-        const int cDemixOEToolHeadingStartRow = 8;
-        const int cDemixOEToolMaxRows = 1000;
+        public const int cDemixOEToolSearchUntilEmptyColumn = 1;
+        public const int cDemixOEToolHeadingStartRow = 8;
+        public const int cDemixOEToolMaxRows = 1000;
 
-        const int cDXXSearchNumberOfWksRowsCol = 2;
-        const int cDMostPAStartRow = 9;
-        const int cDMostPAEndRow = 1000;
+        public const int cDXXSearchNumberOfWksRowsCol = 2;
+        public const int cDMostPAStartRow = 9;
+        public const int cDMostPAEndRow = 1000;
 
-        const int CD_Heading = 1;
-        const int CD_practiceCol = 2;
-        const int CD_weaknessCol = 12;
-        const int CD_strengthCol = 13;
-        const int CD_recommendationCol = 14;
+        public const int CD_Heading = 1;
+        public const int CD_practiceCol = 2;
+        public const int CD_weaknessCol = 12;
+        public const int CD_strengthCol = 13;
+        public const int CD_recommendationCol = 14;
 
         private Dictionary<string, string> TmpDicValue = new Dictionary<string, string>();
         private Dictionary<string, string> TmpDictRowCol = new Dictionary<string, string>();

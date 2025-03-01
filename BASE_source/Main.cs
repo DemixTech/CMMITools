@@ -3367,5 +3367,31 @@ namespace BASE
             }
 
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (mddToolkitFile == null)
+            {
+                MessageBox.Show($"The Toolkit has not been selected");
+                return;
+            }
+
+            if (casPlanFile == null)
+            {
+                MessageBox.Show($"The CAS Plan is not open");
+                return;
+            }
+
+            string resultMessage;
+            if (mddToolkitFile.SetupOUandProcessScope(lblStatus, casPlanFile,
+                out resultMessage) == false)
+            {
+                MessageBox.Show($"Toolkit was not populated.\n Reason:{resultMessage}");
+            }
+            else
+            {
+                MessageBox.Show($"Toolkit populated successfully.");
+            }
+        }
     }
 }

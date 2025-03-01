@@ -162,6 +162,7 @@
             this.label50 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
+            this.button6 = new System.Windows.Forms.Button();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -219,6 +220,7 @@
             // 
             // tabCMMI_ApprTool
             // 
+            this.tabCMMI_ApprTool.Controls.Add(this.button6);
             this.tabCMMI_ApprTool.Controls.Add(this.button4);
             this.tabCMMI_ApprTool.Controls.Add(this.buttonBuildISACA);
             this.tabCMMI_ApprTool.Controls.Add(this.btnSetAllFM);
@@ -256,7 +258,7 @@
             // 
             // buttonBuildISACA
             // 
-            this.buttonBuildISACA.Location = new System.Drawing.Point(520, 190);
+            this.buttonBuildISACA.Location = new System.Drawing.Point(488, 238);
             this.buttonBuildISACA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonBuildISACA.Name = "buttonBuildISACA";
             this.buttonBuildISACA.Size = new System.Drawing.Size(188, 38);
@@ -1599,6 +1601,17 @@
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(488, 190);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(188, 38);
+            this.button6.TabIndex = 57;
+            this.button6.Text = "Setup IS/OoS";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1767,6 +1780,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button buttonBuildISACA;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button6;
     }
 }
 
