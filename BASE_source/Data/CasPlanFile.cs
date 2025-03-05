@@ -41,7 +41,6 @@ namespace BASE.Data
         public DateTime Phase2End { get; set; }
         public DateTime Phase3End { get; set; }
 
-
         //public Dictionary<string, int> DictionaryOUPracticeAreas = new Dictionary<string, int>(); // This list is defined in Tab:BASE and defines the offset (key) to a practice area
         public List<String> DictionaryOUPracticeAreas = new List<string>();
         private const int CBASE_OUPracticeAreaCol = 1;
