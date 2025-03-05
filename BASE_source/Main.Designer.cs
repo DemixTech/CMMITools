@@ -34,18 +34,12 @@
             this.lblOEdbSource = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
             this.tabCMMI_ApprTool = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.buttonBuildISACA = new System.Windows.Forms.Button();
-            this.btnSetAllFM = new System.Windows.Forms.Button();
-            this.btnRemoveUpload = new System.Windows.Forms.Button();
-            this.btnIIGOVrating = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.btnExtractFindings = new System.Windows.Forms.Button();
-            this.btnHideOoS2 = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.btnMergeSources2 = new System.Windows.Forms.Button();
-            this.btnInsertInterviews2 = new System.Windows.Forms.Button();
-            this.btnSelectImportFile = new System.Windows.Forms.Button();
             this.btnSelectMainTool = new System.Windows.Forms.Button();
             this.tabDemixPlan = new System.Windows.Forms.TabPage();
             this.btnGenerateSupportAndProjectCASSheets = new System.Windows.Forms.Button();
@@ -162,7 +156,6 @@
             this.label50 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.LblSourceFilePlan2 = new System.Windows.Forms.Label();
-            this.button6 = new System.Windows.Forms.Button();
             this.tabCMMI_ApprTool.SuspendLayout();
             this.tabDemixPlan.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -203,7 +196,7 @@
             // lblOEdbSource
             // 
             this.lblOEdbSource.AutoSize = true;
-            this.lblOEdbSource.Location = new System.Drawing.Point(192, 314);
+            this.lblOEdbSource.Location = new System.Drawing.Point(662, 238);
             this.lblOEdbSource.Name = "lblOEdbSource";
             this.lblOEdbSource.Size = new System.Drawing.Size(107, 16);
             this.lblOEdbSource.TabIndex = 10;
@@ -223,18 +216,11 @@
             this.tabCMMI_ApprTool.Controls.Add(this.button6);
             this.tabCMMI_ApprTool.Controls.Add(this.button4);
             this.tabCMMI_ApprTool.Controls.Add(this.buttonBuildISACA);
-            this.tabCMMI_ApprTool.Controls.Add(this.btnSetAllFM);
-            this.tabCMMI_ApprTool.Controls.Add(this.btnRemoveUpload);
-            this.tabCMMI_ApprTool.Controls.Add(this.btnIIGOVrating);
             this.tabCMMI_ApprTool.Controls.Add(this.label5);
             this.tabCMMI_ApprTool.Controls.Add(this.lblOEdbSource);
-            this.tabCMMI_ApprTool.Controls.Add(this.btnExtractFindings);
             this.tabCMMI_ApprTool.Controls.Add(this.lblOEdbMain);
-            this.tabCMMI_ApprTool.Controls.Add(this.btnHideOoS2);
             this.tabCMMI_ApprTool.Controls.Add(this.label6);
             this.tabCMMI_ApprTool.Controls.Add(this.btnMergeSources2);
-            this.tabCMMI_ApprTool.Controls.Add(this.btnInsertInterviews2);
-            this.tabCMMI_ApprTool.Controls.Add(this.btnSelectImportFile);
             this.tabCMMI_ApprTool.Controls.Add(this.btnSelectMainTool);
             this.tabCMMI_ApprTool.Location = new System.Drawing.Point(4, 25);
             this.tabCMMI_ApprTool.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -244,6 +230,17 @@
             this.tabCMMI_ApprTool.TabIndex = 1;
             this.tabCMMI_ApprTool.Text = "CMMI Tool";
             this.tabCMMI_ApprTool.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(111, 140);
+            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(188, 38);
+            this.button6.TabIndex = 57;
+            this.button6.Text = "Setup IS/OoS";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button4
             // 
@@ -258,7 +255,7 @@
             // 
             // buttonBuildISACA
             // 
-            this.buttonBuildISACA.Location = new System.Drawing.Point(488, 238);
+            this.buttonBuildISACA.Location = new System.Drawing.Point(111, 182);
             this.buttonBuildISACA.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonBuildISACA.Name = "buttonBuildISACA";
             this.buttonBuildISACA.Size = new System.Drawing.Size(188, 38);
@@ -266,39 +263,6 @@
             this.buttonBuildISACA.Text = "Build MDD-Tool";
             this.buttonBuildISACA.UseVisualStyleBackColor = true;
             this.buttonBuildISACA.Click += new System.EventHandler(this.buttonBuildISACA_Click);
-            // 
-            // btnSetAllFM
-            // 
-            this.btnSetAllFM.Location = new System.Drawing.Point(241, 238);
-            this.btnSetAllFM.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSetAllFM.Name = "btnSetAllFM";
-            this.btnSetAllFM.Size = new System.Drawing.Size(188, 50);
-            this.btnSetAllFM.TabIndex = 28;
-            this.btnSetAllFM.Text = "Set all FM + OU FM";
-            this.btnSetAllFM.UseVisualStyleBackColor = true;
-            this.btnSetAllFM.Click += new System.EventHandler(this.btnSetAllFM_Click);
-            // 
-            // btnRemoveUpload
-            // 
-            this.btnRemoveUpload.Location = new System.Drawing.Point(241, 180);
-            this.btnRemoveUpload.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnRemoveUpload.Name = "btnRemoveUpload";
-            this.btnRemoveUpload.Size = new System.Drawing.Size(188, 48);
-            this.btnRemoveUpload.TabIndex = 8;
-            this.btnRemoveUpload.Text = "Remove [*Uploaded*]";
-            this.btnRemoveUpload.UseVisualStyleBackColor = true;
-            this.btnRemoveUpload.Click += new System.EventHandler(this.btnRemoveUpload_Click);
-            // 
-            // btnIIGOVrating
-            // 
-            this.btnIIGOVrating.Location = new System.Drawing.Point(241, 127);
-            this.btnIIGOVrating.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnIIGOVrating.Name = "btnIIGOVrating";
-            this.btnIIGOVrating.Size = new System.Drawing.Size(187, 48);
-            this.btnIIGOVrating.TabIndex = 7;
-            this.btnIIGOVrating.Text = "II-GOV ratings";
-            this.btnIIGOVrating.UseVisualStyleBackColor = true;
-            this.btnIIGOVrating.Click += new System.EventHandler(this.btnIIGOVrating_Click);
             // 
             // label5
             // 
@@ -309,32 +273,10 @@
             this.label5.TabIndex = 26;
             this.label5.Text = "CMMI tool LA";
             // 
-            // btnExtractFindings
-            // 
-            this.btnExtractFindings.Location = new System.Drawing.Point(48, 238);
-            this.btnExtractFindings.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnExtractFindings.Name = "btnExtractFindings";
-            this.btnExtractFindings.Size = new System.Drawing.Size(187, 50);
-            this.btnExtractFindings.TabIndex = 6;
-            this.btnExtractFindings.Text = "Extract Findings";
-            this.btnExtractFindings.UseVisualStyleBackColor = true;
-            this.btnExtractFindings.Click += new System.EventHandler(this.btnExtractFindings_Click);
-            // 
-            // btnHideOoS2
-            // 
-            this.btnHideOoS2.Location = new System.Drawing.Point(48, 180);
-            this.btnHideOoS2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnHideOoS2.Name = "btnHideOoS2";
-            this.btnHideOoS2.Size = new System.Drawing.Size(187, 48);
-            this.btnHideOoS2.TabIndex = 5;
-            this.btnHideOoS2.Text = "Hide OoS rows";
-            this.btnHideOoS2.UseVisualStyleBackColor = true;
-            this.btnHideOoS2.Click += new System.EventHandler(this.btnHideOoS2_Click);
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(44, 314);
+            this.label6.Location = new System.Drawing.Point(561, 238);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(95, 16);
             this.label6.TabIndex = 27;
@@ -342,7 +284,7 @@
             // 
             // btnMergeSources2
             // 
-            this.btnMergeSources2.Location = new System.Drawing.Point(590, 112);
+            this.btnMergeSources2.Location = new System.Drawing.Point(552, 177);
             this.btnMergeSources2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMergeSources2.Name = "btnMergeSources2";
             this.btnMergeSources2.Size = new System.Drawing.Size(187, 48);
@@ -350,28 +292,6 @@
             this.btnMergeSources2.Text = "Merge Import 2 Main";
             this.btnMergeSources2.UseVisualStyleBackColor = true;
             this.btnMergeSources2.Click += new System.EventHandler(this.btnMergeSources2_Click);
-            // 
-            // btnInsertInterviews2
-            // 
-            this.btnInsertInterviews2.Location = new System.Drawing.Point(48, 127);
-            this.btnInsertInterviews2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnInsertInterviews2.Name = "btnInsertInterviews2";
-            this.btnInsertInterviews2.Size = new System.Drawing.Size(187, 48);
-            this.btnInsertInterviews2.TabIndex = 3;
-            this.btnInsertInterviews2.Text = "Insert interviews";
-            this.btnInsertInterviews2.UseVisualStyleBackColor = true;
-            this.btnInsertInterviews2.Click += new System.EventHandler(this.btnInsertInterviews2_Click);
-            // 
-            // btnSelectImportFile
-            // 
-            this.btnSelectImportFile.Location = new System.Drawing.Point(590, 39);
-            this.btnSelectImportFile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnSelectImportFile.Name = "btnSelectImportFile";
-            this.btnSelectImportFile.Size = new System.Drawing.Size(187, 42);
-            this.btnSelectImportFile.TabIndex = 1;
-            this.btnSelectImportFile.Text = "Select import file";
-            this.btnSelectImportFile.UseVisualStyleBackColor = true;
-            this.btnSelectImportFile.Click += new System.EventHandler(this.btnSelectImportFile_Click);
             // 
             // btnSelectMainTool
             // 
@@ -1601,17 +1521,6 @@
             this.LblSourceFilePlan2.TabIndex = 1;
             this.LblSourceFilePlan2.Text = "Select";
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(488, 190);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(188, 38);
-            this.button6.TabIndex = 57;
-            this.button6.Text = "Setup IS/OoS";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1655,12 +1564,7 @@
         private System.Windows.Forms.TabPage tabDemixPlan;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button btnSelectMainTool;
-        private System.Windows.Forms.Button btnSelectImportFile;
-        private System.Windows.Forms.Button btnInsertInterviews2;
         private System.Windows.Forms.Button btnMergeSources2;
-        private System.Windows.Forms.Button btnHideOoS2;
-        private System.Windows.Forms.Button btnExtractFindings;
-        private System.Windows.Forms.Button btnIIGOVrating;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button btnSelectWorkingDir;
         private System.Windows.Forms.Button btnChange;
@@ -1669,7 +1573,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtFrom;
         private System.Windows.Forms.Button btnResetV01;
-        private System.Windows.Forms.Button btnRemoveUpload;
         private System.Windows.Forms.TabPage tabQuestions;
         private System.Windows.Forms.TabPage tabDemixTool;
         private System.Windows.Forms.Label label3;
@@ -1755,7 +1658,6 @@
         private System.Windows.Forms.Button btnRemoveText;
         private System.Windows.Forms.Label lblAddRemoveText;
         private System.Windows.Forms.TextBox txtAddRemoveText;
-        private System.Windows.Forms.Button btnSetAllFM;
         private System.Windows.Forms.Label lblToolkitImportFile;
         private System.Windows.Forms.Label lblToolkitImportPath;
         private System.Windows.Forms.Label label30;

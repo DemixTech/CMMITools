@@ -541,6 +541,10 @@ namespace BASE
 
         private void btnSelectImportFile_Click(object sender, EventArgs e)
         {
+            
+            
+            // *** DELETE ***
+            
             //OpenFileDialog OEsource = new OpenFileDialog();
             //OEsource.InitialDirectory = Path.GetDirectoryName(persistentData.AppToolSourcePathFile);
             //OEsource.RestoreDirectory = true;
@@ -866,6 +870,9 @@ namespace BASE
 
         private void btnMergeSources2_Click(object sender, EventArgs e)
         {
+            
+            // *** DELETE ***
+            
             // *** Merge source inot main
             //excelApp.Visible = true;
             // excelApp.MacroOptions2(XlRunAutoMacro.xlAutoDeactivate );
@@ -1041,6 +1048,9 @@ namespace BASE
 
         private void btnHideOoS2_Click(object sender, EventArgs e)
         {
+            
+            // *** DELETE ***
+
             // *** Setup the main sheet
             //excelApp.Visible = true;
 
@@ -1107,6 +1117,9 @@ namespace BASE
 
         private void btnExtractFindings_Click(object sender, EventArgs e)
         {
+
+
+            // *** DELETE ***
 
             // *** Load main CMMI tool
             // mainWorkbook = excelApp.Workbooks.Open(persistentData.AppToolMainPathFile);
@@ -1540,6 +1553,9 @@ namespace BASE
 
         private void btnIIGOVrating_Click(object sender, EventArgs e)
         {
+            
+            // *** DELETE ***
+
             // *** Setup the main sheet
             //excelApp.Visible = true;
 
@@ -1756,6 +1772,9 @@ namespace BASE
 
         private void btnRemoveUpload_Click(object sender, EventArgs e)
         {
+
+            // *** DELETE ***
+
 
             // *** Load main
             if ((mainWorkbook = Helper.CheckIfOpenAndOpenXlsx(persistentData.AppToolMainPathFile)) == null)
@@ -3256,6 +3275,9 @@ namespace BASE
 
         private void btnSetAllFM_Click(object sender, EventArgs e)
         {
+            
+            // *** DELETE ***
+
             string resultMessage;
             if (mddToolkitFile.SetAllTo_FullyMet(lblStatus, out resultMessage) == false)
 
