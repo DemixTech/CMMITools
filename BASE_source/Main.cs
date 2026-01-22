@@ -3418,5 +3418,10 @@ namespace BASE
                 MessageBox.Show($"Toolkit populated successfully.");
             }
         }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

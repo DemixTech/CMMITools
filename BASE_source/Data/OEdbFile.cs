@@ -850,7 +850,7 @@ namespace BASE.Data
                 foreach (Worksheet wksOEdb in mainWorkbook.Worksheets)
                 {
 
-                    switch (wksOEdb.Name)
+                    switch (wksOEdb.Name.Trim())
                     {
 
                         case "CAR":
