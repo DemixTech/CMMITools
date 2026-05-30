@@ -1,0 +1,27 @@
+{
+  "$schema": "./cas-project-config.schema.json",
+  "$comment": "CAS Web Automation Project Configuration - stores project-specific paths and settings. Credentials live at .secrets/keys.json next to this file.",
+  "project": {
+    "name": "Beijing PDE Info Tech",
+    "casId": "83325",
+    "description": "A5 Appraisal for Beijing PDE Information Technology"
+  },
+  "files": {
+    "source": "C:/WorkDir-Claude/2026-07-05to07-10 (A5) C83325 Beijing PDE Info Tech/00_Startup/Beijing PDE-CAS Plan-Demix.xlsm",
+    "target": "C:/WorkDir-Claude/2026-07-05to07-10 (A5) C83325 Beijing PDE Info Tech/10_102v08_Beijing PDE Info Tech_CAS_Plan.xlsm"
+  },
+  "utilities": {
+    "cas-scraper": "//wsl.localhost/Ubuntu/home/pietervz/agent-automation/10_projects/cas_helper"
+  },
+  "skills": {
+    "skill-audit-cas-plan": "//wsl.localhost/Ubuntu/home/pietervz/agent-automation/10_projects/cas_helper/skills/skill-audit-cas-plan",
+    "skill-setup-base-cas-plan": "//wsl.localhost/Ubuntu/home/pietervz/agent-automation/10_projects/cas_helper/skills/skill-setup-base-cas-plan"
+  },
+  "cas": {
+    "baseUrl": "https://cas.cmmiinstitute.com",
+    "loginUrl": "https://cmmiinstitute.com/login",
+    "continueFromPage": "/appraisal-participants",
+    "debugMode": false,
+    "autoExitOnComplete": false
+  }
+}

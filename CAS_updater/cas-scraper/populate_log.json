@@ -1,0 +1,233 @@
+[
+  {
+    "timestamp": "2026-05-27T11:59:53.610Z",
+    "page": "/appraisal-participants",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:00:27.893Z",
+    "page": "/objective-evidence/collection-approach",
+    "fieldsAttempted": 2,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:00:56.197Z",
+    "page": "/objective-evidence/collection-techniques",
+    "fieldsAttempted": 4,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:01:25.725Z",
+    "page": "/objective-evidence/collection-responsibilities",
+    "fieldsAttempted": 3,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:01:53.386Z",
+    "page": "/objective-evidence/performance-report-approaches",
+    "fieldsAttempted": 3,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:02:20.034Z",
+    "page": "/objective-evidence/initial-summary",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:02:44.720Z",
+    "page": "/objective-evidence/data-collection-timing",
+    "fieldsAttempted": 6,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:03:14.751Z",
+    "page": "/objective-evidence/additional-info",
+    "fieldsAttempted": 1,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:03:39.459Z",
+    "page": "/resource-estimates",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:04:02.495Z",
+    "page": "/logistical-requirements",
+    "fieldsAttempted": 3,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:04:26.009Z",
+    "page": "/appraisal-constraints",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:04:49.181Z",
+    "page": "/risk-identification",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:05:12.686Z",
+    "page": "/conflicts-of-interest",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:05:36.288Z",
+    "page": "/follow-on-activities",
+    "fieldsAttempted": 3,
+    "fieldsSuccessful": 1,
+    "fieldsFailed": 1,
+    "details": [
+      {
+        "field": "Follow-on Activity",
+        "selector": "select[name=\"FollowOnActivityTypeId\"]",
+        "value": "Lessons Learned",
+        "status": "failed",
+        "error": "Waiting for selector `select[name=\"FollowOnActivityTypeId\"]` failed: Waiting failed: 5000ms exceeded"
+      },
+      {
+        "field": "Other Follow-on Activity",
+        "selector": "[name=\"OtherFollowOnActivity\"]",
+        "value": "",
+        "status": "skipped"
+      },
+      {
+        "field": "Follow-on Activity Description",
+        "selector": "[name=\"Description\"]",
+        "value": "After the Final Findings, the Appraisal Team will discuss the lessons learned.",
+        "status": "success"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-27T12:06:05.667Z",
+    "page": "/appraisal-plan-summary",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:06:19.716Z",
+    "page": "/supporting-documents",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:06:33.750Z",
+    "page": "/required-outputs",
+    "fieldsAttempted": 6,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 6,
+    "details": [
+      {
+        "field": "Description of output delivery (Final Findings)",
+        "selector": "[name=\"Description\"]",
+        "value": "The Final Findings will be presented as a PowerPoint presentation on the last on-site day, highlighting the strengths and weaknesses identified.",
+        "status": "failed",
+        "error": "Waiting for selector `[name=\"Description\"]` failed: Waiting failed: 5000ms exceeded"
+      },
+      {
+        "field": "Owner (Final Findings)",
+        "selector": "[name=\"Owner\"]",
+        "value": "Final Findings - Sponsor",
+        "status": "failed",
+        "error": "Waiting for selector `[name=\"Owner\"]` failed: Waiting failed: 5000ms exceeded"
+      },
+      {
+        "field": "Controls or Restrictions On Use (Final Findings)",
+        "selector": "[name=\"ControlsOrRestrictionsOnUse\"]",
+        "value": "Final Findings - Sponsor",
+        "status": "failed",
+        "error": "Waiting for selector `[name=\"ControlsOrRestrictionsOnUse\"]` failed: Waiting failed: 5000ms exceeded"
+      },
+      {
+        "field": "Description of output delivery (Practice Characterization)",
+        "selector": "[name=\"Description\"]",
+        "value": "OSF-level Practice Characterization Worksheets and Matrix included in the Final Findings presentation.",
+        "status": "failed",
+        "error": "Waiting for selector `[name=\"Description\"]` failed: Waiting failed: 5000ms exceeded"
+      },
+      {
+        "field": "Owner (Practice Characterization)",
+        "selector": "[name=\"Owner\"]",
+        "value": "Final Findings with OSF-level Practice Characterization Worksheets - Sponsor",
+        "status": "failed",
+        "error": "Waiting for selector `[name=\"Owner\"]` failed: Waiting failed: 5000ms exceeded"
+      },
+      {
+        "field": "Controls or Restrictions On Use (Practice Characterization)",
+        "selector": "[name=\"ControlsOrRestrictionsOnUse\"]",
+        "value": "For the sponsor to decide.",
+        "status": "failed",
+        "error": "Waiting for selector `[name=\"ControlsOrRestrictionsOnUse\"]` failed: Waiting failed: 5000ms exceeded"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-05-27T12:07:17.837Z",
+    "page": "/performance-report",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:07:31.866Z",
+    "page": "/optional-outputs",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:07:45.913Z",
+    "page": "/practice-level-characterizations",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  },
+  {
+    "timestamp": "2026-05-27T12:07:59.956Z",
+    "page": "/practice-area-ratings",
+    "fieldsAttempted": 0,
+    "fieldsSuccessful": 0,
+    "fieldsFailed": 0,
+    "details": []
+  }
+]

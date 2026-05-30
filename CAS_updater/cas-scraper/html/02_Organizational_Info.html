@@ -1,0 +1,343 @@
+<!DOCTYPE html><html lang="en-US"><head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMMI Appraisal System</title>
+
+<link href="https://cmmiinstitute.com/CMMI/media/Favicon/favicon-16x16.png" type="image/png" rel="shortcut icon">
+<link rel="stylesheet" href="https://cdn.cmmiinstitute.com/design/style.2.2.3.css">
+<link rel="stylesheet" href="/dist/main.css?v=RpuqHsCWqB7-llKi0ryz9DHf8J2z5vWX5sVSn1NlMQw">
+
+
+  
+  <!-- Google tag (gtag.js) -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-GZC8QJ4TNB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GZC8QJ4TNB');
+  </script>
+
+<script type="text/javascript">!function(T,l,y){var S=T.location,k="script",D="instrumentationKey",C="ingestionendpoint",I="disableExceptionTracking",E="ai.device.",b="toLowerCase",w="crossOrigin",N="POST",e="appInsightsSDK",t=y.name||"appInsights";(y.name||T[e])&&(T[e]=t);var n=T[t]||function(d){var g=!1,f=!1,m={initialize:!0,queue:[],sv:"5",version:2,config:d};function v(e,t){var n={},a="Browser";return n[E+"id"]=a[b](),n[E+"type"]=a,n["ai.operation.name"]=S&&S.pathname||"_unknown_",n["ai.internal.sdkVersion"]="javascript:snippet_"+(m.sv||m.version),{time:function(){var e=new Date;function t(e){var t=""+e;return 1===t.length&&(t="0"+t),t}return e.getUTCFullYear()+"-"+t(1+e.getUTCMonth())+"-"+t(e.getUTCDate())+"T"+t(e.getUTCHours())+":"+t(e.getUTCMinutes())+":"+t(e.getUTCSeconds())+"."+((e.getUTCMilliseconds()/1e3).toFixed(3)+"").slice(2,5)+"Z"}(),iKey:e,name:"Microsoft.ApplicationInsights."+e.replace(/-/g,"")+"."+t,sampleRate:100,tags:n,data:{baseData:{ver:2}}}}var h=d.url||y.src;if(h){function a(e){var t,n,a,i,r,o,s,c,u,p,l;g=!0,m.queue=[],f||(f=!0,t=h,s=function(){var e={},t=d.connectionString;if(t)for(var n=t.split(";"),a=0;a<n.length;a++){var i=n[a].split("=");2===i.length&&(e[i[0][b]()]=i[1])}if(!e[C]){var r=e.endpointsuffix,o=r?e.location:null;e[C]="https://"+(o?o+".":"")+"dc."+(r||"services.visualstudio.com")}return e}(),c=s[D]||d[D]||"",u=s[C],p=u?u+"/v2/track":d.endpointUrl,(l=[]).push((n="SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)",a=t,i=p,(o=(r=v(c,"Exception")).data).baseType="ExceptionData",o.baseData.exceptions=[{typeName:"SDKLoadFailed",message:n.replace(/\./g,"-"),hasFullStack:!1,stack:n+"\nSnippet failed to load ["+a+"] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: "+(S&&S.pathname||"_unknown_")+"\nEndpoint: "+i,parsedStack:[]}],r)),l.push(function(e,t,n,a){var i=v(c,"Message"),r=i.data;r.baseType="MessageData";var o=r.baseData;return o.message='AI (Internal): 99 message:"'+("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) ("+n+")").replace(/\"/g,"")+'"',o.properties={endpoint:a},i}(0,0,t,p)),function(e,t){if(JSON){var n=T.fetch;if(n&&!y.useXhr)n(t,{method:N,body:JSON.stringify(e),mode:"cors"});else if(XMLHttpRequest){var a=new XMLHttpRequest;a.open(N,t),a.setRequestHeader("Content-type","application/json"),a.send(JSON.stringify(e))}}}(l,p))}function i(e,t){f||setTimeout(function(){!t&&m.core||a()},500)}var e=function(){var n=l.createElement(k);n.src=h;var e=y[w];return!e&&""!==e||"undefined"==n[w]||(n[w]=e),n.onload=i,n.onerror=a,n.onreadystatechange=function(e,t){"loaded"!==n.readyState&&"complete"!==n.readyState||i(0,t)},n}();y.ld<0?l.getElementsByTagName("head")[0].appendChild(e):setTimeout(function(){l.getElementsByTagName(k)[0].parentNode.appendChild(e)},y.ld||0)}try{m.cookie=l.cookie}catch(p){}function t(e){for(;e.length;)!function(t){m[t]=function(){var e=arguments;g||m.queue.push(function(){m[t].apply(m,e)})}}(e.pop())}var n="track",r="TrackPage",o="TrackEvent";t([n+"Event",n+"PageView",n+"Exception",n+"Trace",n+"DependencyData",n+"Metric",n+"PageViewPerformance","start"+r,"stop"+r,"start"+o,"stop"+o,"addTelemetryInitializer","setAuthenticatedUserContext","clearAuthenticatedUserContext","flush"]),m.SeverityLevel={Verbose:0,Information:1,Warning:2,Error:3,Critical:4};var s=(d.extensionConfig||{}).ApplicationInsightsAnalytics||{};if(!0!==d[I]&&!0!==s[I]){var c="onerror";t(["_"+c]);var u=T[c];T[c]=function(e,t,n,a,i){var r=u&&u(e,t,n,a,i);return!0!==r&&m["_"+c]({message:e,url:t,lineNumber:n,columnNumber:a,error:i}),r},d.autoExceptionInstrumented=!0}return m}(y.cfg);function a(){y.onInit&&y.onInit(n)}(T[t]=n).queue&&0===n.queue.length?(n.queue.push(a),n.trackPageView({})):a()}(window,document,{
+src: "https://js.monitor.azure.com/scripts/b/ai.2.min.js", // The SDK URL Source
+crossOrigin: "anonymous", 
+cfg: { // Application Insights Configuration
+    connectionString: 'InstrumentationKey=749901b7-e42b-4cec-a333-a13c02deee4b;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/;ApplicationId=e15428d2-bd48-4619-a8ef-e16889f8c3a9'
+}});</script><script src="https://js.monitor.azure.com/scripts/b/ai.2.min.js" crossorigin="anonymous"></script></head>
+<body class="cmmi-patterns">
+
+
+
+
+<div class="site-header">
+    <div class="site-header__content">
+        <img src="https://cdn.cmmiinstitute.com/design/ISACA_CMMI_logo_revW.svg" class="site-header__logo">
+        <div class="site-header__right">
+                <div class="site-header__username" data-test="welcome-username">Welcome, pwj.vanzyl@gmail.com</div>
+                <a class="site-header__profile" data-test="profile" href="/profile/index">Profile</a>
+                <a class="button white-p2" data-test="sign-out" href="/logout">Sign Out</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="appraisal-header">
+  <div class="appraisal-header__content">
+    <div class="appraisal-header__title-bar">
+      <div class="appraisal-header__appraisal-name" data-test="header-appraisal-name">
+        Dummy Appraisal_6
+      </div>
+        <a href="https://cmmiinstitute.com/resource-files/public/cas-help-videos/cas-mp4-organizational-info" class="button white-p2" target="_blank" rel="noopener">Section Help</a>
+    </div>
+    <div class="appraisal-header__details">
+      <div class="appraisal-header__item-name">ID:</div>
+      <div class="appraisal-header__item-value" data-test="header-appraisal-id">81334</div>
+      <div class="appraisal-header__item-name">Status:</div>
+      <div class="appraisal-header__item-value">In Progress</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="appraisal-body">
+  
+<div class="appraisal-menu">
+    <h3>
+      <a href="/">« My Appraisals</a>
+    </h3>
+
+        <div class="appraisal-menu__phase-header">
+          <a href="/appraisals/81334">Appraisal Dashboard</a>
+        </div>
+      <div class="appraisal-menu__phase-header">
+          <a href="/appraisals/81334/name-and-type">Phase 1: Plan Appraisal - Organization Scope</a>
+      </div>
+      <div class="appraisal-menu__phase-sections">
+          
+<div class="appraisal-menu__section">
+    <div class="appraisal-menu__section-header">Appraisal Setup</div>
+
+    <div class="appraisal-menu__step">
+      <img class="appraisal-menu__step-status" src="/Images/Orange.Clock.Icon.svg">
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/name-and-type">Appraisal Name and Type</a>
+      </div>
+    </div>
+</div>
+
+          
+<div class="appraisal-menu__section">
+    <div class="appraisal-menu__section-header">Organization</div>
+
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/organizations">Organizational Info</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <div class="appraisal-menu__step-name--disabled">Organizational Units (OU)</div>
+      </div>
+    </div>
+</div>
+
+          
+<div class="appraisal-menu__section">
+    <div class="appraisal-menu__section-header">Appraisal Scope</div>
+
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <div class="appraisal-menu__step-name--disabled">Target Level</div>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <div class="appraisal-menu__step-name--disabled">Target Level Details</div>
+      </div>
+    </div>
+</div>
+
+          
+<div class="appraisal-menu__section">
+    <div class="appraisal-menu__section-header">Timeline</div>
+
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/timeline">Appraisal Timeline</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/readiness-reviews">Readiness Reviews</a>
+      </div>
+    </div>
+</div>
+
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <div class="appraisal-menu__phase-header--disabled">Phase 1: Plan Appraisal - Sample Scope</div>
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <div class="appraisal-menu__phase-header--disabled">Phase 1: Plan Appraisal - Random Generated Sample</div>
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <a href="/appraisals/81334/training-schedule">Phase 1: Plan Appraisal - Appraisal Personnel</a>
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <a href="/appraisals/81334/objective-evidence/collection-approach">Phase 1: Plan Appraisal - Readiness</a>
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <div class="appraisal-menu__phase-header--disabled">Phase 2: Conduct Appraisal</div>
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <div class="appraisal-menu__phase-header--disabled">Phase 3: Report Findings</div>
+      </div>
+</div>
+
+
+  <div class="appraisal-body__main-content">
+
+    
+
+<div class="appraisal-step-navigator">
+  <div class="appraisal-step-navigator__nav-row">
+      <a class="button blue-button" href="/appraisals/81334/name-and-type">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+          <polygon points="0,60 60,0 80,20 40,60 80,100 60,120"></polygon>
+        </svg>
+      </a>
+    <h3>ORGANIZATIONAL INFO</h3>
+    <a class="button blue-button appraisal-step-navigator__menu" href="/appraisals/81334/menu">
+      APPRAISAL MENU
+    </a>
+      <button class="button blue-button" disabled="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+          <polygon points="80,60 20,120 0,100 40,60 0,20 20,0"></polygon>
+        </svg>
+      </button>
+  </div>
+  <h3>ORGANIZATIONAL INFO</h3>
+</div>
+
+
+
+
+
+  <aside role="alert" class="warning">
+    <p>
+      <strong>
+        Warning you will not be able to submit this appraisal until the required fields are added to the Organization.
+      </strong>
+    </p>
+  </aside>
+
+<div class="item-card-list">
+</div>
+
+    <div></div>
+
+
+  
+    <div class="appraisal-step-completions-container">
+      <form method="POST" action="/appraisals/81334/organizations?handler=MarkAppraisalStepComplete">
+        <button class="button blue-button">Mark Step as Complete</button>
+      <input name="__RequestVerificationToken" type="hidden" value="CfDJ8BIoiBe1HRBFuQObcz6hRYtZkSWyIDMIRQvF3otPOlWjWXuHgJxItGWKOhaeEhkcISQz9DR0J_wEfgCQ3_eZ5ttNXztqnx8etT6-Ub6_3FXk62vuJ9ym-yZNjb0zmKcQxQyw4YfuO-LBx88h13f36VpmKQw_SYbBZoXcoWL94ABSy9aOvdwqaR4IVtRwF5vhrg"></form>
+    </div>
+
+  
+  
+
+  
+
+
+
+
+
+
+    <hr>
+    <div id="Form" class="appraisal-form">
+      <div class="header">
+        <h2>New Organization</h2>
+        <div class="required-message">* Required Fields</div>
+      </div>
+
+
+      
+<form method="POST" action="/appraisals/81334/organizations#Form">
+  <label for="Name"><span class="required">*</span> Name
+    <span class="note">Enter legal name of company being appraised.</span>
+  </label>
+  <div class="add-existing-name-and-button">
+    <div>
+      <input type="text" data-test="input-org-name" data-val="true" data-val-maxlength="Name cannot exceed 256 characters" data-val-maxlength-max="256" data-val-required="Name is required" id="Name" name="Name" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+      
+    </div>
+    <div>or</div>
+    <div>
+      <a class="button" href="/appraisals/81334/organizations/existing">
+        Add Existing Org
+      </a>
+    </div>
+  </div>
+
+  <label for="NativeName">Native Language Name
+    <span class="note">Enter legal name in native language. If English leave blank.</span>
+  </label>
+  <input type="text" data-val="true" data-val-maxlength="Native Language Name cannot exceed 256 characters" data-val-maxlength-max="256" id="NativeName" name="NativeName" value="">
+
+  <label for="Address1">
+    <span><span class="required">*</span> Address Line 1</span>
+    <span class="note">Street address, P.O. box, company name, c/o</span>
+  </label>
+  <input type="text" maxlength="256" data-val="true" data-val-maxlength="Address Line 1 cannot exceed 256 characters" data-val-maxlength-max="256" data-val-required="Address Line 1 is required" id="Address1" name="Address1" value="">
+
+  <label for="Address2">
+    <span>Address Line 2</span>
+    <span class="note">Apartment, suite, unit, building, floor, etc.</span>
+  </label>
+  <input type="text" maxlength="256" data-val="true" data-val-maxlength="Address Line 2 cannot exceed 256 characters" data-val-maxlength-max="256" id="Address2" name="Address2" value="">
+
+  <div class="row">
+    <div class="col6">
+      <label for="City"><span class="required">*</span> City</label>
+      <input type="text" maxlength="256" data-val="true" data-val-maxlength="City cannot exceed 256 characters" data-val-maxlength-max="256" data-val-required="City is required" id="City" name="City" value="">
+    </div>
+    <div class="col6">
+      <label for="StateProvinceRegion"><span class="required">*</span> State/Province/Region</label>
+      <input type="text" maxlength="256" data-val="true" data-val-maxlength="State/Province/Region cannot exceed 256 characters" data-val-maxlength-max="256" data-val-required="State/Province/Region is required" id="StateProvinceRegion" name="StateProvinceRegion" value="">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col4">
+      <label for="PostalCode"><span class="required">*</span> ZIP/Postal Code</label>
+      <input type="text" maxlength="10" data-val="true" data-val-maxlength="ZIP/Postal Code cannot exceed 10 characters" data-val-maxlength-max="10" data-val-required="ZIP/Postal Code is required" id="PostalCode" name="PostalCode" value="">
+    </div>
+    <div class="col8">
+      <label for="CountryIsoCode"><span class="required">*</span> Country/Region</label>
+      <div class="dropdown-wrapper"><select name="CountryIsoCode"><option value=""></option><option value="AF">Afghanistan</option><option value="AX">Åland Islands</option><option value="AL">Albania</option><option value="DZ">Algeria</option><option value="AS">American Samoa</option><option value="AD">Andorra</option><option value="AO">Angola</option><option value="AI">Anguilla</option><option value="AQ">Antarctica</option><option value="AG">Antigua &amp; Barbuda</option><option value="AR">Argentina</option><option value="AM">Armenia</option><option value="AW">Aruba</option><option value="AC">Ascension Island</option><option value="AU">Australia</option><option value="AT">Austria</option><option value="AZ">Azerbaijan</option><option value="BS">Bahamas</option><option value="BH">Bahrain</option><option value="BD">Bangladesh</option><option value="BB">Barbados</option><option value="BY">Belarus</option><option value="BE">Belgium</option><option value="BZ">Belize</option><option value="BJ">Benin</option><option value="BM">Bermuda</option><option value="BT">Bhutan</option><option value="BO">Bolivia</option><option value="BA">Bosnia &amp; Herzegovina</option><option value="BW">Botswana</option><option value="BR">Brazil</option><option value="IO">British Indian Ocean Territory</option><option value="VG">British Virgin Islands</option><option value="BN">Brunei</option><option value="BG">Bulgaria</option><option value="BF">Burkina Faso</option><option value="BI">Burundi</option><option value="KH">Cambodia</option><option value="CM">Cameroon</option><option value="CA">Canada</option><option value="IC">Canary Islands</option><option value="CV">Cape Verde</option><option value="BQ">Caribbean Netherlands</option><option value="KY">Cayman Islands</option><option value="CF">Central African Republic</option><option value="EA">Ceuta &amp; Melilla</option><option value="TD">Chad</option><option value="CL">Chile</option><option value="CN">China</option><option value="CX">Christmas Island</option><option value="CC">Cocos (Keeling) Islands</option><option value="CO">Colombia</option><option value="KM">Comoros</option><option value="CG">Congo - Brazzaville</option><option value="CD">Congo - Kinshasa</option><option value="CK">Cook Islands</option><option value="CR">Costa Rica</option><option value="CI">Côte d’Ivoire</option><option value="HR">Croatia</option><option value="CU">Cuba</option><option value="CW">Curaçao</option><option value="CY">Cyprus</option><option value="CZ">Czechia</option><option value="DK">Denmark</option><option value="DG">Diego Garcia</option><option value="DJ">Djibouti</option><option value="DM">Dominica</option><option value="DO">Dominican Republic</option><option value="EC">Ecuador</option><option value="EG">Egypt</option><option value="SV">El Salvador</option><option value="GQ">Equatorial Guinea</option><option value="ER">Eritrea</option><option value="EE">Estonia</option><option value="ET">Ethiopia</option><option value="EZ">Eurozone</option><option value="FK">Falkland Islands</option><option value="FO">Faroe Islands</option><option value="FJ">Fiji</option><option value="FI">Finland</option><option value="FR">France</option><option value="GF">French Guiana</option><option value="PF">French Polynesia</option><option value="TF">French Southern Territories</option><option value="GA">Gabon</option><option value="GM">Gambia</option><option value="GE">Georgia</option><option value="DE">Germany</option><option value="GH">Ghana</option><option value="GI">Gibraltar</option><option value="GR">Greece</option><option value="GL">Greenland</option><option value="GD">Grenada</option><option value="GP">Guadeloupe</option><option value="GU">Guam</option><option value="GT">Guatemala</option><option value="GG">Guernsey</option><option value="GN">Guinea</option><option value="GW">Guinea-Bissau</option><option value="GY">Guyana</option><option value="HT">Haiti</option><option value="HN">Honduras</option><option value="HK">Hong Kong SAR China</option><option value="HU">Hungary</option><option value="IS">Iceland</option><option value="IN">India</option><option value="ID">Indonesia</option><option value="IR">Iran</option><option value="IQ">Iraq</option><option value="IE">Ireland</option><option value="IM">Isle of Man</option><option value="IL">Israel</option><option value="IT">Italy</option><option value="JM">Jamaica</option><option value="JP">Japan</option><option value="JE">Jersey</option><option value="JO">Jordan</option><option value="KZ">Kazakhstan</option><option value="KE">Kenya</option><option value="KI">Kiribati</option><option value="XK">Kosovo</option><option value="KW">Kuwait</option><option value="KG">Kyrgyzstan</option><option value="LA">Laos</option><option value="LV">Latvia</option><option value="LB">Lebanon</option><option value="LS">Lesotho</option><option value="LR">Liberia</option><option value="LY">Libya</option><option value="LI">Liechtenstein</option><option value="LT">Lithuania</option><option value="LU">Luxembourg</option><option value="MO">Macau SAR China</option><option value="MK">Macedonia</option><option value="MG">Madagascar</option><option value="MW">Malawi</option><option value="MY">Malaysia</option><option value="MV">Maldives</option><option value="ML">Mali</option><option value="MT">Malta</option><option value="MH">Marshall Islands</option><option value="MQ">Martinique</option><option value="MR">Mauritania</option><option value="MU">Mauritius</option><option value="YT">Mayotte</option><option value="MX">Mexico</option><option value="FM">Micronesia</option><option value="MD">Moldova</option><option value="MC">Monaco</option><option value="MN">Mongolia</option><option value="ME">Montenegro</option><option value="MS">Montserrat</option><option value="MA">Morocco</option><option value="MZ">Mozambique</option><option value="MM">Myanmar (Burma)</option><option value="NA">Namibia</option><option value="NR">Nauru</option><option value="NP">Nepal</option><option value="NL">Netherlands</option><option value="NC">New Caledonia</option><option value="NZ">New Zealand</option><option value="NI">Nicaragua</option><option value="NE">Niger</option><option value="NG">Nigeria</option><option value="NU">Niue</option><option value="NF">Norfolk Island</option><option value="KP">North Korea</option><option value="MP">Northern Mariana Islands</option><option value="NO">Norway</option><option value="OM">Oman</option><option value="PK">Pakistan</option><option value="PW">Palau</option><option value="PS">Palestinian Territories</option><option value="PA">Panama</option><option value="PG">Papua New Guinea</option><option value="PY">Paraguay</option><option value="PE">Peru</option><option value="PH">Philippines</option><option value="PN">Pitcairn Islands</option><option value="PL">Poland</option><option value="PT">Portugal</option><option value="PR">Puerto Rico</option><option value="QA">Qatar</option><option value="RE">Réunion</option><option value="RO">Romania</option><option value="RU">Russia</option><option value="RW">Rwanda</option><option value="WS">Samoa</option><option value="SM">San Marino</option><option value="ST">São Tomé &amp; Príncipe</option><option value="SA">Saudi Arabia</option><option value="SN">Senegal</option><option value="RS">Serbia</option><option value="SC">Seychelles</option><option value="SL">Sierra Leone</option><option value="SG">Singapore</option><option value="SX">Sint Maarten</option><option value="SK">Slovakia</option><option value="SI">Slovenia</option><option value="SB">Solomon Islands</option><option value="SO">Somalia</option><option value="ZA">South Africa</option><option value="GS">South Georgia &amp; South Sandwich Islands</option><option value="KR">South Korea</option><option value="SS">South Sudan</option><option value="ES">Spain</option><option value="LK">Sri Lanka</option><option value="BL">St. Barthélemy</option><option value="SH">St. Helena</option><option value="KN">St. Kitts &amp; Nevis</option><option value="LC">St. Lucia</option><option value="MF">St. Martin</option><option value="PM">St. Pierre &amp; Miquelon</option><option value="VC">St. Vincent &amp; Grenadines</option><option value="SD">Sudan</option><option value="SR">Suriname</option><option value="SJ">Svalbard &amp; Jan Mayen</option><option value="SZ">Swaziland</option><option value="SE">Sweden</option><option value="CH">Switzerland</option><option value="SY">Syria</option><option value="TW">Taiwan</option><option value="TJ">Tajikistan</option><option value="TZ">Tanzania</option><option value="TH">Thailand</option><option value="TL">Timor,-Leste</option><option value="TG">Togo</option><option value="TK">Tokelau</option><option value="TO">Tonga</option><option value="TT">Trinidad &amp; Tobago</option><option value="TA">Tristan da Cunha</option><option value="TN">Tunisia</option><option value="TR">Turkey</option><option value="TM">Turkmenistan</option><option value="TC">Turks &amp; Caicos Islands</option><option value="TV">Tuvalu</option><option value="UM">U.S. Outlying Islands</option><option value="VI">U.S. Virgin Islands</option><option value="UG">Uganda</option><option value="UA">Ukraine</option><option value="AE">United Arab Emirates</option><option value="GB">United Kingdom</option><option value="US">United States</option><option value="UY">Uruguay</option><option value="UZ">Uzbekistan</option><option value="VU">Vanuatu</option><option value="VA">Vatican City</option><option value="VE">Venezuela</option><option value="VN">Vietnam</option><option value="WF">Wallis &amp; Futuna</option><option value="EH">Western Sahara</option><option value="YE">Yemen</option><option value="ZM">Zambia</option><option value="ZW">Zimbabwe </option></select></div>
+    </div>
+  </div>
+
+  <label for="WebsiteUrl"><span class="required">*</span> Website Address/URL</label>
+  <input type="text" maxlength="1024" data-val="true" data-val-maxlength="Website URL cannot exceed 1024 characters" data-val-maxlength-max="1024" data-val-required="Website URL is required" id="WebsiteUrl" name="WebsiteUrl" value="">
+
+  <label for="RationaleForExcludedProjects">
+    <span><span class="required">*</span> Rationale for Projects Excluded from OU</span>
+  </label>
+  <textarea data-val="true" data-val-maxlength="Rationale for Projects Excluded from OU cannot exceed 2048 characters" data-val-maxlength-max="2048" data-val-required="Rationale for Projects Excluded from OU is required" id="RationaleForExcludedProjects" name="RationaleForExcludedProjects"></textarea>
+  <div><p class="char-limit">0/2048 characters (2048 remaining)</p></div>
+
+  <label for="IsicId"><span class="required">*</span> ISIC Section - Division
+    <span class="note">Pick the classification that best identifies the activity the organization performs.</span>
+  </label>
+  <div class="dropdown-wrapper"><select name="IsicId"><option value=""></option><option value="1">(A-01) Agriculture, forestry and fishing - Crop and animal production, hunting and related service activities</option><option value="2">(A-02) Agriculture, forestry and fishing - Forestry and logging</option><option value="3">(A-03) Agriculture, forestry and fishing - Fishing and aquaculter</option><option value="4">(B-05) Mining and quarrying - Mining of coal and lignite</option><option value="5">(B-06) Mining and quarrying - Extraction of crude petroleum and natural gas</option><option value="6">(B-07) Mining and quarrying - Mining of metal ores</option><option value="7">(B-08) Mining and quarrying - Other mining and quarrying</option><option value="8">(B-09) Mining and quarrying - Mining support service activities</option><option value="9">(C-10) Manufacturing - Manufacture of food products</option><option value="10">(C-11) Manufacturing - Manufacture of beverages</option><option value="11">(C-12) Manufacturing - Manufacture of tobacco products</option><option value="12">(C-13) Manufacturing - Manufacture of textiles</option><option value="13">(C-14) Manufacturing - Manufacture of wearing apparel</option><option value="14">(C-15) Manufacturing - Manufacture of leather and related products</option><option value="15">(C-16) Manufacturing - Manufacture of wood and of products of wood and cork, except furniture; manufacture of articles of straw and plaiting materials</option><option value="16">(C-17) Manufacturing - Manufacture of paper and paper products</option><option value="17">(C-18) Manufacturing - Printing and reproduction of recorded media</option><option value="18">(C-19) Manufacturing - Manufacture of coke and refined petroleum products</option><option value="19">(C-20) Manufacturing - Manufacture of chemicals and chemical products</option><option value="20">(C-21) Manufacturing - Manufacture of basic pharmaceutical products and pharmaceutical preparations</option><option value="21">(C-22) Manufacturing - Manufacture of rubber and plastics products</option><option value="22">(C-23) Manufacturing - Manufacture of other non-metallic mineral products</option><option value="23">(C-24) Manufacturing - Manufacture of basic metals</option><option value="24">(C-25) Manufacturing - Manufacture of fabricated metal products, except machinery and equipment</option><option value="25">(C-26) Manufacturing - Manufacture of computer, electronic and optical products</option><option value="26">(C-27) Manufacturing - Manufacture of electrical equipment</option><option value="27">(C-28) Manufacturing - Manufacture of machinery and equipment n.e.c.</option><option value="28">(C-29) Manufacturing - Manufacture of motor vehicles, trailers and semi-trailers</option><option value="29">(C-30) Manufacturing - Manufacture of other transport equipment</option><option value="30">(C-31) Manufacturing - Manufacture of furniture</option><option value="31">(C-32) Manufacturing - Other manufacturing</option><option value="32">(C-33) Manufacturing - Repair and installation of machinery and equipment</option><option value="33">(D-35) Electricity, gas, steam and air conditioning supply</option><option value="34">(E-36) Water supply; sewerage, waste management and remediation activities - Water collection, treatment and supply</option><option value="35">(E-37) Water supply; sewerage, waste management and remediation activities - Sewerage</option><option value="36">(E-38) Water supply; sewerage, waste management and remediation activities - Waste collection, treatment and disposal activities; materials recovery</option><option value="37">(E-39) Water supply; sewerage, waste management and remediation activities - Remediation activities and other waste management services</option><option value="38">(F-41) Construction - Construction of buildings</option><option value="39">(F-42) Construction - Civil engineering</option><option value="40">(F-43) Construction - Specialized construction activities</option><option value="41">(G-45) Wholesale and retail trade; repair of motor vehicles and motorcycles - Wholesale and retail trade and repair of motor vehicles and motorcycles</option><option value="42">(G-46) Wholesale and retail trade; repair of motor vehicles and motorcycles - Wholesale trade, except of motor vehicles and motorcycles</option><option value="43">(G-47) Wholesale and retail trade; repair of motor vehicles and motorcycles - Retail trade, except of motor vehicles and motorcycles</option><option value="44">(H-49) Transportation and storage - Land transport and transport via pipelines</option><option value="45">(H-50) Transportation and storage - Water transport</option><option value="46">(H-51) Transportation and storage - Air transport</option><option value="47">(H-52) Transportation and storage - Warehousing and support activities for transportation</option><option value="48">(H-53) Transportation and storage - Postal and courier activities</option><option value="49">(I-55) Accommodation and food service activities - Accommodation</option><option value="50">(I-56) Accommodation and food service activities - Food and beverage service activities</option><option value="51">(J-58) Information and communication - Publishing activities</option><option value="52">(J-59) Information and communication - Motion picture, video and television programme production, sound recording and music publishing activities</option><option value="53">(J-60) Information and communication - Programming and broadcasting activities</option><option value="54">(J-61) Information and communication - Telecommunications</option><option value="55">(J-62) Information and communication - Computer programming, consultancy and related activities</option><option value="56">(J-63) Information and communication - Information service activities</option><option value="57">(K-64) Financial and insurance activities - Financial service activities, except insurance and pension funding</option><option value="58">(K-65) Financial and insurance activities - Insurance, reinsurance and pension funding, except compulsory social security</option><option value="59">(K-66) Financial and insurance activities - Activities auxiliary to financial service and insurance activities</option><option value="60">(L-68) Real estate activities</option><option value="61">(M-69) Professional, scientific and technical activities - Legal and accounting activities</option><option value="62">(M-70) Professional, scientific and technical activities - Activities of head offices; management consultancy activities</option><option value="63">(M-71) Professional, scientific and technical activities - Architectural and engineering activities; technical testing and analysis</option><option value="64">(M-72) Professional, scientific and technical activities - Scientific research and development</option><option value="65">(M-73) Professional, scientific and technical activities - Advertising and market research</option><option value="66">(M-74) Professional, scientific and technical activities - Other professional, scientific and technical activities</option><option value="67">(M-75) Professional, scientific and technical activities - Veterinary activities</option><option value="68">(N-77) Administrative and support service activities - Rental and leasing activities</option><option value="69">(N-78) Administrative and support service activities - Employment activities</option><option value="70">(N-79) Administrative and support service activities - Travel agency, tour operator, reservation service and related activities</option><option value="71">(N-80) Administrative and support service activities - Security and investigation activities</option><option value="72">(N-81) Administrative and support service activities - Services to buildings and landscape activities</option><option value="73">(N-82) Administrative and support service activities - Office administrative, office support and other business support activities</option><option value="74">(O-84) Public administration and defence; compulsory social security</option><option value="75">(P-85) Education</option><option value="76">(Q-86) Human health and social work activities - Human health activities</option><option value="77">(Q-87) Human health and social work activities - Residential care activities</option><option value="78">(Q-88) Human health and social work activities - Social work activities without accommodation</option><option value="79">(R-90) Arts, entertainment and recreation - Creative, arts and entertainment activities</option><option value="80">(R-91) Arts, entertainment and recreation - Libraries, archives, museums and other cultural activities</option><option value="81">(R-92) Arts, entertainment and recreation - Gambling and betting activities</option><option value="82">(R-93) Arts, entertainment and recreation - Sports activities and amusement and recreation activities</option><option value="83">(S-94) Other service activities - Activities of membership organizations</option><option value="84">(S-95) Other service activities - Repair of computers and personal and household goods</option><option value="85">(S-96) Other service activities - Other personal service activities</option><option value="86">(T-97) Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use - Activities of households as employers of domestic personnel</option><option value="87">(T-98) Activities of households as employers; undifferentiated goods- and services-producing activities of households for own use - Undifferentiated goods- and services-producing activities of private households for own use</option><option value="88">(U-99) Activities of extraterritorial organizations and bodies</option></select></div>
+
+  <label for="organization-size">
+    <span class="required">*</span> Size:
+    <span class="note">Number of Full Time Employees (FTEs).</span>
+  </label>
+  <div class="dropdown-wrapper"><select name="Size"><option value=""></option><option value="0">0-50</option><option value="1">51-100</option><option value="2">101-150</option><option value="3">151-200</option><option value="4">201-250</option><option value="5">251-300</option><option value="6">301-350</option><option value="7">351-400</option><option value="8">401-450</option><option value="9">451-500</option><option value="10">&gt;500</option></select></div>
+
+  <div class="actions">
+    <a class="button p2" href="/appraisals/81334/organizations">
+      Cancel
+    </a>
+    <button data-test="button-add-edit-org">Add Organization</button>
+  </div>
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8BIoiBe1HRBFuQObcz6hRYtZkSWyIDMIRQvF3otPOlWjWXuHgJxItGWKOhaeEhkcISQz9DR0J_wEfgCQ3_eZ5ttNXztqnx8etT6-Ub6_3FXk62vuJ9ym-yZNjb0zmKcQxQyw4YfuO-LBx88h13f36VpmKQw_SYbBZoXcoWL94ABSy9aOvdwqaR4IVtRwF5vhrg"></form>
+
+    </div>
+
+
+  </div>
+</div>
+
+
+<footer class="site">
+  <p class="copyright">© 2026 ISACA. All rights reserved. <span>v.master+381226d1f5ffcfc0210b322d09ab9001a08350a3</span></p><nav class="minor">
+    <ul>
+      <li><a href="https://support.isaca.org/">Support</a></li>
+      <li><a href="https://www.isaca.org/privacy-policy">Privacy</a></li>
+      <li><a href="https://www.isaca.org/ad-and-cookie-policy">Cookie Policy</a></li>
+      <li><a href=" https://www.isaca.org/terms-of-use">Terms of Use</a></li>
+    </ul>
+  </nav>
+</footer>
+
+<script src="/dist/main.js?v=xYV-O1lsDS3QUGP-xqSOLaeShnnr5qNW_aUIXLIxfVk"></script><div></div>
+<script src="https://cdn.cmmiinstitute.com/design/bundle.2.2.3.js" integrity="PyoVW1JwcRlsPz8/Pz9JfyM/PzojYR8/O0MiPzA3Pxo/Pz9dPws/Pz8/P01IPz8/DQo="></script><div></div>
+
+
+
+
+
+
+</body></html>
