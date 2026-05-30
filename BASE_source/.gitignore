@@ -1,0 +1,38 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+## Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+build/
+bin/
+obj/
+
+## Visual Studio cache/options directory
+.vs/
+
+## User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+## MSTest test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+## Project-specific folders
+# This ignores NuGet packages by default
+*.nuget.props
+*.nuget.targets
+
+## .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
