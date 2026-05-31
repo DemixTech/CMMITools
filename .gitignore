@@ -133,3 +133,21 @@ $RECYCLE.BIN/
 _NCrunch*
 /BASE_source/.vs/BASE
 /.gitignore
+
+# ==========================================
+# CAS_updater (TypeScript/Node CAS scraper+populator)
+# ==========================================
+# CRITICAL: credentials — never commit
+CAS_updater/.secrets/
+# Node deps & build (regenerable via `npm install`)
+CAS_updater/cas-scraper/node_modules/
+CAS_updater/cas-scraper/dist/
+CAS_updater/cas-scraper/*.tsbuildinfo
+# Runtime/generated output
+CAS_updater/cas-scraper/.browser-data/
+CAS_updater/cas-scraper/html_logs/
+CAS_updater/cas-scraper/downloads/
+CAS_updater/cas-scraper/screenshots/
+CAS_updater/cas-scraper/_delete/
+# Windows mark-of-the-web ADS junk
+*:Zone.Identifier

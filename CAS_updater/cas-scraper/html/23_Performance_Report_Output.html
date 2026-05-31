@@ -1,0 +1,555 @@
+<!DOCTYPE html><html lang="en-US"><head>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMMI Appraisal System</title>
+
+<link href="https://cmmiinstitute.com/CMMI/media/Favicon/favicon-16x16.png" type="image/png" rel="shortcut icon">
+<link rel="stylesheet" href="https://cdn.cmmiinstitute.com/design/style.2.2.3.css">
+<link rel="stylesheet" href="/dist/main.css?v=RpuqHsCWqB7-llKi0ryz9DHf8J2z5vWX5sVSn1NlMQw">
+
+
+  
+  <!-- Google tag (gtag.js) -->
+  <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-GZC8QJ4TNB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-GZC8QJ4TNB');
+  </script>
+
+<script type="text/javascript">!function(T,l,y){var S=T.location,k="script",D="instrumentationKey",C="ingestionendpoint",I="disableExceptionTracking",E="ai.device.",b="toLowerCase",w="crossOrigin",N="POST",e="appInsightsSDK",t=y.name||"appInsights";(y.name||T[e])&&(T[e]=t);var n=T[t]||function(d){var g=!1,f=!1,m={initialize:!0,queue:[],sv:"5",version:2,config:d};function v(e,t){var n={},a="Browser";return n[E+"id"]=a[b](),n[E+"type"]=a,n["ai.operation.name"]=S&&S.pathname||"_unknown_",n["ai.internal.sdkVersion"]="javascript:snippet_"+(m.sv||m.version),{time:function(){var e=new Date;function t(e){var t=""+e;return 1===t.length&&(t="0"+t),t}return e.getUTCFullYear()+"-"+t(1+e.getUTCMonth())+"-"+t(e.getUTCDate())+"T"+t(e.getUTCHours())+":"+t(e.getUTCMinutes())+":"+t(e.getUTCSeconds())+"."+((e.getUTCMilliseconds()/1e3).toFixed(3)+"").slice(2,5)+"Z"}(),iKey:e,name:"Microsoft.ApplicationInsights."+e.replace(/-/g,"")+"."+t,sampleRate:100,tags:n,data:{baseData:{ver:2}}}}var h=d.url||y.src;if(h){function a(e){var t,n,a,i,r,o,s,c,u,p,l;g=!0,m.queue=[],f||(f=!0,t=h,s=function(){var e={},t=d.connectionString;if(t)for(var n=t.split(";"),a=0;a<n.length;a++){var i=n[a].split("=");2===i.length&&(e[i[0][b]()]=i[1])}if(!e[C]){var r=e.endpointsuffix,o=r?e.location:null;e[C]="https://"+(o?o+".":"")+"dc."+(r||"services.visualstudio.com")}return e}(),c=s[D]||d[D]||"",u=s[C],p=u?u+"/v2/track":d.endpointUrl,(l=[]).push((n="SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)",a=t,i=p,(o=(r=v(c,"Exception")).data).baseType="ExceptionData",o.baseData.exceptions=[{typeName:"SDKLoadFailed",message:n.replace(/\./g,"-"),hasFullStack:!1,stack:n+"\nSnippet failed to load ["+a+"] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: "+(S&&S.pathname||"_unknown_")+"\nEndpoint: "+i,parsedStack:[]}],r)),l.push(function(e,t,n,a){var i=v(c,"Message"),r=i.data;r.baseType="MessageData";var o=r.baseData;return o.message='AI (Internal): 99 message:"'+("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) ("+n+")").replace(/\"/g,"")+'"',o.properties={endpoint:a},i}(0,0,t,p)),function(e,t){if(JSON){var n=T.fetch;if(n&&!y.useXhr)n(t,{method:N,body:JSON.stringify(e),mode:"cors"});else if(XMLHttpRequest){var a=new XMLHttpRequest;a.open(N,t),a.setRequestHeader("Content-type","application/json"),a.send(JSON.stringify(e))}}}(l,p))}function i(e,t){f||setTimeout(function(){!t&&m.core||a()},500)}var e=function(){var n=l.createElement(k);n.src=h;var e=y[w];return!e&&""!==e||"undefined"==n[w]||(n[w]=e),n.onload=i,n.onerror=a,n.onreadystatechange=function(e,t){"loaded"!==n.readyState&&"complete"!==n.readyState||i(0,t)},n}();y.ld<0?l.getElementsByTagName("head")[0].appendChild(e):setTimeout(function(){l.getElementsByTagName(k)[0].parentNode.appendChild(e)},y.ld||0)}try{m.cookie=l.cookie}catch(p){}function t(e){for(;e.length;)!function(t){m[t]=function(){var e=arguments;g||m.queue.push(function(){m[t].apply(m,e)})}}(e.pop())}var n="track",r="TrackPage",o="TrackEvent";t([n+"Event",n+"PageView",n+"Exception",n+"Trace",n+"DependencyData",n+"Metric",n+"PageViewPerformance","start"+r,"stop"+r,"start"+o,"stop"+o,"addTelemetryInitializer","setAuthenticatedUserContext","clearAuthenticatedUserContext","flush"]),m.SeverityLevel={Verbose:0,Information:1,Warning:2,Error:3,Critical:4};var s=(d.extensionConfig||{}).ApplicationInsightsAnalytics||{};if(!0!==d[I]&&!0!==s[I]){var c="onerror";t(["_"+c]);var u=T[c];T[c]=function(e,t,n,a,i){var r=u&&u(e,t,n,a,i);return!0!==r&&m["_"+c]({message:e,url:t,lineNumber:n,columnNumber:a,error:i}),r},d.autoExceptionInstrumented=!0}return m}(y.cfg);function a(){y.onInit&&y.onInit(n)}(T[t]=n).queue&&0===n.queue.length?(n.queue.push(a),n.trackPageView({})):a()}(window,document,{
+src: "https://js.monitor.azure.com/scripts/b/ai.2.min.js", // The SDK URL Source
+crossOrigin: "anonymous", 
+cfg: { // Application Insights Configuration
+    connectionString: 'InstrumentationKey=749901b7-e42b-4cec-a333-a13c02deee4b;IngestionEndpoint=https://eastus-8.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus.livediagnostics.monitor.azure.com/;ApplicationId=e15428d2-bd48-4619-a8ef-e16889f8c3a9'
+}});</script><script src="https://js.monitor.azure.com/scripts/b/ai.2.min.js" crossorigin="anonymous"></script></head>
+<body class="cmmi-patterns">
+
+
+
+
+<div class="site-header">
+    <div class="site-header__content">
+        <img src="https://cdn.cmmiinstitute.com/design/ISACA_CMMI_logo_revW.svg" class="site-header__logo">
+        <div class="site-header__right">
+                <div class="site-header__username" data-test="welcome-username">Welcome, pwj.vanzyl@gmail.com</div>
+                <a class="site-header__profile" data-test="profile" href="/profile/index">Profile</a>
+                <a class="button white-p2" data-test="sign-out" href="/logout">Sign Out</a>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="appraisal-header">
+  <div class="appraisal-header__content">
+    <div class="appraisal-header__title-bar">
+      <div class="appraisal-header__appraisal-name" data-test="header-appraisal-name">
+        Dummy Appraisal_6
+      </div>
+        <a href="https://cmmiinstitute.com/resource-files/public/cas-help-videos/CAS-MP4-The-Performance-Report" class="button white-p2" target="_blank" rel="noopener">Section Help</a>
+    </div>
+    <div class="appraisal-header__details">
+      <div class="appraisal-header__item-name">ID:</div>
+      <div class="appraisal-header__item-value" data-test="header-appraisal-id">81334</div>
+      <div class="appraisal-header__item-name">Status:</div>
+      <div class="appraisal-header__item-value">In Progress</div>
+    </div>
+  </div>
+</div>
+
+
+<div class="appraisal-body">
+  
+<div class="appraisal-menu">
+    <h3>
+      <a href="/">« My Appraisals</a>
+    </h3>
+
+        <div class="appraisal-menu__phase-header">
+          <a href="/appraisals/81334">Appraisal Dashboard</a>
+        </div>
+      <div class="appraisal-menu__phase-header">
+          <a href="/appraisals/81334/name-and-type">Phase 1: Plan Appraisal - Organization Scope</a>
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <div class="appraisal-menu__phase-header--disabled">Phase 1: Plan Appraisal - Sample Scope</div>
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <div class="appraisal-menu__phase-header--disabled">Phase 1: Plan Appraisal - Random Generated Sample</div>
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <a href="/appraisals/81334/training-schedule">Phase 1: Plan Appraisal - Appraisal Personnel</a>
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <a href="/appraisals/81334/objective-evidence/collection-approach">Phase 1: Plan Appraisal - Readiness</a>
+      </div>
+      <div class="appraisal-menu__phase-sections">
+          
+<div class="appraisal-menu__section">
+    <div class="appraisal-menu__section-header">OE Collection Plan</div>
+
+    <div class="appraisal-menu__step">
+      <img class="appraisal-menu__step-status" src="/Images/Orange.Clock.Icon.svg">
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/objective-evidence/collection-approach">OE Collection Approach</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <img class="appraisal-menu__step-status" src="/Images/Orange.Clock.Icon.svg">
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/objective-evidence/collection-techniques">OE Collection Techniques</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <img class="appraisal-menu__step-status" src="/Images/Orange.Clock.Icon.svg">
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/objective-evidence/collection-responsibilities">Responsibility for Collection</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <img class="appraisal-menu__step-status" src="/Images/Orange.Clock.Icon.svg">
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/objective-evidence/performance-report-approaches">Performance Report Collection Approach</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/objective-evidence/initial-summary">Summary of Initial OE</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/objective-evidence/data-collection-timing">Data Collection Timing</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/objective-evidence/additional-info">Additional Information</a>
+      </div>
+    </div>
+</div>
+
+          
+<div class="appraisal-menu__section">
+    <div class="appraisal-menu__section-header">Logistics and Constraints</div>
+
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/resource-estimates">Resource Effort Estimate</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <img class="appraisal-menu__step-status" src="/Images/Orange.Clock.Icon.svg">
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/logistical-requirements">Logistics Requirements</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <img class="appraisal-menu__step-status" src="/Images/Orange.Clock.Icon.svg">
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/appraisal-constraints">Appraisal Constraints</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <img class="appraisal-menu__step-status" src="/Images/Orange.Clock.Icon.svg">
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/risk-identification">Risk Identification and Management</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <img class="appraisal-menu__step-status" src="/Images/Orange.Clock.Icon.svg">
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/conflicts-of-interest">COI Identification and Management</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/follow-on-activities">Optional Follow-on Activities</a>
+      </div>
+    </div>
+</div>
+
+          
+<div class="appraisal-menu__section">
+    <div class="appraisal-menu__section-header">Appraisal Documents</div>
+
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/appraisal-plan-summary">Appraisal Plan Summary and Signature</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/supporting-documents">Supporting Document Upload</a>
+      </div>
+    </div>
+</div>
+
+          
+<div class="appraisal-menu__section">
+    <div class="appraisal-menu__section-header">Appraisal Outputs</div>
+
+    <div class="appraisal-menu__step">
+      <img class="appraisal-menu__step-status" src="/Images/Orange.Clock.Icon.svg">
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/required-outputs">Required Outputs</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/performance-report">Performance Report Output</a>
+      </div>
+    </div>
+    <div class="appraisal-menu__step">
+      <div class="appraisal-menu__step-status"></div>
+      <div class="appraisal-menu__step-name">
+          <a href="/appraisals/81334/optional-outputs">Optional Outputs</a>
+      </div>
+    </div>
+</div>
+
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <div class="appraisal-menu__phase-header--disabled">Phase 2: Conduct Appraisal</div>
+      </div>
+      <div class="appraisal-menu__phase-header">
+          <div class="appraisal-menu__phase-header--disabled">Phase 3: Report Findings</div>
+      </div>
+</div>
+
+
+  <div class="appraisal-body__main-content">
+
+    
+
+<div class="appraisal-step-navigator">
+  <div class="appraisal-step-navigator__nav-row">
+      <a class="button blue-button" href="/appraisals/81334/required-outputs">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+          <polygon points="0,60 60,0 80,20 40,60 80,100 60,120"></polygon>
+        </svg>
+      </a>
+    <h3>PERFORMANCE REPORT OUTPUT</h3>
+    <a class="button blue-button appraisal-step-navigator__menu" href="/appraisals/81334/menu">
+      APPRAISAL MENU
+    </a>
+      <a class="button blue-button" href="/appraisals/81334/optional-outputs">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+          <polygon points="80,60 20,120 0,100 40,60 0,20 20,0"></polygon>
+        </svg>
+      </a>
+  </div>
+  <h3>PERFORMANCE REPORT OUTPUT</h3>
+</div>
+
+
+
+
+
+
+
+
+    <div></div>
+
+
+  <p id="Import">
+    <strong>Note:</strong> When using a downloaded Excel template to import data, the Database ID
+    column should not be edited. New records will be created for all rows without a value in this column.
+    After each import, re-download the template to ensure you are working with the most up-to-date database IDs.
+  </p>
+  <p id="CharacterLengthWarning">
+    <strong>Warning:</strong> If the field length of 256 characters is exceeded, the system will truncate the field.
+  </p>
+  
+<div class="file-import-actions">
+  <form method="POST" enctype="multipart/form-data" action="/appraisals/81334/performance-report?handler=ImportFile">
+
+    <input id="AppraisalId" type="hidden" name="AppraisalId" value="81334">
+    <div><input type="file" name="ImportFile" id="file-input-ImportFile" class="js file"><label for="file-input-ImportFile" class=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.43 10"><path d="M10.71,5.71H10a.71.71,0,0,0-.71.72v.71a.71.71,0,0,1-.72.72H2.86a.71.71,0,0,1-.72-.72V6.43a.71.71,0,0,0-.71-.72H.71A.71.71,0,0,0,0,6.43V9.29A.71.71,0,0,0,.71,10h10a.71.71,0,0,0,.72-.71V6.43A.72.72,0,0,0,10.71,5.71ZM7.86,4.29H6.43V.71A.72.72,0,0,0,5,.71V4.29H3.57L5.71,7.14Z"></path></svg>Choose a File</label></div>
+
+    <div class="button-block">
+      <a class="button p2" href="/appraisals/81334/performance-report/template/download">
+        Download Template
+      </a>
+      <button class="button">Import</button>
+    </div>
+  <input name="__RequestVerificationToken" type="hidden" value="CfDJ8BIoiBe1HRBFuQObcz6hRYvJEMJ0i5X9jDCrD29DSLgb0bi-dUKs3OeYd684ycOrRGcbVOAoyELbslEninffJjvg4-K7wTTjLMMN3P-gtTdx-m6KJNcxsk5CAbASehfDeR0ZtbM33seEdoXIAKgtcNVtCrCs_WCXMHISjGFdoL0yn82f9Sg0qF076y6Y7rHOVA"></form>
+</div>
+
+
+  
+    <div class="appraisal-step-completions-container">
+      <form method="POST" action="/appraisals/81334/performance-report?handler=MarkAppraisalStepComplete">
+        <button class="button blue-button">Mark Step as Complete</button>
+      <input name="__RequestVerificationToken" type="hidden" value="CfDJ8BIoiBe1HRBFuQObcz6hRYvJEMJ0i5X9jDCrD29DSLgb0bi-dUKs3OeYd684ycOrRGcbVOAoyELbslEninffJjvg4-K7wTTjLMMN3P-gtTdx-m6KJNcxsk5CAbASehfDeR0ZtbM33seEdoXIAKgtcNVtCrCs_WCXMHISjGFdoL0yn82f9Sg0qF076y6Y7rHOVA"></form>
+    </div>
+
+  
+  
+
+  
+
+
+
+
+
+
+  <hr>
+    <div class="appraisal-form" id="Form">
+      <div class="header">
+        <h2>Add Performance Report Output</h2>
+        <div class="required-message">* Required Fields</div>
+      </div>
+
+
+        
+<form method="POST" action="/appraisals/81334/performance-report#Form">
+  <input type="hidden" name="AppraisalId" value="81334">
+  <div class="header">
+    <h3>Business Objectives</h3>
+  </div>
+
+  <label for="BusinessObjectiveTitle">
+    <span> <span class="required">*</span> Business Objective Title </span>
+  </label>
+  <input type="text" id="BusinessObjectiveTitle" name="BusinessObjectiveTitle" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="BusinessObjectiveDescription">
+    <span><span class="required">*</span> Business Objective Description </span>
+  </label>
+  <input type="text" id="BusinessObjectiveDescription" name="BusinessObjectiveDescription" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="QPPOMeasurement">
+    <span><span class="required">*</span> Measurement or QPPO </span>
+  </label>
+  <input type="text" id="QPPOMeasurement" name="QPPOMeasurement" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="AdditionalComments">
+    <span>Additional Comments</span>
+  </label>
+  <input type="text" id="AdditionalComments" name="AdditionalComments" value=""><p class="char-limit">0/1024 characters (1024 remaining)</p>
+  
+
+  <label for="RelatedObjectives">
+    <span>Related Measurement(s)</span>
+  </label>
+  <input type="text" id="RelatedObjectives" name="RelatedObjectives" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <div class="header">
+    <h3>Measurements</h3>
+  </div>
+
+  <label for="CategoryId">
+    <span><span class="required">*</span> Category </span>
+  </label>
+  <div class="dropdown-wrapper"><select name="CategoryId"><option value=""></option><option value="12">Financial Performance</option><option value="13">Operational Performance</option><option value="14">Process Performance</option><option value="15">Productivity Performance</option><option value="16">Quality Performance</option><option value="17">Safety Management</option><option value="18">Security Management</option><option value="19">Supplier Performance</option><option value="20">Technical Performance</option><option value="21">Workforce Management</option></select></div>
+
+  <label for="SubcategoryId">
+    <span><span class="required">*</span> Subcategory </span>
+  </label>
+  <select class="initialized" id="SubcategoryId" name="SubcategoryId">
+    <option value=""></option>
+  </select>
+
+  <label for="Target">
+    <span><span class="required">*</span> Target Measurement or QPPO</span>
+  </label>
+  <input type="text" id="Target" name="Target" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="QPPOTargetMeasurement">
+    <span> <span class="required">*</span> Before Results: Measurement or QPPO </span>
+  </label>
+  <input type="text" id="QPPOTargetMeasurement" name="QPPOTargetMeasurement" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="TargetMeasurementTypeId">
+    <span><span class="required">*</span> Before Results: Measurement Type </span>
+  </label>
+  <div class="dropdown-wrapper"><select name="TargetMeasurementTypeId"><option value=""></option><option value="1">Mean</option><option value="2">Monetary</option><option value="3">Number</option><option value="4">Percent</option><option value="5">Standard Deviation</option><option value="6">Time</option><option value="7">Variance</option></select></div>
+
+  <label for="TargetMeasurementDescription">
+    <span><span class="required">*</span> Before Results: Measurement Description </span>
+  </label>
+  <input type="text" id="TargetMeasurementDescription" name="TargetMeasurementDescription" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="QPPOActualMeasurement">
+    <span><span class="required">*</span> After Results: Measurement or QPPO </span>
+  </label>
+  <input type="text" id="QPPOActualMeasurement" name="QPPOActualMeasurement" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="ActualMeasurementTypeId">
+    <span> <span class="required">*</span> After Results: Measurement Type </span>
+  </label>
+  <div class="dropdown-wrapper"><select name="ActualMeasurementTypeId"><option value=""></option><option value="1">Mean</option><option value="2">Monetary</option><option value="3">Number</option><option value="4">Percent</option><option value="5">Standard Deviation</option><option value="6">Time</option><option value="7">Variance</option></select></div>
+
+  <label for="ActualMeasurementDescription">
+    <span><span class="required">*</span> After Results: Measurement Description </span>
+  </label>
+  <input type="text" id="ActualMeasurementDescription" name="ActualMeasurementDescription" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="TrackingInterval">
+    <span> <span class="required">*</span> Tracking Interval </span>
+  </label>
+  <input type="text" id="TrackingInterval" name="TrackingInterval" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="QPPOMet">
+    <span> <span class="required">*</span> Measurement or QPPO Met? </span>
+  </label>
+  <div class="dropdown-wrapper"><select name="QPPOMet"><option value=""></option><option value="0">Yes</option><option value="1">No</option><option value="2">In Progress</option></select></div>
+
+  <label for="QPPOMetDescription">
+    <span>Measurement or QPPO Met Details </span>
+  </label>
+  <input type="text" id="QPPOMetDescription" name="QPPOMetDescription" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="PPBDescription">
+    <span>PPB Description (Required for High Maturity)</span>
+  </label>
+  <input type="text" id="PPBDescription" name="PPBDescription" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="PPMDescription">
+    <span>PPM Description of Analysis (Required for High Maturity)</span>
+  </label>
+  <input type="text" id="PPMDescription" name="PPMDescription" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <div class="header">
+    <h3>Improvement Actions and Benefits</h3>
+  </div>
+
+  <label for="TypeofImprovementorActionNeeded">
+    <span><span class="required">*</span> Type of Improvement or Action Needed </span>
+  </label>
+  <input type="text" id="TypeofImprovementorActionNeeded" name="TypeofImprovementorActionNeeded" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="PotentialRootCause">
+    <span>Causal Analysis Data Including Potential Root Cause (Required for High Maturity)</span>
+  </label>
+  <input type="text" id="PotentialRootCause" name="PotentialRootCause" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="BusinessBenefit">
+    <span> <span class="required">*</span> Business Benefit </span>
+  </label>
+  <input type="text" id="BusinessBenefit" name="BusinessBenefit" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <label for="SustainingHabitAndPersistence">
+    <span><span class="required">*</span> Sustaining Habit and Persistence </span>
+  </label>
+  <input type="text" id="SustainingHabitAndPersistence" name="SustainingHabitAndPersistence" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <div class="header">
+    <h3>Model Mapping</h3>
+  </div>
+
+  <label for="RelatedModelPractices">
+    <span><span class="required">*</span> Related Model Practices </span>
+  </label>
+  <input type="text" id="RelatedModelPractices" name="RelatedModelPractices" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+  <div class="header">
+    <h3>Appraisal Team Comments</h3>
+  </div>
+
+  <label for="AppraisalTeamComments">
+    <span>Appraisal Team Comments</span>
+  </label>
+  <input type="text" id="AppraisalTeamComments" name="AppraisalTeamComments" value=""><p class="char-limit">0/256 characters (256 remaining)</p>
+  
+
+
+  <div class="actions">
+    <a class="button p2" href="/appraisals/81334/performance-report">
+      Cancel
+    </a>
+    <button>Add Performance Report Output</button>
+  </div>
+<input name="__RequestVerificationToken" type="hidden" value="CfDJ8BIoiBe1HRBFuQObcz6hRYvJEMJ0i5X9jDCrD29DSLgb0bi-dUKs3OeYd684ycOrRGcbVOAoyELbslEninffJjvg4-K7wTTjLMMN3P-gtTdx-m6KJNcxsk5CAbASehfDeR0ZtbM33seEdoXIAKgtcNVtCrCs_WCXMHISjGFdoL0yn82f9Sg0qF076y6Y7rHOVA"></form>
+
+<script type="text/javascript">
+    const categoriesMapping = {"12":[{"disabled":false,"group":null,"selected":false,"text":"Budget Related","value":"161"},{"disabled":false,"group":null,"selected":false,"text":"Cost Management","value":"162"},{"disabled":false,"group":null,"selected":false,"text":"Cost Variance","value":"163"},{"disabled":false,"group":null,"selected":false,"text":"Effort Variance","value":"164"},{"disabled":false,"group":null,"selected":false,"text":"Finance","value":"165"},{"disabled":false,"group":null,"selected":false,"text":"First Time Right","value":"166"},{"disabled":false,"group":null,"selected":false,"text":"Gross Revenue Growth","value":"167"},{"disabled":false,"group":null,"selected":false,"text":"Margins","value":"168"},{"disabled":false,"group":null,"selected":false,"text":"Market Growth","value":"169"},{"disabled":false,"group":null,"selected":false,"text":"Net Income Growth","value":"170"},{"disabled":false,"group":null,"selected":false,"text":"On Time Payment or Invoicing","value":"171"},{"disabled":false,"group":null,"selected":false,"text":"Sales Growth","value":"172"}],"13":[{"disabled":false,"group":null,"selected":false,"text":"Contract Compliance","value":"173"},{"disabled":false,"group":null,"selected":false,"text":"Customer Satisfaction","value":"174"},{"disabled":false,"group":null,"selected":false,"text":"Operational Activities","value":"175"},{"disabled":false,"group":null,"selected":false,"text":"Risk Management","value":"176"},{"disabled":false,"group":null,"selected":false,"text":"Service Level Agreement","value":"177"}],"14":[{"disabled":false,"group":null,"selected":false,"text":"Process","value":"178"},{"disabled":false,"group":null,"selected":false,"text":"Process Compliance","value":"179"},{"disabled":false,"group":null,"selected":false,"text":"Process Cycle Time","value":"180"},{"disabled":false,"group":null,"selected":false,"text":"Process Improvement","value":"181"}],"15":[{"disabled":false,"group":null,"selected":false,"text":"Code Coverage","value":"182"},{"disabled":false,"group":null,"selected":false,"text":"Defect Removal Efficiency","value":"183"},{"disabled":false,"group":null,"selected":false,"text":"Development Productivity","value":"184"},{"disabled":false,"group":null,"selected":false,"text":"Peer Review Efficiency","value":"185"},{"disabled":false,"group":null,"selected":false,"text":"Productivity","value":"186"},{"disabled":false,"group":null,"selected":false,"text":"Project or Solution Productivity","value":"187"},{"disabled":false,"group":null,"selected":false,"text":"Resource Utilization","value":"188"},{"disabled":false,"group":null,"selected":false,"text":"Reuse Rate","value":"189"},{"disabled":false,"group":null,"selected":false,"text":"Rework","value":"190"},{"disabled":false,"group":null,"selected":false,"text":"Solution Availability","value":"191"},{"disabled":false,"group":null,"selected":false,"text":"Sprint Efficiency","value":"192"},{"disabled":false,"group":null,"selected":false,"text":"Testing Productivity","value":"193"},{"disabled":false,"group":null,"selected":false,"text":"Velocity","value":"194"},{"disabled":false,"group":null,"selected":false,"text":"Workload Variance","value":"195"}],"16":[{"disabled":false,"group":null,"selected":false,"text":"Data Quality","value":"196"},{"disabled":false,"group":null,"selected":false,"text":"Defect Containment","value":"197"},{"disabled":false,"group":null,"selected":false,"text":"Defect Density","value":"250"},{"disabled":false,"group":null,"selected":false,"text":"Defect Detection","value":"198"},{"disabled":false,"group":null,"selected":false,"text":"Defect Injection Rate","value":"199"},{"disabled":false,"group":null,"selected":false,"text":"Delivered Solution Quality","value":"200"},{"disabled":false,"group":null,"selected":false,"text":"Mean Time Between Failures","value":"201"},{"disabled":false,"group":null,"selected":false,"text":"Quality","value":"202"}],"17":[{"disabled":false,"group":null,"selected":false,"text":"Lost Time Injury","value":"203"},{"disabled":false,"group":null,"selected":false,"text":"Safety Activities","value":"204"},{"disabled":false,"group":null,"selected":false,"text":"Safety Incidents","value":"205"},{"disabled":false,"group":null,"selected":false,"text":"Safety Violations","value":"206"}],"18":[{"disabled":false,"group":null,"selected":false,"text":"Devices Running Unauthorized","value":"207"},{"disabled":false,"group":null,"selected":false,"text":"Mean Time to Contain (MTTC)","value":"208"},{"disabled":false,"group":null,"selected":false,"text":"Mean Time to Defect (MTTD)","value":"209"},{"disabled":false,"group":null,"selected":false,"text":"Mean Time to Responses (MTTR)","value":"210"},{"disabled":false,"group":null,"selected":false,"text":"Privileged Account Access","value":"211"},{"disabled":false,"group":null,"selected":false,"text":"Recovery Point Objective","value":"212"},{"disabled":false,"group":null,"selected":false,"text":"Recovery Time Objective","value":"213"},{"disabled":false,"group":null,"selected":false,"text":"Security","value":"214"},{"disabled":false,"group":null,"selected":false,"text":"Security Incidents","value":"215"},{"disabled":false,"group":null,"selected":false,"text":"Security Patch Management","value":"216"},{"disabled":false,"group":null,"selected":false,"text":"Security Training Coverage","value":"217"}],"19":[{"disabled":false,"group":null,"selected":false,"text":"Supplier Defect Containment","value":"219"},{"disabled":false,"group":null,"selected":false,"text":"Supplier Defect Density","value":"220"},{"disabled":false,"group":null,"selected":false,"text":"Supplier Peer Review Efficiency","value":"222"},{"disabled":false,"group":null,"selected":false,"text":"Supplier Peer Reviews","value":"221"},{"disabled":false,"group":null,"selected":false,"text":"Supplier Quality","value":"223"},{"disabled":false,"group":null,"selected":false,"text":"Supplier Test Coverage","value":"224"},{"disabled":false,"group":null,"selected":false,"text":"Supplier Test Effectiveness","value":"225"},{"disabled":false,"group":null,"selected":false,"text":"Supply Chain Activities","value":"218"}],"20":[{"disabled":false,"group":null,"selected":false,"text":"On Time Delivery","value":"226"},{"disabled":false,"group":null,"selected":false,"text":"Requirements Achievement","value":"227"},{"disabled":false,"group":null,"selected":false,"text":"Requirements Volatility","value":"228"},{"disabled":false,"group":null,"selected":false,"text":"Schedule Activities","value":"229"},{"disabled":false,"group":null,"selected":false,"text":"Schedule Performance Index","value":"230"},{"disabled":false,"group":null,"selected":false,"text":"Schedule Variance","value":"231"},{"disabled":false,"group":null,"selected":false,"text":"Technical Activities","value":"232"},{"disabled":false,"group":null,"selected":false,"text":"Test Automation","value":"233"},{"disabled":false,"group":null,"selected":false,"text":"Test Coverage","value":"234"},{"disabled":false,"group":null,"selected":false,"text":"Testing Effectiveness","value":"235"}],"21":[{"disabled":false,"group":null,"selected":false,"text":"Diversity, Equality, and Inclusion","value":"236"},{"disabled":false,"group":null,"selected":false,"text":"Employee Attendance","value":"237"},{"disabled":false,"group":null,"selected":false,"text":"Employee Retention","value":"238"},{"disabled":false,"group":null,"selected":false,"text":"Employee Satisfaction","value":"239"},{"disabled":false,"group":null,"selected":false,"text":"Headcount","value":"240"},{"disabled":false,"group":null,"selected":false,"text":"Key Employee Turnover","value":"241"},{"disabled":false,"group":null,"selected":false,"text":"Length of Service","value":"242"},{"disabled":false,"group":null,"selected":false,"text":"Organizational Development","value":"243"},{"disabled":false,"group":null,"selected":false,"text":"Staff Development","value":"244"},{"disabled":false,"group":null,"selected":false,"text":"Time to Fill","value":"245"},{"disabled":false,"group":null,"selected":false,"text":"Time to Proficiency","value":"246"},{"disabled":false,"group":null,"selected":false,"text":"Virtual or Hybrid Workforce","value":"247"},{"disabled":false,"group":null,"selected":false,"text":"Workforce Activities","value":"248"},{"disabled":false,"group":null,"selected":false,"text":"Workforce Opportunity Costs","value":"249"}]};
+    const postedSubcategoryValue = null;
+    const originalSubcategoryValue = null;
+
+    window.onload = function() {
+      const categorySelectList = document.querySelector('select[name=CategoryId]');
+      const subcategorySelectList = document.querySelector('select[name=SubcategoryId]');
+
+      categorySelectList.addEventListener('change',
+        (e) => {
+          const subcategories = Object.entries(categoriesMapping[e.target.value]);
+          const options = subcategories.map(subcategory => createOption(subcategory[1]));
+          options.unshift(createOption({ text: "", value: "" }));
+          subcategorySelectList.replaceChildren(...options);
+        });
+
+      if (categorySelectList.value) {
+        categorySelectList.dispatchEvent(new Event('change'));
+        if (postedSubcategoryValue || originalSubcategoryValue) {
+          subcategorySelectList.value = postedSubcategoryValue ?? originalSubcategoryValue;
+        }
+      }
+    }
+
+    function createOption(subcategory) {
+      const o = document.createElement('option');
+      o.value = subcategory.value;
+      o.text = subcategory.text;
+      o.disabled = subcategory.disabled;
+      return o;
+    }
+</script>
+
+    </div>
+
+
+  </div>
+</div>
+
+
+<footer class="site">
+  <p class="copyright">© 2026 ISACA. All rights reserved. <span>v.master+381226d1f5ffcfc0210b322d09ab9001a08350a3</span></p><nav class="minor">
+    <ul>
+      <li><a href="https://support.isaca.org/">Support</a></li>
+      <li><a href="https://www.isaca.org/privacy-policy">Privacy</a></li>
+      <li><a href="https://www.isaca.org/ad-and-cookie-policy">Cookie Policy</a></li>
+      <li><a href=" https://www.isaca.org/terms-of-use">Terms of Use</a></li>
+    </ul>
+  </nav>
+</footer>
+
+<script src="/dist/main.js?v=xYV-O1lsDS3QUGP-xqSOLaeShnnr5qNW_aUIXLIxfVk"></script><div></div>
+<script src="https://cdn.cmmiinstitute.com/design/bundle.2.2.3.js" integrity="PyoVW1JwcRlsPz8/Pz9JfyM/PzojYR8/O0MiPzA3Pxo/Pz9dPws/Pz8/P01IPz8/DQo="></script><div></div>
+
+
+
+
+
+
+</body></html>

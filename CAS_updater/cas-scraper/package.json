@@ -1,0 +1,22 @@
+{
+  "name": "cas-scraper",
+  "version": "1.0.0",
+  "description": "Scrape CAS Online form fields",
+  "main": "scraper.js",
+  "scripts": {
+    "start": "npx ts-node scraper.ts",
+    "populate": "npx ts-node populator.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0",
+    "exceljs": "^4.4.0",
+    "adm-zip": "^0.5.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/adm-zip": "^0.5.5",
+    "typescript": "^5.0.0",
+    "ts-node": "^10.9.0"
+  }
+}

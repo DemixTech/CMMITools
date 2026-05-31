@@ -1,0 +1,167 @@
+Row,Sheet,FieldLabel,CAS_Page,CAS_Selector,CAS_FieldName,CAS_Type,Notes
+,,"* Appraisal Name",/name-and-type,"#appraisal-name",Name,text,
+,,"TimeZone",/name-and-type,"select[name="TimeZone"]",TimeZone,select,Options: (UTC+14:00) Kiritimati Island, (UTC+13:00) Samoa, (UTC+13:00) Nuku'alofa...
+,,"PartnerOrganizationId",/name-and-type,"select[name="PartnerOrganizationId"]",PartnerOrganizationId,select,Options: Demix, ISACA, Demix (China) Information Technology...
+,,"* Business and Appraisal Objectives",/name-and-type,"#appraisal-objectives",Objectives,textarea,
+,,"Yes",/name-and-type,"#signatures-required-yes",TeamMemberSignaturesRequired,radio,Options: Yes, No...
+,,"No",/name-and-type,"#signatures-required-no",TeamMemberSignaturesRequired,radio,Options: Yes, No...
+,,"Yes",/name-and-type,"#delivered-virtually-yes",delivered-virtually-yes,radio,
+,,"No",/name-and-type,"#delivered-virtually-no",delivered-virtually-no,radio,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#5",5,checkbox,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#6",6,checkbox,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#9",9,checkbox,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#10",10,checkbox,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#11",11,checkbox,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#12",12,checkbox,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#13",13,checkbox,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#14",14,checkbox,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#15",15,checkbox,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#16",16,checkbox,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#17",17,checkbox,
+,,"1: Plan and Prepare for Appraisal",/name-and-type,"#7",7,checkbox,
+,,"* Name
+    Enter legal name of company being appraised.",/organizations,"#Name",Name,text,
+,,"Native Language Name
+    Enter legal name in native language. If English leave blank.",/organizations,"#NativeName",NativeName,text,
+,,"* Address Line 1
+    Street address, P.O. box, company name, c/o",/organizations,"#Address1",Address1,text,
+,,"Address Line 2
+    Apartment, suite, unit, building, floor, etc.",/organizations,"#Address2",Address2,text,
+,,"* City",/organizations,"#City",City,text,
+,,"* State/Province/Region",/organizations,"#StateProvinceRegion",StateProvinceRegion,text,
+,,"* ZIP/Postal Code",/organizations,"#PostalCode",PostalCode,text,
+,,"* ZIP/Postal Code",/organizations,"select[name="CountryIsoCode"]",CountryIsoCode,select,Options: Afghanistan, Åland Islands, Albania...
+,,"* Website Address/URL",/organizations,"#WebsiteUrl",WebsiteUrl,text,
+,,"* Rationale for Projects Excluded from OU",/organizations,"#RationaleForExcludedProjects",RationaleForExcludedProjects,textarea,
+,,"IsicId",/organizations,"select[name="IsicId"]",IsicId,select,Options: (A-01) Agriculture, forestry and fishing - Crop and animal production, hunting and related service activities, (A-02) Agriculture, forestry and fishing - Forestry and logging, (A-03) Agriculture, forestry and fishing - Fishing and aquaculter...
+,,"Size",/organizations,"select[name="Size"]",Size,select,Options: 0-50, 51-100, 101-150...
+,,"* Readiness Review Name",/readiness-reviews,"#Name",Name,text,
+,,"* Readiness Review Start Date",/readiness-reviews,"#StartDateYear",StartDateYear,number,
+,,"* Readiness Review Start Date",/readiness-reviews,"#StartDateMonth",StartDateMonth,number,
+,,"* Readiness Review Start Date",/readiness-reviews,"#StartDateDay",StartDateDay,number,
+,,"* Readiness Review End Date",/readiness-reviews,"#EndDateYear",EndDateYear,number,
+,,"* Readiness Review Start Date",/readiness-reviews,"#EndDateMonth",EndDateMonth,number,
+,,"* Readiness Review Start Date",/readiness-reviews,"#EndDateDay",EndDateDay,number,
+,,"* Objectives
+      Describe the purpose of the readiness review.",/readiness-reviews,"#Objectives",Objectives,textarea,
+,,"* Success Criteria",/readiness-reviews,"#SuccessCriteria",SuccessCriteria,textarea,
+,,"* Required Members",/readiness-reviews,"#RequiredMembers",RequiredMembers,textarea,
+,,"* Outcomes",/readiness-reviews,"#Outcomes",Outcomes,textarea,
+,,"Further Details",/readiness-reviews,"#FurtherDetails",FurtherDetails,textarea,
+,,"Yes",/readiness-reviews,"#org-unit-project-sensitive-yes",CharacterizedEvidence,radio,Options: Yes, No...
+,,"No",/readiness-reviews,"#org-unit-project-sensitive-no",CharacterizedEvidence,radio,Options: Yes, No...
+,,"Choose a File",/training-schedule,"#file-input-ImportFile",ImportFile,file,
+,,"Choose a File",/confidentiality-agreement,"#file-input-ImportFile",ImportFile,file,
+,,"Type",/objective-evidence/collection-approach,"select[name="Type"]",Type,select,Options: Discovery, Managed Discovery, Verification...
+,,"* Description
+    Describe the reasoning for using this approach.",/objective-evidence/collection-approach,"#Comment",Comment,textarea,
+,,"Type",/objective-evidence/collection-techniques,"select[name="Type"]",Type,select,Options: Data call, Demonstration, Interview...
+,,"* Other Technique
+    Name the technique if "other" was selected from the dropdown.",/objective-evidence/collection-techniques,"#Name",Name,text,
+,,"ObjectiveEvidenceType",/objective-evidence/collection-techniques,"select[name="ObjectiveEvidenceType"]",ObjectiveEvidenceType,select,Options: Artifacts, Affirmations, Artifacts and Affirmations...
+,,"* Description
+    Describe how this technique will be used for collecting OE.",/objective-evidence/collection-techniques,"#Description",Description,textarea,
+,,"Type",/objective-evidence/collection-responsibilities,"select[name="Type"]",Type,select,Options: ATL, Consultants, OU...
+,,"* Other Entity
+    Name the entity if "other" was selected from the dropdown.",/objective-evidence/collection-responsibilities,"#Name",Name,text,
+,,"* Description
+    Describe the roles played by individuals from this entity responsible for OE collection.",/objective-evidence/collection-responsibilities,"#Description",Description,textarea,
+,,"Type",/objective-evidence/performance-report-approaches,"select[name="Type"]",Type,select,Options: ATL, Mini-team (subset of the full appraisal team), Appraisal Full Team...
+,,"* Other Approach
+    Name the approach if "other" was selected from the dropdown.",/objective-evidence/performance-report-approaches,"#Name",Name,text,
+,,"* Description
+    Describe how the information needed to complete the Performance Report will be collected.",/objective-evidence/performance-report-approaches,"#Description",Description,textarea,
+,,"* Summary
+    
+      Summarize any additional project for which OE was requested, or any additional needs that remain after the
+      performance of readiness reviews.",/objective-evidence/initial-summary,"#Summary",Summary,textarea,
+,,"* Name of timeline milestones",/objective-evidence/data-collection-timing,"#Name",Name,text,
+,,"YYYY",/objective-evidence/data-collection-timing,"#CompletedYear",CompletedYear,number,
+,,"MM",/objective-evidence/data-collection-timing,"#CompletedMonth",CompletedMonth,number,
+,,"DD",/objective-evidence/data-collection-timing,"#CompletedDay",CompletedDay,number,
+,,"ParticipantNamesListing",/objective-evidence/data-collection-timing,"#ParticipantNamesListing",ParticipantNamesListing,textarea,
+,,"Additional Information",/objective-evidence/additional-info,"#AdditionalInformation",AdditionalInformation,textarea,
+,,"Choose a File",/resource-estimates,"#file-input-ImportFile",ImportFile,file,
+,,"* Participant Group
+    Describe the group of individuals affected.",/resource-estimates,"#ParticipantGroup",ParticipantGroup,textarea,
+,,"* Participant Individuals
+    
+      Name and list the number of individuals in the participant group, using the format Name (#).
+      For example: Interviewees (4), Manager Interviewees (2). Lists with more than one type of individual
+      should be separated by a comma (,).",/resource-estimates,"#ParticipantIndividuals",ParticipantIndividuals,textarea,
+,,"* Task
+    
+      List task/activities/events from the appraisal schedule.",/resource-estimates,"#Task",Task,textarea,
+,,"* Time (hours)
+    
+      Elapsed time for each activity.",/resource-estimates,"#Time",Time,text,
+,,"Choose a File",/logistical-requirements,"#file-input-ImportFile",ImportFile,file,
+,,"LogisticalRequirement",/logistical-requirements,"select[name="LogisticalRequirement"]",LogisticalRequirement,select,Options: Description of the location(s) within the OU where appraisal activities will take place, Accommodations and travel support for ATMs, as needed, Meals, snacks, beverages, etc. for the appraisal team and participants...
+,,"LogisticalRequirementEquipment",/logistical-requirements,"select[name="LogisticalRequirementEquipment"]",LogisticalRequirementEquipment,select,Options: Access to the storage of OE on the OU network, Appropriate computer equipment for the appraisal team to use throughout the appraisal, Required tools and software...
+,,"* Other logistical requirement
+    Name the logistical requirement if "other" was selected from the dropdown",/logistical-requirements,"#OtherRequirement",OtherRequirement,text,
+,,"* Description of the requirement",/logistical-requirements,"#Description",Description,textarea,
+,,"* Role responsible for requirement",/logistical-requirements,"#RoleResponsibility",RoleResponsibility,textarea,
+,,"Choose a File",/appraisal-constraints,"#file-input-ImportFile",ImportFile,file,
+,,"Constraint",/appraisal-constraints,"select[name="Constraint"]",Constraint,select,Options: Duration, Funding, Schedule Constraints...
+,,"* Other Constraint
+    Name the constraint if "other" was selected from the dropdown",/appraisal-constraints,"#org-unit-sample-other-name",OtherName,text,
+,,"* Constraint Description",/appraisal-constraints,"#Description",Description,textarea,
+,,"Choose a File",/risk-identification,"#file-input-ImportFile",ImportFile,file,
+,,"* Risk Name",/risk-identification,"#Name",Name,text,
+,,"Category",/risk-identification,"select[name="Category"]",Category,select,Options: Personnel, Logistics, Facilities...
+,,"* Other Risk Category Name
+    Only necessary if the Risk Category selected was "Other"",/risk-identification,"#CategoryName",CategoryName,text,
+,,"* Risk Description",/risk-identification,"#Description",Description,textarea,
+,,"Impact",/risk-identification,"select[name="Impact"]",Impact,select,Options: High, Medium, Low...
+,,"* Risk Mitigation",/risk-identification,"#Mitigation",Mitigation,textarea,
+,,"Status",/risk-identification,"select[name="Status"]",Status,select,Options: Open, Closed, Realized...
+,,"Choose a File",/conflicts-of-interest,"#file-input-ImportFile",ImportFile,file,
+,,"Type",/conflicts-of-interest,"select[name="Type"]",Type,select,Options: Team member authors one or more processes, Team member is a member of the organization's process group, Team member is a process owner...
+,,"* Other Conflict of Interest
+    Name the conflict of interest if "other" was selected from the dropdown.",/conflicts-of-interest,"#Name",Name,text,
+,,"* Description",/conflicts-of-interest,"#Description",Description,textarea,
+,,"Impact",/conflicts-of-interest,"select[name="Impact"]",Impact,select,Options: High, Medium, Low...
+,,"* Management Strategy",/conflicts-of-interest,"#ManagementStrategy",ManagementStrategy,textarea,
+,,"Status",/conflicts-of-interest,"select[name="Status"]",Status,select,Options: Open, Closed, Realized...
+,,"FollowOnActivityType",/follow-on-activities,"select[name="FollowOnActivityType"]",FollowOnActivityType,select,Options: Executive Session, Lessons Learned, Process Improvement Action Plan...
+,,"* Other Follow-on Activity
+    Name the follow-on activity if "Other" was selected from the dropdown",/follow-on-activities,"#OtherFollowOnActivityType",OtherFollowOnActivityType,text,
+,,"* Follow-on Activity Description",/follow-on-activities,"#Description",Description,textarea,
+,,"Choose a File",/appraisal-plan-summary,"#file-input-ImportFile",ImportFile,file,
+,,"Choose a File",/supporting-documents,"#file-input-supporting-document-file",supporting-document-file,file,
+,,"unnamed_2",/supporting-documents,"input",unnamed_2,submit,
+,,"Choose a File",/performance-report,"#file-input-ImportFile",ImportFile,file,
+,,"* Business Objective Title",/performance-report,"#BusinessObjectiveTitle",BusinessObjectiveTitle,text,
+,,"* Business Objective Description",/performance-report,"#BusinessObjectiveDescription",BusinessObjectiveDescription,text,
+,,"* Measurement or QPPO",/performance-report,"#QPPOMeasurement",QPPOMeasurement,text,
+,,"Additional Comments",/performance-report,"#AdditionalComments",AdditionalComments,text,
+,,"Related Measurement(s)",/performance-report,"#RelatedObjectives",RelatedObjectives,text,
+,,"CategoryId",/performance-report,"select[name="CategoryId"]",CategoryId,select,Options: Financial Performance, Operational Performance, Process Performance...
+,,"* Subcategory",/performance-report,"#SubcategoryId",SubcategoryId,select,
+,,"* Target Measurement or QPPO",/performance-report,"#Target",Target,text,
+,,"* Before Results: Measurement or QPPO",/performance-report,"#QPPOTargetMeasurement",QPPOTargetMeasurement,text,
+,,"TargetMeasurementTypeId",/performance-report,"select[name="TargetMeasurementTypeId"]",TargetMeasurementTypeId,select,Options: Mean, Monetary, Number...
+,,"* Before Results: Measurement Description",/performance-report,"#TargetMeasurementDescription",TargetMeasurementDescription,text,
+,,"* After Results: Measurement or QPPO",/performance-report,"#QPPOActualMeasurement",QPPOActualMeasurement,text,
+,,"ActualMeasurementTypeId",/performance-report,"select[name="ActualMeasurementTypeId"]",ActualMeasurementTypeId,select,Options: Mean, Monetary, Number...
+,,"* After Results: Measurement Description",/performance-report,"#ActualMeasurementDescription",ActualMeasurementDescription,text,
+,,"* Tracking Interval",/performance-report,"#TrackingInterval",TrackingInterval,text,
+,,"QPPOMet",/performance-report,"select[name="QPPOMet"]",QPPOMet,select,Options: Yes, No, In Progress...
+,,"Measurement or QPPO Met Details",/performance-report,"#QPPOMetDescription",QPPOMetDescription,text,
+,,"PPB Description (Required for High Maturity)",/performance-report,"#PPBDescription",PPBDescription,text,
+,,"PPM Description of Analysis (Required for High Maturity)",/performance-report,"#PPMDescription",PPMDescription,text,
+,,"* Type of Improvement or Action Needed",/performance-report,"#TypeofImprovementorActionNeeded",TypeofImprovementorActionNeeded,text,
+,,"Causal Analysis Data Including Potential Root Cause (Required for High Maturity)",/performance-report,"#PotentialRootCause",PotentialRootCause,text,
+,,"* Business Benefit",/performance-report,"#BusinessBenefit",BusinessBenefit,text,
+,,"* Sustaining Habit and Persistence",/performance-report,"#SustainingHabitAndPersistence",SustainingHabitAndPersistence,text,
+,,"* Related Model Practices",/performance-report,"#RelatedModelPractices",RelatedModelPractices,text,
+,,"Appraisal Team Comments",/performance-report,"#AppraisalTeamComments",AppraisalTeamComments,text,
+,,"Type",/optional-outputs,"select[name="Type"]",Type,select,Options: Other...
+,,"* Other Optional Output
+      Name the optional output if "other" was selected from the dropdown.",/optional-outputs,"#Name",Name,text,
+,,"* Description of output delivery
+    Provide a detailed description of how this output will be delivered to the sponsor.",/optional-outputs,"#Description",Description,textarea,
+,,"* Owner
+    Specity the owner of each output",/optional-outputs,"#Owner",Owner,textarea,
+,,"* Controls or Restrictions On Use",/optional-outputs,"#ControlsOrRestrictions",ControlsOrRestrictions,textarea,

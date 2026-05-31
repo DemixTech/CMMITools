@@ -1,0 +1,30 @@
+======================================================================
+CAS PLAN SETUP REPORT (v1.3.0)
+======================================================================
+Generated: 2026-02-13T18:19:31.411230
+Source:  C:\WorkDir-Claude\2024-05-04to05-10 (A5) C384400 NASA\00_Startup\SYSTEC-April-CAS Plan-Demix.xlsm
+Target:  C:\WorkDir-Claude\2024-05-04to05-10 (A5) C384400 NASA\10_97v01_Base Camp Artemis_CAS_Plan.xlsm
+Metadata: \00_Startup C:\WorkDir-Claude\2024-05-04to05-10 (A5) C384400 NASA\70_MetaData.xlsx
+Dry Run: False
+
+METADATA HEADINGS LOADED
+--------------------------------------------------
+
+SUMMARY
+--------------------------------------------------
+Success: False
+Total Cells Copied: 0
+Warnings: 0
+Row Order Anomalies: 0
+
+SHEET-BY-SHEET RESULTS
+--------------------------------------------------
+
+JSON METADATA
+--------------------------------------------------
+Column Z in both source and target now contains JSON descriptions.
+Format: {type, heading, field, source_row, target_row, cell_type, ...}
+
+======================================================================
+END OF REPORT
+======================================================================

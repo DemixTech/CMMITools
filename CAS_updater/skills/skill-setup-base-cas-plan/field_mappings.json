@@ -1,0 +1,40 @@
+{
+  "version": "1.0.0",
+  "description": "Field mappings for CAS Plan setup",
+  "source_tabs": [
+    "Agreement 3",
+    "Planning",
+    "StartupInfo",
+    "Project&Support",
+    "Staff"
+  ],
+  "formula_detection": {
+    "enabled": true,
+    "patterns": {
+      "comment": "Add cell patterns that should always contain formulas",
+      "example": {
+        "sheet": "Planning",
+        "columns": ["F", "G", "H"],
+        "description": "Calculation columns that should have formulas"
+      }
+    }
+  },
+  "skip_cells": {
+    "comment": "Cells to always skip (never copy)",
+    "cells": []
+  },
+  "force_copy_cells": {
+    "comment": "Cells to always copy (override formula protection)",
+    "cells": []
+  },
+  "styling": {
+    "flagged_cell_fill": {
+      "color": "FF0000",
+      "comment": "Red background"
+    },
+    "flagged_cell_font": {
+      "color": "FFFFFF",
+      "comment": "White text"
+    }
+  }
+}
