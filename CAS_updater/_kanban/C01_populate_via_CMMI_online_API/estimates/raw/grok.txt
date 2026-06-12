@@ -1,0 +1,7 @@
+{
+  "complexity": 7,
+  "estTokens": 31500,
+  "model": "grok-build",
+  "estSeconds": 235,
+  "notes": "Assumes CMMI_online ingestion endpoint + Azure DB contract (per prerequisites and root specification.md) are available; this ticket implements only the CAS_updater client side + DTO while the O-side lives in CMMI_online. Complexity 7 driven by need to extract a complete, stable, serializable request DTO that mirrors the full CAS field map (from CAS_Field_Mapping.md + _xlsCasMap_MASTER.xlsx + cas_form_fields artifacts) out of fragmented browser handlers (appraisalConstraints, orgScope, riskIdentification, logistical, COI, etc.) plus populator/scraper logic, then add HTTP POST path + config-driven dual mode (keep live CAS UI populator intact) in cas-scraper. estTokens factors in heavy initial exploration (specification.md, 8-12 .ts files + json/mapping docs + types + config), DTO design, client module, conditional wiring, error handling for transition, doc updates, and 3-4 agent edit/verify cycles. estSeconds reflects grok-build wall-clock time (thinking + generation + context accumulation) for end-to-end completion; primary risks are incomplete field coverage or shape drift between current form-filling and new DTO."
+}

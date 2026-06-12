@@ -1,0 +1,7 @@
+{
+  "complexity": 4,
+  "estTokens": 36500,
+  "model": "grok-build",
+  "estSeconds": 390,
+  "notes": "Greenfield .NET scaffold (dotnet new mvc + sln, EF Core SqlServer package only, basic HomeController/view, xUnit test proj, standard .gitignore, local secrets via User Secrets). Agent must also read component + root specs, then rewrite specification.md §1/§3 from intended to as-built with pinned ASP.NET version, hosting target, auth model, and config approach. Complexity 4 (not 2-3) due to judgment calls on stack pins that must align with Azure DB owner role and unblock later O tasks, plus full verification that the app builds and home page renders. ~7-10 LLM turns expected (context reads, CLI outputs, targeted edits, build/run loops); estTokens and seconds reflect capable grok-build handling of boilerplate + precise docs with low iteration risk."
+}

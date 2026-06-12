@@ -1,0 +1,22 @@
+# Estimates — C01_populate_via_CMMI_online_API
+
+Generated 2026-06-12T12:25:19Z · estimator level factor 0.75 · canonical record: `estimates.json`
+
+| AI | status | complexity (1-10) | est. tokens | executing model | est. seconds | estimator model |
+|---|---|---|---|---|---|---|
+| claude | ok | 7 | 520000 | claude-opus-4-8 | 2100 | claude-opus-4-8 |
+| grok | ok | 7 | 31500 | grok-build | 235 | grok-build |
+| codex | ok | 7 | 90000 | gpt-5.5 | 5400 | gpt-5.5 |
+
+## claude — notes
+
+Scope is the CAS_updater half of cross-component Initiative I-3: design a stable request DTO mirroring the existing CAS field map (CAS_Field_Mapping.md / _xlsCasMap_MASTER.xlsx), add an HTTP API-client mode that POSTs parsed CASxxxx.xlsm data, and gate the existing Puppeteer populator behind a config flag. Complexity is driven by accurately reverse-engineering the field map into a shared DTO and refactoring populator.ts/scraper.ts to support two output backends. Key risk: the CMMI_online ingestion endpoint and Azure DB contract don't exist yet (unmet prerequisites), so the DTO must be designed against a contract that isn't finalized and the client can't be integration-tested end to end — likely needs mocking. Estimate assumes the parsing layer is reusable and only the write/output path is swapped.
+
+## grok — notes
+
+Assumes CMMI_online ingestion endpoint + Azure DB contract (per prerequisites and root specification.md) are available; this ticket implements only the CAS_updater client side + DTO while the O-side lives in CMMI_online. Complexity 7 driven by need to extract a complete, stable, serializable request DTO that mirrors the full CAS field map (from CAS_Field_Mapping.md + _xlsCasMap_MASTER.xlsx + cas_form_fields artifacts) out of fragmented browser handlers (appraisalConstraints, orgScope, riskIdentification, logistical, COI, etc.) plus populator/scraper logic, then add HTTP POST path + config-driven dual mode (keep live CAS UI populator intact) in cas-scraper. estTokens factors in heavy initial exploration (specification.md, 8-12 .ts files + json/mapping docs + types + config), DTO design, client module, conditional wiring, error handling for transition, doc updates, and 3-4 agent edit/verify cycles. estSeconds reflects grok-build wall-clock time (thinking + generation + context accumulation) for end-to-end completion; primary risks are incomplete field coverage or shape drift between current form-filling and new DTO.
+
+## codex — notes
+
+This is a cross-component integration change with external API/DTO dependencies, so the main risk is contract ambiguity rather than raw code volume. Work likely requires tracing the existing Excel parsing and populator flow, designing a stable request payload, adding config-driven mode selection, implementing HTTP submission/error handling, and keeping the legacy browser path intact. Estimate assumes the CMMI_online endpoint contract already exists or is discoverable; if not, scope expands significantly.
+
