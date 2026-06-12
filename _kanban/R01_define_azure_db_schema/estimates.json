@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "ticket": "R01_define_azure_db_schema",
+  "ticketDir": "/home/pietervz/agent-automation/10_projects/cmmitools/_kanban/R01_define_azure_db_schema",
+  "contextDir": "/home/pietervz/agent-automation/10_projects/cmmitools",
+  "generatedAt": "2026-06-12T12:26:49Z",
+  "estimatorLevelFactor": 0.75,
+  "retrospective": false,
+  "estimates": {
+    "claude": {
+      "complexity": 7,
+      "estTokens": 240000,
+      "model": "claude-opus-4-8",
+      "estSeconds": 540,
+      "notes": "Drives: translating ~10+ CMMI domain entities into a normalized Azure SQL schema, settling a naming convention, authoring the read/write ownership matrix, and producing a working EF Core migration (or standalone DDL). High because it's a shared contract that blocks two initiatives, so correctness and forward-compat matter, and it requires reading/absorbing the master spec §1 plus component bindings. Tempered by the explicit 'don't over-design, cover only what O02/O03 touch first' scope. Main risks: O01 not yet scaffolded (forces standalone DDL path) and verifying the migration 'applies cleanly to a fresh Azure SQL DB' without DB access — likely delivered untested, inflating later rework. Token estimate assumes a few design-iteration passes over the spec and migration.",
+      "status": "ok",
+      "estimatorModel": "claude-opus-4-8",
+      "estimationSeconds": 11
+    },
+    "grok": {
+      "complexity": 6,
+      "estTokens": 15000,
+      "model": "grok-build",
+      "estSeconds": 360,
+      "notes": "Assumes root specification.md §1 contains a clear but not exhaustive description of the ~10 listed entities and their relationships; v1 scope keeps table count to ~10-15 with basic FKs and no advanced features like partitioning. The bulk of work is mapping to relational model, codifying naming (e.g. PascalCase tables, Id PKs), populating the ownership matrix, and generating a valid EF Core migration or DDL script. Risks include entity ambiguities requiring reasonable defaults and ensuring the artifact is immediately applicable to Azure SQL without further O01 scaffolding.",
+      "status": "ok",
+      "estimatorModel": "grok-build",
+      "estimationSeconds": 33
+    },
+    "codex": {
+      "complexity": 7,
+      "estTokens": 85000,
+      "model": "gpt-5.5",
+      "estSeconds": 4800,
+      "notes": "This is a shared contract/design task, not just mechanical coding: the agent must read the canonical domain model, decide a durable Azure SQL naming/key convention, document ownership boundaries, and produce either EF Core migration code or standalone DDL. The estimate assumes CMMI_online may not yet be scaffolded, so a SQL DDL fallback is likely. Main risks are incomplete domain detail in the current specs and needing to reconcile v1 scope against future entities without over-designing.",
+      "status": "ok",
+      "estimatorModel": "gpt-5.5",
+      "estimationSeconds": 25
+    }
+  }
+}
