@@ -14,15 +14,14 @@ Version: 1.0.0
 """
 
 import argparse
-import json
 import logging
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Dict, Optional, Any
 
 try:
     import openpyxl
-    from openpyxl.styles import PatternFill, Font, Alignment
+    from openpyxl.styles import PatternFill, Font
 except ImportError:
     print("Error: openpyxl is required. Install with: pip install openpyxl")
     exit(1)
@@ -227,7 +226,7 @@ class CASPlanAuditor:
         if not self.dry_run:
             try:
                 wb.save(self.file_path)
-                logger.info(f"Workbook saved with audit results")
+                logger.info("Workbook saved with audit results")
             except Exception as e:
                 logger.error(f"Failed to save workbook: {e}")
                 wb.close()
