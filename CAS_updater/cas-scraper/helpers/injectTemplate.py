@@ -11,7 +11,11 @@ Called from TypeScript handlers via execSync.
 Prints "ok:<rowcount>" on success.
 """
 
-import sys, zipfile, json, html, re
+import sys
+import zipfile
+import json
+import html
+import re
 from io import BytesIO
 
 template_path = sys.argv[1]
